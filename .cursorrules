@@ -1,0 +1,50 @@
+# 项目背景
+
+这是一个 RAG 系统可靠性评测项目，改造自一个大学课程作业。
+核心命题：拒答与幻觉是同一个参数的两端，存在可测量的权衡边界。
+
+## 技术栈（不要擅自更换）
+
+- 模型部署：本地 Ollama，不使用云端 API（数据不外传 + 需反复调参）
+- 生成模型：mistral:7b-instruct（支持 tool calling）、deepseek-r1:1.5b（不支持 tool calling）
+- Embedding：nomic-embed-text（768 维，通过 Ollama）
+- 向量存储：pandas DataFrame + CSV，不引入 Chroma/FAISS（数据量小，无收益）
+- PDF 解析：pdfminer.six
+
+## 目录结构
+
+- `esg_data/`：22 家公司的原始 PDF 与 embedding（已被 .gitignore 排除，不进版本控制）
+- `esg_code/`：原始的三个 notebook（Data / RAG / Visualisation），待重构
+- `esg_analysis/`：原始实验输出（7 家公司的 esg_answers.json 等）
+- `eval/`：评测集 benchmark.json 与判分脚本 scorer.py
+- `src/`：重构后的核心代码（rag_baseline.py / agent.py / prompts.py）
+- `analysis/`：权衡曲线图、BadCase 归因、Agent 失败模式
+- `product/`：PRD、不确定性分类表、可交互原型
+
+## 已知的关键问题（改造时必须注意）
+
+1. **数据清洗 bug（最严重）**：原 Data.ipynb 中 `re.sub(r"(?<=\n)\d{1,2}", "", text)`
+   本意是删页码，但把 ESG 数据表里所有数字的前 1-2 位也删掉了。
+   例如 `3,423,400` 变成 `,423,400`。全语料约 1546 处数字被破坏。
+   任何涉及数字准确率的评测，必须先修复此问题并重新生成 embedding。
+
+2. **chunk 无法回溯页码**：pdf_embedding.csv 只有 content 和 embeddings 两列，
+   没有页码字段。重新切分时必须保留 page 等元数据，否则无法做检索层归因（Recall@K）。
+
+3. **切分方式**：先按页 `split('\f')`，再 `textwrap.wrap(text, 1000)` 定长切分，
+   无 overlap、无语义边界处理。首页被 `[1:]` 丢弃，页码整体偏移 1。
+
+4. **缺失依赖**：原代码依赖的 `llm_client` 模块、`config.yaml`、`metadata.json`、
+   `company_list.csv` 均已丢失，需要重写。
+
+5. **幻觉根因**：原 critique 链路的 system prompt 包含
+   `Make sure to always answer it confidently, even if you don't know the answer.`
+   这是幻觉的主要诱因。同时该链路 temperature=1.0，而 QA 链路是 0.5，
+   温度也是一个混杂变量。
+
+## 代码规范
+
+- 严禁硬编码绝对路径，一律使用 config.yaml 或相对路径
+- 实验脚本必须固定 temperature=0 和 seed，保证可复现
+- 评测相关的核心逻辑写成 .py 文件，不要留在 notebook 里
+- 注释和文档用中文，代码标识符用英文
