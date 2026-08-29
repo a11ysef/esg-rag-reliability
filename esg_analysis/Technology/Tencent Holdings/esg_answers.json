@@ -1,0 +1,17 @@
+{
+    "company_name": "Tencent Holdings",
+    "conversation": [
+        {
+            "question": "",
+            "answer": ""
+        },
+        {
+            "question": "What is scope 3 emission?",
+            "answer": "Scope 3 emission refers to a comprehensive category of emissions that includes fuel and energy-related activities (not included in Scope 1 or 2) and downstream leased assets. These emissions are calculated using coefficients from national standards, market-based methods, and rounding adjustments. Examples include electric vehicles and transportation emissions."
+        },
+        {
+            "question": "Give me the specific number of Greenhouse Gases (Scopes 1, 2, 3) (tCO2e) in 2023?",
+            "answer": "The provided document discusses various aspects of energy consumption, emissions, and environmental policies in China but does not directly provide specific numerical values for greenhouse gases under scopes 1, 2, or 3. Instead, it explains the methodology used to calculate these numbers, such as electricity emissions from fossil fuels and the context in which climate response measures were assessed. Therefore, while the content is informative on the topic, it does not offer direct answers to the specific numerical requests outlined in the input prompt."
+        }
+    ]
+}

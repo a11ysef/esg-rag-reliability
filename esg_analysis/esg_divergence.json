@@ -1,0 +1,28 @@
+[
+    {
+        "company": "Tencent Holdings",
+        "divergence": 7
+    },
+    {
+        "company": "Meta Platforms",
+        "divergence": 9
+    },
+    {
+        "company": "Apple",
+        "divergence": 8
+    },
+    {
+        "company": "Cisco Systems",
+        "divergence": 3
+    },
+    {
+        "company": "Microsoft",
+        "divergence": 6
+    },{
+        "company": "Dell Technologies",
+        "divergence": 5
+    },{
+        "company": "Alphabet",
+        "divergence": 3
+    }
+]

@@ -1,0 +1,20 @@
+# 大文件：原始数据不进版本控制
+esg_data/
+
+# Python
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+venv/
+.venv/
+
+# 环境变量与本地配置
+.env
+config.local.yaml
+
+# macOS
+.DS_Store
+
+# 实验中间产物（大文件）
+*.csv
+!eval/**/*.csv
