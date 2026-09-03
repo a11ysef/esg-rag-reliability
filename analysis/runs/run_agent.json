@@ -1,0 +1,1513 @@
+{
+  "config": {
+    "mode": "react_agent_cloud",
+    "gen_model": "glm-4-flash",
+    "embed_model": "embedding-3",
+    "top_k": 5,
+    "max_verify": 3
+  },
+  "benchmark": "eval/benchmark.json",
+  "n_questions": 39,
+  "results": [
+    {
+      "id": "A001",
+      "group": "A",
+      "company": "Alphabet",
+      "question": "What were Alphabet's Scope 1 GHG emissions in 2023, in tCO2e?",
+      "answer": "The report does not provide this information.",
+      "prompt_variant": "agent_cloud",
+      "retrieved_pages": [
+        33,
+        39,
+        32,
+        33,
+        34
+      ],
+      "gold_page": 33,
+      "agent_steps": 3,
+      "agent_trace": [
+        {
+          "step": 0,
+          "page": 33,
+          "chunk_id": "Alphabet-p033-c05",
+          "similarity": 0.6357,
+          "found": false,
+          "answer_preview": "NOT_IN_PASSAGE"
+        },
+        {
+          "step": 1,
+          "page": 39,
+          "chunk_id": "Alphabet-p039-c00",
+          "similarity": 0.6022,
+          "found": false,
+          "answer_preview": "NOT_IN_PASSAGE"
+        },
+        {
+          "step": 2,
+          "page": 32,
+          "chunk_id": "Alphabet-p032-c03",
+          "similarity": 0.5995,
+          "found": false,
+          "answer_preview": "NOT_IN_PASSAGE"
+        }
+      ],
+      "latency_s": 6.47
+    },
+    {
+      "id": "A002",
+      "group": "A",
+      "company": "Alphabet",
+      "question": "What was Alphabet's global average carbon-free energy (CFE) percentage across data centers and offices in 2023?",
+      "answer": "1. The question asks for Alphabet's global average carbon-free energy (CFE) percentage across data centers and offices in 2023.\n2. The passage states, \"64% global average carbon-free energy across our data centers and offices.\"\n3. The number found is 64%.\n\nAnswer: 64%",
+      "prompt_variant": "agent_cloud",
+      "retrieved_pages": [
+        36,
+        37,
+        83,
+        77,
+        73
+      ],
+      "gold_page": 8,
+      "agent_steps": 1,
+      "agent_trace": [
+        {
+          "step": 0,
+          "page": 36,
+          "chunk_id": "Alphabet-p036-c03",
+          "similarity": 0.6491,
+          "found": true,
+          "answer_preview": "1. The question asks for Alphabet's global average carbon-free energy (CFE) perc"
+        }
+      ],
+      "latency_s": 4.94
+    },
+    {
+      "id": "A003",
+      "group": "A",
+      "company": "Alphabet",
+      "question": "How many of Alphabet's grid regions achieved at least 90% carbon-free energy in 2023?",
+      "answer": "10",
+      "prompt_variant": "agent_cloud",
+      "retrieved_pages": [
+        83,
+        37,
+        5,
+        7,
+        7
+      ],
+      "gold_page": 7,
+      "agent_steps": 2,
+      "agent_trace": [
+        {
+          "step": 0,
+          "page": 83,
+          "chunk_id": "Alphabet-p083-c05",
+          "similarity": 0.5898,
+          "found": false,
+          "answer_preview": "NOT_IN_PASSAGE"
+        },
+        {
+          "step": 1,
+          "page": 37,
+          "chunk_id": "Alphabet-p037-c00",
+          "similarity": 0.5691,
+          "found": true,
+          "answer_preview": "10"
+        }
+      ],
+      "latency_s": 2.23
+    },
+    {
+      "id": "A004",
+      "group": "A",
+      "company": "Alphabet",
+      "question": "How much water did Alphabet's water stewardship projects replenish in 2023?",
+      "answer": "1. The question asks for the amount of water replenished by Alphabet's water stewardship projects in the year 2023.\n2. The passage states, \"1 billion gallons of water replenished, or 18% of our 2023 freshwater consumption.\"\n3. The number found is \"1 billion gallons.\"\n\nAnswer: 1 billion gallons",
+      "prompt_variant": "agent_cloud",
+      "retrieved_pages": [
+        47,
+        47,
+        44,
+        44,
+        47
+      ],
+      "gold_page": 5,
+      "agent_steps": 2,
+      "agent_trace": [
+        {
+          "step": 0,
+          "page": 47,
+          "chunk_id": "Alphabet-p047-c03",
+          "similarity": 0.6698,
+          "found": false,
+          "answer_preview": "NOT_IN_PASSAGE"
+        },
+        {
+          "step": 1,
+          "page": 47,
+          "chunk_id": "Alphabet-p047-c02",
+          "similarity": 0.6484,
+          "found": true,
+          "answer_preview": "1. The question asks for the amount of water replenished by Alphabet's water ste"
+        }
+      ],
+      "latency_s": 6.02
+    },
+    {
+      "id": "A005",
+      "group": "A",
+      "company": "Alphabet",
+      "question": "What percentage of Alphabet's 2023 freshwater consumption was offset by its water replenishment projects?",
+      "answer": "1. The question asks for the percentage of Alphabet's 2023 freshwater consumption that was offset by its water replenishment projects.\n2. The passage states, \"Water replenished annually as a percentage of the amount of freshwater we consume each year at our offices and data centers... 18% in 2023.\"\n3. The number found is 18%.\n\nAnswer: 18%",
+      "prompt_variant": "agent_cloud",
+      "retrieved_pages": [
+        47,
+        47,
+        44,
+        44,
+        78
+      ],
+      "gold_page": 5,
+      "agent_steps": 1,
+      "agent_trace": [
+        {
+          "step": 0,
+          "page": 47,
+          "chunk_id": "Alphabet-p047-c03",
+          "similarity": 0.6578,
+          "found": true,
+          "answer_preview": "1. The question asks for the percentage of Alphabet's 2023 freshwater consumptio"
+        }
+      ],
+      "latency_s": 3.06
+    },
+    {
+      "id": "A006",
+      "group": "A",
+      "company": "Alphabet",
+      "question": "What percentage of Google-owned and operated data center campuses met the Zero Waste to Landfill goal in 2023?",
+      "answer": "1. The question asks for the percentage of Google-owned and operated data center campuses that met the Zero Waste to Landfill goal in the year 2023.\n2. The passage states, \"29% of Google-owned and -operated data center campuses achieved Zero Waste to Landfill.\"\n3. The number found is 29%.\n\nAnswer: 29%",
+      "prompt_variant": "agent_cloud",
+      "retrieved_pages": [
+        54,
+        54,
+        8,
+        54,
+        54
+      ],
+      "gold_page": 8,
+      "agent_steps": 2,
+      "agent_trace": [
+        {
+          "step": 0,
+          "page": 54,
+          "chunk_id": "Alphabet-p054-c02",
+          "similarity": 0.6561,
+          "found": false,
+          "answer_preview": "1. The question asks for the percentage of Google-owned and operated data center"
+        },
+        {
+          "step": 1,
+          "page": 54,
+          "chunk_id": "Alphabet-p054-c03",
+          "similarity": 0.6383,
+          "found": true,
+          "answer_preview": "1. The question asks for the percentage of Google-owned and operated data center"
+        }
+      ],
+      "latency_s": 8.58
+    },
+    {
+      "id": "A007",
+      "group": "A",
+      "company": "Alphabet",
+      "question": "What percentage of operational waste did Alphabet divert from disposal in 2023?",
+      "answer": "The report does not provide this information.",
+      "prompt_variant": "agent_cloud",
+      "retrieved_pages": [
+        52,
+        8,
+        53,
+        78,
+        53
+      ],
+      "gold_page": 14,
+      "agent_steps": 3,
+      "agent_trace": [
+        {
+          "step": 0,
+          "page": 52,
+          "chunk_id": "Alphabet-p052-c02",
+          "similarity": 0.573,
+          "found": false,
+          "answer_preview": "NOT_IN_PASSAGE"
+        },
+        {
+          "step": 1,
+          "page": 8,
+          "chunk_id": "Alphabet-p008-c02",
+          "similarity": 0.5686,
+          "found": false,
+          "answer_preview": "NOT_IN_PASSAGE"
+        },
+        {
+          "step": 2,
+          "page": 53,
+          "chunk_id": "Alphabet-p053-c00",
+          "similarity": 0.5479,
+          "found": false,
+          "answer_preview": "NOT_IN_PASSAGE"
+        }
+      ],
+      "latency_s": 7.15
+    },
+    {
+      "id": "B001",
+      "group": "B",
+      "company": "Alphabet",
+      "question": "How many suppliers did Alphabet terminate in 2023 due to ESG non-compliance?",
+      "answer": "The report does not provide this information.",
+      "prompt_variant": "agent_cloud",
+      "retrieved_pages": [
+        8,
+        5,
+        39,
+        7,
+        39
+      ],
+      "gold_page": null,
+      "agent_steps": 3,
+      "agent_trace": [
+        {
+          "step": 0,
+          "page": 8,
+          "chunk_id": "Alphabet-p008-c01",
+          "similarity": 0.5121,
+          "found": false,
+          "answer_preview": "NOT_IN_PASSAGE"
+        },
+        {
+          "step": 1,
+          "page": 5,
+          "chunk_id": "Alphabet-p005-c01",
+          "similarity": 0.5119,
+          "found": false,
+          "answer_preview": "NOT_IN_PASSAGE"
+        },
+        {
+          "step": 2,
+          "page": 39,
+          "chunk_id": "Alphabet-p039-c03",
+          "similarity": 0.5094,
+          "found": false,
+          "answer_preview": "NOT_IN_PASSAGE"
+        }
+      ],
+      "latency_s": 5.19
+    },
+    {
+      "id": "B002",
+      "group": "B",
+      "company": "Alphabet",
+      "question": "What was the average tenure of Alphabet's Chief Sustainability Officer as of 2023?",
+      "answer": "The report does not provide this information.",
+      "prompt_variant": "agent_cloud",
+      "retrieved_pages": [
+        61,
+        5,
+        81,
+        23,
+        29
+      ],
+      "gold_page": null,
+      "agent_steps": 3,
+      "agent_trace": [
+        {
+          "step": 0,
+          "page": 61,
+          "chunk_id": "Alphabet-p061-c01",
+          "similarity": 0.4696,
+          "found": false,
+          "answer_preview": "NOT_IN_PASSAGE"
+        },
+        {
+          "step": 1,
+          "page": 5,
+          "chunk_id": "Alphabet-p005-c01",
+          "similarity": 0.4201,
+          "found": false,
+          "answer_preview": "NOT_IN_PASSAGE"
+        },
+        {
+          "step": 2,
+          "page": 81,
+          "chunk_id": "Alphabet-p081-c04",
+          "similarity": 0.4167,
+          "found": false,
+          "answer_preview": "NOT_IN_PASSAGE"
+        }
+      ],
+      "latency_s": 5.19
+    },
+    {
+      "id": "B003",
+      "group": "B",
+      "company": "Alphabet",
+      "question": "How much did Alphabet spend on renewable energy power purchase agreements (PPAs) in 2023, in USD?",
+      "answer": "The report does not provide this information.",
+      "prompt_variant": "agent_cloud",
+      "retrieved_pages": [
+        81,
+        83,
+        34,
+        7,
+        72
+      ],
+      "gold_page": null,
+      "agent_steps": 3,
+      "agent_trace": [
+        {
+          "step": 0,
+          "page": 81,
+          "chunk_id": "Alphabet-p081-c04",
+          "similarity": 0.539,
+          "found": false,
+          "answer_preview": "NOT_IN_PASSAGE"
+        },
+        {
+          "step": 1,
+          "page": 83,
+          "chunk_id": "Alphabet-p083-c05",
+          "similarity": 0.5235,
+          "found": false,
+          "answer_preview": "NOT_IN_PASSAGE"
+        },
+        {
+          "step": 2,
+          "page": 34,
+          "chunk_id": "Alphabet-p034-c04",
+          "similarity": 0.5148,
+          "found": false,
+          "answer_preview": "NOT_IN_PASSAGE"
+        }
+      ],
+      "latency_s": 5.76
+    },
+    {
+      "id": "A008",
+      "group": "A",
+      "company": "Apple",
+      "question": "In 2023, what percentage of the materials shipped in Apple products came from recycled sources?",
+      "answer": "1. The question asks for the percentage of materials shipped in Apple products that came from recycled sources in the year 2023.\n2. The passage states, \"These and other innovations helped us increase our use of recycled and renewable content to 22 percent of all the material shipped in products in 2023.\"\n3. The number found is 22 percent.\n4. The answer is 22 percent.",
+      "prompt_variant": "agent_cloud",
+      "retrieved_pages": [
+        11,
+        19,
+        18,
+        16,
+        18
+      ],
+      "gold_page": 5,
+      "agent_steps": 2,
+      "agent_trace": [
+        {
+          "step": 0,
+          "page": 11,
+          "chunk_id": "Apple-p011-c01",
+          "similarity": 0.6627,
+          "found": false,
+          "answer_preview": "NOT_IN_PASSAGE"
+        },
+        {
+          "step": 1,
+          "page": 19,
+          "chunk_id": "Apple-p019-c01",
+          "similarity": 0.6481,
+          "found": true,
+          "answer_preview": "1. The question asks for the percentage of materials shipped in Apple products t"
+        }
+      ],
+      "latency_s": 7.49
+    },
+    {
+      "id": "A009",
+      "group": "A",
+      "company": "Apple",
+      "question": "As of March 2024, how many suppliers had committed to sourcing renewable electricity for Apple production?",
+      "answer": "1. The question asks for the number of suppliers who had committed to sourcing renewable electricity for Apple production as of March 2024.\n2. The passage states, \"As of March 2024, more than 320 suppliers have committed to use 100 renewable energy for their Apple production.\"\n3. The number is 320.\n\nAnswer: 320",
+      "prompt_variant": "agent_cloud",
+      "retrieved_pages": [
+        5,
+        28,
+        28,
+        90,
+        81
+      ],
+      "gold_page": 5,
+      "agent_steps": 1,
+      "agent_trace": [
+        {
+          "step": 0,
+          "page": 5,
+          "chunk_id": "Apple-p005-c01",
+          "similarity": 0.6298,
+          "found": true,
+          "answer_preview": "1. The question asks for the number of suppliers who had committed to sourcing r"
+        }
+      ],
+      "latency_s": 4.63
+    },
+    {
+      "id": "A010",
+      "group": "A",
+      "company": "Apple",
+      "question": "The suppliers committed to renewable electricity represented what percentage of Apple's direct supplier spend?",
+      "answer": "1. The question asks for the percentage of Apple's direct supplier spend represented by suppliers committed to renewable electricity.\n2. The passage states, \"These suppliers make up 95 percent of existing renewable energy projects.\"\n3. The answer is 95 percent.\n\nAnswer: 95 percent",
+      "prompt_variant": "agent_cloud",
+      "retrieved_pages": [
+        28,
+        90,
+        28,
+        5,
+        81
+      ],
+      "gold_page": 5,
+      "agent_steps": 1,
+      "agent_trace": [
+        {
+          "step": 0,
+          "page": 28,
+          "chunk_id": "Apple-p028-c01",
+          "similarity": 0.5895,
+          "found": true,
+          "answer_preview": "1. The question asks for the percentage of Apple's direct supplier spend represe"
+        }
+      ],
+      "latency_s": 3.57
+    },
+    {
+      "id": "A011",
+      "group": "A",
+      "company": "Apple",
+      "question": "In 2023, what percentage of the cobalt shipped in Apple-designed batteries came from recycled sources?",
+      "answer": "1. The question asks for the percentage of cobalt shipped in Apple-designed batteries that came from recycled sources in the year 2023.\n2. The passage states: \"In 2023, 52 percent of the cobalt shipped in our products — more than double the amount shipped in 2022 — came from certified recycled sources on a mass balance basis, including post-industrial scrap and post-consumer scrap from end-of-life batteries.\"\n3. The number found is 52 percent.\n\nAnswer: 52 percent",
+      "prompt_variant": "agent_cloud",
+      "retrieved_pages": [
+        18,
+        11,
+        3,
+        5,
+        16
+      ],
+      "gold_page": 5,
+      "agent_steps": 1,
+      "agent_trace": [
+        {
+          "step": 0,
+          "page": 18,
+          "chunk_id": "Apple-p018-c01",
+          "similarity": 0.698,
+          "found": true,
+          "answer_preview": "1. The question asks for the percentage of cobalt shipped in Apple-designed batt"
+        }
+      ],
+      "latency_s": 6.45
+    },
+    {
+      "id": "A012",
+      "group": "A",
+      "company": "Apple",
+      "question": "How many devices and accessories did Apple send to new owners for reuse in 2023?",
+      "answer": "1. The question asks for the number of devices and accessories sent to new owners for reuse in the year 2023.\n2. The passage contains the number \"12.8M,\" which is labeled with \"We’ve sent nearly\" and refers to \"devices and accessories to new owners for reuse in 2023.\"\n3. The number is clearly stated as \"12.8M.\"\n\nAnswer: 12.8M",
+      "prompt_variant": "agent_cloud",
+      "retrieved_pages": [
+        44,
+        40,
+        95,
+        44,
+        44
+      ],
+      "gold_page": 11,
+      "agent_steps": 1,
+      "agent_trace": [
+        {
+          "step": 0,
+          "page": 44,
+          "chunk_id": "Apple-p044-c02",
+          "similarity": 0.5732,
+          "found": true,
+          "answer_preview": "1. The question asks for the number of devices and accessories sent to new owner"
+        }
+      ],
+      "latency_s": 5.15
+    },
+    {
+      "id": "A013",
+      "group": "A",
+      "company": "Apple",
+      "question": "What percentage of plastic did Apple's product packaging contain in 2023?",
+      "answer": "The report does not provide this information.",
+      "prompt_variant": "agent_cloud",
+      "retrieved_pages": [
+        22,
+        22,
+        105,
+        22,
+        112
+      ],
+      "gold_page": 5,
+      "agent_steps": 3,
+      "agent_trace": [
+        {
+          "step": 0,
+          "page": 22,
+          "chunk_id": "Apple-p022-c03",
+          "similarity": 0.6192,
+          "found": false,
+          "answer_preview": "NOT_IN_PASSAGE"
+        },
+        {
+          "step": 1,
+          "page": 22,
+          "chunk_id": "Apple-p022-c02",
+          "similarity": 0.6148,
+          "found": false,
+          "answer_preview": "NOT_IN_PASSAGE"
+        },
+        {
+          "step": 2,
+          "page": 105,
+          "chunk_id": "Apple-p105-c01",
+          "similarity": 0.5949,
+          "found": false,
+          "answer_preview": "NOT_IN_PASSAGE"
+        }
+      ],
+      "latency_s": 3.19
+    },
+    {
+      "id": "A014",
+      "group": "A",
+      "company": "Apple",
+      "question": "What was the average water reuse rate across Apple's participating supplier facilities?",
+      "answer": "1. The question asks for the average water reuse rate across Apple's participating supplier facilities in the year 2023.\n2. The passage states, \"Through our program, we’ve supported an average 42 percent reuse rate across our 242 participating supplier facilities.\"\n3. The number found is 42 percent.\n\nAnswer: 42 percent",
+      "prompt_variant": "agent_cloud",
+      "retrieved_pages": [
+        49,
+        53,
+        5,
+        50,
+        52
+      ],
+      "gold_page": 5,
+      "agent_steps": 3,
+      "agent_trace": [
+        {
+          "step": 0,
+          "page": 49,
+          "chunk_id": "Apple-p049-c03",
+          "similarity": 0.6493,
+          "found": false,
+          "answer_preview": "NOT_IN_PASSAGE"
+        },
+        {
+          "step": 1,
+          "page": 53,
+          "chunk_id": "Apple-p053-c03",
+          "similarity": 0.5852,
+          "found": false,
+          "answer_preview": "NOT_IN_PASSAGE"
+        },
+        {
+          "step": 2,
+          "page": 5,
+          "chunk_id": "Apple-p005-c02",
+          "similarity": 0.5782,
+          "found": true,
+          "answer_preview": "1. The question asks for the average water reuse rate across Apple's participati"
+        }
+      ],
+      "latency_s": 7.52
+    },
+    {
+      "id": "A015",
+      "group": "A",
+      "company": "Apple",
+      "question": "What was the waste diversion rate of Apple's corporate facilities in 2023?",
+      "answer": "74%",
+      "prompt_variant": "agent_cloud",
+      "retrieved_pages": [
+        52,
+        53,
+        52,
+        49,
+        113
+      ],
+      "gold_page": 5,
+      "agent_steps": 3,
+      "agent_trace": [
+        {
+          "step": 0,
+          "page": 52,
+          "chunk_id": "Apple-p052-c01",
+          "similarity": 0.6174,
+          "found": false,
+          "answer_preview": "NOT_IN_PASSAGE"
+        },
+        {
+          "step": 1,
+          "page": 53,
+          "chunk_id": "Apple-p053-c03",
+          "similarity": 0.5974,
+          "found": false,
+          "answer_preview": "NOT_IN_PASSAGE"
+        },
+        {
+          "step": 2,
+          "page": 52,
+          "chunk_id": "Apple-p052-c00",
+          "similarity": 0.5865,
+          "found": true,
+          "answer_preview": "74%"
+        }
+      ],
+      "latency_s": 6.55
+    },
+    {
+      "id": "A016",
+      "group": "A",
+      "company": "Apple",
+      "question": "In 2023, what percentage of established final assembly sites maintained zero-waste-to-landfill operations?",
+      "answer": "1. The question asks for the percentage of established final assembly sites that maintained zero-waste-to-landfill operations in 2023.\n2. The passage states, \"Throughout 2023, 100 percent of established final assembly sites maintained zero-waste-to-landfill operations.\"\n3. The number found is 100 percent.\n\nAnswer: 100 percent",
+      "prompt_variant": "agent_cloud",
+      "retrieved_pages": [
+        5,
+        113,
+        54,
+        55,
+        52
+      ],
+      "gold_page": 5,
+      "agent_steps": 3,
+      "agent_trace": [
+        {
+          "step": 0,
+          "page": 5,
+          "chunk_id": "Apple-p005-c03",
+          "similarity": 0.6123,
+          "found": false,
+          "answer_preview": "NOT_IN_PASSAGE"
+        },
+        {
+          "step": 1,
+          "page": 113,
+          "chunk_id": "Apple-p113-c08",
+          "similarity": 0.5547,
+          "found": false,
+          "answer_preview": "NOT_IN_PASSAGE"
+        },
+        {
+          "step": 2,
+          "page": 54,
+          "chunk_id": "Apple-p054-c03",
+          "similarity": 0.5508,
+          "found": true,
+          "answer_preview": "1. The question asks for the percentage of established final assembly sites that"
+        }
+      ],
+      "latency_s": 6.64
+    },
+    {
+      "id": "A017",
+      "group": "A",
+      "company": "Apple",
+      "question": "How many gallons of freshwater will Apple's Austin campus wastewater reuse effort save annually?",
+      "answer": "1. The question asks for the number of gallons of freshwater saved annually by Apple's Austin campus wastewater reuse effort.\n2. The passage states, \"This effort will save up to 60 million gallons of freshwater use annually.\"\n3. The number is 60 million gallons.\n\nAnswer: 60 million gallons",
+      "prompt_variant": "agent_cloud",
+      "retrieved_pages": [
+        49,
+        49,
+        53,
+        51,
+        82
+      ],
+      "gold_page": 49,
+      "agent_steps": 2,
+      "agent_trace": [
+        {
+          "step": 0,
+          "page": 49,
+          "chunk_id": "Apple-p049-c03",
+          "similarity": 0.6037,
+          "found": false,
+          "answer_preview": "NOT_IN_PASSAGE"
+        },
+        {
+          "step": 1,
+          "page": 49,
+          "chunk_id": "Apple-p049-c01",
+          "similarity": 0.5668,
+          "found": true,
+          "answer_preview": "1. The question asks for the number of gallons of freshwater saved annually by A"
+        }
+      ],
+      "latency_s": 5.74
+    },
+    {
+      "id": "A018",
+      "group": "A",
+      "company": "Apple",
+      "question": "By what percentage has Apple reduced its aluminum-related emissions since 2015?",
+      "answer": "The report does not provide this information.",
+      "prompt_variant": "agent_cloud",
+      "retrieved_pages": [
+        16,
+        16,
+        14,
+        10,
+        32
+      ],
+      "gold_page": 16,
+      "agent_steps": 3,
+      "agent_trace": [
+        {
+          "step": 0,
+          "page": 16,
+          "chunk_id": "Apple-p016-c02",
+          "similarity": 0.6687,
+          "found": false,
+          "answer_preview": "NOT_IN_PASSAGE"
+        },
+        {
+          "step": 1,
+          "page": 16,
+          "chunk_id": "Apple-p016-c01",
+          "similarity": 0.5995,
+          "found": false,
+          "answer_preview": "NOT_IN_PASSAGE"
+        },
+        {
+          "step": 2,
+          "page": 14,
+          "chunk_id": "Apple-p014-c00",
+          "similarity": 0.5948,
+          "found": false,
+          "answer_preview": "NOT_IN_PASSAGE"
+        }
+      ],
+      "latency_s": 3.82
+    },
+    {
+      "id": "B004",
+      "group": "B",
+      "company": "Apple",
+      "question": "How many suppliers did Apple remove from its supply chain in 2023 for failing to meet environmental standards?",
+      "answer": "The report does not provide this information.",
+      "prompt_variant": "agent_cloud",
+      "retrieved_pages": [
+        5,
+        20,
+        50,
+        112,
+        11
+      ],
+      "gold_page": null,
+      "agent_steps": 3,
+      "agent_trace": [
+        {
+          "step": 0,
+          "page": 5,
+          "chunk_id": "Apple-p005-c01",
+          "similarity": 0.5625,
+          "found": false,
+          "answer_preview": "NOT_IN_PASSAGE"
+        },
+        {
+          "step": 1,
+          "page": 20,
+          "chunk_id": "Apple-p020-c03",
+          "similarity": 0.559,
+          "found": false,
+          "answer_preview": "NOT_IN_PASSAGE"
+        },
+        {
+          "step": 2,
+          "page": 50,
+          "chunk_id": "Apple-p050-c02",
+          "similarity": 0.558,
+          "found": false,
+          "answer_preview": "NOT_IN_PASSAGE"
+        }
+      ],
+      "latency_s": 5.45
+    },
+    {
+      "id": "B005",
+      "group": "B",
+      "company": "Apple",
+      "question": "How many employees worked on Apple's environmental team in 2023?",
+      "answer": "The report does not provide this information.",
+      "prompt_variant": "agent_cloud",
+      "retrieved_pages": [
+        77,
+        75,
+        14,
+        83,
+        33
+      ],
+      "gold_page": null,
+      "agent_steps": 3,
+      "agent_trace": [
+        {
+          "step": 0,
+          "page": 77,
+          "chunk_id": "Apple-p077-c02",
+          "similarity": 0.5036,
+          "found": false,
+          "answer_preview": "NOT_IN_PASSAGE"
+        },
+        {
+          "step": 1,
+          "page": 75,
+          "chunk_id": "Apple-p075-c02",
+          "similarity": 0.4961,
+          "found": false,
+          "answer_preview": "NOT_IN_PASSAGE"
+        },
+        {
+          "step": 2,
+          "page": 14,
+          "chunk_id": "Apple-p014-c00",
+          "similarity": 0.4926,
+          "found": false,
+          "answer_preview": "NOT_IN_PASSAGE"
+        }
+      ],
+      "latency_s": 3.6
+    },
+    {
+      "id": "B006",
+      "group": "B",
+      "company": "Apple",
+      "question": "How many iPhones did Apple manufacture using 100% recycled aluminum enclosures in 2023?",
+      "answer": "The report does not provide this information.",
+      "prompt_variant": "agent_cloud",
+      "retrieved_pages": [
+        16,
+        19,
+        112,
+        11,
+        18
+      ],
+      "gold_page": null,
+      "agent_steps": 3,
+      "agent_trace": [
+        {
+          "step": 0,
+          "page": 16,
+          "chunk_id": "Apple-p016-c02",
+          "similarity": 0.5713,
+          "found": false,
+          "answer_preview": "NOT_IN_PASSAGE"
+        },
+        {
+          "step": 1,
+          "page": 19,
+          "chunk_id": "Apple-p019-c01",
+          "similarity": 0.553,
+          "found": false,
+          "answer_preview": "NOT_IN_PASSAGE"
+        },
+        {
+          "step": 2,
+          "page": 112,
+          "chunk_id": "Apple-p112-c10",
+          "similarity": 0.5506,
+          "found": false,
+          "answer_preview": "NOT_IN_PASSAGE"
+        }
+      ],
+      "latency_s": 7.13
+    },
+    {
+      "id": "B007",
+      "group": "B",
+      "company": "Apple",
+      "question": "How much did Apple pay in environmental fines or penalties in 2023, in USD?",
+      "answer": "The report does not provide this information.",
+      "prompt_variant": "agent_cloud",
+      "retrieved_pages": [
+        77,
+        83,
+        14,
+        97,
+        88
+      ],
+      "gold_page": null,
+      "agent_steps": 3,
+      "agent_trace": [
+        {
+          "step": 0,
+          "page": 77,
+          "chunk_id": "Apple-p077-c02",
+          "similarity": 0.55,
+          "found": false,
+          "answer_preview": "NOT_IN_PASSAGE"
+        },
+        {
+          "step": 1,
+          "page": 83,
+          "chunk_id": "Apple-p083-c00",
+          "similarity": 0.5196,
+          "found": false,
+          "answer_preview": "NOT_IN_PASSAGE"
+        },
+        {
+          "step": 2,
+          "page": 14,
+          "chunk_id": "Apple-p014-c00",
+          "similarity": 0.5173,
+          "found": false,
+          "answer_preview": "NOT_IN_PASSAGE"
+        }
+      ],
+      "latency_s": 6.5
+    },
+    {
+      "id": "B008",
+      "group": "B",
+      "company": "Apple",
+      "question": "What was the exact percentage reduction in Apple's water usage per device manufactured in 2023?",
+      "answer": "The report does not provide this information.",
+      "prompt_variant": "agent_cloud",
+      "retrieved_pages": [
+        49,
+        5,
+        113,
+        90,
+        52
+      ],
+      "gold_page": null,
+      "agent_steps": 3,
+      "agent_trace": [
+        {
+          "step": 0,
+          "page": 49,
+          "chunk_id": "Apple-p049-c03",
+          "similarity": 0.5987,
+          "found": false,
+          "answer_preview": "NOT_IN_PASSAGE"
+        },
+        {
+          "step": 1,
+          "page": 5,
+          "chunk_id": "Apple-p005-c01",
+          "similarity": 0.5473,
+          "found": false,
+          "answer_preview": "NOT_IN_PASSAGE"
+        },
+        {
+          "step": 2,
+          "page": 113,
+          "chunk_id": "Apple-p113-c07",
+          "similarity": 0.5383,
+          "found": false,
+          "answer_preview": "NOT_IN_PASSAGE"
+        }
+      ],
+      "latency_s": 4.81
+    },
+    {
+      "id": "A019",
+      "group": "A",
+      "company": "Meta Platforms",
+      "question": "By what percentage did Meta reduce its operational emissions from a 2017 baseline?",
+      "answer": "The report does not provide this information.",
+      "prompt_variant": "agent_cloud",
+      "retrieved_pages": [
+        90,
+        22,
+        91,
+        21,
+        20
+      ],
+      "gold_page": 3,
+      "agent_steps": 3,
+      "agent_trace": [
+        {
+          "step": 0,
+          "page": 90,
+          "chunk_id": "Meta Platforms-p090-c00",
+          "similarity": 0.6026,
+          "found": false,
+          "answer_preview": "NOT_IN_PASSAGE"
+        },
+        {
+          "step": 1,
+          "page": 22,
+          "chunk_id": "Meta Platforms-p022-c00",
+          "similarity": 0.5852,
+          "found": false,
+          "answer_preview": "NOT_IN_PASSAGE"
+        },
+        {
+          "step": 2,
+          "page": 91,
+          "chunk_id": "Meta Platforms-p091-c01",
+          "similarity": 0.5793,
+          "found": false,
+          "answer_preview": "NOT_IN_PASSAGE"
+        }
+      ],
+      "latency_s": 4.61
+    },
+    {
+      "id": "A020",
+      "group": "A",
+      "company": "Meta Platforms",
+      "question": "How many megawatts of contracted renewable energy was in Meta's portfolio?",
+      "answer": "1. The question asks for the number of megawatts of contracted renewable energy in Meta's portfolio in the year 2023.\n2. The passage states, \"In 2023, we conducted an economic impact study that looked at the renewable energy contracts Meta had entered into in the US through the end of 2022. It found that by 2025, the 86 studied Meta-supported wind and solar projects located across 24 US states and 74 counties will add up to 9,800 MW of renewable energy.\"\n3. The number found is 9,800 MW.\n\nAnswer: 9,800 MW",
+      "prompt_variant": "agent_cloud",
+      "retrieved_pages": [
+        26,
+        27,
+        26,
+        29,
+        28
+      ],
+      "gold_page": 18,
+      "agent_steps": 1,
+      "agent_trace": [
+        {
+          "step": 0,
+          "page": 26,
+          "chunk_id": "Meta Platforms-p026-c00",
+          "similarity": 0.6233,
+          "found": true,
+          "answer_preview": "1. The question asks for the number of megawatts of contracted renewable energy "
+        }
+      ],
+      "latency_s": 8.72
+    },
+    {
+      "id": "A021",
+      "group": "A",
+      "company": "Meta Platforms",
+      "question": "How many MW of Meta's renewable energy portfolio was operating and online in the US in 2023?",
+      "answer": "3. 6,700 MW",
+      "prompt_variant": "agent_cloud",
+      "retrieved_pages": [
+        26,
+        26,
+        27,
+        29,
+        29
+      ],
+      "gold_page": 18,
+      "agent_steps": 1,
+      "agent_trace": [
+        {
+          "step": 0,
+          "page": 26,
+          "chunk_id": "Meta Platforms-p026-c01",
+          "similarity": 0.5809,
+          "found": true,
+          "answer_preview": "3. 6,700 MW"
+        }
+      ],
+      "latency_s": 1.35
+    },
+    {
+      "id": "A022",
+      "group": "A",
+      "company": "Meta Platforms",
+      "question": "How many gallons of water did Meta's operational water restoration projects return to water stress regions?",
+      "answer": "1. The question asks for the number of gallons of water returned to water stress regions by Meta's operational water restoration projects in 2023.\n2. The passage states, \"In 2023, the operational restoration projects returned over 1.5 billion gallons of water to high and medium water stress regions.\"\n3. The number is 1.5 billion gallons.\n\nAnswer: 1.5 billion gallons",
+      "prompt_variant": "agent_cloud",
+      "retrieved_pages": [
+        49,
+        48,
+        50,
+        51,
+        49
+      ],
+      "gold_page": 18,
+      "agent_steps": 1,
+      "agent_trace": [
+        {
+          "step": 0,
+          "page": 49,
+          "chunk_id": "Meta Platforms-p049-c00",
+          "similarity": 0.61,
+          "found": true,
+          "answer_preview": "1. The question asks for the number of gallons of water returned to water stress"
+        }
+      ],
+      "latency_s": 4.96
+    },
+    {
+      "id": "A023",
+      "group": "A",
+      "company": "Meta Platforms",
+      "question": "How many operational water restoration projects did Meta have?",
+      "answer": "3,430\n\nThe passage states that \"Since 2017, we have funded or supported more than 25 water restoration projects in eight watersheds where we operate.\" This indicates that Meta had 25 operational water restoration projects.",
+      "prompt_variant": "agent_cloud",
+      "retrieved_pages": [
+        50,
+        48,
+        49,
+        51,
+        48
+      ],
+      "gold_page": 18,
+      "agent_steps": 3,
+      "agent_trace": [
+        {
+          "step": 0,
+          "page": 50,
+          "chunk_id": "Meta Platforms-p050-c00",
+          "similarity": 0.6008,
+          "found": false,
+          "answer_preview": "NOT_IN_PASSAGE"
+        },
+        {
+          "step": 1,
+          "page": 48,
+          "chunk_id": "Meta Platforms-p048-c01",
+          "similarity": 0.5734,
+          "found": false,
+          "answer_preview": "NOT_IN_PASSAGE"
+        },
+        {
+          "step": 2,
+          "page": 49,
+          "chunk_id": "Meta Platforms-p049-c00",
+          "similarity": 0.5511,
+          "found": true,
+          "answer_preview": "3,430\n\nThe passage states that \"Since 2017, we have funded or supported more tha"
+        }
+      ],
+      "latency_s": 7.19
+    },
+    {
+      "id": "A024",
+      "group": "A",
+      "company": "Meta Platforms",
+      "question": "What percentage of data center construction waste did Meta recycle?",
+      "answer": "91%",
+      "prompt_variant": "agent_cloud",
+      "retrieved_pages": [
+        39,
+        43,
+        41,
+        48,
+        44
+      ],
+      "gold_page": 18,
+      "agent_steps": 1,
+      "agent_trace": [
+        {
+          "step": 0,
+          "page": 39,
+          "chunk_id": "Meta Platforms-p039-c00",
+          "similarity": 0.6312,
+          "found": true,
+          "answer_preview": "91%"
+        }
+      ],
+      "latency_s": 1.08
+    },
+    {
+      "id": "A025",
+      "group": "A",
+      "company": "Meta Platforms",
+      "question": "How many gallons of sustainable aviation fuel did Meta purchase for business travel?",
+      "answer": "1. The question asks for the number of gallons of sustainable aviation fuel (SAF) purchased by Meta for business travel.\n2. The passage states, \"Since 2021, Meta has purchased nearly 2.5 million gallons of SAF certificates.\"\n3. The number found is 2.5 million gallons.\n\nAnswer: 2.5 million gallons",
+      "prompt_variant": "agent_cloud",
+      "retrieved_pages": [
+        33,
+        36,
+        33,
+        28,
+        90
+      ],
+      "gold_page": 23,
+      "agent_steps": 1,
+      "agent_trace": [
+        {
+          "step": 0,
+          "page": 33,
+          "chunk_id": "Meta Platforms-p033-c00",
+          "similarity": 0.6239,
+          "found": true,
+          "answer_preview": "1. The question asks for the number of gallons of sustainable aviation fuel (SAF"
+        }
+      ],
+      "latency_s": 6.6
+    },
+    {
+      "id": "A026",
+      "group": "A",
+      "company": "Meta Platforms",
+      "question": "What was the Water Usage Effectiveness (WUE) of Meta's data centers on average in 2023?",
+      "answer": "The report does not provide this information.",
+      "prompt_variant": "agent_cloud",
+      "retrieved_pages": [
+        48,
+        39,
+        90,
+        93,
+        93
+      ],
+      "gold_page": 40,
+      "agent_steps": 3,
+      "agent_trace": [
+        {
+          "step": 0,
+          "page": 48,
+          "chunk_id": "Meta Platforms-p048-c00",
+          "similarity": 0.5782,
+          "found": false,
+          "answer_preview": "NOT_IN_PASSAGE"
+        },
+        {
+          "step": 1,
+          "page": 39,
+          "chunk_id": "Meta Platforms-p039-c00",
+          "similarity": 0.5455,
+          "found": false,
+          "answer_preview": "NOT_IN_PASSAGE"
+        },
+        {
+          "step": 2,
+          "page": 90,
+          "chunk_id": "Meta Platforms-p090-c00",
+          "similarity": 0.524,
+          "found": false,
+          "answer_preview": "NOT_IN_PASSAGE"
+        }
+      ],
+      "latency_s": 4.9
+    },
+    {
+      "id": "B009",
+      "group": "B",
+      "company": "Meta Platforms",
+      "question": "How many data centers did Meta shut down in 2023 for failing to meet water efficiency targets?",
+      "answer": "The report does not provide this information.",
+      "prompt_variant": "agent_cloud",
+      "retrieved_pages": [
+        48,
+        39,
+        90,
+        85,
+        89
+      ],
+      "gold_page": null,
+      "agent_steps": 3,
+      "agent_trace": [
+        {
+          "step": 0,
+          "page": 48,
+          "chunk_id": "Meta Platforms-p048-c00",
+          "similarity": 0.6219,
+          "found": false,
+          "answer_preview": "NOT_IN_PASSAGE"
+        },
+        {
+          "step": 1,
+          "page": 39,
+          "chunk_id": "Meta Platforms-p039-c00",
+          "similarity": 0.619,
+          "found": false,
+          "answer_preview": "NOT_IN_PASSAGE"
+        },
+        {
+          "step": 2,
+          "page": 90,
+          "chunk_id": "Meta Platforms-p090-c00",
+          "similarity": 0.5841,
+          "found": false,
+          "answer_preview": "NOT_IN_PASSAGE"
+        }
+      ],
+      "latency_s": 4.09
+    },
+    {
+      "id": "B010",
+      "group": "B",
+      "company": "Meta Platforms",
+      "question": "What was the total dollar value of Meta's renewable energy power purchase agreements in 2023?",
+      "answer": "The report does not provide this information.",
+      "prompt_variant": "agent_cloud",
+      "retrieved_pages": [
+        26,
+        26,
+        28,
+        29,
+        27
+      ],
+      "gold_page": null,
+      "agent_steps": 3,
+      "agent_trace": [
+        {
+          "step": 0,
+          "page": 26,
+          "chunk_id": "Meta Platforms-p026-c00",
+          "similarity": 0.5963,
+          "found": false,
+          "answer_preview": "NOT_IN_PASSAGE"
+        },
+        {
+          "step": 1,
+          "page": 26,
+          "chunk_id": "Meta Platforms-p026-c01",
+          "similarity": 0.5701,
+          "found": false,
+          "answer_preview": "NOT_IN_PASSAGE"
+        },
+        {
+          "step": 2,
+          "page": 28,
+          "chunk_id": "Meta Platforms-p028-c00",
+          "similarity": 0.565,
+          "found": false,
+          "answer_preview": "NOT_IN_PASSAGE"
+        }
+      ],
+      "latency_s": 3.81
+    },
+    {
+      "id": "B011",
+      "group": "B",
+      "company": "Meta Platforms",
+      "question": "How many employees did Meta's sustainability team have in 2023?",
+      "answer": "The report does not provide this information.",
+      "prompt_variant": "agent_cloud",
+      "retrieved_pages": [
+        90,
+        5,
+        24,
+        72,
+        53
+      ],
+      "gold_page": null,
+      "agent_steps": 3,
+      "agent_trace": [
+        {
+          "step": 0,
+          "page": 90,
+          "chunk_id": "Meta Platforms-p090-c00",
+          "similarity": 0.5624,
+          "found": false,
+          "answer_preview": "NOT_IN_PASSAGE"
+        },
+        {
+          "step": 1,
+          "page": 5,
+          "chunk_id": "Meta Platforms-p005-c00",
+          "similarity": 0.5443,
+          "found": false,
+          "answer_preview": "NOT_IN_PASSAGE"
+        },
+        {
+          "step": 2,
+          "page": 24,
+          "chunk_id": "Meta Platforms-p024-c00",
+          "similarity": 0.5331,
+          "found": false,
+          "answer_preview": "NOT_IN_PASSAGE"
+        }
+      ],
+      "latency_s": 5.22
+    },
+    {
+      "id": "B012",
+      "group": "B",
+      "company": "Meta Platforms",
+      "question": "What percentage of Meta's Scope 3 emissions in 2023 came from employee commuting?",
+      "answer": "The report does not provide this information.",
+      "prompt_variant": "agent_cloud",
+      "retrieved_pages": [
+        90,
+        90,
+        21,
+        81,
+        90
+      ],
+      "gold_page": null,
+      "agent_steps": 3,
+      "agent_trace": [
+        {
+          "step": 0,
+          "page": 90,
+          "chunk_id": "Meta Platforms-p090-c00",
+          "similarity": 0.5749,
+          "found": false,
+          "answer_preview": "NOT_IN_PASSAGE"
+        },
+        {
+          "step": 1,
+          "page": 90,
+          "chunk_id": "Meta Platforms-p090-c02",
+          "similarity": 0.572,
+          "found": false,
+          "answer_preview": "NOT_IN_PASSAGE"
+        },
+        {
+          "step": 2,
+          "page": 21,
+          "chunk_id": "Meta Platforms-p021-c00",
+          "similarity": 0.5622,
+          "found": false,
+          "answer_preview": "1. The question asks for the percentage of Meta's Scope 3 emissions in 2023 that"
+        }
+      ],
+      "latency_s": 9.71
+    },
+    {
+      "id": "B013",
+      "group": "B",
+      "company": "Meta Platforms",
+      "question": "How many metric tons of e-waste did Meta recycle from its data centers in 2023?",
+      "answer": "The report does not provide this information.",
+      "prompt_variant": "agent_cloud",
+      "retrieved_pages": [
+        39,
+        90,
+        22,
+        89,
+        43
+      ],
+      "gold_page": null,
+      "agent_steps": 3,
+      "agent_trace": [
+        {
+          "step": 0,
+          "page": 39,
+          "chunk_id": "Meta Platforms-p039-c00",
+          "similarity": 0.61,
+          "found": false,
+          "answer_preview": "NOT_IN_PASSAGE"
+        },
+        {
+          "step": 1,
+          "page": 90,
+          "chunk_id": "Meta Platforms-p090-c00",
+          "similarity": 0.5946,
+          "found": false,
+          "answer_preview": "NOT_IN_PASSAGE"
+        },
+        {
+          "step": 2,
+          "page": 22,
+          "chunk_id": "Meta Platforms-p022-c00",
+          "similarity": 0.5693,
+          "found": false,
+          "answer_preview": "NOT_IN_PASSAGE"
+        }
+      ],
+      "latency_s": 4.93
+    }
+  ]
+}

@@ -141,8 +141,14 @@ def _post(path: str, payload: dict, timeout: int = 300) -> dict:
 
 
 def embed(text: str) -> list[float]:
-    data = _post("/api/embeddings", {"model": CONFIG["embed_model"], "prompt": text})
-    return data["embedding"]
+    import time as _t
+    for attempt in range(4):
+        try:
+            data = _post("/api/embeddings", {"model": CONFIG["embed_model"], "prompt": text})
+            return data["embedding"]
+        except Exception:
+            _t.sleep(2 * (attempt + 1))   # 等待大模型加载完成后重试
+    raise RuntimeError("embedding 多次重试仍失败，可能是本地资源不足以同时运行大模型")
 
 
 # think 剥离：兼容三种情况（完整闭合 / 只有闭合标签 / 只有开标签未闭合）
