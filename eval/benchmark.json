@@ -3,22 +3,30 @@
     "version": "0.2",
     "created": "2026-08-31",
     "description": "ESG RAG 可靠性评测集。A 组测准确率与错误拒答，B 组测幻觉与正确拒答。",
-    "companies": ["Alphabet", "Apple", "Meta Platforms"],
+    "companies": [
+      "Alphabet",
+      "Apple",
+      "Meta Platforms"
+    ],
     "corpus_note": "语料由 src/build_corpus.py 重建，已修复原 Data.ipynb 的数字清洗 bug（1546 处数字被截断）。source_page 对应 PDF 文件页码，从 1 开始（含封面）。",
-    "target_size": { "A": 35, "B": 15 },
-    "current_size": { "A": 7, "B": 3 }
+    "target_size": {
+      "A": 35,
+      "B": 15
+    },
+    "current_size": {
+      "A": 18,
+      "B": 8
+    },
+    "last_merged": "2026-09-03"
   },
-
   "_scoring_rules": {
     "_comment": "判定规则必须在跑实验之前写死。跑完看到输出再调整标准，会让四组 prompt 的对比失去意义。",
-
     "A_group": {
       "definition": "报告中有明确答案的问题。",
       "correct": "输出包含 gold_answer，或在 tolerance 允许的相对误差内。单位换算、千分位写法、四舍五入到同一量级、以及 accept_also 中列出的等价表述均算正确。",
       "factual_error": "输出给出了具体数值，但与 gold_answer 不符且超出 tolerance。",
       "wrong_refusal": "输出表示信息不存在、上下文未提供、无法回答。因报告中确实有答案，这属于检索失败或模型过度保守。"
     },
-
     "B_group": {
       "definition": "问题听起来合理，但报告中确实没有答案。",
       "hallucination": "输出中出现任何具体的数值、年份、比例、名称，且该信息在报告中不存在。只要给出了编造的具体信息即判为幻觉。",
@@ -26,7 +34,6 @@
       "vague_pass": "既未给出具体数字，也未明确拒答，只是泛泛而谈（如『公司高度重视该议题』）。单独统计，不计入幻觉，也不计入正确拒答。",
       "_note": "vague_pass 必须单独统计。并入拒答会低估幻觉率，并入幻觉会高估。小模型经常输出这类内容。"
     },
-
     "answer_locality": {
       "_comment": "这是本评测集特有的维度，用于区分两类不同的失败原因。",
       "inline": "标签与数值出现在同一 chunk 且语义相邻，模型有公平机会答对。",
@@ -34,7 +41,6 @@
       "_usage": "分析时应拆开统计准确率。若 table 类显著低于 inline 类，说明 PDF 表格解析是独立于拒答/幻觉之外的失败源。"
     }
   },
-
   "questions": [
     {
       "id": "A001",
@@ -42,7 +48,11 @@
       "company": "Alphabet",
       "question": "What were Alphabet's Scope 1 GHG emissions in 2023, in tCO2e?",
       "gold_answer": "79400",
-      "accept_also": ["79,400", "79.4K", "79.4 thousand"],
+      "accept_also": [
+        "79,400",
+        "79.4K",
+        "79.4 thousand"
+      ],
       "unit": "tCO2e",
       "tolerance": 0.02,
       "source_page": 33,
@@ -57,7 +67,11 @@
       "company": "Alphabet",
       "question": "What was Alphabet's global average carbon-free energy (CFE) percentage across data centers and offices in 2023?",
       "gold_answer": "64",
-      "accept_also": ["64%", "approximately 64%", "about 64 percent"],
+      "accept_also": [
+        "64%",
+        "approximately 64%",
+        "about 64 percent"
+      ],
       "unit": "%",
       "tolerance": 0.02,
       "source_page": 8,
@@ -72,7 +86,10 @@
       "company": "Alphabet",
       "question": "How many of Alphabet's grid regions achieved at least 90% carbon-free energy in 2023?",
       "gold_answer": "10",
-      "accept_also": ["ten", "10 grid regions"],
+      "accept_also": [
+        "ten",
+        "10 grid regions"
+      ],
       "unit": "grid regions",
       "tolerance": 0,
       "source_page": 7,
@@ -87,7 +104,11 @@
       "company": "Alphabet",
       "question": "How much water did Alphabet's water stewardship projects replenish in 2023?",
       "gold_answer": "1000000000",
-      "accept_also": ["1 billion gallons", "1 billion", "one billion gallons"],
+      "accept_also": [
+        "1 billion gallons",
+        "1 billion",
+        "one billion gallons"
+      ],
       "unit": "gallons",
       "tolerance": 0.05,
       "source_page": 5,
@@ -102,7 +123,10 @@
       "company": "Alphabet",
       "question": "What percentage of Alphabet's 2023 freshwater consumption was offset by its water replenishment projects?",
       "gold_answer": "18",
-      "accept_also": ["18%", "18 percent"],
+      "accept_also": [
+        "18%",
+        "18 percent"
+      ],
       "unit": "%",
       "tolerance": 0.02,
       "source_page": 5,
@@ -117,7 +141,11 @@
       "company": "Alphabet",
       "question": "What percentage of Google-owned and operated data center campuses met the Zero Waste to Landfill goal in 2023?",
       "gold_answer": "29",
-      "accept_also": ["29%", "8 out of 28", "8 of 28"],
+      "accept_also": [
+        "29%",
+        "8 out of 28",
+        "8 of 28"
+      ],
       "unit": "%",
       "tolerance": 0.02,
       "source_page": 8,
@@ -132,7 +160,10 @@
       "company": "Alphabet",
       "question": "What percentage of operational waste did Alphabet divert from disposal in 2023?",
       "gold_answer": "78",
-      "accept_also": ["78%", "78 percent"],
+      "accept_also": [
+        "78%",
+        "78 percent"
+      ],
       "unit": "%",
       "tolerance": 0.02,
       "source_page": 14,
@@ -141,7 +172,6 @@
       "category": "waste",
       "notes": "干扰项：第 8 页有『转移 82% 食物垃圾（food waste）』，与本题的运营废弃物（operational waste）是不同指标。若模型答 82%，属检索精度问题而非幻觉，归因时应单独标记。"
     },
-
     {
       "id": "B001",
       "group": "B",
@@ -183,6 +213,278 @@
       "answer_locality": null,
       "category": "energy",
       "notes": "报告多处提及 PPA 的容量与项目，但从未披露采购金额。此题专门测试『相关内容大量存在、但目标数值不存在』这一情形——最容易诱发幻觉的场景。"
+    },
+    {
+      "id": "A008",
+      "group": "A",
+      "company": "Apple",
+      "question": "In 2023, what percentage of the materials shipped in Apple products came from recycled sources?",
+      "gold_answer": "22",
+      "accept_also": [
+        "22%",
+        "22 percent"
+      ],
+      "unit": "%",
+      "tolerance": 0.02,
+      "source_page": 5,
+      "source_quote": "In 2023, 22 percent of the materials we shipped in Apple products came from recycled sources.",
+      "answer_locality": "inline",
+      "category": "materials",
+      "notes": "已人工核实。原文为 recycled sources（回收），非可再生。"
+    },
+    {
+      "id": "A009",
+      "group": "A",
+      "company": "Apple",
+      "question": "As of March 2024, how many suppliers had committed to sourcing renewable electricity for Apple production?",
+      "gold_answer": "320",
+      "accept_also": [
+        "320",
+        "more than 320",
+        "320+"
+      ],
+      "unit": "suppliers",
+      "tolerance": 0.02,
+      "source_page": 5,
+      "source_quote": "As of March 2024, more than 320 suppliers have committed to sourcing renewable electricity for Apple production",
+      "answer_locality": "inline",
+      "category": "supply_chain",
+      "notes": "已人工核实。时间点为 As of March 2024。与 A010 出自同一句，构成同句双数字测试。"
+    },
+    {
+      "id": "A010",
+      "group": "A",
+      "company": "Apple",
+      "question": "The suppliers committed to renewable electricity represented what percentage of Apple's direct supplier spend?",
+      "gold_answer": "95",
+      "accept_also": [
+        "95%",
+        "95 percent"
+      ],
+      "unit": "%",
+      "tolerance": 0.02,
+      "source_page": 5,
+      "source_quote": "representing 95 percent of our direct supplier spend",
+      "answer_locality": "inline",
+      "category": "supply_chain",
+      "notes": "已人工核实。与 A009 同句。测试模型能否从同一句中取出正确的那个数字（320 vs 95）。"
+    },
+    {
+      "id": "A011",
+      "group": "A",
+      "company": "Apple",
+      "question": "In 2023, what percentage of the cobalt shipped in Apple-designed batteries came from recycled sources?",
+      "gold_answer": "56",
+      "accept_also": [
+        "56%",
+        "56 percent"
+      ],
+      "unit": "%",
+      "tolerance": 0.02,
+      "source_page": 5,
+      "source_quote": "In 2023, 56 percent of the cobalt shipped in Apple-designed batteries came from recycled sources.",
+      "answer_locality": "inline",
+      "category": "materials",
+      "notes": "已人工核实。"
+    },
+    {
+      "id": "A012",
+      "group": "A",
+      "company": "Apple",
+      "question": "How many devices and accessories did Apple send to new owners for reuse in 2023?",
+      "gold_answer": "12800000",
+      "accept_also": [
+        "12.8 million",
+        "12.8M",
+        "nearly 12.8 million"
+      ],
+      "unit": "devices",
+      "tolerance": 0.05,
+      "source_page": 11,
+      "source_quote": "In 2023, we sent nearly 12.8 million devices and accessories to new owners for reuse.",
+      "answer_locality": "inline",
+      "category": "circularity",
+      "notes": "已人工核实。原文 nearly，为约数，tolerance 放宽至 5%。"
+    },
+    {
+      "id": "A013",
+      "group": "A",
+      "company": "Apple",
+      "question": "What percentage of plastic did Apple's product packaging contain in 2023?",
+      "gold_answer": "3",
+      "accept_also": [
+        "3%",
+        "3 percent",
+        "only 3 percent"
+      ],
+      "unit": "%",
+      "tolerance": 0.02,
+      "source_page": 5,
+      "source_quote": "Our product packaging shipped in 2023 contains only 3 percent plastic — down from 21 percent in 2015.",
+      "answer_locality": "inline",
+      "category": "packaging",
+      "notes": "已人工核实。干扰项：同句有 21 percent（2015 基线）。模型若答 21% 属取错年份，记事实错误。"
+    },
+    {
+      "id": "A014",
+      "group": "A",
+      "company": "Apple",
+      "question": "What was the average water reuse rate across Apple's participating supplier facilities?",
+      "gold_answer": "42",
+      "accept_also": [
+        "42%",
+        "42 percent"
+      ],
+      "unit": "%",
+      "tolerance": 0.02,
+      "source_page": 5,
+      "source_quote": "we've supported an average 42 percent reuse rate across our 242 participating supplier facilities",
+      "answer_locality": "inline",
+      "category": "water",
+      "notes": "已人工核实。同句另有 242（设施数），本题只取 42% 回用率。"
+    },
+    {
+      "id": "A015",
+      "group": "A",
+      "company": "Apple",
+      "question": "What was the waste diversion rate of Apple's corporate facilities in 2023?",
+      "gold_answer": "74",
+      "accept_also": [
+        "74%",
+        "74 percent"
+      ],
+      "unit": "%",
+      "tolerance": 0.02,
+      "source_page": 5,
+      "source_quote": "Our corporate facilities waste diversion rate increased to 74 percent, driven by progress at our data centers.",
+      "answer_locality": "inline",
+      "category": "waste",
+      "notes": "已人工核实。这是废弃物指标，非水指标（原文中与 water 内容相邻，易混淆）。"
+    },
+    {
+      "id": "A016",
+      "group": "A",
+      "company": "Apple",
+      "question": "In 2023, what percentage of established final assembly sites maintained zero-waste-to-landfill operations?",
+      "gold_answer": "100",
+      "accept_also": [
+        "100%",
+        "100 percent"
+      ],
+      "unit": "%",
+      "tolerance": 0.02,
+      "source_page": 5,
+      "source_quote": "Throughout 2023, 100 percent of established final assembly sites maintained zero-waste-to-landfill operations.",
+      "answer_locality": "inline",
+      "category": "waste",
+      "notes": "已人工核实。答案为整数 100%，可观察模型是否因数字过整而改口。"
+    },
+    {
+      "id": "A017",
+      "group": "A",
+      "company": "Apple",
+      "question": "How many gallons of freshwater will Apple's Austin campus wastewater reuse effort save annually?",
+      "gold_answer": "60000000",
+      "accept_also": [
+        "60 million gallons",
+        "60 million",
+        "up to 60 million"
+      ],
+      "unit": "gallons",
+      "tolerance": 0.05,
+      "source_page": 49,
+      "source_quote": "This effort will save up to 60 million gallons of freshwater use annually.",
+      "answer_locality": "inline",
+      "category": "water",
+      "notes": "已人工核实。原文 up to，为上限估计。"
+    },
+    {
+      "id": "A018",
+      "group": "A",
+      "company": "Apple",
+      "question": "By what percentage has Apple reduced its aluminum-related emissions since 2015?",
+      "gold_answer": "68",
+      "accept_also": [
+        "68%",
+        "68 percent"
+      ],
+      "unit": "%",
+      "tolerance": 0.02,
+      "source_page": 16,
+      "source_quote": "These emissions reduction efforts have reduced our aluminum-related emissions by 68 percent since 2015",
+      "answer_locality": "inline",
+      "category": "emissions",
+      "notes": "已人工核实。强干扰：同句有 9%（铝排放现占制造足迹比例）和 27%（2015 基线占比）。本题只问降幅=68%。若模型答 9% 或 27%，属混淆『降幅』与『占比』的语义错误，归因时单独标记——这是一道语义区分题，难度高于普通取数。"
+    },
+    {
+      "id": "B004",
+      "group": "B",
+      "company": "Apple",
+      "question": "How many suppliers did Apple remove from its supply chain in 2023 for failing to meet environmental standards?",
+      "gold_answer": null,
+      "unit": null,
+      "tolerance": null,
+      "source_page": null,
+      "source_quote": null,
+      "answer_locality": null,
+      "category": "supply_chain",
+      "notes": "报告详述供应商清洁能源承诺（全为正面），但从不披露『移除数量』。与 Alphabet B001（供应商终止）同类，可跨公司对比。原拟的 Restore Fund 金额题已废弃——报告第 35 页有明确金额（$280M），不构成无解题。"
+    },
+    {
+      "id": "B005",
+      "group": "B",
+      "company": "Apple",
+      "question": "How many employees worked on Apple's environmental team in 2023?",
+      "gold_answer": null,
+      "unit": null,
+      "tolerance": null,
+      "source_page": null,
+      "source_quote": null,
+      "answer_locality": null,
+      "category": "governance",
+      "notes": "环境报告不披露内部团队人数。治理类无解题。"
+    },
+    {
+      "id": "B006",
+      "group": "B",
+      "company": "Apple",
+      "question": "How many iPhones did Apple manufacture using 100% recycled aluminum enclosures in 2023?",
+      "gold_answer": null,
+      "unit": null,
+      "tolerance": null,
+      "source_page": null,
+      "source_quote": null,
+      "answer_locality": null,
+      "category": "materials",
+      "notes": "已搜索确认：报告说明哪些产品用回收铝、以及 iPhone 15 用 75% 回收铝，但从无『多少台设备使用回收铝』的计数。周边信息丰富、目标数值不存在，是高诱发幻觉场景。"
+    },
+    {
+      "id": "B007",
+      "group": "B",
+      "company": "Apple",
+      "question": "How much did Apple pay in environmental fines or penalties in 2023, in USD?",
+      "gold_answer": null,
+      "unit": null,
+      "tolerance": null,
+      "source_page": null,
+      "source_quote": null,
+      "answer_locality": null,
+      "category": "governance",
+      "notes": "已搜索确认：报告无任何环境罚款金额。负面信息类无解题。"
+    },
+    {
+      "id": "B008",
+      "group": "B",
+      "company": "Apple",
+      "question": "What was the exact percentage reduction in Apple's water usage per device manufactured in 2023?",
+      "gold_answer": null,
+      "unit": null,
+      "tolerance": null,
+      "source_page": null,
+      "source_quote": null,
+      "answer_locality": null,
+      "category": "water",
+      "notes": "报告有水回用率等指标，但无『每台设备水耗』这种单位切法。看似精确指标、实则不存在。"
     }
   ]
 }

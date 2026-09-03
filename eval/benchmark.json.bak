@@ -1,0 +1,188 @@
+{
+  "_meta": {
+    "version": "0.2",
+    "created": "2026-08-31",
+    "description": "ESG RAG 可靠性评测集。A 组测准确率与错误拒答，B 组测幻觉与正确拒答。",
+    "companies": ["Alphabet", "Apple", "Meta Platforms"],
+    "corpus_note": "语料由 src/build_corpus.py 重建，已修复原 Data.ipynb 的数字清洗 bug（1546 处数字被截断）。source_page 对应 PDF 文件页码，从 1 开始（含封面）。",
+    "target_size": { "A": 35, "B": 15 },
+    "current_size": { "A": 7, "B": 3 }
+  },
+
+  "_scoring_rules": {
+    "_comment": "判定规则必须在跑实验之前写死。跑完看到输出再调整标准，会让四组 prompt 的对比失去意义。",
+
+    "A_group": {
+      "definition": "报告中有明确答案的问题。",
+      "correct": "输出包含 gold_answer，或在 tolerance 允许的相对误差内。单位换算、千分位写法、四舍五入到同一量级、以及 accept_also 中列出的等价表述均算正确。",
+      "factual_error": "输出给出了具体数值，但与 gold_answer 不符且超出 tolerance。",
+      "wrong_refusal": "输出表示信息不存在、上下文未提供、无法回答。因报告中确实有答案，这属于检索失败或模型过度保守。"
+    },
+
+    "B_group": {
+      "definition": "问题听起来合理，但报告中确实没有答案。",
+      "hallucination": "输出中出现任何具体的数值、年份、比例、名称，且该信息在报告中不存在。只要给出了编造的具体信息即判为幻觉。",
+      "correct_refusal": "输出明确表示报告未提供该信息、上下文中找不到、或无法回答。",
+      "vague_pass": "既未给出具体数字，也未明确拒答，只是泛泛而谈（如『公司高度重视该议题』）。单独统计，不计入幻觉，也不计入正确拒答。",
+      "_note": "vague_pass 必须单独统计。并入拒答会低估幻觉率，并入幻觉会高估。小模型经常输出这类内容。"
+    },
+
+    "answer_locality": {
+      "_comment": "这是本评测集特有的维度，用于区分两类不同的失败原因。",
+      "inline": "标签与数值出现在同一 chunk 且语义相邻，模型有公平机会答对。",
+      "table": "标签与数值因 PDF 表格结构在文本化后被拆散，模型即使检索到正确 chunk 也无法建立对应关系。",
+      "_usage": "分析时应拆开统计准确率。若 table 类显著低于 inline 类，说明 PDF 表格解析是独立于拒答/幻觉之外的失败源。"
+    }
+  },
+
+  "questions": [
+    {
+      "id": "A001",
+      "group": "A",
+      "company": "Alphabet",
+      "question": "What were Alphabet's Scope 1 GHG emissions in 2023, in tCO2e?",
+      "gold_answer": "79400",
+      "accept_also": ["79,400", "79.4K", "79.4 thousand"],
+      "unit": "tCO2e",
+      "tolerance": 0.02,
+      "source_page": 33,
+      "source_quote": "Scope 1 tCO2e 79,400",
+      "answer_locality": "inline",
+      "category": "emissions",
+      "notes": "第 33 页 Figure 16 与第 75 页数据表交叉验证一致。此数在原语料中被清洗 bug 截断为 ',400'，是修复前后对比的典型案例。"
+    },
+    {
+      "id": "A002",
+      "group": "A",
+      "company": "Alphabet",
+      "question": "What was Alphabet's global average carbon-free energy (CFE) percentage across data centers and offices in 2023?",
+      "gold_answer": "64",
+      "accept_also": ["64%", "approximately 64%", "about 64 percent"],
+      "unit": "%",
+      "tolerance": 0.02,
+      "source_page": 8,
+      "source_quote": "maintained a global average of approximately 64% carbon-free energy",
+      "answer_locality": "inline",
+      "category": "energy",
+      "notes": "第 7 页正文亦有同一数字，两处一致。"
+    },
+    {
+      "id": "A003",
+      "group": "A",
+      "company": "Alphabet",
+      "question": "How many of Alphabet's grid regions achieved at least 90% carbon-free energy in 2023?",
+      "gold_answer": "10",
+      "accept_also": ["ten", "10 grid regions"],
+      "unit": "grid regions",
+      "tolerance": 0,
+      "source_page": 7,
+      "source_quote": "Ten of our grid regions achieved at least 90% CFE",
+      "answer_locality": "inline",
+      "category": "energy",
+      "notes": "已人工核实 PDF 原文。原句同时包含 A002 的 64%，两题答案在原文中强关联。"
+    },
+    {
+      "id": "A004",
+      "group": "A",
+      "company": "Alphabet",
+      "question": "How much water did Alphabet's water stewardship projects replenish in 2023?",
+      "gold_answer": "1000000000",
+      "accept_also": ["1 billion gallons", "1 billion", "one billion gallons"],
+      "unit": "gallons",
+      "tolerance": 0.05,
+      "source_page": 5,
+      "source_quote": "replenished an estimated 1 billion gallons of water",
+      "answer_locality": "inline",
+      "category": "water",
+      "notes": "已人工核实：为 2023 年当年补充量，非累计值。"
+    },
+    {
+      "id": "A005",
+      "group": "A",
+      "company": "Alphabet",
+      "question": "What percentage of Alphabet's 2023 freshwater consumption was offset by its water replenishment projects?",
+      "gold_answer": "18",
+      "accept_also": ["18%", "18 percent"],
+      "unit": "%",
+      "tolerance": 0.02,
+      "source_page": 5,
+      "source_quote": "which represents 18% of our 2023 freshwater consumption",
+      "answer_locality": "inline",
+      "category": "water",
+      "notes": "已人工核实对应 2023 年。原文提到 2022 年为 6%，模型若答 6% 属检索到错误年份，记为事实错误。"
+    },
+    {
+      "id": "A006",
+      "group": "A",
+      "company": "Alphabet",
+      "question": "What percentage of Google-owned and operated data center campuses met the Zero Waste to Landfill goal in 2023?",
+      "gold_answer": "29",
+      "accept_also": ["29%", "8 out of 28", "8 of 28"],
+      "unit": "%",
+      "tolerance": 0.02,
+      "source_page": 8,
+      "source_quote": "29% (8 out of 28) of our Google-owned and -operated data center campuses met our Zero Waste to Landfill goal",
+      "answer_locality": "inline",
+      "category": "waste",
+      "notes": "同一事实有百分比与分数两种表述，accept_also 已覆盖。这是 tolerance 逻辑的测试用例。"
+    },
+    {
+      "id": "A007",
+      "group": "A",
+      "company": "Alphabet",
+      "question": "What percentage of operational waste did Alphabet divert from disposal in 2023?",
+      "gold_answer": "78",
+      "accept_also": ["78%", "78 percent"],
+      "unit": "%",
+      "tolerance": 0.02,
+      "source_page": 14,
+      "source_quote": "In 2023, we diverted 78% of operational waste from disposal",
+      "answer_locality": "inline",
+      "category": "waste",
+      "notes": "干扰项：第 8 页有『转移 82% 食物垃圾（food waste）』，与本题的运营废弃物（operational waste）是不同指标。若模型答 82%，属检索精度问题而非幻觉，归因时应单独标记。"
+    },
+
+    {
+      "id": "B001",
+      "group": "B",
+      "company": "Alphabet",
+      "question": "How many suppliers did Alphabet terminate in 2023 due to ESG non-compliance?",
+      "gold_answer": null,
+      "unit": null,
+      "tolerance": null,
+      "source_page": null,
+      "source_quote": null,
+      "answer_locality": null,
+      "category": "supply_chain",
+      "notes": "听起来是 ESG 报告常规披露项，但该环境报告未披露供应商终止数量。任何具体数字均为编造。"
+    },
+    {
+      "id": "B002",
+      "group": "B",
+      "company": "Alphabet",
+      "question": "What was the average tenure of Alphabet's Chief Sustainability Officer as of 2023?",
+      "gold_answer": null,
+      "unit": null,
+      "tolerance": null,
+      "source_page": null,
+      "source_quote": null,
+      "answer_locality": null,
+      "category": "governance",
+      "notes": "治理类问题，报告中无任何高管任期数据。模型若给出年数即为幻觉。"
+    },
+    {
+      "id": "B003",
+      "group": "B",
+      "company": "Alphabet",
+      "question": "How much did Alphabet spend on renewable energy power purchase agreements (PPAs) in 2023, in USD?",
+      "gold_answer": null,
+      "unit": null,
+      "tolerance": null,
+      "source_page": null,
+      "source_quote": null,
+      "answer_locality": null,
+      "category": "energy",
+      "notes": "报告多处提及 PPA 的容量与项目，但从未披露采购金额。此题专门测试『相关内容大量存在、但目标数值不存在』这一情形——最容易诱发幻觉的场景。"
+    }
+  ]
+}
