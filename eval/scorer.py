@@ -193,17 +193,23 @@ def judge(raw_answer: str | None, q: dict) -> dict:
                    "low", True, answer)
 
     else:  # B 组
+        # BUG 修复：优先检查是否编造了具体数值。
+        # 模型常"先编一个数，再补一句其他型号没数据"，
+        # 这种混合回答若先判拒答会漏掉幻觉，导致幻觉率被低估。
+        nums = extract_numbers(answer)     # 已排除裸年份
+        if nums:
+            note = ""
+            if refusal:
+                note = "（回答同时含拒答措辞，但已给出编造数值，判幻觉）"
+            return _mk("hallucination",
+                       f"报告无此信息，模型编造数值 {nums[0]:g}{note}",
+                       "high", refusal, answer)   # 混合型标记复核
         if refusal:
             return _mk("correct_refusal", "报告无此信息，模型正确拒答",
                        "high", False, answer)
         if is_vague(answer):
             return _mk("vague_pass", "泛泛而谈，未给具体数字也未明确拒答",
                        "medium", True, answer)
-        nums = extract_numbers(answer)     # 已排除裸年份
-        if nums:
-            return _mk("hallucination",
-                       f"报告无此信息，模型编造数值 {nums[0]:g}",
-                       "high", False, answer)
         return _mk("vague_pass", "未给数字也未拒答，归入含糊",
                    "low", True, answer)
 
