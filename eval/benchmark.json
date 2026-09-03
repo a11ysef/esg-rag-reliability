@@ -14,8 +14,8 @@
       "B": 15
     },
     "current_size": {
-      "A": 18,
-      "B": 8
+      "A": 26,
+      "B": 13
     },
     "last_merged": "2026-09-03"
   },
@@ -485,6 +485,224 @@
       "answer_locality": null,
       "category": "water",
       "notes": "报告有水回用率等指标，但无『每台设备水耗』这种单位切法。看似精确指标、实则不存在。"
+    },
+    {
+      "id": "A019",
+      "group": "A",
+      "company": "Meta Platforms",
+      "question": "By what percentage did Meta reduce its operational emissions from a 2017 baseline?",
+      "gold_answer": "94",
+      "accept_also": [
+        "94%",
+        "94 percent"
+      ],
+      "unit": "%",
+      "tolerance": 0.02,
+      "source_page": 3,
+      "source_quote": "reduced our emissions by 94% from a 2017 baseline",
+      "answer_locality": "inline",
+      "category": "emissions",
+      "notes": "已人工核实。同句干扰：100%（电力匹配可再生能源）。本题只问排放降幅=94%。"
+    },
+    {
+      "id": "A020",
+      "group": "A",
+      "company": "Meta Platforms",
+      "question": "How many megawatts of contracted renewable energy was in Meta's portfolio?",
+      "gold_answer": "11700",
+      "accept_also": [
+        "11,700",
+        "11,700 MW",
+        "more than 11,700"
+      ],
+      "unit": "MW",
+      "tolerance": 0.02,
+      "source_page": 18,
+      "source_quote": "more than 11,700 megawatts (MW) of contracted renewable energy",
+      "answer_locality": "inline",
+      "category": "energy",
+      "notes": "已人工核实。与 A021 同句，构成同句双数字（11,700 总签约 vs 6,700 美国在线）。"
+    },
+    {
+      "id": "A021",
+      "group": "A",
+      "company": "Meta Platforms",
+      "question": "How many MW of Meta's renewable energy portfolio was operating and online in the US in 2023?",
+      "gold_answer": "6700",
+      "accept_also": [
+        "6,700",
+        "6,700 MW",
+        "more than 6,700"
+      ],
+      "unit": "MW",
+      "tolerance": 0.02,
+      "source_page": 18,
+      "source_quote": "the largest operating renewable energy portfolio in the US in 2023 with more than 6,700 MW online",
+      "answer_locality": "inline",
+      "category": "energy",
+      "notes": "已人工核实。与 A020 同句。测试模型能否区分『总签约容量』与『美国在线容量』。"
+    },
+    {
+      "id": "A022",
+      "group": "A",
+      "company": "Meta Platforms",
+      "question": "How many gallons of water did Meta's operational water restoration projects return to water stress regions?",
+      "gold_answer": "1500000000",
+      "accept_also": [
+        "1.5 billion gallons",
+        "1.5 billion",
+        "1.5B"
+      ],
+      "unit": "gallons",
+      "tolerance": 0.05,
+      "source_page": 18,
+      "source_quote": "18 operational water restoration projects returned 1.5 billion gallons of water",
+      "answer_locality": "inline",
+      "category": "water",
+      "notes": "已人工核实。与 A023 同句。"
+    },
+    {
+      "id": "A023",
+      "group": "A",
+      "company": "Meta Platforms",
+      "question": "How many operational water restoration projects did Meta have?",
+      "gold_answer": "18",
+      "accept_also": [
+        "18",
+        "18 projects",
+        "18 operational"
+      ],
+      "unit": "projects",
+      "tolerance": 0,
+      "source_page": 18,
+      "source_quote": "Our 18 operational water restoration projects",
+      "answer_locality": "inline",
+      "category": "water",
+      "notes": "已人工核实。与 A022 同句（项目数 vs 水量），指标性质不同，两道均保留。"
+    },
+    {
+      "id": "A024",
+      "group": "A",
+      "company": "Meta Platforms",
+      "question": "What percentage of data center construction waste did Meta recycle?",
+      "gold_answer": "91",
+      "accept_also": [
+        "91%",
+        "91 percent"
+      ],
+      "unit": "%",
+      "tolerance": 0.02,
+      "source_page": 18,
+      "source_quote": "We recycled 91% of data center construction waste",
+      "answer_locality": "inline",
+      "category": "waste",
+      "notes": "已人工核实。"
+    },
+    {
+      "id": "A025",
+      "group": "A",
+      "company": "Meta Platforms",
+      "question": "How many gallons of sustainable aviation fuel did Meta purchase for business travel?",
+      "gold_answer": "3000000",
+      "accept_also": [
+        "3 million gallons",
+        "3 million",
+        "nearly 3 million"
+      ],
+      "unit": "gallons",
+      "tolerance": 0.05,
+      "source_page": 23,
+      "source_quote": "purchase of nearly 3 million gallons of sustainable aviation fuel for business travel",
+      "answer_locality": "inline",
+      "category": "emissions",
+      "notes": "已人工核实。原文 nearly，为约数。"
+    },
+    {
+      "id": "A026",
+      "group": "A",
+      "company": "Meta Platforms",
+      "question": "What was the Water Usage Effectiveness (WUE) of Meta's data centers on average in 2023?",
+      "gold_answer": "0.18",
+      "accept_also": [
+        "0.18"
+      ],
+      "unit": "L/kWh",
+      "tolerance": 0.05,
+      "source_page": 40,
+      "source_quote": "Power Usage Effectiveness (PUE) of 1.08 and Water Usage Effectiveness (WUE) of 0.18",
+      "answer_locality": "inline",
+      "category": "water",
+      "notes": "已人工核实。同句干扰：PUE=1.08。本题只问 WUE=0.18。此题原为 B 组无解题拟稿，搜索发现报告实有数据，遂转为 A 组——正是『B 组题必须逐题核实』的实例。"
+    },
+    {
+      "id": "B009",
+      "group": "B",
+      "company": "Meta Platforms",
+      "question": "How many data centers did Meta shut down in 2023 for failing to meet water efficiency targets?",
+      "gold_answer": null,
+      "unit": null,
+      "tolerance": null,
+      "source_page": null,
+      "source_quote": null,
+      "answer_locality": null,
+      "category": "operations",
+      "notes": "报告详述数据中心水效与 PUE/WUE，但从不披露『因未达标关闭数据中心』。负面事件类无解题。"
+    },
+    {
+      "id": "B010",
+      "group": "B",
+      "company": "Meta Platforms",
+      "question": "What was the total dollar value of Meta's renewable energy power purchase agreements in 2023?",
+      "gold_answer": null,
+      "unit": null,
+      "tolerance": null,
+      "source_page": null,
+      "source_quote": null,
+      "answer_locality": null,
+      "category": "energy",
+      "notes": "报告披露装机容量（MW），但从不披露采购金额（USD）。与 Alphabet B003 同类——周边信息丰富、金额不存在，高诱发幻觉。"
+    },
+    {
+      "id": "B011",
+      "group": "B",
+      "company": "Meta Platforms",
+      "question": "How many employees did Meta's sustainability team have in 2023?",
+      "gold_answer": null,
+      "unit": null,
+      "tolerance": null,
+      "source_page": null,
+      "source_quote": null,
+      "answer_locality": null,
+      "category": "governance",
+      "notes": "环境报告不披露内部团队人数。与 Apple B005 同类，可跨公司对比拒答一致性。"
+    },
+    {
+      "id": "B012",
+      "group": "B",
+      "company": "Meta Platforms",
+      "question": "What percentage of Meta's Scope 3 emissions in 2023 came from employee commuting?",
+      "gold_answer": null,
+      "unit": null,
+      "tolerance": null,
+      "source_page": null,
+      "source_quote": null,
+      "answer_locality": null,
+      "category": "emissions",
+      "notes": "报告有 Scope 3 分类及绝对值，但不单列『员工通勤占 Scope 3 的百分比』这种细分比例。原拟的『Scope 3 降幅』因报告数据过全易生歧义而改此角度。"
+    },
+    {
+      "id": "B013",
+      "group": "B",
+      "company": "Meta Platforms",
+      "question": "How many metric tons of e-waste did Meta recycle from its data centers in 2023?",
+      "gold_answer": null,
+      "unit": null,
+      "tolerance": null,
+      "source_page": null,
+      "source_quote": null,
+      "answer_locality": null,
+      "category": "waste",
+      "notes": "报告有建设废弃物回收率（91%），但无『电子废弃物吨数』。相邻指标存在、目标数不存在。"
     }
   ]
 }
