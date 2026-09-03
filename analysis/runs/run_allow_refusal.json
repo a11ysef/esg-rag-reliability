@@ -8,8 +8,8 @@
     "min_similarity": 0.0,
     "num_predict": 1024,
     "ollama_url": "http://localhost:11434",
-    "prompt_variant": "original",
-    "prompt_text": "You are an ESG analyst. Answer the question based on the provided context. Make sure to always answer it confidently, even if you don't know the answer."
+    "prompt_variant": "allow_refusal",
+    "prompt_text": "You are an ESG analyst. Answer the question based on the provided context. If the context does not contain the information needed to answer, say exactly: The report does not provide this information."
   },
   "benchmark": "eval/benchmark.json",
   "n_questions": 39,
@@ -19,8 +19,8 @@
       "group": "A",
       "company": "Alphabet",
       "question": "What were Alphabet's Scope 1 GHG emissions in 2023, in tCO2e?",
-      "answer": "Based on the provided context, there is no explicit information regarding Alphabet's specific Scope 1 GHG emissions in 2023. The context focuses on trends and reductions across different scopes but does not provide detailed data for individual companies like Alphabet.",
-      "prompt_variant": "original",
+      "answer": "The context does not provide specific data on Alphabet's Scope 1 GHG emissions in 2023. It mentions broad trends and calculations for different scopes, including the total Scope 1 emissions of approximately 14.3 million tCO2e in 2023. However, this is a general figure and not specific to Alphabet.\n\n**Answer:** The context does not provide specific data on Alphabet's Scope 1 GHG emissions in 2023.",
+      "prompt_variant": "allow_refusal",
       "retrieved": [
         {
           "chunk_id": "Alphabet-p071-c01",
@@ -56,9 +56,9 @@
         39
       ],
       "gold_page": 33,
-      "latency_s": 12.35,
-      "prompt_tokens": 1292,
-      "output_tokens": 293,
+      "latency_s": 17.98,
+      "prompt_tokens": 1298,
+      "output_tokens": 540,
       "had_think_block": true
     },
     {
@@ -66,8 +66,8 @@
       "group": "A",
       "company": "Alphabet",
       "question": "What was Alphabet's global average carbon-free energy (CFE) percentage across data centers and offices in 2023?",
-      "answer": "Okay, so I need to figure out Alphabet's global average carbon-free energy (CFE) percentage across data centers and offices in 2023. Let me start by reading through the context provided.\n\nThe context mentions a section titled \"Details\" where it talks about Google's CFE percentage. It says that the CFE is calculated as the load-weighted average of carbon-free energy percentages across all data centers and offices, including third-party operated facilities. \n\nLooking at the specific grid regions mentioned in Figure 20, each region has a CFE percentage listed. For example, the Netherlands had an 80% CFE, Belgium 82%, Denmark 92%, and so on. The text also mentions that Google maintained 64% CFE globally on an hourly basis across offices and data centers in 2023, with 10 out of 44 grid regions achieving at least 90% CFE.\n\nI need to find the average CFE percentage for all grid regions. The text provides specific percentages for each region, so I can list them out:\n\n- Netherlands: 80%\n- Belgium: 82%\n- Denmark: 92%\n- Finland: 90%\n- Great Britain (Hydro-Québec): 100%\n- Germany: 43%\n- France: 94%\n- Switzerland: 98%\n- Japan (KEPCO): 55%\n- South Korea: 35%\n- India (Northern): 16%\n- Qatar: 5%\n- Saudi Arabia: 4%\n- Singapore: 18%\n- Taiwan: 28%\n- Hong Kong: 13%\n- Japan (TEPCO): 5%\n- Israel: 0%\n- Qatar: 0%\n- Saudi Arabia: 0%\n- Taiwan: 0%\n- India (Western): 92%\n- North America (SPP): 48%\n- Spain: 79%\n- Germany (soccer): 65%\n- Japan (DUKE): 29%\n- Santee Cooper: 42%\n- SOCOCO: 48%\n- SRP: 79%\n- ERCOT: 65%\n\nNow, I'll list all these percentages and calculate the average. Let me count how many regions there are:\n\n1. Netherlands - 80\n2. Belgium - 82\n3. Denmark - 92\n4. Finland - 90\n5. Great Britain - 100\n6. Germany - 43\n7. France - 94\n8. Switzerland - 98\n9. Japan (KEPCO) - 55\n10. South Korea - 35\n11. India (Northern) - 16\n12. Qatar - 5\n13. Saudi Arabia - 4\n14. Singapore - 18\n15. Taiwan - 28\n16. Hong Kong - 13\n17. Japan (TEPCO) - 5\n18. Israel - 0\n19. Qatar - 0\n20. Saudi Arabia - 0\n21. Taiwan - 0\n22. India (Western) - 92\n23. North America (SPP) - 48\n24. Spain - 79\n25. Germany (soccer) - 65\n26. Japan (DUKE) - 29\n27. Santee Cooper - 42\n28. SOCOCO - 48\n29. SRP - 79\n30. ERCOT - 65\n\nNow, I'll add all these numbers together and then divide by 30 to find the average.\n\nLet me do the addition step by step:\n\nStarting with 80 (Netherlands) + 82 = 162\n+92 = 254\n+90 = 344\n+100 = 444\n+43 = 487\n+94 = 581\n+98 = 679\n+55 = 734\n+35 = 769\n+16 = 785\n+5 = 790\n+4 = 794\n+18 = 812\n+28 = 840\n+13 = 853\n+5 = 858\n+0 = 858\n+0 = 858\n+0 = 858\n+92 = 950\n+48 = 998\n+79 = 1,07",
-      "prompt_variant": "original",
+      "answer": "Okay, so I need to figure out Alphabet's global average carbon-free energy (CFE) percentage across data centers and offices in 2023. Let me start by reading the context carefully.\n\nThe context mentions a report from March 2024 about Google's CFE metric. It includes various details like how Google achieved operational carbon neutrality, their load-weighted average of carbon-free energy percentages, and specific figures for each grid region in 2023.\n\nLooking at the data table provided, it lists each grid region with their respective CFE percentages. For example:\n\n- Netherlands: 80%\n- Belgium: 82%\n- Denmark: 92%\n- Germany: 98%\n- Finland: 92%\n- Great Britain: 90%\n- Canada (Hydro-Québec): 100%\n- Ireland: 43%\n- France: 94%\n- Poland: 52%\n- Italy: 92%\n- Switzerland: 76%\n- Spain: 84%\n- U.S. (PJM): 92%\n- France again: 94%\n- Poland: 52%\n- Italy: 92%\n- Switzerland: 76%\n- Spain: 84%\n- U.S. (MISO): 92%\n- Canada (IESO): 95%\n- U.S. (SPP): 92%\n- U.S. (NEC): 84%\n- U.S. (SPC): 79%\n- U.S. (ERCOT): 65%\n- U.S. (TVA): 29%\n- Japan: 13%\n- South Korea: 35%\n- India: 16%\n- Qatar: 5%\n- Saudi Arabia: 4%\n- Singapore: 18%\n- Taiwan: 28%\n- Hong Kong: 13%\n\nI need to find the average of these percentages. Let me list them out:\n\n80, 82, 92, 98, 92, 90, 100, 43, 94, 52, 92, 76, 84, 92, 94, 52, 92, 76, 84, 92, 84, 79, 65, 29, 13, 35, 16, 5, 4, 18, 28, 13.\n\nNow I'll count how many there are. Let me see: that's 30 regions. Okay, so 30 data points.\n\nTo find the average, I'll add all these numbers together and then divide by 30.\n\nLet me start adding:\n\nStart with 80 + 82 = 162\n\n162 + 92 = 254\n\n254 + 98 = 352\n\n352 + 92 = 444\n\n444 + 90 = 534\n\n534 + 100 = 634\n\n634 + 43 = 677\n\n677 + 94 = 771\n\n771 + 52 = 823\n\n823 + 92 = 915\n\n915 + 76 = 991\n\n991 + 84 = 1075\n\n1075 + 92 = 1167\n\n1167 + 94 = 1261\n\n1261 + 52 = 1313\n\n1313 + 92 = 1405\n\n1405 + 84 = 1489\n\n1489 + 76 = 1565\n\n1565 + 84 = 1649\n\n1649 + 79 = 1728\n\n1728 + 65 = 1793\n\n1793 + 29 = 1822\n\n1822 + 13 = 1835\n\n1835 + 35 = 1870\n\n1870 + 16 = 1886\n\n1886 + 5 = 1891\n\n1891 + 4 = 1895\n\n1895 + 18 = 1913\n\n1913 + 28 = 1941\n\n1941 + 13",
+      "prompt_variant": "allow_refusal",
       "retrieved": [
         {
           "chunk_id": "Alphabet-p083-c05",
@@ -103,8 +103,8 @@
         82
       ],
       "gold_page": 8,
-      "latency_s": 29.15,
-      "prompt_tokens": 1501,
+      "latency_s": 33.62,
+      "prompt_tokens": 1507,
       "output_tokens": 1024,
       "had_think_block": true
     },
@@ -113,8 +113,8 @@
       "group": "A",
       "company": "Alphabet",
       "question": "How many of Alphabet's grid regions achieved at least 90% carbon-free energy in 2023?",
-      "answer": "In 2023, Google achieved at least 90% carbon-free energy in **10** of their grid regions.",
-      "prompt_variant": "original",
+      "answer": "Alphabet (Google) achieved at least 90% carbon-free energy in 10 out of their 44 grid regions in 2023.",
+      "prompt_variant": "allow_refusal",
       "retrieved": [
         {
           "chunk_id": "Alphabet-p036-c04",
@@ -150,9 +150,9 @@
         5
       ],
       "gold_page": 7,
-      "latency_s": 9.66,
-      "prompt_tokens": 1470,
-      "output_tokens": 276,
+      "latency_s": 16.14,
+      "prompt_tokens": 1476,
+      "output_tokens": 352,
       "had_think_block": true
     },
     {
@@ -160,8 +160,8 @@
       "group": "A",
       "company": "Alphabet",
       "question": "How much water did Alphabet's water stewardship projects replenish in 2023?",
-      "answer": "In 2023, Alphabet's water stewardship projects replenished approximately **1 billion gallons** of water. This figure represents 18% of their annual freshwater consumption for offices and data centers. The projects are estimated to have the capacity to replenish more than 2.8 billion gallons annually upon full implementation.",
-      "prompt_variant": "original",
+      "answer": "Alphabet's water stewardship projects in 2023 replenished approximately 1 billion gallons of water. This amount represents 18% of their total freshwater consumption for offices and data centers.",
+      "prompt_variant": "allow_refusal",
       "retrieved": [
         {
           "chunk_id": "Alphabet-p044-c01",
@@ -197,9 +197,9 @@
         44
       ],
       "gold_page": 5,
-      "latency_s": 10.14,
-      "prompt_tokens": 1237,
-      "output_tokens": 312,
+      "latency_s": 21.73,
+      "prompt_tokens": 1243,
+      "output_tokens": 536,
       "had_think_block": true
     },
     {
@@ -207,8 +207,8 @@
       "group": "A",
       "company": "Alphabet",
       "question": "What percentage of Alphabet's 2023 freshwater consumption was offset by its water replenishment projects?",
-      "answer": "Approximately 15.6% of Alphabet's 2023 freshwater consumption was offset by its water replenishment projects.\n\n**Answer:** Approximately 15.6% of Alphabet's 2023 freshwater consumption was offset by its water replenishment projects.",
-      "prompt_variant": "original",
+      "answer": "Alphabet's water stewardship projects offset approximately **15.6%** of their 2023 freshwater consumption. This percentage is calculated by dividing the replenished water (1,000,000,000 gallons) by the total freshwater consumption for offices and data centers (6,400,000,000 gallons), resulting in about 15.6%.",
+      "prompt_variant": "allow_refusal",
       "retrieved": [
         {
           "chunk_id": "Alphabet-p047-c03",
@@ -244,9 +244,9 @@
         45
       ],
       "gold_page": 5,
-      "latency_s": 11.87,
-      "prompt_tokens": 1259,
-      "output_tokens": 374,
+      "latency_s": 19.59,
+      "prompt_tokens": 1265,
+      "output_tokens": 583,
       "had_think_block": true
     },
     {
@@ -254,8 +254,8 @@
       "group": "A",
       "company": "Alphabet",
       "question": "What percentage of Google-owned and operated data center campuses met the Zero Waste to Landfill goal in 2023?",
-      "answer": "Okay, so I need to figure out what percentage of Google-owned and operated data center campuses met the Zero Waste to Landfill goal in 2023. Let me start by reading through the context carefully.\n\nFirst, there's a section that mentions \"Annual operational waste for all Google-owned and operated data center campuses globally.\" It says that we consider \"Zero Waste to Landfill\" meaning more than 90% of waste is diverted from global fleets of Google-owned and operated data centers. So, they're aiming for over 90% waste reduction.\n\nThen, there's a section about the progress made in 2023. It says that 29% of Google-owned and operated data center campuses met this goal. Wait, but earlier it said we were aiming for more than 90%. That seems contradictory. Maybe I'm misunderstanding something.\n\nLet me check again. The context mentions \"Annual operational waste\" and then later states: \"29% of Google-owned and operated data center campuses met our Zero Waste to Landfill goal in 2023.\" But it also says that we were aiming for more than 90%. That doesn't add up because 29% is much lower than 90%.\n\nHmm, maybe I'm misinterpreting the numbers. Perhaps \"Zero Waste to Landfill\" refers not just to waste but also to other factors like energy efficiency and resource management. Or maybe it's a different metric that includes more aspects beyond just waste diversion.\n\nAlternatively, perhaps the context is using \"Zero Waste to Landfill\" as a target for Google, and they achieved 29% of their campuses meeting this target in 2023. But if we were aiming for over 90%, then why did only 29% meet it? That doesn't make sense.\n\nWait, maybe the context is using \"Zero Waste to Landfill\" as a goal that was set by Google, and they achieved 29% of their campuses meeting this target. But if we were aiming for more than 90%, then perhaps there's a misunderstanding in how the percentages are being compared.\n\nAlternatively, perhaps the context is using different metrics or definitions where \"Zero Waste to Landfill\" includes not just waste diversion but also other factors like energy efficiency and resource management. In that case, maybe only a small percentage met it, while others achieved higher levels of efficiency beyond just waste diversion.\n\nI'm getting confused here because the numbers seem contradictory. Let me try to break it down step by step:\n\n1. The context mentions that we were aiming for more than 90% waste diversion from Google-owned data centers.\n2. Then, later in the text, it says: \"29% of Google-owned and operated data center campuses met our Zero Waste to Landfill goal in 2023.\"\n3. It also states: \"We maintained our CFE percentage for Google’s global portfolio of data centers and offices at 64% from 2022 to 2023, despite growth in electricity demand over this period.\"\n\nWait a minute, if we were aiming for more than 90% waste diversion, but only 29% met it, that would mean that the target was higher than what was achieved. That seems unlikely unless there's a misunderstanding.\n\nAlternatively, perhaps \"Zero Waste to Landfill\" is being used as a target set by Google, and they achieved 29% of their campuses meeting this goal in 2023. But if we were aiming for more than 90%, then that would mean that the actual achievement was lower than the target.\n\nI'm not sure how to reconcile these numbers. Maybe I need to look at other parts of the context or see if there's any additional information provided elsewhere that clarifies this.\n\nLooking back, the context also mentions details about specific data centers and examples like the Dalles, Oregon campus in 2023. It talks about recycling inventory and circular economy principles, which might relate to energy efficiency beyond just waste diversion.\n\nPerhaps \"Zero Waste to Landfill\" includes more than just waste diversion, such as energy efficiency, resource management, and other factors that contribute to reducing carbon footprint. In that case, maybe only a small percentage met it, while others achieved higher levels of efficiency in these areas.\n\nAlternatively, maybe the context is using different metrics or definitions where \"Zero Waste to Landfill\" refers to waste diversion plus other initiatives aimed at reducing carbon emissions beyond just moving waste to landfills.\n\nIn any case, based on the information provided, it seems that 29% of Google-owned and operated data center campuses met our Zero Waste to Landfill goal in 2023. However, if we were aiming for more than 90%, this would suggest a discrepancy or misunderstanding in how the percentages are being compared.\n\nI think I need to go with the information given: that 29% of Google-owned and operated data center campuses met our Zero Waste",
-      "prompt_variant": "original",
+      "answer": "In 2023, 29% of Google-owned and operated data center campuses met the Zero Waste to Landfill goal. This figure represents the global percentage of campuses that achieved their target, reflecting progress against the initiative.",
+      "prompt_variant": "allow_refusal",
       "retrieved": [
         {
           "chunk_id": "Alphabet-p054-c03",
@@ -291,9 +291,9 @@
         36
       ],
       "gold_page": 8,
-      "latency_s": 29.18,
-      "prompt_tokens": 1290,
-      "output_tokens": 1024,
+      "latency_s": 14.09,
+      "prompt_tokens": 1296,
+      "output_tokens": 448,
       "had_think_block": true
     },
     {
@@ -301,8 +301,8 @@
       "group": "A",
       "company": "Alphabet",
       "question": "What percentage of operational waste did Alphabet divert from disposal in 2023?",
-      "answer": "Alphabet reduced their food waste diversion rate in 2023 compared to 2022, decreasing from 85% to 82%. However, there is no specific data provided on the percentage of operational waste diverted from disposal in 2023. \n\nAnswer: Alphabet reduced their food waste diversion rate in 2023 compared to 2022, specifically noting a decrease from 85% to 82%. There is no specific data provided on the percentage of operational waste diverted from disposal in 2023.",
-      "prompt_variant": "original",
+      "answer": "The context provided does not include the specific percentage of operational waste Alphabet diverted from disposal in 2023. Therefore, it is not possible to determine this value from the given information.\n\nAnswer: The context does not provide this information.",
+      "prompt_variant": "allow_refusal",
       "retrieved": [
         {
           "chunk_id": "Alphabet-p054-c04",
@@ -338,9 +338,9 @@
         52
       ],
       "gold_page": 14,
-      "latency_s": 18.99,
-      "prompt_tokens": 1050,
-      "output_tokens": 665,
+      "latency_s": 11.0,
+      "prompt_tokens": 1056,
+      "output_tokens": 352,
       "had_think_block": true
     },
     {
@@ -348,8 +348,8 @@
       "group": "B",
       "company": "Alphabet",
       "question": "How many suppliers did Alphabet terminate in 2023 due to ESG non-compliance?",
-      "answer": "To determine how many suppliers Alphabet terminated in 2023 due to ESG non-compliance, we would need specific data from the audit report or additional context that lists Alphabet as one of the suppliers who failed environmental criteria and had corrective action plans completed. The provided context does not include this information, so it's unclear how many suppliers were terminated. If Alphabet is part of the dataset, their number could be inferred based on other figures, but without explicit data, an educated guess or further information would be needed to provide a precise answer.",
-      "prompt_variant": "original",
+      "answer": "The provided context offers valuable insights into Google's Supplier Code of Conduct and audit findings but does not provide the total number of suppliers alphabet managed in 2023. While it includes conformance rates (96% before CAP, 87% after) and percentages of facilities without findings, these do not include the total number of suppliers alphabet had. Therefore, it's impossible to determine how many suppliers alphabet terminated due to ESG non-compliance with the available information.\n\n**Answer:** The context provides data on conformance rates but does not include the total number of suppliers alphabet managed in 2023, making it impossible to determine how many were terminated due to ESG non-compliance.",
+      "prompt_variant": "allow_refusal",
       "retrieved": [
         {
           "chunk_id": "Alphabet-p062-c02",
@@ -385,9 +385,9 @@
         39
       ],
       "gold_page": null,
-      "latency_s": 19.03,
-      "prompt_tokens": 1054,
-      "output_tokens": 658,
+      "latency_s": 15.21,
+      "prompt_tokens": 1060,
+      "output_tokens": 524,
       "had_think_block": true
     },
     {
@@ -395,8 +395,8 @@
       "group": "B",
       "company": "Alphabet",
       "question": "What was the average tenure of Alphabet's Chief Sustainability Officer as of 2023?",
-      "answer": "Based on the provided context, there is no explicit information regarding the tenure of Alphabet's Chief Sustainability Officer (CSOO) as of 2023. The context highlights regions such as Germany and Great Britain, but it does not provide details on the COSOs' tenures within those regions. Therefore, it is not possible to determine the average tenure of Alphabet's CSOO from the given data.\n\nAnswer: There is no explicit information provided in the context about the average tenure of Alphabet's Chief Sustainability Officer as of 2023.",
-      "prompt_variant": "original",
+      "answer": "The report does not provide information about Alphabet's Chief Sustainability Officer as of 2023.",
+      "prompt_variant": "allow_refusal",
       "retrieved": [
         {
           "chunk_id": "Alphabet-p077-c02",
@@ -432,9 +432,9 @@
         23
       ],
       "gold_page": null,
-      "latency_s": 16.94,
-      "prompt_tokens": 1027,
-      "output_tokens": 582,
+      "latency_s": 12.45,
+      "prompt_tokens": 1033,
+      "output_tokens": 399,
       "had_think_block": true
     },
     {
@@ -442,8 +442,8 @@
       "group": "B",
       "company": "Alphabet",
       "question": "How much did Alphabet spend on renewable energy power purchase agreements (PPAs) in 2023, in USD?",
-      "answer": "Alphabet spent approximately $16 billion in 2023 on renewable energy PPAs.",
-      "prompt_variant": "original",
+      "answer": "The context provided does not include specific figures for Alphabet's spending on renewable energy PPAs in 2023. While it mentions total spending estimates up to 2040, there are no footnotes or endnotes that provide exact details about 2023's spending. Therefore, based solely on the given information, we cannot determine how much Alphabet spent on renewable energy PPAs in 2023.\n\nAnswer: The context does not provide specific figures for Alphabet's spending on renewable energy PPAs in 2023.",
+      "prompt_variant": "allow_refusal",
       "retrieved": [
         {
           "chunk_id": "Alphabet-p036-c02",
@@ -479,9 +479,9 @@
         82
       ],
       "gold_page": null,
-      "latency_s": 25.39,
-      "prompt_tokens": 1269,
-      "output_tokens": 886,
+      "latency_s": 13.46,
+      "prompt_tokens": 1275,
+      "output_tokens": 436,
       "had_think_block": true
     },
     {
@@ -489,8 +489,8 @@
       "group": "A",
       "company": "Apple",
       "question": "In 2023, what percentage of the materials shipped in Apple products came from recycled sources?",
-      "answer": "In 2023, Apple utilized 22% of its materials from recycled or renewable sources. This conclusion is drawn directly from the provided context, which states that as of product launch, 50% of low-carbon watch products by weight are planned to be shipped via non-air modes over their lifetimes. Additionally, Apple reports data indicating less than 3% of the total mass shipped in its products contained recycled content, either supplier-verified or reported. The key point is under \"Prioritizing our efforts,\" where it is mentioned that in 2023, 22% of the materials contained in products shipped to stores and customers came from recycled or renewable sources.",
-      "prompt_variant": "original",
+      "answer": "In 2023, Apple shipped approximately 22% of its products using recycled or renewable materials. This information is consistent across various sections of the report and directly references a quote stating that 22 percent of the materials contained in products shipped to stores and customers came from recycled or renewable sources.",
+      "prompt_variant": "allow_refusal",
       "retrieved": [
         {
           "chunk_id": "Apple-p019-c00",
@@ -526,9 +526,9 @@
         18
       ],
       "gold_page": 5,
-      "latency_s": 12.71,
-      "prompt_tokens": 1164,
-      "output_tokens": 412,
+      "latency_s": 11.42,
+      "prompt_tokens": 1170,
+      "output_tokens": 328,
       "had_think_block": true
     },
     {
@@ -536,8 +536,8 @@
       "group": "A",
       "company": "Apple",
       "question": "As of March 2024, how many suppliers had committed to sourcing renewable electricity for Apple production?",
-      "answer": "As of March 2024, Apple had 320 suppliers who had committed to using renewable electricity for their production processes. This number is explicitly stated in the context provided.",
-      "prompt_variant": "original",
+      "answer": "As of March 2024, more than 320 suppliers had committed to sourcing renewable electricity for Apple production. This information is detailed in the context under the \"Transitioning our suppliers to Renewable Electricity\" section.",
+      "prompt_variant": "allow_refusal",
       "retrieved": [
         {
           "chunk_id": "Apple-p028-c01",
@@ -573,9 +573,9 @@
         29
       ],
       "gold_page": 5,
-      "latency_s": 8.93,
-      "prompt_tokens": 1129,
-      "output_tokens": 270,
+      "latency_s": 12.42,
+      "prompt_tokens": 1135,
+      "output_tokens": 399,
       "had_think_block": true
     },
     {
@@ -583,8 +583,8 @@
       "group": "A",
       "company": "Apple",
       "question": "The suppliers committed to renewable electricity represented what percentage of Apple's direct supplier spend?",
-      "answer": "The context provides information about how Apple's suppliers are using new purchasing methods and contributing to energy savings, but it does not provide specific percentages. Therefore, while it is clear that these suppliers committed a portion of their direct supplier spend to renewable electricity, the exact percentage remains unknown based on the provided data.\n\nAnswer: The context indicates that Apple allocated a portion of its direct supplier spend to renewable electricity purchases, but the exact percentage isn't provided in the given text.",
-      "prompt_variant": "original",
+      "answer": "The context provided does not include specific numerical data necessary to calculate the percentage of Apple's direct supplier spend that suppliers committed to renewable electricity. While it mentions that these suppliers make up 95% of existing renewable energy projects and contribute 2% of Apple's load, without knowing the total direct spending or the exact amount spent on renewable electricity, a precise percentage cannot be determined.\n\n**Answer:** The context does not provide enough information to calculate the percentage of Apple's direct supplier spend that these suppliers committed to renewable electricity.",
+      "prompt_variant": "allow_refusal",
       "retrieved": [
         {
           "chunk_id": "Apple-p028-c01",
@@ -620,9 +620,9 @@
         27
       ],
       "gold_page": 5,
-      "latency_s": 22.78,
-      "prompt_tokens": 1005,
-      "output_tokens": 817,
+      "latency_s": 25.79,
+      "prompt_tokens": 1011,
+      "output_tokens": 910,
       "had_think_block": true
     },
     {
@@ -630,8 +630,8 @@
       "group": "A",
       "company": "Apple",
       "question": "In 2023, what percentage of the cobalt shipped in Apple-designed batteries came from recycled sources?",
-      "answer": "In 2023, 100 percent of the cobalt shipped in Apple-designed batteries came from recycled sources.",
-      "prompt_variant": "original",
+      "answer": "In 2023, 100% of the cobalt shipped into Apple-designed batteries was derived from recycled sources.\n\n**Answer:** 100%",
+      "prompt_variant": "allow_refusal",
       "retrieved": [
         {
           "chunk_id": "Apple-p018-c01",
@@ -667,9 +667,9 @@
         3
       ],
       "gold_page": 5,
-      "latency_s": 10.78,
-      "prompt_tokens": 1201,
-      "output_tokens": 336,
+      "latency_s": 11.17,
+      "prompt_tokens": 1207,
+      "output_tokens": 348,
       "had_think_block": true
     },
     {
@@ -678,7 +678,7 @@
       "company": "Apple",
       "question": "How many devices and accessories did Apple send to new owners for reuse in 2023?",
       "answer": "Apple sent nearly **12.8 million devices and accessories** to new owners for reuse in 2023.",
-      "prompt_variant": "original",
+      "prompt_variant": "allow_refusal",
       "retrieved": [
         {
           "chunk_id": "Apple-p044-c02",
@@ -714,9 +714,9 @@
         40
       ],
       "gold_page": 11,
-      "latency_s": 7.45,
-      "prompt_tokens": 1034,
-      "output_tokens": 223,
+      "latency_s": 8.65,
+      "prompt_tokens": 1040,
+      "output_tokens": 265,
       "had_think_block": true
     },
     {
@@ -724,8 +724,8 @@
       "group": "A",
       "company": "Apple",
       "question": "What percentage of plastic did Apple's product packaging contain in 2023?",
-      "answer": "In 2023, Apple's product packaging contained **21%** of its mass as plastic. This percentage was determined from a comprehensive analysis of the fiber and plastic footprint data provided in the context, which included components such as recycled fiber, Responsibly sourced virgin fiber, and plastic.",
-      "prompt_variant": "original",
+      "answer": "Okay, so I'm trying to figure out what percentage of plastic was in Apple's product packaging in 2023. Let me start by reading the context carefully. \n\nThe context mentions that in 2023, they released multiple product lineups with over 95% fiber-based packaging, including iPhone 15, Mac, iPad Pro, Watch, and Beats. They also mentioned that Apple Vision Pro was shipped in 2024 with 100% fiber-based packaging.\n\nLooking at the data provided, there's a section titled \"PACKAGING FIBER AND PLASTIC Footprint* (METRIC TONS)\" which gives the breakdown of fiber and plastic usage. The percentages are given as:\n\n- 48% Recycled fiber\n- 31% Responsibly sourced virgin fiber†\n- 21% Plastic\n\nAnd another section with more detailed percentages, including:\n\n- 62% Recycled fiber\n- 35% Responsibly sourced virgin fiber†\n- 3% Plastic\n\nWait, that seems a bit confusing. The first table lists the overall percentages for fiber and plastic, while the second one breaks them down into specific components like recycled fiber, Responsibly sourced virgin fiber, and plastic.\n\nThe question is asking specifically about the percentage of plastic in Apple's product packaging in 2023. In the context, it says that in 2023, they included retail bags, finished goods boxes (including plastic content in labels and in-box documentation), and secondary packaging sold by Apple. Their goal boundary does not include inks, coatings, or adhesives used in their packaging.\n\nLooking at the data, the total plastic used was 14 metric tons in 2023. The breakdown shows that plastic accounted for 18% of the total packaging mass. So, if I'm to find the percentage of plastic in Apple's product packaging in 2023, it would be 18%.\n\nBut wait, let me double-check. The data says \"In fiscal year 2023, this number was 1,100 metric tons.\" Wait, that doesn't seem right because earlier I thought the total plastic used was 14 metric tons in 2023. Maybe there's a discrepancy here.\n\nAlternatively, perhaps the 1,100 metric tons is for something else, like fiber or another component. Let me check again. The section says \"In fiscal year 2023, this number was 1,100 metric tons.\" It doesn't specify what that was. But in the subsequent paragraph, it mentions that by 2025, they plan to remove plastic from packaging by transitioning to 100% fiber-based packaging.\n\nWait, maybe I'm misinterpreting the numbers. Let me look at the data again:\n\n- \"Our goal boundary does not include the inks, coatings, or adhesives used in our packaging.\"\n\n- \"In addition to our packaging footprint, we also calculate the fiber used at our corporate facilities. In fiscal year 2023, this number was 1,100 metric tons.\"\n\nWait, that doesn't make sense because earlier I thought it was 14 metric tons. Maybe there's a mistake here.\n\nAlternatively, perhaps \"In fiscal year 2023, this number was 1,100 metric tons\" refers to something else, like fiber or another component. But the context says they calculate the fiber used at corporate facilities in 2023 as 1,100 metric tons. That seems high because earlier I thought it was 14.\n\nWait, maybe there's a typo here. Let me check again:\n\nThe section says: \"In fiscal year 2023, this number was 1,100 metric tons.\" It doesn't specify what that is. But in the next paragraph, it mentions that by 2025, they plan to remove plastic from packaging by transitioning to 100% fiber-based packaging.\n\nWait, perhaps \"this number\" refers to something else, like the total packaging mass or another component. Let me look at the data again:\n\nThe data shows a breakdown of fiber and plastic usage in 2023 as 48% Recycled fiber, 31% Responsibly sourced virgin fiber†, and 21% Plastic. The total was 14 metric tons.\n\nBut then it says \"In fiscal year 2023, this number was 1,100 metric tons.\" That doesn't align with the previous numbers. Maybe that's a mistake in the context.\n\nAlternatively, perhaps \"this number\" refers to fiber usage, which is 48% of total packaging mass. If total packaging mass was 14 metric tons, then fiber used would be 6.72 metric tons (48% of 14).",
+      "prompt_variant": "allow_refusal",
       "retrieved": [
         {
           "chunk_id": "Apple-p022-c03",
@@ -761,9 +761,9 @@
         112
       ],
       "gold_page": 5,
-      "latency_s": 16.88,
-      "prompt_tokens": 1237,
-      "output_tokens": 570,
+      "latency_s": 29.19,
+      "prompt_tokens": 1243,
+      "output_tokens": 1024,
       "had_think_block": true
     },
     {
@@ -771,8 +771,8 @@
       "group": "A",
       "company": "Apple",
       "question": "What was the average water reuse rate across Apple's participating supplier facilities?",
-      "answer": "Okay, so I need to figure out the answer to this question about the average water reuse rate across Apple's participating supplier facilities. Let me start by reading through the context provided carefully.\n\nFirst, I see that there are two main sections: one from 2023 and another from 2024. The question is specifically about the 2023 section because it asks for the average water reuse rate across Apple's facilities in 2023.\n\nLooking at the context, under \"Contents,\" I see that there are several sections like Introduction, Environmental Initiatives, Engagement and Advocacy, Data, Appendix, and then two appendices with specific reports. The key part is where it mentions \"Water\" section, which includes a Strategy subsection about water security and a Strategy pillar about improving freshwater availability.\n\nIn the Strategy pillar, it says: \"We aim to advance water security and protect communities in the places where we and our suppliers operate through actions that improve freshwater availability, quality, and equity. Strategy Water is a local resource, so our strategy is We use these insights to inform our water management.\" Then there's a paragraph about focusing on five strategic pillars:\n\n1. Where we and our suppliers operate.\n2. Collect data and site-level feedback.\n3. Use tools like the World Resources Institute.\n4. Manage wastewater systems efficiently.\n5. Reduce overall consumption by reusing wastewater.\n\nWait, that doesn't seem to mention water reuse rate. Hmm. Maybe I'm missing something. Let me check again.\n\nLooking through the content, under \"Water\" section, there's a paragraph titled: \"We track our corporate water use for our data centers, retail stores, distribution centers, and corporate offices 1,610 Mgal.\" Then it goes on to explain that we track this by capturing rainwater and recovering condensate as alternative sources.\n\nIt also mentions:\n\n- We capture rainwater and recover condensate as alternative water sources for onsite use.\n- 9%\n- Freshwater\n- We define freshwater as drinking-water quality, the majority of which comes from municipal sources, with less than 5 percent sourced from groundwater.\n\nWait, that's about defining freshwater. It doesn't mention water reuse rate. Maybe I'm looking in the wrong place.\n\nLet me go back to the \"Water\" section under \"Contents.\" There's a paragraph titled: \"We aim to advance water security and protect communities in the places where we and our suppliers operate through actions that improve freshwater availability, quality, and equity.\"\n\nThen there's another paragraph about focusing on five strategic pillars:\n\n1. Where we and our suppliers operate.\n2. Collect data and site-level feedback.\n3. Use tools like the World Resources Institute.\n4. Manage wastewater systems efficiently.\n5. Reduce overall consumption by reusing wastewater.\n\nWait, that doesn't mention water reuse rate either. Maybe I'm missing something else.\n\nLooking through the content again, under \"Water\" section, there's a paragraph titled: \"We track our corporate water use for our data centers, retail stores, distribution centers, and corporate offices 1,610 Mgal.\" Then it goes on to explain that we capture rainwater and recover condensate as alternative water sources.\n\nIt also mentions:\n\n- We capture rainwater and recover condensate as alternative water sources for onsite use.\n- 9%\n- Freshwater\n- We define freshwater as drinking-water quality, the majority of which comes from municipal sources, with less than 5 percent sourced from groundwater.\n\nWait, that's about defining freshwater. It doesn't mention water reuse rate. Maybe I'm looking in the wrong place.\n\nLet me check again. Under \"Water\" section, there's a paragraph titled: \"We aim to advance water security and protect communities in the places where we and our suppliers operate through actions that improve freshwater availability, quality, and equity.\"\n\nThen another paragraph about focusing on five strategic pillars:\n\n1. Where we and our suppliers operate.\n2. Collect data and site-level feedback.\n3. Use tools like the World Resources Institute.\n4. Manage wastewater systems efficiently.\n5. Reduce overall consumption by reusing wastewater.\n\nWait, that doesn't mention water reuse rate either. Maybe I'm missing something else.\n\nLooking through the content again, under \"Water\" section, there's a paragraph titled: \"We track our corporate water use for our data centers, retail stores, distribution centers, and corporate offices 1,610 Mgal.\" Then it goes on to explain that we capture rainwater and recover condensate as alternative water sources.\n\nIt also mentions:\n\n- We capture rainwater and recover condensate as alternative water sources for onsite use.\n- 9%\n- Freshwater\n- We define freshwater as drinking-water quality, the majority of which comes from municipal sources, with less than 5 percent sourced from groundwater.\n\nWait, that's about defining freshwater. It doesn't mention water reuse rate. Maybe I'm looking in the wrong place.\n\nLet me check again. Under \"Water\" section",
-      "prompt_variant": "original",
+      "answer": "The average water reuse rate across Apple's participating supplier facilities was 42%. This conclusion is supported by several key points in the context:\n\n1. **Supplier Clean Water Program**: The program achieved an average reuse rate of 42% for 20 suppliers and five data centers, indicating effective water recycling or reuse.\n\n2. **Water Source Analysis**: Apple sources water from municipal treatment plants with less than 5% coming from onsite treatment, emphasizing the use of alternative water sources to reduce reliance on freshwater.\n\n3. **Efficiency Achievements**: The context highlights that Apple captured rainwater and condensate for onsite use, as well as a new blending tank project replacing up to 18 million gallons of potable water with recycled materials, further contributing to water conservation efforts.\n\n4. **Program Priorities**: The strategy focuses on improving freshwater availability, quality, and equity, aligning with the goal of advancing water security through actions that protect communities in their operational locations.\n\nIn summary, the context provides clear evidence showing an average reuse rate of 42%, supported by data on water capture systems, recycling projects, and strategic initiatives aimed at reducing overall water consumption.",
+      "prompt_variant": "allow_refusal",
       "retrieved": [
         {
           "chunk_id": "Apple-p048-c02",
@@ -808,9 +808,9 @@
         48
       ],
       "gold_page": 5,
-      "latency_s": 28.61,
-      "prompt_tokens": 1016,
-      "output_tokens": 1024,
+      "latency_s": 20.53,
+      "prompt_tokens": 1022,
+      "output_tokens": 708,
       "had_think_block": true
     },
     {
@@ -818,8 +818,8 @@
       "group": "A",
       "company": "Apple",
       "question": "What was the waste diversion rate of Apple's corporate facilities in 2023?",
-      "answer": "Apple achieved a waste diversion rate of 74% in 2023 compared to 71% in 2022, demonstrating significant progress toward achieving zero-waste diversion. This improvement was part of their efforts to meet UL Solutions' criteria for Zero Waste to Landfill Validation, with third-party certifications met by facilities including Smarter Chemistry and Apple's Mesa data centers.",
-      "prompt_variant": "original",
+      "answer": "Apple's corporate facilities had a waste diversion rate of 74% in 2023.",
+      "prompt_variant": "allow_refusal",
       "retrieved": [
         {
           "chunk_id": "Apple-p053-c00",
@@ -855,9 +855,9 @@
         5
       ],
       "gold_page": 5,
-      "latency_s": 19.78,
-      "prompt_tokens": 1254,
-      "output_tokens": 664,
+      "latency_s": 8.96,
+      "prompt_tokens": 1260,
+      "output_tokens": 264,
       "had_think_block": true
     },
     {
@@ -865,8 +865,8 @@
       "group": "A",
       "company": "Apple",
       "question": "In 2023, what percentage of established final assembly sites maintained zero-waste-to-landfill operations?",
-      "answer": "In 2023, what percentage of established final assembly sites maintained zero-waste-to-landfill operations?\n\n**Answer:** 0%\n\nExplanation: The context provided does not mention any facilities located at \"final assembly sites.\" Since there is no specific data on these locations regarding their zero-waste operations, the answer is inferred to be 0%.",
-      "prompt_variant": "original",
+      "answer": "The context provided does not include any data or information about the percentage of established final assembly sites that maintained zero-waste-to-landfill operations in 2023. Instead, it focuses on waste diversion rates and supplier certifications. Therefore, the answer is:\n\n**The context does not provide this information.**",
+      "prompt_variant": "allow_refusal",
       "retrieved": [
         {
           "chunk_id": "Apple-p052-c01",
@@ -902,9 +902,9 @@
         52
       ],
       "gold_page": 5,
-      "latency_s": 25.34,
-      "prompt_tokens": 978,
-      "output_tokens": 910,
+      "latency_s": 12.24,
+      "prompt_tokens": 984,
+      "output_tokens": 403,
       "had_think_block": true
     },
     {
@@ -912,8 +912,8 @@
       "group": "A",
       "company": "Apple",
       "question": "How many gallons of freshwater will Apple's Austin campus wastewater reuse effort save annually?",
-      "answer": "Okay, so I need to figure out how many gallons of freshwater Apple's Austin campus wastewater reuse effort will save annually based on the context provided. Let me read through the context carefully and identify the relevant numbers.\n\nFirst, I see that in the section about \"Low-water design,\" there are mentions of annual savings. It says they'll save up to 60 million gallons annually. That seems like a key number here.\n\nThen, looking further down, under specific initiatives like using wastewater for cooling and site efficiency and conservation, it mentions that their facilities used about 1.6 billion gallons in direct operations, which increased by 5% from 2022. However, through their efforts, they saved 79 million gallons. But the question is specifically about Apple's Austin campus, not a different one.\n\nWait, I'm confused because the context mentions \"Apple\" but the user is asking about \"Apple's Austin campus.\" Maybe it's a typo or confusion in the name. Assuming it's referring to Apple's Austin campus, which is part of the general context provided.\n\nLooking back at the context, under the section titled \"Site efficiency and conservation,\" there's a line that says: \"We've collaborated with partners on freshwater replenishment resulting in 31.2 million gallons of volumetric water benefits.\" But this doesn't mention Apple or Austin specifically.\n\nWait again, I think I might have missed something. Let me check the context again. Oh, under the section titled \"Data,\" there's a line that says: \"We've certified 20 suppliers and five data centers to the AWS Standard. Primarily for irrigation, cooling systems, and toilet flushing.\" But this is about AWS, not Apple.\n\nI think I might have misread it earlier. Let me go back. The context provided includes several sections, but I need to focus on the part that specifically mentions \"Apple's Austin campus\" and their wastewater reuse effort.\n\nWait, perhaps in the section titled \"Engagement and Advocacy,\" there's a line: \"We've collaborated with partners on freshwater replenishment projects resulting in 31.2 million gallons of volumetric water benefits.\" But this is about collaboration, not specific to Apple or Austin.\n\nI'm getting confused because I think the context might have been cut off or misrepresented. Let me try to find the exact line that mentions \"Apple's Austin campus\" and their wastewater reuse effort.\n\nLooking again, under the section titled \"Data,\" there's a line: \"We've certified 20 suppliers and five data centers to the AWS Standard.\" But this is about AWS, not Apple or Austin.\n\nI think I might have missed the specific number for Apple's Austin. Let me check the context again carefully. Oh, wait! In the section titled \"Engagement and Advocacy,\" there's a line: \"We've collaborated with partners on freshwater replenishment projects resulting in 31.2 million gallons of volumetric water benefits.\" But this is about collaboration, not specific to Apple or Austin.\n\nI'm starting to think that perhaps the context provided doesn't include the exact number for Apple's Austin campus. It might be a mistake or incomplete information. Alternatively, maybe I'm supposed to infer based on other sections, but I don't see any mention of Apple or Austin specifically in the context given.\n\nWait, let me check again. Under \"Engagement and Advocacy,\" it says: \"We've collaborated with partners on freshwater replenishment projects resulting in 31.2 million gallons of volumetric water benefits.\" But this is about collaboration, not specific to Apple's Austin.\n\nI think I might have missed the exact number for Apple's Austin. Let me check the context again carefully. Oh, wait! In the section titled \"Data,\" there's a line: \"We've certified 20 suppliers and five data centers to the AWS Standard.\" But this is about AWS, not Apple or Austin.\n\nI'm really confused because I think the context provided doesn't include the specific number for Apple's Austin. It might be an error in the context or perhaps a misrepresentation of the information.\n\nWait, maybe I should look back at the initial part where it mentions \"We've collaborated with partners on freshwater replenishment projects resulting in 31.2 million gallons of volumetric water benefits.\" But this is about collaboration, not specific to Apple's Austin.\n\nI think I might have missed the exact number for Apple's Austin. Let me check again. Under \"Engagement and Advocacy,\" it says: \"We've collaborated with partners on freshwater replenishment projects resulting in 31.2 million gallons of volumetric water benefits.\" But this is about collaboration, not specific to Apple's Austin.\n\nI'm starting to think that perhaps the context provided doesn't include the exact number for Apple's Austin campus. It might be a mistake or incomplete information. Alternatively, maybe I'm supposed to infer based on other sections, but I don't see any mention of Apple or Austin specifically in the context given.\n\nWait,",
-      "prompt_variant": "original",
+      "answer": "Apple's Austin campus wastewater reuse effort will save approximately **60 million gallons of freshwater annually**.",
+      "prompt_variant": "allow_refusal",
       "retrieved": [
         {
           "chunk_id": "Apple-p049-c01",
@@ -949,9 +949,9 @@
         50
       ],
       "gold_page": 49,
-      "latency_s": 28.64,
-      "prompt_tokens": 1030,
-      "output_tokens": 1024,
+      "latency_s": 21.96,
+      "prompt_tokens": 1036,
+      "output_tokens": 764,
       "had_think_block": true
     },
     {
@@ -959,8 +959,8 @@
       "group": "A",
       "company": "Apple",
       "question": "By what percentage has Apple reduced its aluminum-related emissions since 2015?",
-      "answer": "Apple reduced its overall greenhouse gas emissions by more than 55% from 2015 to 2024. This includes transitioning to renewable electricity and sourcing recycled content across various scopes (scapes).",
-      "prompt_variant": "original",
+      "answer": "Apple has reduced its aluminum-related emissions by more than 55% from 2015 to now.",
+      "prompt_variant": "allow_refusal",
       "retrieved": [
         {
           "chunk_id": "Apple-p070-c01",
@@ -996,9 +996,9 @@
         4
       ],
       "gold_page": 16,
-      "latency_s": 13.1,
-      "prompt_tokens": 1185,
-      "output_tokens": 429,
+      "latency_s": 12.34,
+      "prompt_tokens": 1191,
+      "output_tokens": 398,
       "had_think_block": true
     },
     {
@@ -1006,8 +1006,8 @@
       "group": "B",
       "company": "Apple",
       "question": "How many suppliers did Apple remove from its supply chain in 2023 for failing to meet environmental standards?",
-      "answer": "Apple is working with a significant number of suppliers in its supply chain as part of their Environmental Initiatives and Engagement programs. Specifically, more than 320 global suppliers have joined the Supplier Smart Chemistry Program by March 2024, aiming to reduce emissions through renewable energy and improved material efficiency. However, there is no explicit mention of suppliers being removed from their supply chain due to environmental standards in 2023.\n\n**Answer:** Apple did not remove any suppliers from its supply chain in 2023 for failing to meet environmental standards based on the provided context.",
-      "prompt_variant": "original",
+      "answer": "The context provided does not contain any information about how many suppliers Apple removed from their supply chain in 2023 due to environmental standards. It focuses on related initiatives such as the Supplier Clean Energy Program and a database for waste-to-resource analysis but does not address supplier removals.\n\n**Answer:** The context does not provide this information.",
+      "prompt_variant": "allow_refusal",
       "retrieved": [
         {
           "chunk_id": "Apple-p034-c00",
@@ -1043,9 +1043,9 @@
         55
       ],
       "gold_page": null,
-      "latency_s": 11.88,
-      "prompt_tokens": 1109,
-      "output_tokens": 386,
+      "latency_s": 11.35,
+      "prompt_tokens": 1115,
+      "output_tokens": 361,
       "had_think_block": true
     },
     {
@@ -1053,8 +1053,8 @@
       "group": "B",
       "company": "Apple",
       "question": "How many employees worked on Apple's environmental team in 2023?",
-      "answer": "Based on the provided context, there is no explicit information about the number of employees who worked on Apple's environmental team in 2023. The focus areas include companies' strategies, collaborative relationships with stakeholders, and broader efforts to reduce emissions and support community initiatives. Therefore, while Apple is committed to climate action and supply chain sustainability, the exact number of employees involved in the environmental team isn't provided in the context.",
-      "prompt_variant": "original",
+      "answer": "The context provided does not contain explicit information about the number of employees who worked on Apple's environmental team in 2023. It focuses on the structure, collaboration, and engagement of companies within the cohort rather than providing specific employee counts. Therefore, based solely on the given context, it is impossible to determine an exact number of employees involved in the environmental team for that year.\n\nAnswer: The context does not provide explicit information about the number of employees who worked on Apple's environmental team in 2023.",
+      "prompt_variant": "allow_refusal",
       "retrieved": [
         {
           "chunk_id": "Apple-p075-c02",
@@ -1090,9 +1090,9 @@
         3
       ],
       "gold_page": null,
-      "latency_s": 15.61,
-      "prompt_tokens": 1056,
-      "output_tokens": 524,
+      "latency_s": 15.42,
+      "prompt_tokens": 1062,
+      "output_tokens": 521,
       "had_think_block": true
     },
     {
@@ -1100,8 +1100,8 @@
       "group": "B",
       "company": "Apple",
       "question": "How many iPhones did Apple manufacture using 100% recycled aluminum enclosures in 2023?",
-      "answer": "Apple manufacturing approximately **1 million iPhones** in 2023 using 100% recycled aluminum enclosures. This includes the iPhone 15 and other models, though specific numbers for other models are not provided in the context.",
-      "prompt_variant": "original",
+      "answer": "The context does not provide specific numbers of iPhones made in 2023 that used 100% recycled aluminum enclosures. It only states that 68% of the iPhones did use 100% recycled aluminum. Therefore, without knowing the total number of iPhones manufactured, I cannot determine the exact count.\n\nAnswer: The context does not provide specific numbers of iPhones made in 2023 using 100% recycled aluminum enclosures.",
+      "prompt_variant": "allow_refusal",
       "retrieved": [
         {
           "chunk_id": "Apple-p016-c02",
@@ -1137,9 +1137,9 @@
         19
       ],
       "gold_page": null,
-      "latency_s": 15.96,
-      "prompt_tokens": 1095,
-      "output_tokens": 547,
+      "latency_s": 16.61,
+      "prompt_tokens": 1101,
+      "output_tokens": 563,
       "had_think_block": true
     },
     {
@@ -1147,8 +1147,8 @@
       "group": "B",
       "company": "Apple",
       "question": "How much did Apple pay in environmental fines or penalties in 2023, in USD?",
-      "answer": "Based on the provided context, there is no explicit information about how much Apple paid in environmental fines or penalties for 2023. The context mentions grants focused on environmental initiatives and sections related to climate corporate data accountability but does not provide specific details on fines or penalties. Therefore, it's unclear if any fines were incurred by Apple in that year.\n\nAnswer: Based on the provided context, there is no explicit information about how much Apple paid in environmental fines or penalties for 2023.",
-      "prompt_variant": "original",
+      "answer": "Based on the provided context, there is no explicit information indicating how much Apple paid in environmental fines or penalties in 2023. The context discusses Apple's commitment to reducing waste through various initiatives, including a grant with a diversion rate of 74%, but it does not provide specific financial figures for penalties. Therefore, the answer is:\n\n**The context does not provide any information on how much Apple paid in environmental fines or penalties in 2023.**",
+      "prompt_variant": "allow_refusal",
       "retrieved": [
         {
           "chunk_id": "Apple-p014-c00",
@@ -1184,9 +1184,9 @@
         100
       ],
       "gold_page": null,
-      "latency_s": 15.64,
-      "prompt_tokens": 992,
-      "output_tokens": 537,
+      "latency_s": 14.01,
+      "prompt_tokens": 998,
+      "output_tokens": 473,
       "had_think_block": true
     },
     {
@@ -1194,8 +1194,8 @@
       "group": "B",
       "company": "Apple",
       "question": "What was the exact percentage reduction in Apple's water usage per device manufactured in 2023?",
-      "answer": "The context does not provide specific details on the exact percentage reduction in water usage per Apple device from 2023. However, it mentions that site water stewardship was implemented to reduce water impacts in products, services, and sites. Additionally, low-water designs were used to minimize water usage. The energy efficiency improvements, including the transition to Apple silicon on Mac devices, contributed to overall energy savings but did not specify a percentage reduction per device.\n\n**Answer:** There is no specific information provided in the context about the exact percentage reduction in water usage per Apple device from 2023. However, site water stewardship and low-water designs were implemented to reduce water consumption across products and services.",
-      "prompt_variant": "original",
+      "answer": "The context does not provide specific data on the exact percentage reduction in Apple's water usage per device for 2023. However, it mentions improvements in energy efficiency across product lines and specific examples like Mac mini and Apple TV 4K, which are designed to minimize environmental impact. The focus is more on overall energy efficiency than individual product line water usage percentages.\n\n**Answer:** There isn't enough information provided to determine the exact percentage reduction in Apple's water usage per device from 2023.",
+      "prompt_variant": "allow_refusal",
       "retrieved": [
         {
           "chunk_id": "Apple-p050-c00",
@@ -1231,9 +1231,9 @@
         5
       ],
       "gold_page": null,
-      "latency_s": 19.34,
-      "prompt_tokens": 1238,
-      "output_tokens": 664,
+      "latency_s": 19.95,
+      "prompt_tokens": 1244,
+      "output_tokens": 677,
       "had_think_block": true
     },
     {
@@ -1241,8 +1241,8 @@
       "group": "A",
       "company": "Meta Platforms",
       "question": "By what percentage did Meta reduce its operational emissions from a 2017 baseline?",
-      "answer": "Meta reduced its operational emissions by 94% from a 2017 baseline to achieve net zero operations since 2020.\n\n**Answer:** Meta reduced its operational emissions by 94%.",
-      "prompt_variant": "original",
+      "answer": "Meta reduced its operational emissions by **94%** in 2020 compared to a 2017 baseline.\n\nAnswer: 94%",
+      "prompt_variant": "allow_refusal",
       "retrieved": [
         {
           "chunk_id": "Meta Platforms-p023-c01",
@@ -1278,9 +1278,9 @@
         90
       ],
       "gold_page": 3,
-      "latency_s": 11.69,
-      "prompt_tokens": 990,
-      "output_tokens": 388,
+      "latency_s": 9.72,
+      "prompt_tokens": 996,
+      "output_tokens": 309,
       "had_think_block": true
     },
     {
@@ -1288,8 +1288,8 @@
       "group": "A",
       "company": "Meta Platforms",
       "question": "How many megawatts of contracted renewable energy was in Meta's portfolio?",
-      "answer": "As of 2023, Meta's contracted renewable energy portfolio was estimated to be more than 11,700 megawatts. This figure reflects their significant contribution to reducing emissions and aligning with their strategic goals to expand renewable energy projects across various markets.",
-      "prompt_variant": "original",
+      "answer": "Meta had a contracted renewable energy portfolio exceeding 11,700 megawatts.",
+      "prompt_variant": "allow_refusal",
       "retrieved": [
         {
           "chunk_id": "Meta Platforms-p018-c00",
@@ -1325,9 +1325,9 @@
         92
       ],
       "gold_page": 18,
-      "latency_s": 12.45,
-      "prompt_tokens": 1109,
-      "output_tokens": 410,
+      "latency_s": 8.13,
+      "prompt_tokens": 1115,
+      "output_tokens": 238,
       "had_think_block": true
     },
     {
@@ -1335,8 +1335,8 @@
       "group": "A",
       "company": "Meta Platforms",
       "question": "How many MW of Meta's renewable energy portfolio was operating and online in the US in 2023?",
-      "answer": "In 2023, Meta supported approximately **6,700 MW** of renewable energy in the US online within their largest operating renewable energy portfolio.",
-      "prompt_variant": "original",
+      "answer": "In 2023, Meta's renewable energy portfolio had \"more than 6,700 MW online.\"",
+      "prompt_variant": "allow_refusal",
       "retrieved": [
         {
           "chunk_id": "Meta Platforms-p018-c00",
@@ -1372,9 +1372,9 @@
         29
       ],
       "gold_page": 18,
-      "latency_s": 11.04,
-      "prompt_tokens": 1104,
-      "output_tokens": 368,
+      "latency_s": 12.25,
+      "prompt_tokens": 1110,
+      "output_tokens": 408,
       "had_think_block": true
     },
     {
@@ -1382,8 +1382,8 @@
       "group": "A",
       "company": "Meta Platforms",
       "question": "How many gallons of water did Meta's operational water restoration projects return to water stress regions?",
-      "answer": "Meta's operational water restoration projects in high water stress regions restore over 1.5 billion gallons of water each year. This aligns with their goal to be water positive by restoring more than half of the consumed water, as indicated by their 2030 target.",
-      "prompt_variant": "original",
+      "answer": "Meta's operational water restoration projects have restored more water than consumed in high and medium water stress regions. Specifically, a case study shows that these projects increased surface water flows by more than 5 million gallons per year. Therefore, the answer is:\n\n**Meta's operational water restoration projects returned over 5 million gallons of water to water stress regions annually.**",
+      "prompt_variant": "allow_refusal",
       "retrieved": [
         {
           "chunk_id": "Meta Platforms-p049-c01",
@@ -1419,9 +1419,9 @@
         51
       ],
       "gold_page": 18,
-      "latency_s": 13.87,
-      "prompt_tokens": 987,
-      "output_tokens": 474,
+      "latency_s": 21.27,
+      "prompt_tokens": 993,
+      "output_tokens": 737,
       "had_think_block": true
     },
     {
@@ -1429,8 +1429,8 @@
       "group": "A",
       "company": "Meta Platforms",
       "question": "How many operational water restoration projects did Meta have?",
-      "answer": "Meta had **18 operational water restoration projects**. These projects addressed local water challenges in the Verde River watershed, specifically targeting high and medium water stress regions to restore water supply and reliability.",
-      "prompt_variant": "original",
+      "answer": "Meta has 25 water restoration projects across eight watersheds. Out of these, 19 are operational and have returned a significant amount of water to high and medium water stress regions. \n\n**Answer:** Meta has 25 water restoration projects in total, with 19 being operational.",
+      "prompt_variant": "allow_refusal",
       "retrieved": [
         {
           "chunk_id": "Meta Platforms-p049-c01",
@@ -1466,9 +1466,9 @@
         18
       ],
       "gold_page": 18,
-      "latency_s": 8.32,
-      "prompt_tokens": 932,
-      "output_tokens": 295,
+      "latency_s": 13.9,
+      "prompt_tokens": 938,
+      "output_tokens": 503,
       "had_think_block": true
     },
     {
@@ -1476,8 +1476,8 @@
       "group": "A",
       "company": "Meta Platforms",
       "question": "What percentage of data center construction waste did Meta recycle?",
-      "answer": "The context provided does not explicitly state the percentage of data center construction waste that Meta recycled in 2023. Instead, it focuses on certifications as LEED Gold, energy efficiency metrics (PUE and WUE), total square footage certified since 2011, water withdrawal by facilities, and water restoration projects. There is no information related to waste recycling practices mentioned.\n\n**Answer:** The context does not provide any explicit percentage of data center construction waste that Meta recycled in 2023.",
-      "prompt_variant": "original",
+      "answer": "The context provided does not include any specific percentage of data center construction waste that Meta recycled in 2023. Instead, it focuses on certifications and energy efficiency metrics. Therefore, based on the given information, the answer is:\n\n**The context does not provide the percentage of data center construction waste that Meta recycled in 2023.**\n\nAnswer: The context does not provide the percentage of data center construction waste that Meta recycled in 2023.",
+      "prompt_variant": "allow_refusal",
       "retrieved": [
         {
           "chunk_id": "Meta Platforms-p039-c00",
@@ -1513,9 +1513,9 @@
         85
       ],
       "gold_page": 18,
-      "latency_s": 14.21,
-      "prompt_tokens": 1055,
-      "output_tokens": 480,
+      "latency_s": 13.94,
+      "prompt_tokens": 1061,
+      "output_tokens": 465,
       "had_think_block": true
     },
     {
@@ -1523,8 +1523,8 @@
       "group": "A",
       "company": "Meta Platforms",
       "question": "How many gallons of sustainable aviation fuel did Meta purchase for business travel?",
-      "answer": "Meta purchased approximately **2.5 million gallons** of sustainable aviation fuel (SAF) for business travel. This figure is directly stated in the context, reflecting their commitment to reducing emissions through SAF purchases over five years.",
-      "prompt_variant": "original",
+      "answer": "The context does not provide specific information about how many gallons of sustainable aviation fuel (SAF) Meta purchased for business travel in 2023. While Meta purchased nearly 2.5 million gallons over five years, this figure is spread across different trips and does not indicate the exact amount allocated to business travel. Additionally, the data on emissions reduction does not include SAF purchases. Therefore, based on the provided context, there is no information to determine the number of gallons purchased specifically for business travel.\n\nAnswer: The context does not provide specific information about how many gallons of sustainable aviation fuel Meta purchased for business travel in 2023.",
+      "prompt_variant": "allow_refusal",
       "retrieved": [
         {
           "chunk_id": "Meta Platforms-p033-c00",
@@ -1560,9 +1560,9 @@
         26
       ],
       "gold_page": 23,
-      "latency_s": 12.02,
-      "prompt_tokens": 904,
-      "output_tokens": 409,
+      "latency_s": 13.52,
+      "prompt_tokens": 910,
+      "output_tokens": 466,
       "had_think_block": true
     },
     {
@@ -1570,8 +1570,8 @@
       "group": "A",
       "company": "Meta Platforms",
       "question": "What was the Water Usage Effectiveness (WUE) of Meta's data centers on average in 2023?",
-      "answer": "The average Water Usage Effectiveness (WUE) of Meta's data centers in 2023 is **0.18**.",
-      "prompt_variant": "original",
+      "answer": "The report does not provide this information.",
+      "prompt_variant": "allow_refusal",
       "retrieved": [
         {
           "chunk_id": "Meta Platforms-p040-c00",
@@ -1607,9 +1607,9 @@
         92
       ],
       "gold_page": 40,
-      "latency_s": 19.82,
-      "prompt_tokens": 1065,
-      "output_tokens": 686,
+      "latency_s": 14.09,
+      "prompt_tokens": 1071,
+      "output_tokens": 476,
       "had_think_block": true
     },
     {
@@ -1617,8 +1617,8 @@
       "group": "B",
       "company": "Meta Platforms",
       "question": "How many data centers did Meta shut down in 2023 for failing to meet water efficiency targets?",
-      "answer": "Based on the provided context, there is insufficient information to determine how many data centers Meta shut down in 2023 due to failing water efficiency targets. The context highlights Meta's certifications and total water withdrawal but does not provide specific details about each facility's performance relative to targets. Therefore, it is not possible to ascertain the exact number of facilities that met or failed to meet water efficiency standards.\n\nAnswer: Based on the provided context, there is insufficient information to determine how many data centers Meta shut down in 2023 due to failing water efficiency targets.",
-      "prompt_variant": "original",
+      "answer": "The context does not provide any information about how many data centers Meta shut down in 2023 for failing to meet water efficiency targets. It focuses on their sustainability efforts but doesn't include specific details on shutdowns related to water efficiency.\n\n**Answer:** The context does not contain information about the number of data centers Meta shut down in 2023 due to water inefficiencies.",
+      "prompt_variant": "allow_refusal",
       "retrieved": [
         {
           "chunk_id": "Meta Platforms-p039-c00",
@@ -1654,9 +1654,9 @@
         71
       ],
       "gold_page": null,
-      "latency_s": 17.79,
-      "prompt_tokens": 1105,
-      "output_tokens": 611,
+      "latency_s": 13.89,
+      "prompt_tokens": 1111,
+      "output_tokens": 468,
       "had_think_block": true
     },
     {
@@ -1664,8 +1664,8 @@
       "group": "B",
       "company": "Meta Platforms",
       "question": "What was the total dollar value of Meta's renewable energy power purchase agreements in 2023?",
-      "answer": "In 2023, Meta received a portion of the renewable energy generated by Ørsted's Eleven Mile Solar Center. Specifically, Meta received half of the 300 MW solar farm, which amounts to $150 million in total dollar value for its renewable energy power purchase agreements.\n\n**Answer:** The total dollar value of Meta's renewable energy power purchase agreements in 2023 was $150 million.",
-      "prompt_variant": "original",
+      "answer": "The context provided does not include specific dollar values related to Meta's renewable energy purchases in 2023. Instead, it focuses on initiatives such as partnerships with CEPA, Zerogrid, and solar projects, as well as reductions in emissions. Therefore, the answer is that the context does not provide this information.\n\n**Answer:** The context does not provide specific dollar values for Meta's renewable energy purchases in 2023.",
+      "prompt_variant": "allow_refusal",
       "retrieved": [
         {
           "chunk_id": "Meta Platforms-p026-c00",
@@ -1701,9 +1701,9 @@
         26
       ],
       "gold_page": null,
-      "latency_s": 24.81,
-      "prompt_tokens": 1112,
-      "output_tokens": 875,
+      "latency_s": 14.15,
+      "prompt_tokens": 1118,
+      "output_tokens": 467,
       "had_think_block": true
     },
     {
@@ -1711,8 +1711,8 @@
       "group": "B",
       "company": "Meta Platforms",
       "question": "How many employees did Meta's sustainability team have in 2023?",
-      "answer": "Based on the provided context, there is no explicit information given regarding the number of employees in Meta's sustainability team in 2023. The context includes details about roles such as Carolyn Campbell's role as Head of Renewable Energy and David Hitchings' responsibilities, but it does not provide specific numbers for the size of these teams or their employees.",
-      "prompt_variant": "original",
+      "answer": "The context provided does not include any information about the number of employees in Meta's sustainability team for 2023. The focus is on their roles and initiatives, such as partnerships with environmental organizations and data collection strategies. Therefore, based on the given information, there is no data to answer the question.\n\n**Answer:** The context provided does not contain any information about the number of employees in Meta's sustainability team for 2023.",
+      "prompt_variant": "allow_refusal",
       "retrieved": [
         {
           "chunk_id": "Meta Platforms-p005-c00",
@@ -1748,9 +1748,9 @@
         10
       ],
       "gold_page": null,
-      "latency_s": 19.72,
-      "prompt_tokens": 1030,
-      "output_tokens": 691,
+      "latency_s": 12.65,
+      "prompt_tokens": 1036,
+      "output_tokens": 394,
       "had_think_block": true
     },
     {
@@ -1758,8 +1758,8 @@
       "group": "B",
       "company": "Meta Platforms",
       "question": "What percentage of Meta's Scope 3 emissions in 2023 came from employee commuting?",
-      "answer": "To determine the percentage of Meta's Scope 3 emissions in 2023 that came from employee commuting, we first sum up all the numbers for Category 5: Upstream transportation and distribution.\n\nCategory 5 emissions:\n- 264,000\n- 56,000\n- 10,483\n- 12,658\n- 8,454\n\nTotal = 264,000 + 56,000 + 10,483 + 12,658 + 8,454 = 351,595 tons of CO2e.\n\nNext, we calculate the percentage by dividing this total by the overall Scope 3 emissions in 2023 and multiplying by 100%.\n\nOverall Scope 3 emissions: 7,445,621 tons of CO2e.\n\nPercentage = (351,595 / 7,445,621) * 100% ≈ 4.73%.\n\n**Answer:** Approximately 4.73% of Meta's Scope 3 emissions in 2023 came from employee commuting.",
-      "prompt_variant": "original",
+      "answer": "To determine what percentage of Meta's Scope 3 emissions in 2023 came from employee commuting, we use the provided data:\n\n- Total Scope 3 emissions: 8,466,264 metric tons of CO2e\n- Employee commuting category: 209,183\n\nThe calculation is as follows:\n\n\\[\n\\text{Percentage} = \\left( \\frac{\\text{Employee commuting}}{\\text{Total Scope 3 emissions}} \\right) \\times 100\n\\]\n\nPlugging in the numbers:\n\n\\[\n\\text{Percentage} = \\left( \\frac{209,183}{8,466,264} \\right) \\times 100 \\approx 2.475\\%\n\\]\n\nThus, approximately **2.48%** of Meta's Scope 3 emissions in 2023 came from employee commuting.\n\n**Answer:** Approximately 2.48% of Meta's Scope 3 emissions in 2023 came from employee commuting.",
+      "prompt_variant": "allow_refusal",
       "retrieved": [
         {
           "chunk_id": "Meta Platforms-p023-c01",
@@ -1795,9 +1795,9 @@
         26
       ],
       "gold_page": null,
-      "latency_s": 23.72,
-      "prompt_tokens": 1325,
-      "output_tokens": 781,
+      "latency_s": 19.6,
+      "prompt_tokens": 1331,
+      "output_tokens": 658,
       "had_think_block": true
     },
     {
@@ -1805,8 +1805,8 @@
       "group": "B",
       "company": "Meta Platforms",
       "question": "How many metric tons of e-waste did Meta recycle from its data centers in 2023?",
-      "answer": "In 2023, Meta recycled 91% of its data center electronic waste. However, without knowing Meta's total e-waste for that year, it is impossible to determine the exact number of metric tons recycled. The context provided only mentions this percentage, so additional information about Meta's total e-waste would be necessary to calculate the specific metric tons recycled.",
-      "prompt_variant": "original",
+      "answer": "The context provided states that 91% of data center construction waste was recycled in 2023, but it does not provide a specific number or percentage of how much waste there was to begin with. Therefore, without knowing the total amount of e-waste from Meta's data centers in 2023, I cannot calculate an exact metric tons value.\n\n**Answer:** The report does not provide this information.",
+      "prompt_variant": "allow_refusal",
       "retrieved": [
         {
           "chunk_id": "Meta Platforms-p039-c00",
@@ -1842,9 +1842,9 @@
         41
       ],
       "gold_page": null,
-      "latency_s": 14.14,
-      "prompt_tokens": 915,
-      "output_tokens": 462,
+      "latency_s": 12.11,
+      "prompt_tokens": 921,
+      "output_tokens": 400,
       "had_think_block": true
     }
   ]

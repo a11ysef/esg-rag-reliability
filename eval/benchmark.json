@@ -396,7 +396,7 @@
       "source_quote": "This effort will save up to 60 million gallons of freshwater use annually.",
       "answer_locality": "inline",
       "category": "water",
-      "notes": "已人工核实。原文 up to，为上限估计。"
+      "notes": "已人工核实。多数字干扰题：报告中存在三个不同的节水数字——Austin园区60M（本题gold，未来年度目标）、全公司2023实际节水79M（第74页）、低耗水设计总避免150M（第73页）。本题限定Austin园区，gold=60M。模型若答79M或150M，属『检索到相邻数字但未锁定问题范围』的失败，归因时单独标记，区别于纯幻觉。此题与A013、A018同属多数字干扰组，共同支撑『检索精度是瓶颈』的结论。"
     },
     {
       "id": "A018",
