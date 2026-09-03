@@ -1,0 +1,488 @@
+{
+  "config": {
+    "gen_model": "deepseek-r1:1.5b",
+    "embed_model": "nomic-embed-text",
+    "temperature": 0,
+    "seed": 42,
+    "top_k": 5,
+    "min_similarity": 0.0,
+    "num_predict": 512,
+    "ollama_url": "http://localhost:11434",
+    "prompt_variant": "original",
+    "prompt_text": "You are an ESG analyst. Answer the question based on the provided context. Make sure to always answer it confidently, even if you don't know the answer."
+  },
+  "benchmark": "eval/benchmark.json",
+  "n_questions": 10,
+  "results": [
+    {
+      "id": "A001",
+      "group": "A",
+      "company": "Alphabet",
+      "question": "What were Alphabet's Scope 1 GHG emissions in 2023, in tCO2e?",
+      "answer": "Based on the provided context, there is no explicit information regarding Alphabet's specific Scope 1 GHG emissions in 2023. The context focuses on trends and reductions across different scopes but does not provide detailed data for individual companies like Alphabet.",
+      "prompt_variant": "original",
+      "retrieved": [
+        {
+          "chunk_id": "Alphabet-p071-c01",
+          "page": 71,
+          "similarity": 0.8243
+        },
+        {
+          "chunk_id": "Alphabet-p033-c00",
+          "page": 33,
+          "similarity": 0.788
+        },
+        {
+          "chunk_id": "Alphabet-p032-c02",
+          "page": 32,
+          "similarity": 0.7771
+        },
+        {
+          "chunk_id": "Alphabet-p032-c03",
+          "page": 32,
+          "similarity": 0.7628
+        },
+        {
+          "chunk_id": "Alphabet-p039-c00",
+          "page": 39,
+          "similarity": 0.7607
+        }
+      ],
+      "retrieved_pages": [
+        71,
+        33,
+        32,
+        32,
+        39
+      ],
+      "gold_page": 33,
+      "latency_s": 12.58,
+      "prompt_tokens": 1292,
+      "output_tokens": 293,
+      "had_think_block": true
+    },
+    {
+      "id": "A002",
+      "group": "A",
+      "company": "Alphabet",
+      "question": "What was Alphabet's global average carbon-free energy (CFE) percentage across data centers and offices in 2023?",
+      "answer": "<think>\nOkay, so I need to figure out Alphabet's global average carbon-free energy (CFE) percentage across data centers and offices in 2023. Let me start by reading through the context provided.\n\nThe context mentions a section titled \"Details\" where it talks about Google's CFE percentage. It says that the CFE is calculated as the load-weighted average of carbon-free energy percentages across all data centers and offices, including third-party operated facilities. \n\nLooking at the specific grid regions mentioned in Figure 20, each region has a CFE percentage listed. For example, the Netherlands had an 80% CFE, Belgium 82%, Denmark 92%, and so on. The text also mentions that Google maintained 64% CFE globally on an hourly basis across offices and data centers in 2023, with 10 out of 44 grid regions achieving at least 90% CFE.\n\nI need to find the average CFE percentage for all grid regions. The text provides specific percentages for each region, so I can list them out:\n\n- Netherlands: 80%\n- Belgium: 82%\n- Denmark: 92%\n- Finland: 90%\n- Great Britain (Hydro-Québec): 100%\n- Germany: 43%\n- France: 94%\n- Switzerland: 98%\n- Japan (KEPCO): 55%\n- South Korea: 35%\n- India (Northern): 16%\n- Qatar: 5%\n- Saudi Arabia: 4%\n- Singapore: 18%\n- Taiwan: 28%\n- Hong Kong: 13%\n- Japan (TEPCO): 5%\n- Israel: 0%\n- Qatar: 0%\n- Saudi Arabia: 0%\n- Taiwan: 0%\n- India (Western): 92%\n- North America (SPP): 48%\n- Spain: 79%\n- Germany (soccer): 65%\n- Japan (DUKE): 29%\n- Santee Cooper: 42%\n- SOCOCO: 48%\n- SRP: 79%\n- ERCOT: 65%\n\nNow, I'll list all these percentages and calculate the average. Let me count how many regions there are:\n\n1. Netherlands - 80\n2. Belgium - 82\n3.",
+      "prompt_variant": "original",
+      "retrieved": [
+        {
+          "chunk_id": "Alphabet-p083-c05",
+          "page": 83,
+          "similarity": 0.8678
+        },
+        {
+          "chunk_id": "Alphabet-p036-c04",
+          "page": 36,
+          "similarity": 0.8318
+        },
+        {
+          "chunk_id": "Alphabet-p037-c00",
+          "page": 37,
+          "similarity": 0.8317
+        },
+        {
+          "chunk_id": "Alphabet-p034-c01",
+          "page": 34,
+          "similarity": 0.8176
+        },
+        {
+          "chunk_id": "Alphabet-p082-c02",
+          "page": 82,
+          "similarity": 0.8109
+        }
+      ],
+      "retrieved_pages": [
+        83,
+        36,
+        37,
+        34,
+        82
+      ],
+      "gold_page": 8,
+      "latency_s": 15.7,
+      "prompt_tokens": 1501,
+      "output_tokens": 512,
+      "had_think_block": false
+    },
+    {
+      "id": "A003",
+      "group": "A",
+      "company": "Alphabet",
+      "question": "How many of Alphabet's grid regions achieved at least 90% carbon-free energy in 2023?",
+      "answer": "In 2023, Google achieved at least 90% carbon-free energy in **10** of their grid regions.",
+      "prompt_variant": "original",
+      "retrieved": [
+        {
+          "chunk_id": "Alphabet-p036-c04",
+          "page": 36,
+          "similarity": 0.82
+        },
+        {
+          "chunk_id": "Alphabet-p083-c05",
+          "page": 83,
+          "similarity": 0.8037
+        },
+        {
+          "chunk_id": "Alphabet-p037-c00",
+          "page": 37,
+          "similarity": 0.8015
+        },
+        {
+          "chunk_id": "Alphabet-p007-c00",
+          "page": 7,
+          "similarity": 0.7864
+        },
+        {
+          "chunk_id": "Alphabet-p005-c01",
+          "page": 5,
+          "similarity": 0.7764
+        }
+      ],
+      "retrieved_pages": [
+        36,
+        83,
+        37,
+        7,
+        5
+      ],
+      "gold_page": 7,
+      "latency_s": 9.71,
+      "prompt_tokens": 1470,
+      "output_tokens": 276,
+      "had_think_block": true
+    },
+    {
+      "id": "A004",
+      "group": "A",
+      "company": "Alphabet",
+      "question": "How much water did Alphabet's water stewardship projects replenish in 2023?",
+      "answer": "In 2023, Alphabet's water stewardship projects replenished approximately **1 billion gallons** of water. This figure represents 18% of their annual freshwater consumption for offices and data centers. The projects are estimated to have the capacity to replenish more than 2.8 billion gallons annually upon full implementation.",
+      "prompt_variant": "original",
+      "retrieved": [
+        {
+          "chunk_id": "Alphabet-p044-c01",
+          "page": 44,
+          "similarity": 0.8608
+        },
+        {
+          "chunk_id": "Alphabet-p047-c03",
+          "page": 47,
+          "similarity": 0.8476
+        },
+        {
+          "chunk_id": "Alphabet-p047-c02",
+          "page": 47,
+          "similarity": 0.843
+        },
+        {
+          "chunk_id": "Alphabet-p047-c01",
+          "page": 47,
+          "similarity": 0.829
+        },
+        {
+          "chunk_id": "Alphabet-p044-c00",
+          "page": 44,
+          "similarity": 0.8142
+        }
+      ],
+      "retrieved_pages": [
+        44,
+        47,
+        47,
+        47,
+        44
+      ],
+      "gold_page": 5,
+      "latency_s": 10.09,
+      "prompt_tokens": 1237,
+      "output_tokens": 312,
+      "had_think_block": true
+    },
+    {
+      "id": "A005",
+      "group": "A",
+      "company": "Alphabet",
+      "question": "What percentage of Alphabet's 2023 freshwater consumption was offset by its water replenishment projects?",
+      "answer": "Approximately 15.6% of Alphabet's 2023 freshwater consumption was offset by its water replenishment projects.\n\n**Answer:** Approximately 15.6% of Alphabet's 2023 freshwater consumption was offset by its water replenishment projects.",
+      "prompt_variant": "original",
+      "retrieved": [
+        {
+          "chunk_id": "Alphabet-p047-c03",
+          "page": 47,
+          "similarity": 0.8528
+        },
+        {
+          "chunk_id": "Alphabet-p047-c02",
+          "page": 47,
+          "similarity": 0.8193
+        },
+        {
+          "chunk_id": "Alphabet-p044-c01",
+          "page": 44,
+          "similarity": 0.7991
+        },
+        {
+          "chunk_id": "Alphabet-p047-c01",
+          "page": 47,
+          "similarity": 0.7943
+        },
+        {
+          "chunk_id": "Alphabet-p045-c00",
+          "page": 45,
+          "similarity": 0.7805
+        }
+      ],
+      "retrieved_pages": [
+        47,
+        47,
+        44,
+        47,
+        45
+      ],
+      "gold_page": 5,
+      "latency_s": 11.68,
+      "prompt_tokens": 1259,
+      "output_tokens": 374,
+      "had_think_block": true
+    },
+    {
+      "id": "A006",
+      "group": "A",
+      "company": "Alphabet",
+      "question": "What percentage of Google-owned and operated data center campuses met the Zero Waste to Landfill goal in 2023?",
+      "answer": "<think>\nOkay, so I need to figure out what percentage of Google-owned and operated data center campuses met the Zero Waste to Landfill goal in 2023. Let me start by reading through the context carefully.\n\nFirst, there's a section that mentions \"Annual operational waste for all Google-owned and operated data center campuses globally.\" It says that we consider \"Zero Waste to Landfill\" meaning more than 90% of waste is diverted from global fleets of Google-owned and operated data centers. So, they're aiming for over 90% waste reduction.\n\nThen, there's a section about the progress made in 2023. It says that 29% of Google-owned and operated data center campuses met this goal. Wait, but earlier it said we were aiming for more than 90%. That seems contradictory. Maybe I'm misunderstanding something.\n\nLet me check again. The context mentions \"Annual operational waste\" and then later states: \"29% of Google-owned and operated data center campuses met our Zero Waste to Landfill goal in 2023.\" But it also says that we were aiming for more than 90%. That doesn't add up because 29% is much lower than 90%.\n\nHmm, maybe I'm misinterpreting the numbers. Perhaps \"Zero Waste to Landfill\" refers not just to waste but also to other factors like energy efficiency and resource management. Or maybe it's a different metric that includes more aspects beyond just waste diversion.\n\nAlternatively, perhaps the context is using \"Zero Waste to Landfill\" as a target for Google, and they achieved 29% of their campuses meeting this target in 2023. But if we were aiming for over 90%, then why did only 29% meet it? That doesn't make sense.\n\nWait, maybe the context is using \"Zero Waste to Landfill\" as a goal that was set by Google, and they achieved 29% of their campuses meeting this target. But if we were aiming for more than 90%, then perhaps there's a misunderstanding in how the percentages are being compared.\n\nAlternatively, perhaps the context is using different metrics or definitions where \"Zero Waste to Landfill\" includes not just waste diversion but also other factors like energy efficiency and resource management. In that case, maybe only a small percentage met it, while others achieved higher levels of efficiency beyond just waste diversion.\n\nI'm getting confused here because the numbers seem contradictory. Let me try",
+      "prompt_variant": "original",
+      "retrieved": [
+        {
+          "chunk_id": "Alphabet-p054-c03",
+          "page": 54,
+          "similarity": 0.7709
+        },
+        {
+          "chunk_id": "Alphabet-p054-c02",
+          "page": 54,
+          "similarity": 0.7623
+        },
+        {
+          "chunk_id": "Alphabet-p077-c02",
+          "page": 77,
+          "similarity": 0.7601
+        },
+        {
+          "chunk_id": "Alphabet-p036-c04",
+          "page": 36,
+          "similarity": 0.7504
+        },
+        {
+          "chunk_id": "Alphabet-p036-c03",
+          "page": 36,
+          "similarity": 0.732
+        }
+      ],
+      "retrieved_pages": [
+        54,
+        54,
+        77,
+        36,
+        36
+      ],
+      "gold_page": 8,
+      "latency_s": 15.41,
+      "prompt_tokens": 1290,
+      "output_tokens": 512,
+      "had_think_block": false
+    },
+    {
+      "id": "A007",
+      "group": "A",
+      "company": "Alphabet",
+      "question": "What percentage of operational waste did Alphabet divert from disposal in 2023?",
+      "answer": "<think>\nOkay, so I'm trying to figure out this ESG analyst question about Alphabet's waste diversion. Let me start by reading through the context carefully. \n\nThe context mentions that Alphabet uses a methodology that considers thermally processed waste, including incineration, and evaluates how effective their disposal is. They've been tracking data centers and campuses, noting which ones have achieved their Zero Waste to Landfill goal and which haven't.\n\nIn 2023, the food diversion rate decreased from 85% in 2022 to 82%. This decrease was partly due to limited composting infrastructure in certain regions, especially Asia-Pacific. The context also talks about how Alphabet is exploring on-site processing of food waste and their fleet-wide PUE (Petrol Unleaded Equivalent Unit) numbers.\n\nNow, the question is asking: What percentage of operational waste did Alphabet divert from disposal in 2023? \n\nLooking back at the context, I see that it mentions \"Annual food waste diverted from landfills and incinerators\" but doesn't provide specific percentages. However, there's a section about \"Data center campuses that have achieved our Zero Waste to Landfill goal\" with a percentage of 8 out of 28. \n\nWait, the context says \"8 out of 28\" for data centers. That would mean Alphabet has achieved their goal in 8 out of 28 data centers, which is about 28.57%. But the question is about the diversion rate, not the percentage of campuses that have achieved it.\n\nI don't see any specific numbers on diversion rates in the context provided. The closest thing is the overall food waste diversion rate decreasing from 85% to 82%, but that's a broad measure and doesn't break down by campus or data center type.\n\nSo, based on what's given, I can only infer that Alphabet has reduced their food waste diversion rates in 2023 compared to 2022. However, without specific percentages for 2023, I can't provide an exact number. The context mentions a decrease from 85% to 82%, but that's not the question.\n\nTherefore, the answer would be that Alphabet reduced their food waste diversion rate in 2023 compared to 2022, specifically noting the decrease from 85% to 82%. But since the question is about the percentage of operational waste diverted from disposal, and there's",
+      "prompt_variant": "original",
+      "retrieved": [
+        {
+          "chunk_id": "Alphabet-p054-c04",
+          "page": 54,
+          "similarity": 0.7528
+        },
+        {
+          "chunk_id": "Alphabet-p053-c02",
+          "page": 53,
+          "similarity": 0.7523
+        },
+        {
+          "chunk_id": "Alphabet-p078-c04",
+          "page": 78,
+          "similarity": 0.748
+        },
+        {
+          "chunk_id": "Alphabet-p053-c01",
+          "page": 53,
+          "similarity": 0.7458
+        },
+        {
+          "chunk_id": "Alphabet-p052-c02",
+          "page": 52,
+          "similarity": 0.735
+        }
+      ],
+      "retrieved_pages": [
+        54,
+        53,
+        78,
+        53,
+        52
+      ],
+      "gold_page": 14,
+      "latency_s": 14.85,
+      "prompt_tokens": 1050,
+      "output_tokens": 512,
+      "had_think_block": false
+    },
+    {
+      "id": "B001",
+      "group": "B",
+      "company": "Alphabet",
+      "question": "How many suppliers did Alphabet terminate in 2023 due to ESG non-compliance?",
+      "answer": "<think>\nOkay, so I'm trying to figure out how many suppliers Alphabet terminated in 2023 because they didn't comply with their ESG (Environmental, Social, and Governance) standards. Let me start by breaking down the information given.\n\nFirst, there's a context provided that includes some data about Google's Supplier Code of Conduct and an audit report from 2023. The audit found that certain suppliers were not meeting environmental criteria and required corrective action plans (CAPs). The audit also showed how many unique facilities had no findings before the CAP process was completed.\n\nLooking at the numbers, I see a table that lists the percentage of unique supplier facilities with no findings for various environmental criteria before and after the corrective action plan. For example, under \"Environmental management system,\" the percentage before CAP was 96%, and after CAP it was 98%. Similarly, for \"Hazardous substances,\" it was 88% before and 95% after.\n\nThe question is asking specifically about Alphabet terminating suppliers due to ESG non-compliance. I don't see Alphabet's name in the provided context, but maybe it's implied or part of a larger dataset. If I assume that Alphabet is one of the suppliers mentioned, perhaps they are included in the data.\n\nLooking at the numbers again, for \"Environmental management system,\" Alphabet had 96% before CAP and 98% after. That means only 2% of their facilities were found to have no findings after the corrective action was taken. If I don't know the exact number of suppliers Alphabet has, it's hard to say how many they terminated.\n\nWait, maybe there's a figure somewhere that tells me how many suppliers Alphabet had before termination. Let me check the numbers again. The table shows percentages for each criterion, but not the total number of suppliers. Maybe I need to infer or assume based on other data.\n\nAlternatively, perhaps the context includes a specific section about Alphabet's ESG non-compliance. If that's the case, then I can look up how many suppliers they terminated in 2023. But since I don't have that information, I might have to make an educated guess or assume based on other data.\n\nAnother angle: maybe the context includes a figure from the audit report where Alphabet is listed as one of the suppliers who failed ESG non-compliance and had their corrective action plans completed. If so, then perhaps the number is provided in that section.\n\nSince I don't have the exact numbers for Alphabet",
+      "prompt_variant": "original",
+      "retrieved": [
+        {
+          "chunk_id": "Alphabet-p062-c02",
+          "page": 62,
+          "similarity": 0.6862
+        },
+        {
+          "chunk_id": "Alphabet-p075-c04",
+          "page": 75,
+          "similarity": 0.6796
+        },
+        {
+          "chunk_id": "Alphabet-p062-c04",
+          "page": 62,
+          "similarity": 0.6581
+        },
+        {
+          "chunk_id": "Alphabet-p039-c02",
+          "page": 39,
+          "similarity": 0.6434
+        },
+        {
+          "chunk_id": "Alphabet-p039-c05",
+          "page": 39,
+          "similarity": 0.6431
+        }
+      ],
+      "retrieved_pages": [
+        62,
+        75,
+        62,
+        39,
+        39
+      ],
+      "gold_page": null,
+      "latency_s": 15.01,
+      "prompt_tokens": 1054,
+      "output_tokens": 512,
+      "had_think_block": false
+    },
+    {
+      "id": "B002",
+      "group": "B",
+      "company": "Alphabet",
+      "question": "What was the average tenure of Alphabet's Chief Sustainability Officer as of 2023?",
+      "answer": "Based on the provided context, there is no explicit information regarding the tenure of Alphabet's Chief Sustainability Officer (CSOO) as of 2023. The context highlights regions such as Germany and Great Britain",
+      "prompt_variant": "original",
+      "retrieved": [
+        {
+          "chunk_id": "Alphabet-p077-c02",
+          "page": 77,
+          "similarity": 0.6277
+        },
+        {
+          "chunk_id": "Alphabet-p071-c01",
+          "page": 71,
+          "similarity": 0.5905
+        },
+        {
+          "chunk_id": "Alphabet-p082-c04",
+          "page": 82,
+          "similarity": 0.5774
+        },
+        {
+          "chunk_id": "Alphabet-p032-c03",
+          "page": 32,
+          "similarity": 0.5756
+        },
+        {
+          "chunk_id": "Alphabet-p023-c06",
+          "page": 23,
+          "similarity": 0.5738
+        }
+      ],
+      "retrieved_pages": [
+        77,
+        71,
+        82,
+        32,
+        23
+      ],
+      "gold_page": null,
+      "latency_s": 15.3,
+      "prompt_tokens": 1027,
+      "output_tokens": 512,
+      "had_think_block": true
+    },
+    {
+      "id": "B003",
+      "group": "B",
+      "company": "Alphabet",
+      "question": "How much did Alphabet spend on renewable energy power purchase agreements (PPAs) in 2023, in USD?",
+      "answer": "<think>\nOkay, so I need to figure out how much Alphabet spent on renewable energy PPAs in 2023. Let me start by reading through the context carefully and identifying the relevant information.\n\nFirst, I see that Alphabet signed contracts for purchasing over 14 GW of clean energy generation capacity from new clean energy projects. The total amount spent was estimated to be more than $16 billion by 2040. But specifically, I need the figure for 2023.\n\nLooking further down, there are sections about renewable electricity purchases in Europe, Middle East & Africa, and Asia Pacific. Each region has a table showing MWh (megawatt-hours) of renewable electricity purchased from various sources. The total for each region is given, but I need the total for 2023.\n\nThe text mentions that in 2023, Alphabet signed contracts to purchase technical challenges in pursuit of new and improved technologies. It also provides a table with MWh values for each region. Let me check the numbers:\n\n- Europe: 12,237,200\n- Middle East & Africa: 15,138,500\n- Asia Pacific: 18,287,100\n\nAdding these together gives the total renewable electricity purchased in 2023. Let me add them step by step:\n\n12,237,200 + 15,138,500 = 27,375,700\nThen, adding Asia Pacific: 27,375,700 + 18,287,100 = 45,662,800 MWh.\n\nBut wait, the question is about spending in USD. The context mentions that Alphabet spent more than $16 billion by 2040, but I need to find out how much was spent specifically in 2023. It doesn't provide a breakdown into USD; it just gives total amounts for each region.\n\nHmm, maybe the numbers provided are in MWh, and there's an implied conversion based on energy costs. But without knowing the exact cost per MWh, I can't convert to USD. Alternatively, perhaps the context is simplified, and the figures given are already in USD.\n\nLooking back at the text: \"We buy electricity directly from new clean energy projects through various methods depending on the market, including:",
+      "prompt_variant": "original",
+      "retrieved": [
+        {
+          "chunk_id": "Alphabet-p036-c02",
+          "page": 36,
+          "similarity": 0.795
+        },
+        {
+          "chunk_id": "Alphabet-p036-c01",
+          "page": 36,
+          "similarity": 0.7751
+        },
+        {
+          "chunk_id": "Alphabet-p076-c04",
+          "page": 76,
+          "similarity": 0.7513
+        },
+        {
+          "chunk_id": "Alphabet-p082-c08",
+          "page": 82,
+          "similarity": 0.7412
+        },
+        {
+          "chunk_id": "Alphabet-p082-c10",
+          "page": 82,
+          "similarity": 0.739
+        }
+      ],
+      "retrieved_pages": [
+        36,
+        36,
+        76,
+        82,
+        82
+      ],
+      "gold_page": null,
+      "latency_s": 15.21,
+      "prompt_tokens": 1269,
+      "output_tokens": 512,
+      "had_think_block": false
+    }
+  ]
+}
