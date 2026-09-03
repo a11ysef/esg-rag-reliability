@@ -79,7 +79,7 @@ def strip_think(text: str) -> str:
 
 _NUM_PATTERN = re.compile(
     r"(\d{1,3}(?:,\d{3})+|\d+(?:\.\d+)?)\s*"
-    r"(million|billion|thousand|k|m|b|%|percent|tco2e|gallons?|tons?)?",
+    r"(million|billion|thousand|k|m|b|%|percent|tco2e|gallons?|tons?)?\b",
     flags=re.IGNORECASE,
 )
 

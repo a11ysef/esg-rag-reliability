@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-rag_baseline.py —— RAG 问答链路（重写版）
+rag_baseline.py —— RAG 问答链路（重写版 v2）
 
 替代原 RAG.ipynb。原实现依赖已丢失的 llm_client 模块，且存在以下问题：
   - 硬编码绝对路径
-  - temperature=0.5，结果不可复现（同一问题两次运行可能一次拒答一次幻觉）
+  - temperature=0.5，结果不可复现
   - 检索结果不记录来源，无法做检索层归因
   - top-1 chunk 无条件注入 context，不设相关度门槛
 
@@ -13,20 +13,16 @@ rag_baseline.py —— RAG 问答链路（重写版）
   - 路径全部相对化，模型参数集中在 CONFIG
   - temperature=0 + 固定 seed，保证可复现
   - 记录每个问题检索到的 chunk 页码与相似度，供 Recall@K 分析
-  - 保留 min_similarity 门槛（可配置，默认 0 表示不启用，与原实现对齐）
   - 支持多组 prompt 变体，供 Day 3 对照实验使用
 
+v2 修订：
+  - think 剥离改为兼容未闭合标签（推理被 num_predict 截断时只有 <think> 开标签）
+  - num_predict 512 -> 1024，给 deepseek-r1 足够空间说完推理并给出答案
+
 用法：
-    # 跑基线（原版 prompt）
     python src/rag_baseline.py --benchmark eval/benchmark.json
-
-    # 指定 prompt 变体
     python src/rag_baseline.py --prompt allow_refusal
-
-    # 跑全部四组变体
     python src/rag_baseline.py --prompt all
-
-    # 只跑前 3 题（调试用）
     python src/rag_baseline.py --limit 3
 """
 
@@ -55,7 +51,7 @@ CONFIG = {
     "seed": 42,
     "top_k": 5,
     "min_similarity": 0.0,     # 0 = 不设门槛，与原实现一致
-    "num_predict": 512,
+    "num_predict": 1024,       # v2：从 512 提高，避免推理未完成即被截断
     "ollama_url": "http://localhost:11434",
 }
 
@@ -63,25 +59,19 @@ CONFIG = {
 # ---------------------------------------------------------------------------
 # Prompt 变体
 # ---------------------------------------------------------------------------
-# Day 3 的对照实验就是切换这四组，观察拒答率与幻觉率如何此消彼长。
-
 PROMPTS = {
     "original": (
-        # 原 critique 链路使用的 prompt，是 7/7 幻觉的根因
         "You are an ESG analyst. Answer the question based on the provided context. "
         "Make sure to always answer it confidently, even if you don't know the answer."
     ),
-
     "neutral": (
         "You are an ESG analyst. Answer the question based on the provided context."
     ),
-
     "allow_refusal": (
         "You are an ESG analyst. Answer the question based on the provided context. "
         "If the context does not contain the information needed to answer, "
         "say exactly: The report does not provide this information."
     ),
-
     "cite_source": (
         "You are an ESG analyst. Answer the question based on the provided context. "
         "Every factual claim must be supported by a direct quote from the context. "
@@ -96,7 +86,6 @@ PROMPTS = {
 # ---------------------------------------------------------------------------
 
 def load_corpus(company: str) -> tuple[list[dict], list]:
-    """加载某公司的 chunks 与 embedding"""
     matches = list(DATA_DIR.glob(f"*/{company}/corpus/chunks.csv"))
     if not matches:
         raise SystemExit(
@@ -115,7 +104,6 @@ def load_corpus(company: str) -> tuple[list[dict], list]:
 
 
 def cosine_top_k(query_vec, vectors, k: int):
-    """返回 [(索引, 相似度), ...]，按相似度降序"""
     try:
         import numpy as np
         M = np.asarray(vectors, dtype="float32")
@@ -126,7 +114,6 @@ def cosine_top_k(query_vec, vectors, k: int):
         idx = np.argsort(-sims)[:k]
         return [(int(i), float(sims[i])) for i in idx]
     except ImportError:
-        # numpy 不可用时的纯 Python 回退
         import math
         qn = math.sqrt(sum(x * x for x in query_vec)) + 1e-9
         scored = []
@@ -158,16 +145,23 @@ def embed(text: str) -> list[float]:
     return data["embedding"]
 
 
-_THINK = re.compile(r"<think>.*?</think>", flags=re.DOTALL | re.IGNORECASE)
+# think 剥离：兼容三种情况（完整闭合 / 只有闭合标签 / 只有开标签未闭合）
+_THINK_BLOCK = re.compile(r"<think>.*?</think>", flags=re.DOTALL | re.IGNORECASE)
+_THINK_CLOSE = re.compile(r"</think>", flags=re.IGNORECASE)
+_THINK_OPEN = re.compile(r"<think>", flags=re.IGNORECASE)
+
+
+def strip_think(text: str) -> str:
+    """剥离推理块，兼容未闭合的情况（推理被 num_predict 截断时只有开标签）。"""
+    if _THINK_CLOSE.search(text):
+        text = _THINK_CLOSE.split(text)[-1]      # 取最后一个 </think> 之后
+    text = _THINK_BLOCK.sub("", text)
+    text = _THINK_OPEN.sub("", text)
+    return text.strip()
 
 
 def generate(system_prompt: str, user_prompt: str) -> tuple[str, dict]:
-    """
-    调用生成模型。返回 (清洗后的回答, 元信息)。
-
-    deepseek-r1 系列会输出 <think>...</think> 推理过程，必须剥离，
-    否则判分脚本会把推理里提到的数字误判为答案。
-    """
+    """调用生成模型。返回 (清洗后的回答, 元信息)。"""
     payload = {
         "model": CONFIG["gen_model"],
         "messages": [
@@ -186,7 +180,7 @@ def generate(system_prompt: str, user_prompt: str) -> tuple[str, dict]:
     elapsed = time.time() - t0
 
     raw = data.get("message", {}).get("content", "")
-    cleaned = _THINK.sub("", raw).strip()
+    cleaned = strip_think(raw)
 
     meta = {
         "latency_s": round(elapsed, 2),
@@ -213,10 +207,9 @@ def answer_question(q: dict, corpus_cache: dict, prompt_name: str) -> dict:
     qvec = embed(q["question"])
     hits = cosine_top_k(qvec, vectors, CONFIG["top_k"])
 
-    # 按门槛过滤（min_similarity=0 时全部保留）
     kept = [(i, s) for i, s in hits if s >= CONFIG["min_similarity"]]
     if not kept:
-        kept = hits[:1]        # 至少保留 top-1，与原实现行为一致
+        kept = hits[:1]
 
     context = "\n\n".join(rows[i]["content"] for i, _ in kept)
     user_prompt = f"Context:\n{context}\n\nQuestion: {q['question']}"
