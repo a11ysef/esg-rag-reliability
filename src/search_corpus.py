@@ -1,25 +1,25 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-search_corpus.py —— 语料检索辅助工具（标注 benchmark 时用）
+search_corpus.py —— 找语料用的小工具（出题标注时会用到）
 
-作用：在已重建的 chunks.csv 里按关键词搜索，直接告诉你
-「这个指标在第几页、原文长什么样」，省掉一页页翻 PDF 的时间。
+作用：在已经处理好的 chunks.csv 里搜关键词，直接告诉你
+"这个指标在第几页、原文写的是啥"，省得一页一页去翻PDF。
 
-这是纯文本检索，不调用模型、不做向量检索，因此很快。
-它的用途是帮你定位候选题目，gold_answer 仍需你在 PDF 原文中确认。
+这只是纯文本搜索，不调用任何模型、也不做向量检索，所以特别快。
+用它主要是帮你先找到候选题目，正确答案还是得回PDF原文里确认一遍。
 
 用法：
     # 搜关键词
     python src/search_corpus.py Alphabet "Scope 1"
 
-    # 只看包含数字的结果（标 A 组题时最有用）
+    # 只看带数字的结果（标A组题的时候最好用）
     python src/search_corpus.py Alphabet "Scope 1" --numbers
 
-    # 列出某公司数字最密集的页（从这些页开始标注效率最高）
+    # 列出这家公司数字最密集的几页（从这些页开始标题目效率最高）
     python src/search_corpus.py Alphabet --hotspots
 
-    # 查看指定页的全部内容
+    # 看指定某一页的全部内容
     python src/search_corpus.py Alphabet --page 88
 """
 
@@ -37,15 +37,15 @@ csv.field_size_limit(10 ** 9)
 ROOT = Path(__file__).resolve().parent.parent
 DATA_DIR = ROOT / "esg_data"
 
-# 千分位数字 / 百分比 / 带小数的数值
+# 用来抓千分位数字、百分比、小数这些数值的正则
 _NUM = re.compile(r"\d{1,3}(?:,\d{3})+(?:\.\d+)?|\d+\.\d+\s*%?|\d+\s*%")
 
 
 def find_chunks_csv(company: str) -> Path:
-    """在 esg_data 下按公司名查找 chunks.csv"""
+    """在 esg_data 文件夹里按公司名找对应的 chunks.csv"""
     matches = list(DATA_DIR.glob(f"*/{company}/corpus/chunks.csv"))
     if not matches:
-        # 尝试模糊匹配
+        # 精确名字没找到，试试模糊匹配
         fuzzy = [
             p for p in DATA_DIR.glob("*/*/corpus/chunks.csv")
             if company.lower() in p.parent.parent.name.lower()
@@ -74,7 +74,7 @@ def load_chunks(company: str) -> list[dict]:
 
 
 def highlight(text: str, keyword: str, width: int = 200) -> list[str]:
-    """返回关键词周围的上下文片段"""
+    """把关键词前后的一小段上下文摘出来，方便一眼看清楚"""
     out = []
     for m in re.finditer(re.escape(keyword), text, flags=re.IGNORECASE):
         s = max(0, m.start() - width // 2)
@@ -111,7 +111,7 @@ def cmd_search(rows: list[dict], keyword: str, numbers_only: bool, limit: int) -
 
 
 def cmd_hotspots(rows: list[dict], top: int) -> None:
-    """列出数字最密集的页——这些页通常是附录数据表，标 A 组题效率最高"""
+    """把数字最多的几页列出来——这些页一般是附录数据表，标A组题最省事"""
     counter: Counter[int] = Counter()
     for r in rows:
         counter[r["page"]] += len(_NUM.findall(r["content"]))

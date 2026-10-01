@@ -1,0 +1,33 @@
+{
+  "_readme": "人工核对的 ground truth，直接读原始 PDF 原文确认，不经过 pipeline 本身——用来算 precision/recall/F1，跟 pipeline 的输出完全独立生成，避免用自己给自己打分。value/year 是原文明确写出来的数字和它对应的年份；unit 是原文单位；page 是 pdfplumber 0-indexed 页码+1（跟 pipeline chunk_id 里的 page 字段是同一套编号）；quote 是原文摘录，disclosed=false 表示这家公司这份报告里确实没有披露这项指标（不是没找到，是原文真的没有）。",
+  "Alphabet": {
+    "_source_pdf": "esg_data/Technology/Alphabet/Alphabet Inc (Google) 2024 Environmental Report.pdf",
+    "scope1_emissions": {"disclosed": true, "value": "79,400", "numeric_value": 79400.0, "unit": "tCOe", "year": "2023", "page": 76, "quote": "Scope 1 tCOe 81,900 55,800 64,100 91,200 79,400 (2019-2023，环境数据表)"},
+    "scope2_emissions": {"disclosed": true, "value": "3,423,400", "numeric_value": 3423400.0, "unit": "tCOe", "year": "2023", "page": 76, "quote": "Scope 2 (market-based) tCOe 835,500 911,400 1,823,100 2,492,200 3,423,400 (2019-2023)", "note": "market-based口径，跟指标定义一致"},
+    "scope3_emissions": {"disclosed": true, "value": "10,812,000", "numeric_value": 10812000.0, "unit": "tCOe", "year": "2023", "page": 76, "quote": "Scope 3 (total) tCOe 8,754,000 7,600,000 8,888,000 10,034,000 10,812,000 (2019-2023)"},
+    "renewable_energy_pct": {"disclosed": true, "value": "100", "numeric_value": 100.0, "unit": "%", "year": "2023", "page": 77, "quote": "Electricity purchased from renewable sources % 100 100 100 100 100 (2019-2023)"},
+    "water_withdrawal": {"disclosed": true, "value": "8,653.3", "numeric_value": 8653.3, "unit": "million gallons", "year": "2023", "page": 79, "quote": "Water withdrawal Million gallons 5,160.7 5,688.7 6,296.6 7,599.6 8,653.3 (2019-2023)"},
+    "waste_diversion_pct": {"disclosed": true, "value": "78", "numeric_value": 78.0, "unit": "%", "year": "2023", "page": 79, "quote": "Total waste diversion rate % 77 77 77 84 78 (2019-2023)"},
+    "supply_chain_emissions": {"disclosed": true, "value": "flexible", "numeric_value": null, "unit": null, "year": "2023", "page": 39, "quote": "In 2023, we invited 312 suppliers to participate [in CDP Climate Change survey], a 40% increase compared to 2022... 60% reported having structured GHG emissions reduction targets, and 74% of those targets were science-based.", "note": "披露形式多样（供应商参与度/CDP响应率/科学碳目标占比等多个数字都算数，disambiguation 本来就允许），判定标准放宽为：disclosed=true 且抽出的数字/引用能在这段原文里找到即算对"}
+  },
+  "Apple": {
+    "_source_pdf": "esg_data/Technology/Apple/Apple Inc 2023 Environmental Progress Report.pdf",
+    "scope1_emissions": {"disclosed": true, "value": "55,200", "numeric_value": 55200.0, "unit": "metric tons CO2e", "year": "2023", "page": 77, "quote": "Corporate emissions Scope 1 55,200 55,200 55,200 47,430 52,730 (fiscal year 2023-2019)"},
+    "scope2_emissions": {"disclosed": true, "value": "3,400", "numeric_value": 3400.0, "unit": "metric tons CO2e", "year": "2023", "page": 77, "quote": "Scope 2 (market-based) 3,400 3,000 2,780 0 0 (fiscal year 2023-2019)"},
+    "scope3_emissions": {"disclosed": true, "value": "15,980,000", "numeric_value": 15980000.0, "unit": "metric tons CO2e", "year": "2023", "page": 77, "quote": "Total gross scope 3 emissions (corporate and product) (metric tons CO2e) 15,980,000 20,545,800 23,128,400 22,550,000 24,980,000", "note": "这是真正的 Scope3 合计行，不是页面上先出现的'Scope 3'窄口径子项(412,800，只含corporate部分)，也不是'Product life cycle emissions'子项——自检12(合计数优先排序)专门为这类真实坑写的回归测试，这份 ground truth 直接确认了合计行才是正确目标"},
+    "renewable_energy_pct": {"disclosed": true, "value": "100", "numeric_value": 100.0, "unit": "%", "year": "2023", "page": 81, "quote": "Renewable electricity percentage % of total energy 100 100 100 100 100 (fiscal year 2023-2019)"},
+    "water_withdrawal": {"disclosed": true, "value": "1,610", "numeric_value": 1610.0, "unit": "million gallons", "year": "2023", "page": 82, "quote": "Water Corporate facilities Total million gallons 1,610 1,527 1,407 1,287 1,291 (fiscal year 2023-2019)"},
+    "waste_diversion_pct": {"disclosed": true, "value": "74", "numeric_value": 74.0, "unit": "%", "year": "2023", "page": 82, "quote": "Landfill diversion rate % 74 71 68 70 66 (fiscal year 2023-2019)"},
+    "supply_chain_emissions": {"disclosed": true, "value": "flexible", "numeric_value": null, "unit": null, "year": "2023", "page": 28, "quote": "As of March 2024, more than 320 suppliers have committed to use renewable electricity for their Apple production. These suppliers make up 95 percent of Apple's direct spend... In 2023, the 16.5 gigawatts of renewable energy procured by suppliers... avoided 18.5 million metric tons of greenhouse gas emissions — a 6.5 percent increase over 2022.", "note": "同 Alphabet，披露形式多样，判定标准放宽"}
+  },
+  "Meta Platforms": {
+    "_source_pdf": "esg_data/Technology/Meta Platforms/Meta-2024-Sustainability-Report.pdf",
+    "scope1_emissions": {"disclosed": true, "value": "48,952", "numeric_value": 48952.0, "unit": "metric tons CO2e", "year": "2023", "page": 78, "quote": "Scope 1 44,000 29,000 55,173 66,934 48,952 (Market-based, 2019-2023)"},
+    "scope2_emissions": {"disclosed": true, "value": "1,658", "numeric_value": 1658.0, "unit": "metric tons CO2e", "year": "2023", "page": 78, "quote": "Scope 2 208,000 9,000 2,487 273 1,658 (Market-based, 2019-2023)"},
+    "scope3_emissions": {"disclosed": true, "value": "7,445,621", "numeric_value": 7445621.0, "unit": "metric tons CO2e", "year": "2023", "page": 78, "quote": "Scope 3 4,078,000 5,091,000 5,772,583 8,466,264 7,445,621 (Market-based, 2019-2023)"},
+    "renewable_energy_pct": {"disclosed": true, "value": "100", "numeric_value": 100.0, "unit": "%", "year": "2023", "page": 83, "quote": "Electricity mix (in % of total electricity used) Renewable 86% 100% 100% 100% 100% (2019-2023)"},
+    "water_withdrawal": {"disclosed": true, "value": "5,274", "numeric_value": 5274.0, "unit": "megaliters", "year": "2023", "page": 85, "quote": "Total water withdrawal 3,430 3,726 5,043 4,893 5,274 (2019-2023)"},
+    "waste_diversion_pct": {"disclosed": false, "value": null, "numeric_value": null, "unit": null, "year": null, "page": 17, "quote": "We recycled 91% of data center construction waste. / construction waste was recycled.", "note": "全篇搜不到公司整体'waste diversion rate'这个口径，只有'数据中心建设废弃物回收率91%'这一个窄口径数字（限定在建设废弃物，不是运营废弃物整体转移率）。判定为 disclosed=false（真实缺口，不是漏找）——如果 pipeline 抽出了这个91%当答案，算 FP，因为口径对不上指标定义；如果 pipeline 老实标未披露，算 TN，不算 FN。"},
+    "supply_chain_emissions": {"disclosed": true, "value": "flexible", "numeric_value": null, "unit": null, "year": "2023", "page": 31, "quote": "In 2021, we began working with a pilot group of 39 key suppliers to calculate and report their GHG emissions... By the end of 2023, 28% of our suppliers, based on their contribution to our emissions, have set science-aligned emissions reduction targets.", "note": "同上，披露形式多样，判定标准放宽"}
+  }
+}

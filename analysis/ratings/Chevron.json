@@ -1,0 +1,79 @@
+{
+  "company": "Chevron",
+  "msci_source_file": "ESG Ratings & Climate Search Tool - MSCI.pdf",
+  "sp_source_file": "S&P Global.pdf",
+  "msci_rating": {
+    "value": "A",
+    "evidence": "36% | A",
+    "confidence": "found_high"
+  },
+  "msci_implied_temp_rise_c": {
+    "value": "3.2",
+    "evidence": "Climate Target and Commitments → MSCI ONE → Would the company's emissions goals be enough to help keep global warming to 1.5°C? – MSCI IMPLIED TEMPERATURE RISE STRONGLY MISALIGNED over 3.2°C An Implied Temperature Rise of above 3.2°C indicates that CHEVRON CORPORATION is strongly misaligned with glo",
+    "confidence": "found_low"
+  },
+  "msci_target_year": {
+    "value": "2050",
+    "evidence": "YES | YES | 2050 | 6.93% | 0.82% p.a.",
+    "confidence": "found_high"
+  },
+  "msci_target_coverage_pct": {
+    "value": "6.93",
+    "evidence": "YES | YES | 2050 | 6.93% | 0.82% p.a.",
+    "confidence": "found_high"
+  },
+  "msci_annual_reduction_pct": {
+    "value": "0.82",
+    "evidence": "YES | YES | 2050 | 6.93% | 0.82% p.a.",
+    "confidence": "found_high"
+  },
+  "msci_rating_history": {
+    "value": null,
+    "evidence": "ESG Rating history | MSCI ESG Rating history data over the last five years or since records began. | AAA | AA | A | BBB | BB | B | CCC | A | A | A | BBB | BBB | Sep-20 Sep-21 Jun-22 Sep-23 Sep-24",
+    "confidence": "found_low"
+  },
+  "sp_overall_score": {
+    "value": "36",
+    "evidence": "36 | Data Availability :",
+    "confidence": "found_high"
+  },
+  "sp_csa_score": {
+    "value": "31",
+    "evidence": "S&P Global CSA Score = 31",
+    "confidence": "found_high"
+  },
+  "sp_modeled_score": {
+    "value": "5",
+    "evidence": "Modeled Scores = 5",
+    "confidence": "found_high"
+  },
+  "sp_dimension_scores": {
+    "value": {
+      "environmental": {
+        "value": "35",
+        "industry_mean": "36",
+        "industry_max": "86",
+        "evidence": "Environmental  Chevron Corp. 35 Industry Mean 36 Industry Max 86 ",
+        "confidence": "found_high"
+      },
+      "social": {
+        "value": "40",
+        "industry_mean": "38",
+        "industry_max": "94",
+        "evidence": "Social  Chevron Corp. 40 Industry Mean 38 Industry Max 94 ",
+        "confidence": "found_high"
+      },
+      "governance": {
+        "value": "34",
+        "industry_mean": "43",
+        "industry_max": "78",
+        "evidence": "Governance & Economic  Chevron Corp. 34 Industry Mean 43 Industry Max 78 ",
+        "confidence": "found_high"
+      }
+    },
+    "evidence": null,
+    "confidence": "found_high"
+  },
+  "needs_manual_review": [],
+  "parsed_at": "2026-09-07T07:27:13.031887+00:00"
+}

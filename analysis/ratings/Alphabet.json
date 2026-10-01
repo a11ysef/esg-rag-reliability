@@ -1,0 +1,79 @@
+{
+  "company": "Alphabet",
+  "msci_source_file": "ESG Ratings & Climate Search Tool - MSCI.pdf",
+  "sp_source_file": "S&P Global.pdf",
+  "msci_rating": {
+    "value": "BBB",
+    "evidence": "9% | BBB",
+    "confidence": "found_high"
+  },
+  "msci_implied_temp_rise_c": {
+    "value": "1.4",
+    "evidence": "1.5°C ALIGNED | – | 1.4°C",
+    "confidence": "found_high"
+  },
+  "msci_target_year": {
+    "value": "2030",
+    "evidence": "YES | YES | 2030 | 100.0% | -12.5% p.a.",
+    "confidence": "found_high"
+  },
+  "msci_target_coverage_pct": {
+    "value": "100.0",
+    "evidence": "YES | YES | 2030 | 100.0% | -12.5% p.a.",
+    "confidence": "found_high"
+  },
+  "msci_annual_reduction_pct": {
+    "value": "-12.5",
+    "evidence": "YES | YES | 2030 | 100.0% | -12.5% p.a.",
+    "confidence": "found_high"
+  },
+  "msci_rating_history": {
+    "value": null,
+    "evidence": "ESG Rating history | MSCI ESG Rating history data over the last five years or since records began. | AAA | AA | A | BBB | BB | B | CCC | BBB | BBB | BBB | BBB | BBB | N ov-20 | Jun-21 | Jul-22 | Jul-23 | Jul-24",
+    "confidence": "found_low"
+  },
+  "sp_overall_score": {
+    "value": "47",
+    "evidence": "47 | Data Availability :",
+    "confidence": "found_high"
+  },
+  "sp_csa_score": {
+    "value": "45",
+    "evidence": "S&P Global CSA Score = 45",
+    "confidence": "found_high"
+  },
+  "sp_modeled_score": {
+    "value": "2",
+    "evidence": "Modeled Scores = 2",
+    "confidence": "found_high"
+  },
+  "sp_dimension_scores": {
+    "value": {
+      "environmental": {
+        "value": "66",
+        "industry_mean": "22",
+        "industry_max": "79",
+        "evidence": "Environmental  Alphabet Inc. 66 Industry Mean 22 Industry Max 79 ",
+        "confidence": "found_high"
+      },
+      "social": {
+        "value": "51",
+        "industry_mean": "25",
+        "industry_max": "79",
+        "evidence": "Social  Alphabet Inc. 51 Industry Mean 25 Industry Max 79 ",
+        "confidence": "found_high"
+      },
+      "governance": {
+        "value": "31",
+        "industry_mean": "34",
+        "industry_max": "69",
+        "evidence": "Governance & Economic  Alphabet Inc. 31 Industry Mean 34 Industry Max 69 ",
+        "confidence": "found_high"
+      }
+    },
+    "evidence": null,
+    "confidence": "found_high"
+  },
+  "needs_manual_review": [],
+  "parsed_at": "2026-09-07T07:31:34.898260+00:00"
+}

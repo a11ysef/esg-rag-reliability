@@ -1,0 +1,104 @@
+{
+  "company": "Tesla",
+  "msci_source_file": "ESG Ratings & Climate Search Tool - MSCI.pdf",
+  "sp_source_file": "S&P Global.pdf",
+  "msci_rating": {
+    "value": "BBB",
+    "evidence": "19% | BBB",
+    "confidence": "found_high"
+  },
+  "msci_implied_temp_rise_c": {
+    "value": "1.5",
+    "evidence": "1.5°C ALIGNED | – | 1.5°C",
+    "confidence": "found_high"
+  },
+  "msci_target_year": {
+    "value": null,
+    "evidence": null,
+    "confidence": "not_found"
+  },
+  "msci_target_coverage_pct": {
+    "value": null,
+    "evidence": null,
+    "confidence": "not_found"
+  },
+  "msci_annual_reduction_pct": {
+    "value": null,
+    "evidence": null,
+    "confidence": "not_found"
+  },
+  "msci_rating_history": {
+    "value": [
+      {
+        "period": "May-21",
+        "rating": "A"
+      },
+      {
+        "period": "Dec-21",
+        "rating": "A"
+      },
+      {
+        "period": "May-22",
+        "rating": "A"
+      },
+      {
+        "period": "Jul-23",
+        "rating": "A"
+      },
+      {
+        "period": "Aug-24",
+        "rating": "BBB"
+      }
+    ],
+    "evidence": "ESG Rating history | MSCI ESG Rating history data over the last five years or since records began. | AAA | AA | A | BBB | BB | B | CCC | A | A | A | A | BBB | May-21 | Dec-21 | May-22 | Jul-23 | Aug-24",
+    "confidence": "found_high"
+  },
+  "sp_overall_score": {
+    "value": "32",
+    "evidence": "32 | Data Availability :",
+    "confidence": "found_high"
+  },
+  "sp_csa_score": {
+    "value": "29",
+    "evidence": "S&P Global CSA Score = 29",
+    "confidence": "found_high"
+  },
+  "sp_modeled_score": {
+    "value": "3",
+    "evidence": "Modeled Scores = 3",
+    "confidence": "found_high"
+  },
+  "sp_dimension_scores": {
+    "value": {
+      "environmental": {
+        "value": "52",
+        "industry_mean": "43",
+        "industry_max": "82",
+        "evidence": "Environmental  Tesla Inc. 52 Industry Mean 43 Industry Max 82 ",
+        "confidence": "found_high"
+      },
+      "social": {
+        "value": "23",
+        "industry_mean": "43",
+        "industry_max": "85",
+        "evidence": "Social  Tesla Inc. 23 Industry Mean 43 Industry Max 85 ",
+        "confidence": "found_high"
+      },
+      "governance": {
+        "value": "21",
+        "industry_mean": "42",
+        "industry_max": "79",
+        "evidence": "Governance & Economic  Tesla Inc. 21 Industry Mean 42 Industry Max 79 ",
+        "confidence": "found_high"
+      }
+    },
+    "evidence": null,
+    "confidence": "found_high"
+  },
+  "needs_manual_review": [
+    "msci_target_year: 未抽到，建议对照 PDF 原文人工核对/补充",
+    "msci_target_coverage_pct: 未抽到，建议对照 PDF 原文人工核对/补充",
+    "msci_annual_reduction_pct: 未抽到，建议对照 PDF 原文人工核对/补充"
+  ],
+  "parsed_at": "2026-09-07T07:31:12.574072+00:00"
+}

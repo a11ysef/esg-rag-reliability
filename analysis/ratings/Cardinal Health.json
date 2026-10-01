@@ -1,0 +1,100 @@
+{
+  "company": "Cardinal Health",
+  "msci_source_file": "ESG Ratings & Climate Search Tool - MSCI.pdf",
+  "sp_source_file": "S&P Global.pdf",
+  "msci_rating": {
+    "value": "AAA",
+    "evidence": "7% | AAA",
+    "confidence": "found_high"
+  },
+  "msci_implied_temp_rise_c": {
+    "value": "1.7",
+    "evidence": "2°C ALIGNED | – | 1.7°C",
+    "confidence": "found_high"
+  },
+  "msci_target_year": {
+    "value": "2030",
+    "evidence": "YES | YES | 2030 | 1.31% | 0.96% p.a.",
+    "confidence": "found_high"
+  },
+  "msci_target_coverage_pct": {
+    "value": "1.31",
+    "evidence": "YES | YES | 2030 | 1.31% | 0.96% p.a.",
+    "confidence": "found_high"
+  },
+  "msci_annual_reduction_pct": {
+    "value": "0.96",
+    "evidence": "YES | YES | 2030 | 1.31% | 0.96% p.a.",
+    "confidence": "found_high"
+  },
+  "msci_rating_history": {
+    "value": [
+      {
+        "period": "Dec-20",
+        "rating": "AAA"
+      },
+      {
+        "period": "Dec-21",
+        "rating": "AA"
+      },
+      {
+        "period": "Dec-22",
+        "rating": "A"
+      },
+      {
+        "period": "Dec-23",
+        "rating": "A"
+      },
+      {
+        "period": "Dec-24",
+        "rating": "A"
+      }
+    ],
+    "evidence": "ESG Rating history | MSCI ESG Rating history data over the last five years or since records began. | AAA | AA | A | A | A | AAA | AA | A | BBB | BB | B | CCC | Dec-20 | Dec-21 | Dec-22 | Dec-23 | Dec-24",
+    "confidence": "found_high"
+  },
+  "sp_overall_score": {
+    "value": "53",
+    "evidence": "53 | Data Availability :",
+    "confidence": "found_high"
+  },
+  "sp_csa_score": {
+    "value": "51",
+    "evidence": "Score Composition | 100 | 50 | 0 | 515151 | 535353 | S&P Global | CSA Score | Score Breakdown | 222 | Modeled | Scores | S&P Global ESG Score | Cardinal Health Inc. | Industry Max | Industry Mean",
+    "confidence": "found_low"
+  },
+  "sp_modeled_score": {
+    "value": "2",
+    "evidence": "Score Composition | 100 | 50 | 0 | 515151 | 535353 | S&P Global | CSA Score | Score Breakdown | 222 | Modeled | Scores | S&P Global ESG Score | Cardinal Health Inc. | Industry Max | Industry Mean",
+    "confidence": "found_low"
+  },
+  "sp_dimension_scores": {
+    "value": {
+      "environmental": {
+        "value": "68",
+        "industry_mean": "28",
+        "industry_max": "78",
+        "evidence": "Environmental  Cardinal Health Inc. 68 Industry Mean 28 Industry Max 78 ",
+        "confidence": "found_high"
+      },
+      "social": {
+        "value": "48",
+        "industry_mean": "30",
+        "industry_max": "91",
+        "evidence": "Social  Cardinal Health Inc. 48 Industry Mean 30 Industry Max 91 ",
+        "confidence": "found_high"
+      },
+      "governance": {
+        "value": "53",
+        "industry_mean": "34",
+        "industry_max": "80",
+        "evidence": "Governance & Economic  Cardinal Health Inc. 53 Industry Mean 34 Industry Max 80 ",
+        "confidence": "found_high"
+      }
+    },
+    "evidence": null,
+    "confidence": "found_high"
+  },
+  "needs_manual_review": [],
+  "parsed_at": "2026-09-07T07:30:10.052190+00:00"
+}

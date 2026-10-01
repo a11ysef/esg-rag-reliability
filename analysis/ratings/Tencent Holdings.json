@@ -1,0 +1,103 @@
+{
+  "company": "Tencent Holdings",
+  "msci_source_file": "MSCI.pdf",
+  "sp_source_file": "S&P Global.pdf",
+  "msci_rating": {
+    "value": "BBB",
+    "evidence": "13% | BBB",
+    "confidence": "found_high"
+  },
+  "msci_implied_temp_rise_c": {
+    "value": null,
+    "evidence": null,
+    "confidence": "not_found"
+  },
+  "msci_target_year": {
+    "value": "2030",
+    "evidence": "YES | YES | 2030 | 100.0% | -12.5% p.a.",
+    "confidence": "found_high"
+  },
+  "msci_target_coverage_pct": {
+    "value": "100.0",
+    "evidence": "YES | YES | 2030 | 100.0% | -12.5% p.a.",
+    "confidence": "found_high"
+  },
+  "msci_annual_reduction_pct": {
+    "value": "-12.5",
+    "evidence": "YES | YES | 2030 | 100.0% | -12.5% p.a.",
+    "confidence": "found_high"
+  },
+  "msci_rating_history": {
+    "value": [
+      {
+        "period": "Apr-21",
+        "rating": "BBB"
+      },
+      {
+        "period": "Sep-22",
+        "rating": "BBB"
+      },
+      {
+        "period": "Nov-22",
+        "rating": "BBB"
+      },
+      {
+        "period": "Nov-23",
+        "rating": "BBB"
+      },
+      {
+        "period": "Dec-24",
+        "rating": "BB"
+      }
+    ],
+    "evidence": "ESG Rating history | MSCI ESG Rating history data over the last ﬁve years or since records began. | AAA | AA | A | BBB | BB | B | CCC | BBB | BBB | BBB | BBB | BB | Apr-21 | Sep-22 | Nov-22 | Nov-23 | Dec-24",
+    "confidence": "found_high"
+  },
+  "sp_overall_score": {
+    "value": "59",
+    "evidence": "59 | Data Availability :",
+    "confidence": "found_high"
+  },
+  "sp_csa_score": {
+    "value": "0",
+    "evidence": "Score Composition | https://www.spglobal.com/esg/scores/results?cid=4329847 | 1/9 | ___ | 26/01/2025, 15:00 | S&P Global | 595959 | 595959 | 100 | 75 | 50 | 25 | 0 | S&P Global | CSA Score | Score Breakdown | 000 | Modeled | Scores | S&P Global | ESG Score | Tencent Holdings Ltd. | Industry Max | In",
+    "confidence": "found_low"
+  },
+  "sp_modeled_score": {
+    "value": null,
+    "evidence": null,
+    "confidence": "not_found"
+  },
+  "sp_dimension_scores": {
+    "value": {
+      "environmental": {
+        "value": "75",
+        "industry_mean": "22",
+        "industry_max": "79",
+        "evidence": "Environmental  Tencent Holdings Ltd. 75 Industry Mean 22 Industry Max 79 ",
+        "confidence": "found_high"
+      },
+      "social": {
+        "value": "55",
+        "industry_mean": "25",
+        "industry_max": "79",
+        "evidence": "Social  Tencent Holdings Ltd. 55 Industry Mean 25 Industry Max 79 ",
+        "confidence": "found_high"
+      },
+      "governance": {
+        "value": "53",
+        "industry_mean": "34",
+        "industry_max": "68",
+        "evidence": "Governance & Economic  Tencent Holdings Ltd. 53 Industry Mean 34 Industry Max 68 ",
+        "confidence": "found_high"
+      }
+    },
+    "evidence": null,
+    "confidence": "found_high"
+  },
+  "needs_manual_review": [
+    "msci_implied_temp_rise_c: 未抽到，建议对照 PDF 原文人工核对/补充",
+    "sp_modeled_score: 未抽到，建议对照 PDF 原文人工核对/补充"
+  ],
+  "parsed_at": "2026-09-07T07:32:11.281005+00:00"
+}

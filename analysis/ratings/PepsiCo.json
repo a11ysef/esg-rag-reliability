@@ -1,0 +1,103 @@
+{
+  "company": "PepsiCo",
+  "msci_source_file": "ESG Ratings & Climate Search Tool - MSCI.pdf",
+  "sp_source_file": "S&P Global.pdf",
+  "msci_rating": {
+    "value": "A",
+    "evidence": "23% | A",
+    "confidence": "found_high"
+  },
+  "msci_implied_temp_rise_c": {
+    "value": "1.7",
+    "evidence": "2°C ALIGNED | – | 1.7°C",
+    "confidence": "found_high"
+  },
+  "msci_target_year": {
+    "value": null,
+    "evidence": null,
+    "confidence": "not_found"
+  },
+  "msci_target_coverage_pct": {
+    "value": null,
+    "evidence": null,
+    "confidence": "not_found"
+  },
+  "msci_annual_reduction_pct": {
+    "value": "5",
+    "evidence": "ndicates the reduction per year of absolute emissions if the target is fully met until the stated target year. A negative number corresponds to a decrease in absolute emissions (for example -5% is an annual reduction of 5% per year). A positive figure corresponds to an increase in absolute emission.",
+    "confidence": "found_low"
+  },
+  "msci_rating_history": {
+    "value": [
+      {
+        "period": "Jun-20",
+        "rating": "AA"
+      },
+      {
+        "period": "Dec-21",
+        "rating": "AA"
+      },
+      {
+        "period": "Dec-22",
+        "rating": "AA"
+      },
+      {
+        "period": "Nov-23",
+        "rating": "AA"
+      },
+      {
+        "period": "Dec-24",
+        "rating": "A"
+      }
+    ],
+    "evidence": "ESG Rating history | MSCI ESG Rating history data over the last five years or since records began. | AAA | AA | A | BBB | BB | B | CCC | AA | AA | AA | AA | A | Jun-20 | Dec-21 | Dec-22 | Nov-23 | Dec-24",
+    "confidence": "found_high"
+  },
+  "sp_overall_score": {
+    "value": "45",
+    "evidence": "45 | Data Availability :",
+    "confidence": "found_high"
+  },
+  "sp_csa_score": {
+    "value": "40",
+    "evidence": "S&P Global CSA Score = 40",
+    "confidence": "found_high"
+  },
+  "sp_modeled_score": {
+    "value": "5",
+    "evidence": "Modeled Scores = 5",
+    "confidence": "found_high"
+  },
+  "sp_dimension_scores": {
+    "value": {
+      "environmental": {
+        "value": "52",
+        "industry_mean": "41",
+        "industry_max": "99",
+        "evidence": "Environmental  PepsiCo Inc. 52 Industry Mean 41 Industry Max 99 ",
+        "confidence": "found_high"
+      },
+      "social": {
+        "value": "44",
+        "industry_mean": "39",
+        "industry_max": "91",
+        "evidence": "Social  PepsiCo Inc. 44 Industry Mean 39 Industry Max 91 ",
+        "confidence": "found_high"
+      },
+      "governance": {
+        "value": "39",
+        "industry_mean": "39",
+        "industry_max": "91",
+        "evidence": "Governance & Economic  PepsiCo Inc. 39 Industry Mean 39 Industry Max 91 ",
+        "confidence": "found_high"
+      }
+    },
+    "evidence": null,
+    "confidence": "found_high"
+  },
+  "needs_manual_review": [
+    "msci_target_year: 未抽到，建议对照 PDF 原文人工核对/补充",
+    "msci_target_coverage_pct: 未抽到，建议对照 PDF 原文人工核对/补充"
+  ],
+  "parsed_at": "2026-09-07T07:29:33.371310+00:00"
+}

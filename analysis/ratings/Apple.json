@@ -1,0 +1,79 @@
+{
+  "company": "Apple",
+  "msci_source_file": "ESG Ratings & Climate Search Tool - MSCI.pdf",
+  "sp_source_file": "S&P Global.pdf",
+  "msci_rating": {
+    "value": "BBB",
+    "evidence": "17% | BBB",
+    "confidence": "found_high"
+  },
+  "msci_implied_temp_rise_c": {
+    "value": "1.7",
+    "evidence": "2°C ALIGNED | – | 1.7°C",
+    "confidence": "found_high"
+  },
+  "msci_target_year": {
+    "value": "2030",
+    "evidence": "YES | YES | 2030 | 100.0% | -11.41% p.a.",
+    "confidence": "found_high"
+  },
+  "msci_target_coverage_pct": {
+    "value": "100.0",
+    "evidence": "YES | YES | 2030 | 100.0% | -11.41% p.a.",
+    "confidence": "found_high"
+  },
+  "msci_annual_reduction_pct": {
+    "value": "-11.41",
+    "evidence": "YES | YES | 2030 | 100.0% | -11.41% p.a.",
+    "confidence": "found_high"
+  },
+  "msci_rating_history": {
+    "value": null,
+    "evidence": "ESG Rating history | MSCI ESG Rating history data over the last five years or since records began. | AAA | AA | A | BBB | BB | B | CCC | A | BBB | BBB | BBB | BBB | D ec-20 | D ec-21 | N ov-22 | D ec-23 | D ec-24",
+    "confidence": "found_low"
+  },
+  "sp_overall_score": {
+    "value": "44",
+    "evidence": "44 | Data Availability :",
+    "confidence": "found_high"
+  },
+  "sp_csa_score": {
+    "value": "37",
+    "evidence": "S&P Global CSA Score = 37",
+    "confidence": "found_high"
+  },
+  "sp_modeled_score": {
+    "value": "7",
+    "evidence": "Modeled Scores = 7",
+    "confidence": "found_high"
+  },
+  "sp_dimension_scores": {
+    "value": {
+      "environmental": {
+        "value": "54",
+        "industry_mean": "44",
+        "industry_max": "96",
+        "evidence": "Environmental  Apple Inc. 54 Industry Mean 44 Industry Max 96 ",
+        "confidence": "found_high"
+      },
+      "social": {
+        "value": "41",
+        "industry_mean": "44",
+        "industry_max": "91",
+        "evidence": "Social  Apple Inc. 41 Industry Mean 44 Industry Max 91 ",
+        "confidence": "found_high"
+      },
+      "governance": {
+        "value": "36",
+        "industry_mean": "44",
+        "industry_max": "88",
+        "evidence": "Governance & Economic  Apple Inc. 36 Industry Mean 44 Industry Max 88 ",
+        "confidence": "found_high"
+      }
+    },
+    "evidence": null,
+    "confidence": "found_high"
+  },
+  "needs_manual_review": [],
+  "parsed_at": "2026-09-07T07:31:35.820257+00:00"
+}

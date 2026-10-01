@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>一个 RAG 系统什么时候该说「我不知道」？</title>
+<script src="data.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/echarts@5.5.1/dist/echarts.min.js"></script>
+<style>
+  :root{
+    --ink:#1a1a2e; --muted:#6b7280; --grid:#e5e7eb; --accent:#e07a3f;
+    --neutral:#a8b0bd; --agent:#2c6e6a; --panel:#f7f7f5; --line:#e8e8e6;
+    --ok:#1f7a5c; --bad:#b23b3b; --warn:#96702a;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:-apple-system,"Helvetica Neue",Helvetica,Arial,"PingFang SC","Noto Sans SC",sans-serif;
+    color:var(--ink);background:#fff;line-height:1.6;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1040px;margin:0 auto;padding:40px 28px 88px}
+  header{display:flex;align-items:flex-start;justify-content:space-between;gap:20px;
+    border-bottom:2px solid var(--ink);padding-bottom:22px;margin-bottom:40px}
+  .titles{flex:1;min-width:0}
+  h1{font-size:clamp(22px,3.4vw,32px);font-weight:800;letter-spacing:-.55px;line-height:1.25}
+  .sub{color:var(--muted);font-size:15px;margin-top:10px;max-width:42em}
+  .meta{color:var(--muted);font-size:12.5px;margin-top:12px}
+  .lang{display:flex;gap:6px;flex-shrink:0;padding-top:4px}
+  .lang button{border:none;background:transparent;color:var(--muted);
+    padding:6px 12px;border-radius:999px;font-size:13px;cursor:pointer;letter-spacing:.02em}
+  .lang button.on{background:var(--ink);color:#fff}
+  section{margin:48px 0}
+  h2{font-size:12px;letter-spacing:1.6px;text-transform:uppercase;color:var(--accent);
+    font-weight:700;margin-bottom:8px}
+  .lead{font-size:19px;font-weight:600;margin-bottom:22px;line-height:1.4;max-width:38em}
+  .cards{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+  .card{background:var(--panel);border-radius:12px;padding:20px 18px}
+  .card .k{font-size:12px;color:var(--muted);letter-spacing:.02em}
+  .card .v{font-size:34px;font-weight:800;margin-top:6px;letter-spacing:-.8px;line-height:1}
+  .card .d{font-size:12.5px;font-weight:700;margin-top:10px}
+  .d.good{color:var(--agent)} .d.bad{color:var(--bad)}
+  .chart-box{background:var(--panel);border-radius:14px;padding:8px 8px 4px;height:440px}
+  .filters{display:flex;gap:8px;flex-wrap:wrap;margin:16px 0}
+  .chip{border:none;background:var(--panel);color:var(--muted);padding:6px 14px;
+    border-radius:18px;font-size:13px;cursor:pointer}
+  .chip.on{background:var(--ink);color:#fff}
+  .qlist{border-radius:12px;overflow:hidden;background:var(--panel)}
+  .qitem{padding:14px 18px;cursor:pointer;display:flex;align-items:center;gap:12px;
+    border-bottom:1px solid #fff}
+  .qitem:last-child{border-bottom:none}
+  .qitem:hover,.qitem.sel{background:#fff}
+  .qid{font-size:12px;font-weight:700;color:var(--muted);width:44px;flex-shrink:0}
+  .qtext{flex:1;font-size:14px}
+  .qtag{font-size:11px;padding:2px 8px;border-radius:10px;font-weight:700;flex-shrink:0}
+  .tagA{background:#e8f0ef;color:var(--agent)} .tagB{background:#f3e9e9;color:var(--bad)}
+  .detail{background:var(--panel);border-radius:12px;padding:22px;margin-top:14px;display:none}
+  .detail.show{display:block}
+  .detail .q{font-size:16px;font-weight:700;margin-bottom:4px}
+  .detail .qm{font-size:13.5px;color:var(--muted);margin-bottom:16px}
+  .cmp{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .cmp .col{background:#fff;border-radius:10px;padding:16px}
+  .cmp .col h4{font-size:11px;text-transform:uppercase;letter-spacing:.6px;
+    color:var(--muted);margin-bottom:8px;font-weight:700}
+  .cmp .col .ans{font-size:13.5px;line-height:1.55;white-space:pre-wrap;word-break:break-word}
+  .vbadge{display:inline-block;font-size:11px;font-weight:700;padding:3px 9px;
+    border-radius:10px;margin-top:10px}
+  .v-correct,.v-correct_refusal{background:#e2f0ea;color:var(--ok)}
+  .v-hallucination,.v-factual_error{background:#f6e0e0;color:var(--bad)}
+  .v-wrong_refusal{background:#f4ecd8;color:var(--warn)}
+  .v-vague_pass,.v-error{background:#eee;color:#666}
+  .pages{font-size:11.5px;color:var(--muted);margin-top:8px}
+  footer{margin-top:64px;padding-top:22px;border-top:1px solid var(--line);
+    color:var(--muted);font-size:12.5px}
+  .warn{background:var(--panel);border-radius:12px;padding:28px;color:var(--muted)}
+  @media(max-width:720px){
+    .wrap{padding:28px 16px 64px}
+    header{flex-direction:column;gap:12px}
+    .cards{grid-template-columns:repeat(2,1fr)}
+    .cmp{grid-template-columns:1fr}
+    .chart-box{height:360px}
+    h1{font-size:24px}
+    .lead{font-size:17px}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="titles">
+      <h1 data-zh='一个 RAG 系统什么时候该说「我不知道」？'
+          data-en='When should a RAG system say “I don’t know”?'></h1>
+      <div class="sub"
+           data-zh="ESG 报告问答的可靠性诊断：拒答与幻觉是同一参数的两端；调 prompt 动不了大盘，定位+核对的 Agent 把幻觉率从 46% 降到 0%。"
+           data-en="Reliability of ESG-report QA: refusal and hallucination are two ends of one dial. Prompt tweaks barely move the needle; a locate-and-verify agent cuts hallucination from 46% to 0%."></div>
+      <div class="meta"
+           data-zh="本地 Ollama · 39 题评测集（A 组 26 / B 组 13）· Alphabet / Apple / Meta · temperature=0"
+           data-en="Local Ollama · 39-question benchmark (26 answerable / 13 no-answer) · Alphabet / Apple / Meta · temperature=0"></div>
+    </div>
+    <div class="lang">
+      <button id="btn-zh" class="on" type="button">中文</button>
+      <button id="btn-en" type="button">EN</button>
+    </div>
+  </header>
+
+  <section>
+    <h2 data-zh="核心结果" data-en="Headline result"></h2>
+    <div class="lead"
+         data-zh="同样的「定位+核对」策略，配上够强的模型，把幻觉率从 46% 降到 0%。"
+         data-en="The same locate-and-verify strategy, on a strong enough model, drives hallucination from 46% to 0%."></div>
+    <div class="cards" id="cards"></div>
+  </section>
+
+  <section>
+    <h2 data-zh="发现一 · 权衡边界" data-en="Finding 1 · The frontier"></h2>
+    <div class="lead"
+         data-zh="四组 prompt 挤在左上角的高幻觉区；真正把系统推到右下角「零幻觉」的是 Agent。"
+         data-en="Four prompts cluster in the high-hallucination zone; the agent is what reaches the bottom-right corner of zero hallucination."></div>
+    <div class="chart-box" id="tradeoff"></div>
+  </section>
+
+  <section>
+    <h2 data-zh="发现二 · 同策略，换模型" data-en="Finding 2 · Same strategy, stronger model"></h2>
+    <div class="lead"
+         data-zh="定位+核对在 1.5B 上弊大于利；在更强模型上，准确率、幻觉率、事实错误三项一并改善。"
+         data-en="Locate-and-verify hurts a 1.5B model; on a stronger model, accuracy, hallucination, and factual error all improve."></div>
+    <div class="chart-box" id="bars" style="height:380px"></div>
+  </section>
+
+  <section>
+    <h2 data-zh="逐题走查 · 系统怎么决定答还是不答" data-en="Question explorer · how the system decides"></h2>
+    <div class="lead"
+         data-zh="按组筛选，点开任意一题：看标准答案、baseline 与 Agent 各自怎么答、判定，以及检索到的页码。"
+         data-en="Filter by group, then open any question to see gold, baseline vs. agent answers, verdicts, and retrieved pages."></div>
+    <div class="filters" id="filters"></div>
+    <div class="qlist" id="qlist"></div>
+    <div class="detail" id="detail"></div>
+  </section>
+
+  <footer>
+    <span data-zh="数字来自本地实测。评测集与判分逻辑均为自建；判分低置信条目经人工复核。baseline = prompt·neutral（1.5B 直接作答）；Agent = GLM-4-Flash 定位+核对。"
+          data-en="Numbers from local runs. Benchmark and scorer are hand-built; low-confidence judgments were human-reviewed. Baseline = prompt·neutral (1.5B direct); Agent = GLM-4-Flash locate+verify."></span>
+  </footer>
+</div>
+
+<script>
+const T = {
+  zh: {
+    acc:"准确率", hal:"幻觉率", ferr:"事实错误", cref:"正确拒答",
+    vs:"相对 baseline",
+    higher:"越高越好", lower:"越低越好",
+    allq:"全部", groupA:"有答案（A）", groupB:"无解题（B）",
+    retrieved:"检索页码", noans:"（此配置无数据）",
+    gold:"标准答案", noGold:"设计为无解题——正确行为是拒答",
+    base:"Baseline · 1.5B 直接作答", agent:"Agent · GLM-4-Flash 定位+核对",
+    vsBase:"vs baseline",
+    xAxis:"正确拒答率（%）→", yAxis:"幻觉率（%）",
+    promptZone:"prompt 能达到的范围",
+    tradeoffTitle:"拒答—幻觉权衡",
+    barTitle:"Baseline vs Agent",
+    tooltipAcc:"准确率", tooltipFerr:"事实错误", tooltipWref:"错误拒答",
+    tooltipHal:"幻觉", tooltipCref:"正确拒答", tooltipVague:"含糊通过",
+    variants:{original:"original",neutral:"neutral",allow_refusal:"allow_refusal",
+              cite_source:"cite_source",agent:"ReAct Agent"},
+    verdicts:{correct:"答对",correct_refusal:"正确拒答",hallucination:"幻觉",
+              factual_error:"事实错误",wrong_refusal:"错误拒答",vague_pass:"含糊",error:"错误"}
+  },
+  en: {
+    acc:"Accuracy", hal:"Hallucination", ferr:"Factual error", cref:"Correct refusal",
+    vs:"vs baseline",
+    higher:"higher is better", lower:"lower is better",
+    allq:"All", groupA:"Answerable (A)", groupB:"No-answer (B)",
+    retrieved:"Retrieved pages", noans:"(no data for this config)",
+    gold:"Gold", noGold:"By design has no answer — correct behavior is to refuse",
+    base:"Baseline · 1.5B direct", agent:"Agent · GLM-4-Flash locate+verify",
+    vsBase:"vs baseline",
+    xAxis:"Correctly refused (%) →", yAxis:"Hallucination (%)",
+    promptZone:"what prompt engineering can reach",
+    tradeoffTitle:"The refuse–hallucinate trade-off",
+    barTitle:"Baseline vs Agent",
+    tooltipAcc:"Accuracy", tooltipFerr:"Factual error", tooltipWref:"Wrong refusal",
+    tooltipHal:"Hallucination", tooltipCref:"Correct refusal", tooltipVague:"Vague pass",
+    variants:{original:"original",neutral:"neutral",allow_refusal:"allow_refusal",
+              cite_source:"cite_source",agent:"ReAct Agent"},
+    verdicts:{correct:"correct",correct_refusal:"correct refusal",hallucination:"hallucination",
+              factual_error:"factual error",wrong_refusal:"wrong refusal",vague_pass:"vague",error:"error"}
+  }
+};
+
+const PROMPT_C = {
+  original:"#c05559",
+  neutral:"#9aa3b2",
+  allow_refusal:"#5b8ac9",
+  cite_source:"#3f9b91"
+};
+const JITTER = { original:[-1.2,1.0], allow_refusal:[2.0,-2.4] };
+
+const D = window.ESG_DATA || { summary:{}, questions:[], variants:[] };
+let lang = "zh", filter = "all", selectedId = null;
+let tradeoffChart, barChart;
+
+function esc(s){
+  return String(s ?? "").replace(/[&<>"']/g, c =>
+    ({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[c]));
+}
+
+function signed(n){
+  if (n > 0) return "+" + n;
+  if (n < 0) return "−" + Math.abs(n);
+  return "0";
+}
+
+function applyCopy(){
+  document.querySelectorAll("[data-zh]").forEach(el => {
+    el.textContent = el.getAttribute("data-" + lang);
+  });
+  document.title = lang === "zh"
+    ? "一个 RAG 系统什么时候该说「我不知道」？"
+    : "When should a RAG system say “I don’t know”?";
+  document.documentElement.lang = lang;
+}
+
+function setLang(l){
+  lang = l;
+  document.getElementById("btn-zh").classList.toggle("on", l === "zh");
+  document.getElementById("btn-en").classList.toggle("on", l === "en");
+  applyCopy();
+  render();
+}
+
+function render(){
+  if (!D.summary || !D.summary.agent){
+    document.getElementById("cards").innerHTML =
+      `<div class="warn" style="grid-column:1/-1">${lang==="zh"
+        ? "未读到 data.js。请确认与本页同目录，并用浏览器直接打开。"
+        : "Could not load data.js. Keep it next to this file and open in a browser."}</div>`;
+    return;
+  }
+  renderCards();
+  renderFilters();
+  renderList();
+  renderTradeoff();
+  renderBars();
+  if (selectedId) showDetail(selectedId, false);
+}
+
+function renderCards(){
+  const t = T[lang];
+  const base = D.summary.neutral || {};
+  const ag = D.summary.agent || {};
+  const rows = [
+    {k:t.acc,  key:"accuracy",         better:"up"},
+    {k:t.hal,  key:"hallucination",    better:"down"},
+    {k:t.ferr, key:"factual_error",    better:"down"},
+    {k:t.cref, key:"correct_refusal",  better:"up"}
+  ];
+  document.getElementById("cards").innerHTML = rows.map(r => {
+    const v = ag[r.key];
+    const d = (v ?? 0) - (base[r.key] ?? 0);
+    const good = r.better === "up" ? d >= 0 : d <= 0;
+    return `<div class="card">
+      <div class="k">${r.k}</div>
+      <div class="v">${v ?? "—"}%</div>
+      <div class="d ${good ? "good" : "bad"}">${signed(d)} pt · ${t.vsBase}</div>
+    </div>`;
+  }).join("");
+}
+
+function chartTextStyle(){
+  return { color:"#6b7280", fontSize:12, fontFamily:"Helvetica Neue, Helvetica, Arial, sans-serif" };
+}
+
+function renderTradeoff(){
+  const t = T[lang];
+  const el = document.getElementById("tradeoff");
+  if (!window.echarts){
+    el.innerHTML = `<div class="warn">${lang==="zh"?"ECharts 未能从 CDN 加载。":"ECharts failed to load from CDN."}</div>`;
+    return;
+  }
+  if (!tradeoffChart) tradeoffChart = echarts.init(el);
+
+  const promptNames = ["original","neutral","allow_refusal","cite_source"];
+  const promptData = promptNames.map(name => {
+    const s = D.summary[name];
+    if (!s) return null;
+    const j = JITTER[name] || [0,0];
+    return {
+      value: [s.correct_refusal + j[0], s.hallucination + j[1]],
+      name,
+      raw: s,
+      itemStyle: { color: PROMPT_C[name] },
+      label: {
+        show: true,
+        formatter: t.variants[name],
+        position: name === "allow_refusal" ? "bottom" : "right",
+        color: "#1a1a2e",
+        fontSize: 12,
+        fontWeight: 600,
+        offset: name === "allow_refusal" ? [8, 8] : [8, 0]
+      }
+    };
+  }).filter(Boolean);
+
+  const ag = D.summary.agent;
+  const agentPoint = ag ? [{
+    value: [ag.correct_refusal, ag.hallucination],
+    name: "agent",
+    raw: ag,
+    label: {
+      show: true,
+      formatter: "ReAct Agent\nGLM-4-Flash",
+      position: "left",
+      color: "#e07a3f",
+      fontSize: 13,
+      fontWeight: 700,
+      lineHeight: 18
+    }
+  }] : [];
+
+  function tip(p){
+    const s = p.data.raw;
+    const label = t.variants[p.data.name] || p.data.name;
+    return `<b>${label}</b><br/>
+      ${t.tooltipCref}: ${s.correct_refusal}%<br/>
+      ${t.tooltipHal}: ${s.hallucination}%<br/>
+      ${t.tooltipAcc}: ${s.accuracy}%<br/>
+      ${t.tooltipFerr}: ${s.factual_error}%<br/>
+      ${t.tooltipWref}: ${s.wrong_refusal}%<br/>
+      ${t.tooltipVague}: ${s.vague_pass}%`;
+  }
+
+  tradeoffChart.setOption({
+    backgroundColor: "transparent",
+    animationDuration: 400,
+    grid: { left: 56, right: 28, top: 56, bottom: 52 },
+    tooltip: {
+      trigger: "item",
+      backgroundColor: "#fff",
+      borderColor: "#e5e7eb",
+      borderWidth: 1,
+      textStyle: { color: "#1a1a2e", fontSize: 12 },
+      extraCssText: "box-shadow:0 8px 24px rgba(26,26,46,.08);border-radius:8px;padding:10px 12px;"
+    },
+    xAxis: {
+      type: "value",
+      min: 40, max: 105,
+      name: t.xAxis,
+      nameLocation: "middle",
+      nameGap: 32,
+      nameTextStyle: chartTextStyle(),
+      splitLine: { lineStyle: { color: "#e5e7eb" } },
+      axisLine: { show: false },
+      axisTick: { show: false },
+      axisLabel: chartTextStyle()
+    },
+    yAxis: {
+      type: "value",
+      min: -4, max: 58,
+      name: t.yAxis,
+      nameLocation: "end",
+      nameGap: 12,
+      nameTextStyle: chartTextStyle(),
+      splitLine: { lineStyle: { color: "#e5e7eb" } },
+      axisLine: { show: false },
+      axisTick: { show: false },
+      axisLabel: chartTextStyle()
+    },
+    series: [
+      {
+        type: "scatter",
+        name: "prompt",
+        data: promptData,
+        symbolSize: 16,
+        itemStyle: { borderColor: "#fff", borderWidth: 2 },
+        tooltip: { formatter: tip },
+        z: 3,
+        markPoint: {
+          silent: true,
+          symbol: "circle",
+          symbolSize: 0,
+          label: {
+            show: true,
+            formatter: t.promptZone,
+            color: "#6b7280",
+            fontSize: 12,
+            fontStyle: "italic"
+          },
+          data: [{ coord: [53, 53] }]
+        }
+      },
+      {
+        type: "scatter",
+        name: "agent",
+        data: agentPoint,
+        symbol: "star",
+        symbolSize: 28,
+        itemStyle: { color: "#e07a3f", borderColor: "#fff", borderWidth: 2 },
+        tooltip: { formatter: tip },
+        z: 4
+      }
+    ]
+  }, true);
+
+  /* 椭圆圈出 prompt 群：用数据坐标，不手写 CSS 定位 */
+  requestAnimationFrame(() => {
+    const c = tradeoffChart.convertToPixel({ xAxisIndex: 0, yAxisIndex: 0 }, [53, 43]);
+    const r = tradeoffChart.convertToPixel({ xAxisIndex: 0, yAxisIndex: 0 }, [53 + 11.5, 43 - 8]);
+    if (!c || !r) return;
+    tradeoffChart.setOption({
+      graphic: [{
+        type: "ellipse",
+        silent: true,
+        shape: {
+          cx: c[0], cy: c[1],
+          rx: Math.abs(r[0] - c[0]),
+          ry: Math.abs(r[1] - c[1])
+        },
+        style: {
+          fill: "rgba(247,247,245,.9)",
+          stroke: "#e5e7eb",
+          lineDash: [5, 4],
+          lineWidth: 1
+        },
+        z: 0
+      }]
+    });
+  });
+}
+
+function renderBars(){
+  const t = T[lang];
+  const el = document.getElementById("bars");
+  if (!window.echarts) return;
+  if (!barChart) barChart = echarts.init(el);
+  const base = D.summary.neutral || {};
+  const ag = D.summary.agent || {};
+  const cats = [
+    { name: t.acc,  hint: t.higher, b: base.accuracy || 0, a: ag.accuracy || 0 },
+    { name: t.hal,  hint: t.lower,  b: base.hallucination || 0, a: ag.hallucination || 0 },
+    { name: t.ferr, hint: t.lower,  b: base.factual_error || 0, a: ag.factual_error || 0 }
+  ];
+
+  barChart.setOption({
+    backgroundColor: "transparent",
+    animationDuration: 400,
+    grid: { left: 40, right: 20, top: 56, bottom: 56 },
+    legend: {
+      top: 8, right: 12,
+      itemWidth: 12, itemHeight: 12, itemGap: 18,
+      textStyle: { color: "#1a1a2e", fontSize: 12 },
+      data: [t.base, t.agent]
+    },
+    tooltip: {
+      trigger: "axis",
+      axisPointer: { type: "shadow", shadowStyle: { color: "rgba(26,26,46,.04)" } },
+      backgroundColor: "#fff",
+      borderColor: "#e5e7eb",
+      borderWidth: 1,
+      textStyle: { color: "#1a1a2e", fontSize: 12 },
+      extraCssText: "box-shadow:0 8px 24px rgba(26,26,46,.08);border-radius:8px;",
+      formatter: params => {
+        const i = params[0].dataIndex;
+        const delta = cats[i].a - cats[i].b;
+        return `<b>${cats[i].name}</b> <span style="color:#6b7280">(${cats[i].hint})</span><br/>` +
+          params.map(p => `${p.marker}${p.seriesName}: <b>${p.value}%</b>`).join("<br/>") +
+          `<br/><span style="color:#e07a3f;font-weight:700">${signed(delta)} pt</span>`;
+      }
+    },
+    xAxis: {
+      type: "category",
+      data: cats.map(c => c.name),
+      axisTick: { show: false },
+      axisLine: { lineStyle: { color: "#e5e7eb" } },
+      axisLabel: {
+        color: "#1a1a2e",
+        fontSize: 12,
+        lineHeight: 16,
+        formatter: (val, idx) => val + "\n{hint|" + cats[idx].hint + "}",
+        rich: { hint: { color: "#6b7280", fontSize: 11, lineHeight: 18 } }
+      }
+    },
+    yAxis: {
+      type: "value",
+      max: 80,
+      splitLine: { lineStyle: { color: "#e5e7eb" } },
+      axisLine: { show: false },
+      axisTick: { show: false },
+      axisLabel: { ...chartTextStyle(), formatter: "{value}" }
+    },
+    series: [
+      {
+        name: t.base,
+        type: "bar",
+        barWidth: 28,
+        barGap: "40%",
+        data: cats.map(c => c.b),
+        itemStyle: { color: "#a8b0bd", borderRadius: [3,3,0,0] },
+        label: { show: true, position: "top", color: "#6b7280", fontWeight: 700, fontSize: 12, formatter: "{c}%" }
+      },
+      {
+        name: t.agent,
+        type: "bar",
+        barWidth: 28,
+        data: cats.map(c => c.a),
+        itemStyle: { color: "#2c6e6a", borderRadius: [3,3,0,0] },
+        label: {
+          show: true, position: "top", fontWeight: 700, fontSize: 12,
+          formatter: "{c}%",
+          color: p => (p.value === 0 || p.value === 62) ? "#e07a3f" : "#1a1a2e"
+        }
+      }
+    ]
+  }, true);
+}
+
+function renderFilters(){
+  const t = T[lang];
+  const fs = [["all", t.allq], ["A", t.groupA], ["B", t.groupB]];
+  document.getElementById("filters").innerHTML = fs.map(([k, v]) =>
+    `<button type="button" class="chip ${filter===k?"on":""}" data-filter="${k}">${v}</button>`
+  ).join("");
+}
+
+function renderList(){
+  const qs = D.questions.filter(q => filter === "all" || q.group === filter);
+  document.getElementById("qlist").innerHTML = qs.map(q => `
+    <div class="qitem ${selectedId===q.id?"sel":""}" data-id="${esc(q.id)}">
+      <span class="qid">${esc(q.id)}</span>
+      <span class="qtext">${esc(q.question)}</span>
+      <span class="qtag ${q.group==="A"?"tagA":"tagB"}">${q.group}</span>
+    </div>`).join("");
+}
+
+function showDetail(id, scroll){
+  const t = T[lang];
+  const q = D.questions.find(x => x.id === id);
+  if (!q) return;
+  selectedId = id;
+  document.querySelectorAll(".qitem").forEach(el => el.classList.toggle("sel", el.dataset.id === id));
+
+  const col = (title, a) => {
+    if (!a) return `<div class="col"><h4>${title}</h4><div class="ans" style="color:var(--muted)">${t.noans}</div></div>`;
+    const pages = Array.isArray(a.pages) && a.pages.length
+      ? `<div class="pages">${t.retrieved}: ${a.pages.join(", ")}</div>` : "";
+    const vb = `<span class="vbadge v-${esc(a.verdict)}">${esc(t.verdicts[a.verdict] || a.verdict)}</span>`;
+    return `<div class="col"><h4>${title}</h4><div class="ans">${esc(a.text || "—")}</div>${pages}${vb}</div>`;
+  };
+
+  const goldLine = q.group === "A"
+    ? `${t.gold}: <b>${esc(q.gold)}</b>${q.gold_page != null ? ` (p.${esc(q.gold_page)})` : ""}`
+    : t.noGold;
+
+  const box = document.getElementById("detail");
+  box.innerHTML = `
+    <div class="q">${esc(q.id)} · ${esc(q.company)}</div>
+    <div class="qm">${esc(q.question)}<br>${goldLine}</div>
+    <div class="cmp">${col(t.base, q.answers.neutral || q.answers.original)}${col(t.agent, q.answers.agent)}</div>`;
+  box.classList.add("show");
+  if (scroll !== false) box.scrollIntoView({ behavior: "smooth", block: "nearest" });
+}
+
+document.getElementById("btn-zh").addEventListener("click", () => setLang("zh"));
+document.getElementById("btn-en").addEventListener("click", () => setLang("en"));
+document.getElementById("filters").addEventListener("click", e => {
+  const btn = e.target.closest("[data-filter]");
+  if (!btn) return;
+  filter = btn.dataset.filter;
+  render();
+});
+document.getElementById("qlist").addEventListener("click", e => {
+  const item = e.target.closest(".qitem");
+  if (item) showDetail(item.dataset.id);
+});
+window.addEventListener("resize", () => {
+  tradeoffChart && tradeoffChart.resize();
+  barChart && barChart.resize();
+  if (tradeoffChart) renderTradeoff();
+});
+
+applyCopy();
+render();
+</script>
+</body>
+</html>

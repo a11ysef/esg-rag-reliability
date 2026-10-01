@@ -1,0 +1,100 @@
+{
+  "company": "Walmart",
+  "msci_source_file": "ESG Ratings & Climate Search Tool - MSCI.pdf",
+  "sp_source_file": "S&P Global.pdf",
+  "msci_rating": {
+    "value": "BBB",
+    "evidence": "17% | BBB",
+    "confidence": "found_high"
+  },
+  "msci_implied_temp_rise_c": {
+    "value": "1.7",
+    "evidence": "2°C ALIGNED | – | 1.7°C",
+    "confidence": "found_high"
+  },
+  "msci_target_year": {
+    "value": "2030",
+    "evidence": "YES | YES | 2030 | 100.0% | -11.41% p.a.",
+    "confidence": "found_high"
+  },
+  "msci_target_coverage_pct": {
+    "value": "100.0",
+    "evidence": "YES | YES | 2030 | 100.0% | -11.41% p.a.",
+    "confidence": "found_high"
+  },
+  "msci_annual_reduction_pct": {
+    "value": "-11.41",
+    "evidence": "YES | YES | 2030 | 100.0% | -11.41% p.a.",
+    "confidence": "found_high"
+  },
+  "msci_rating_history": {
+    "value": [
+      {
+        "period": "Dec-20",
+        "rating": "A"
+      },
+      {
+        "period": "Dec-21",
+        "rating": "BBB"
+      },
+      {
+        "period": "Nov-22",
+        "rating": "BBB"
+      },
+      {
+        "period": "Dec-23",
+        "rating": "BBB"
+      },
+      {
+        "period": "Dec-24",
+        "rating": "BBB"
+      }
+    ],
+    "evidence": "ESG Rating history | MSCI ESG Rating history data over the last ﬁve years or since records began. | AAA | AA | A | BBB | BB | B | CCC | A | BBB | BBB | BBB | BBB | Dec-20 | Dec-21 | Nov-22 | Dec-23 | Dec-24",
+    "confidence": "found_high"
+  },
+  "sp_overall_score": {
+    "value": "50",
+    "evidence": "50 | Data Availability :",
+    "confidence": "found_high"
+  },
+  "sp_csa_score": {
+    "value": "49",
+    "evidence": "Score Composition | https://www.spglobal.com/esg/scores/results?cid=3005566 | 1/9 | ___ | 2025/3/22 22:05 | S&P Global | 100 | 75 | 50 | 25 | 0 | 494949 | 505050 | S&P Global | CSA Score | Score Breakdown | 111 | Modeled | Scores | S&P Global | ESG Score | Walmart Inc. | Industry Max | Industry Mean",
+    "confidence": "found_low"
+  },
+  "sp_modeled_score": {
+    "value": "1",
+    "evidence": "Score Composition | https://www.spglobal.com/esg/scores/results?cid=3005566 | 1/9 | ___ | 2025/3/22 22:05 | S&P Global | 100 | 75 | 50 | 25 | 0 | 494949 | 505050 | S&P Global | CSA Score | Score Breakdown | 111 | Modeled | Scores | S&P Global | ESG Score | Walmart Inc. | Industry Max | Industry Mean",
+    "confidence": "found_low"
+  },
+  "sp_dimension_scores": {
+    "value": {
+      "environmental": {
+        "value": "67",
+        "industry_mean": "33",
+        "industry_max": "89",
+        "evidence": "Environmental  Walmart Inc. 67 Industry Mean 33 Industry Max 89 ",
+        "confidence": "found_high"
+      },
+      "social": {
+        "value": "32",
+        "industry_mean": "33",
+        "industry_max": "98",
+        "evidence": "Social  Walmart Inc. 32 Industry Mean 33 Industry Max 98 ",
+        "confidence": "found_high"
+      },
+      "governance": {
+        "value": "52",
+        "industry_mean": "34",
+        "industry_max": "91",
+        "evidence": "Governance & Economic  Walmart Inc. 52 Industry Mean 34 Industry Max 91 ",
+        "confidence": "found_high"
+      }
+    },
+    "evidence": null,
+    "confidence": "found_high"
+  },
+  "needs_manual_review": [],
+  "parsed_at": "2026-09-07T07:31:33.690271+00:00"
+}

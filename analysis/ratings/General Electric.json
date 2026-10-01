@@ -1,0 +1,100 @@
+{
+  "company": "General Electric",
+  "msci_source_file": "ESG Ratings & Climate Search Tool - MSCI.pdf",
+  "sp_source_file": "S&P Global.pdf",
+  "msci_rating": {
+    "value": "BBB",
+    "evidence": "13% | BBB",
+    "confidence": "found_high"
+  },
+  "msci_implied_temp_rise_c": {
+    "value": "3.2",
+    "evidence": "Climate Target and Commitments → MSCI ONE → Would the company's emissions goals be enough to help keep global warming to 1.5°C? – MSCI IMPLIED TEMPERATURE RISE STRONGLY MISALIGNED over 3.2°C An Implied Temperature Rise of above 3.2°C indicates that GENERAL ELECTRIC COMPANY is strongly misaligned wit",
+    "confidence": "found_low"
+  },
+  "msci_target_year": {
+    "value": "2050",
+    "evidence": "YES | YES | 2050 | 94.57% | -3.32% p.a.",
+    "confidence": "found_high"
+  },
+  "msci_target_coverage_pct": {
+    "value": "94.57",
+    "evidence": "YES | YES | 2050 | 94.57% | -3.32% p.a.",
+    "confidence": "found_high"
+  },
+  "msci_annual_reduction_pct": {
+    "value": "-3.32",
+    "evidence": "YES | YES | 2050 | 94.57% | -3.32% p.a.",
+    "confidence": "found_high"
+  },
+  "msci_rating_history": {
+    "value": [
+      {
+        "period": "Dec-20",
+        "rating": "A"
+      },
+      {
+        "period": "Dec-21",
+        "rating": "BBB"
+      },
+      {
+        "period": "Dec-22",
+        "rating": "BBB"
+      },
+      {
+        "period": "Dec-23",
+        "rating": "BB"
+      },
+      {
+        "period": "Dec-24",
+        "rating": "BB"
+      }
+    ],
+    "evidence": "ESG Rating history | MSCI ESG Rating history data over the last five years or since records began. | AAA | AA | A | BBB | BB | B | CCC | A | BBB | BBB | BB | BB | Dec-20 | Dec-21 | Dec-22 | Dec-23 | Dec-24",
+    "confidence": "found_high"
+  },
+  "sp_overall_score": {
+    "value": "47",
+    "evidence": "47 | Data Availability :",
+    "confidence": "found_high"
+  },
+  "sp_csa_score": {
+    "value": "38",
+    "evidence": "S&P Global CSA Score = 38",
+    "confidence": "found_high"
+  },
+  "sp_modeled_score": {
+    "value": "9",
+    "evidence": "Modeled Scores = 9",
+    "confidence": "found_high"
+  },
+  "sp_dimension_scores": {
+    "value": {
+      "environmental": {
+        "value": "46",
+        "industry_mean": "38",
+        "industry_max": "89",
+        "evidence": "Environmental  General Electric Co. 46 Industry Mean 38 Industry Max 89 ",
+        "confidence": "found_high"
+      },
+      "social": {
+        "value": "47",
+        "industry_mean": "39",
+        "industry_max": "84",
+        "evidence": "Social  General Electric Co. 47 Industry Mean 39 Industry Max 84 ",
+        "confidence": "found_high"
+      },
+      "governance": {
+        "value": "48",
+        "industry_mean": "38",
+        "industry_max": "86",
+        "evidence": "Governance & Economic  General Electric Co. 48 Industry Mean 38 Industry Max 86 ",
+        "confidence": "found_high"
+      }
+    },
+    "evidence": null,
+    "confidence": "found_high"
+  },
+  "needs_manual_review": [],
+  "parsed_at": "2026-09-07T07:30:51.408055+00:00"
+}

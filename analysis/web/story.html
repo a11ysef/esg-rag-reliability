@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ESG 报告 RAG：从幻觉诊断到 Agent 改造</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="data.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/echarts@5.5.1/dist/echarts.min.js"></script>
+<style>
+  :root{
+    --ink:#1a1a2e; --muted:#6b7280; --hair:#ececec; --accent:#e07a3f;
+    --agent:#2c6e6a; --bad:#b23b3b; --soft:#f7f7f5;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:Inter,"Helvetica Neue",Helvetica,Arial,"PingFang SC","Noto Sans SC",sans-serif;
+    color:var(--ink);background:#fff;font-size:17px;line-height:1.75;
+    -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+  }
+  .bar{
+    position:fixed;inset:0 0 auto;z-index:20;
+    display:flex;align-items:center;justify-content:space-between;
+    padding:14px 32px;background:rgba(255,255,255,.8);
+    backdrop-filter:saturate(180%) blur(16px);
+  }
+  .brand{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);font-weight:500}
+  .lang button{
+    border:0;background:transparent;color:var(--muted);font:500 12px/1 Inter,sans-serif;
+    padding:6px 8px;cursor:pointer;letter-spacing:.04em;
+  }
+  .lang button.on{color:var(--ink)}
+  .wrap{max-width:680px;margin:0 auto;padding:0 24px 140px}
+  .kicker{
+    font-size:11px;letter-spacing:.18em;text-transform:uppercase;
+    color:var(--muted);font-weight:500;margin-bottom:16px;
+  }
+  h1{
+    font-size:clamp(32px,4.6vw,44px);font-weight:500;letter-spacing:-.038em;
+    line-height:1.12;max-width:14em;
+  }
+  h2{font-size:26px;font-weight:500;letter-spacing:-.03em;line-height:1.25;margin:0 0 14px}
+  h3{font-size:16px;font-weight:500;letter-spacing:-.01em;margin:4px 0 6px}
+  .prop{margin-top:22px;color:var(--muted);max-width:34em;font-size:18px;line-height:1.55;font-weight:400}
+  .lede{color:var(--muted);max-width:34em;margin:0 0 8px}
+  p{margin:16px 0;max-width:34em}
+  .note{font-size:13.5px;color:var(--muted);line-height:1.6;max-width:34em;margin:10px 0 0}
+  .good{color:var(--agent)} .bad{color:var(--bad)} .hi{color:var(--accent)}
+  .cover{padding:132px 0 24px}
+  .ch{padding:108px 0 0}
+  .band{
+    display:grid;grid-template-columns:repeat(var(--cols,2),1fr);
+    margin:40px 0 8px;border-top:1px solid var(--hair);border-bottom:1px solid var(--hair);
+  }
+  .band > div{padding:28px 0}
+  .band > div + div{padding-left:28px;border-left:1px solid var(--hair);margin-left:0}
+  .lab{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-weight:500}
+  .num{font-size:34px;font-weight:400;letter-spacing:-.04em;line-height:1.1;margin-top:10px;font-variant-numeric:tabular-nums}
+  .sub{font-size:13.5px;color:var(--muted);margin-top:8px}
+  .hero{
+    display:grid;grid-template-columns:1fr auto 1fr;align-items:end;gap:12px;
+    margin:48px 0 8px;padding:32px 0;border-top:1px solid var(--hair);border-bottom:1px solid var(--hair);
+  }
+  .hero .num{font-size:40px}
+  .hero .from .num{color:var(--muted)}
+  .hero .to .num{color:var(--accent)}
+  .hero .arrow{color:var(--hair);font-size:18px;padding-bottom:8px}
+  pre{
+    font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+    font-size:13px;line-height:1.6;color:var(--ink);
+    background:var(--soft);padding:20px 22px;margin:24px 0;border-radius:0;
+    overflow-x:auto;
+  }
+  table{width:100%;border-collapse:collapse;margin:32px 0;font-size:14.5px}
+  th,td{text-align:left;padding:11px 0;border-bottom:1px solid var(--hair);vertical-align:top}
+  th{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:500}
+  td.n,th.n{text-align:right;font-variant-numeric:tabular-nums;padding-left:16px}
+  tr.base td{font-weight:500}
+  .rows{margin:32px 0}
+  .row{padding:26px 0;border-top:1px solid var(--hair)}
+  .row:last-child{border-bottom:1px solid var(--hair)}
+  .idx{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);font-weight:500}
+  .vals{display:flex;flex-wrap:wrap;gap:8px 22px;font-size:14.5px;margin-top:8px}
+  .vals b{font-weight:500}
+  .mono{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:15px;letter-spacing:-.02em;margin-top:8px}
+  .chart-box{height:400px;margin:36px -8px 4px}
+  .filters{display:flex;gap:4px;margin:28px 0 0}
+  .chip{
+    border:0;background:transparent;color:var(--muted);padding:8px 10px 8px 0;
+    font:500 13px/1 Inter,sans-serif;cursor:pointer;
+  }
+  .chip.on{color:var(--ink)}
+  .qlist{margin-top:8px;border-top:1px solid var(--hair)}
+  .qitem{
+    display:flex;align-items:baseline;gap:16px;padding:14px 0;
+    border-bottom:1px solid var(--hair);cursor:pointer;
+  }
+  .qitem.sel .qtext,.qitem:hover .qtext{color:var(--ink)}
+  .qid{font-size:12px;color:var(--muted);width:40px;flex-shrink:0;font-variant-numeric:tabular-nums}
+  .qtext{flex:1;font-size:15px;color:#3f3f50}
+  .qtag{font-size:11px;color:var(--muted);letter-spacing:.08em}
+  .detail{display:none;padding:28px 0 8px}
+  .detail.show{display:block}
+  .detail .q{font-size:15px;font-weight:500;margin-bottom:6px}
+  .detail .qm{font-size:13.5px;color:var(--muted);margin-bottom:20px;line-height:1.6}
+  .cmp{display:grid;grid-template-columns:1fr 1fr;gap:32px}
+  .cmp .col h4{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:500;margin-bottom:10px}
+  .cmp .col .ans{font-size:13.5px;line-height:1.6;white-space:pre-wrap;word-break:break-word}
+  .vbadge{display:inline-block;font-size:11px;font-weight:500;margin-top:12px;letter-spacing:.04em}
+  .v-correct,.v-correct_refusal{color:var(--agent)}
+  .v-hallucination,.v-factual_error{color:var(--bad)}
+  .v-wrong_refusal{color:#96702a}
+  .v-vague_pass,.v-error{color:var(--muted)}
+  .pages{font-size:12.5px;color:var(--muted);margin-top:8px}
+  .toc{display:flex;flex-wrap:wrap;gap:10px 20px;margin-top:56px;padding-top:28px;border-top:1px solid var(--hair)}
+  .toc a{font-size:12.5px;color:var(--muted);text-decoration:none}
+  .toc a:hover{color:var(--ink)}
+  .lim{margin:8px 0 0;padding:0;list-style:none;max-width:34em}
+  .lim li{font-size:14.5px;color:var(--muted);padding:14px 0;border-top:1px solid var(--hair)}
+  footer{margin-top:56px;padding-top:24px;border-top:1px solid var(--hair);font-size:13px;color:var(--muted);max-width:34em}
+  @media(max-width:680px){
+    .wrap{padding:0 20px 100px}
+    .bar{padding:12px 16px}
+    h1{font-size:30px}
+    h2{font-size:22px}
+    .hero,.band,.cmp{grid-template-columns:1fr}
+    .hero .arrow{display:none}
+    .band > div + div{padding-left:0;border-left:0;border-top:1px solid var(--hair)}
+    .chart-box{height:320px;margin-left:0;margin-right:0}
+    .ch{padding:80px 0 0}
+    .cover{padding:108px 0 8px}
+  }
+</style>
+</head>
+<body>
+<div class="bar">
+  <div class="brand">ESG RAG</div>
+  <div class="lang">
+    <button id="btn-zh" class="on" type="button">中文</button>
+    <button id="btn-en" type="button">EN</button>
+  </div>
+</div>
+
+<article class="wrap">
+
+<section class="cover" id="c0">
+  <div class="kicker" data-zh="检索增强问答 · 可靠性研究" data-en="RAG reliability · a field study"></div>
+  <h1 data-zh="ESG 报告 RAG：从幻觉诊断到 Agent 改造"
+      data-en="ESG-Report RAG: From Hallucination Diagnosis to an Agentic Fix"></h1>
+  <p class="prop"
+     data-zh="拒答与幻觉是同一参数的两端，存在一条可测量、可决策的权衡边界。"
+     data-en="Refusal and hallucination are two ends of one parameter — a measurable, decidable trade-off."></p>
+
+  <div class="hero">
+    <div class="from">
+      <div class="lab" data-zh="Baseline 幻觉率" data-en="Baseline hallucination"></div>
+      <div class="num">46%</div>
+    </div>
+    <div class="arrow">→</div>
+    <div class="to">
+      <div class="lab" data-zh="Agent 幻觉率" data-en="Agent hallucination"></div>
+      <div class="num">0%</div>
+    </div>
+  </div>
+  <p class="note"
+     data-zh="无解题。baseline = prompt·neutral；Agent = GLM-4-Flash，同一套定位+核对策略。"
+     data-en="No-answer items. Baseline = prompt·neutral; Agent = GLM-4-Flash, same locate-and-verify strategy."></p>
+
+  <div class="band" style="--cols:3">
+    <div><div class="lab" data-zh="准确率" data-en="Accuracy"></div><div class="num hi">50% → 62%</div></div>
+    <div><div class="lab" data-zh="事实错误" data-en="Factual error"></div><div class="num hi">27% → 15%</div></div>
+    <div><div class="lab" data-zh="正确拒答" data-en="Correct refusal"></div><div class="num hi">46% → 100%</div></div>
+  </div>
+  <p class="lede" style="margin-top:28px"
+     data-zh="同样的定位+核对策略，配上够强的模型（GLM-4-Flash），把无解题幻觉率从 46% 降到 0%，同时准确率 50%→62%、事实错误 27%→15%。"
+     data-en="The same locate-and-verify strategy, on a strong enough model (GLM-4-Flash), cuts no-answer hallucination from 46% to 0%, while accuracy moves 50%→62% and factual error 27%→15%."></p>
+  <nav class="toc">
+    <a href="#c1" data-zh="01 起点" data-en="01 Origin"></a>
+    <a href="#c2" data-zh="02 数据" data-en="02 Corpus"></a>
+    <a href="#c3" data-zh="03 评测集" data-en="03 Benchmark"></a>
+    <a href="#c4" data-zh="04 Prompt" data-en="04 Prompts"></a>
+    <a href="#c5" data-zh="05 检索" data-en="05 Retrieval"></a>
+    <a href="#c6" data-zh="06 取数" data-en="06 Extraction"></a>
+    <a href="#c7" data-zh="07 Agent" data-en="07 Agent"></a>
+    <a href="#c8" data-zh="08 部署" data-en="08 Deploy"></a>
+    <a href="#c9" data-zh="09 逐题" data-en="09 Explorer"></a>
+    <a href="#c10" data-zh="10 结论" data-en="10 Verdict"></a>
+  </nav>
+</section>
+
+<section class="ch" id="c1">
+  <div class="kicker" data-zh="01 起点" data-en="01 Origin"></div>
+  <h2 data-zh="同一模型上的两种失败" data-en="Two failure modes on one model"></h2>
+  <p class="lede" data-zh="问答链路过度保守，评价链路过度自信。" data-en="The QA path is too conservative; the critique path is too confident."></p>
+  <div class="band">
+    <div>
+      <div class="lab" data-zh="问答链路 · 抽事实" data-en="QA path · extract facts"></div>
+      <div class="num bad">55%</div>
+      <div class="sub" data-zh="拒答（41/74）" data-en="refused (41/74)"></div>
+    </div>
+    <div>
+      <div class="lab" data-zh="评价链路 · 综合评价" data-en="Critique path · company write-up"></div>
+      <div class="num bad">100%</div>
+      <div class="sub" data-zh="幻觉（7/7）" data-en="hallucinated (7/7)"></div>
+    </div>
+  </div>
+  <p data-zh="幻觉的直接诱因写在评价链路的 system prompt 里：" data-en="The direct cause of hallucination sat in the critique system prompt:"></p>
+  <pre>Make sure to always answer it confidently, even if you don't know the answer.</pre>
+  <p class="note"
+     data-zh="旧文档写拒答率 54%；本项目统一采用自建脚本实测的 55%（41/74）。两条链路温度不同（0.5 vs 1.0），任务结构也不同——唯一变量是 prompt 不能仅凭此下结论，必须靠后面的受控实验。"
+     data-en="Older notes said 54% refusal; this project uses the measured 55% (41/74). The two paths also differ in temperature (0.5 vs 1.0) and task structure — prompt as the only variable cannot be concluded from this alone."></p>
+</section>
+
+<section class="ch" id="c2">
+  <div class="kicker" data-zh="02 数据修复" data-en="02 Corpus repair"></div>
+  <h2 data-zh="清洗脚本截断了 1546 处数字" data-en="The cleaner truncated 1,546 numbers"></h2>
+  <p class="lede" data-zh="本意删页码的正则，把 ESG 数据表里每个数字的前 1–2 位一起删掉了。" data-en="A regex meant to strip page numbers also stripped the first 1–2 digits of every table value."></p>
+  <pre>re.sub(r"(?&lt;=\n)\d{1,2}", "", text)   <span class="note" data-zh="# 本意：删页码" data-en="# intended: drop page numbers"></span></pre>
+  <div class="row" style="margin-top:8px">
+    <div class="lab" data-zh="Alphabet 第 33 页" data-en="Alphabet, page 33"></div>
+    <p class="mono">3,423,400  <span class="note">→</span>  <span class="bad">,423,400</span></p>
+    <p class="note" data-zh="已截图确认。" data-en="Confirmed on screenshot."></p>
+  </div>
+  <div class="band">
+    <div>
+      <div class="lab" data-zh="修复前" data-en="Before"></div>
+      <div class="num bad">1546</div>
+      <div class="sub" data-zh="50 家公司残缺数字" data-en="broken numbers across 50 firms"></div>
+    </div>
+    <div>
+      <div class="lab" data-zh="修复后" data-en="After"></div>
+      <div class="num good">0</div>
+      <div class="sub" data-zh="1 处检测假阳性：J&amp;J GRI 编号" data-en="1 false positive: a J&amp;J GRI list delimiter"></div>
+    </div>
+  </div>
+  <p data-zh="最重的三家：Meta 303、Apple 240、Alphabet 194。不修就标注评测集，会得到一批人能查到、RAG 因数据残缺永远答不对的题。"
+     data-en="Worst hit: Meta 303, Apple 240, Alphabet 194. Labeling a benchmark on the broken corpus would have produced items humans can look up but RAG can never get right."></p>
+</section>
+
+<section class="ch" id="c3">
+  <div class="kicker" data-zh="03 评测集" data-en="03 Benchmark"></div>
+  <h2 data-zh="同一套题同时测幻觉与拒答" data-en="One benchmark for hallucination and refusal"></h2>
+  <p class="lede" data-zh="Alphabet / Apple / Meta · A 组 26 题（有答案）+ B 组 13 题（故意无解）= 39 题。" data-en="Alphabet / Apple / Meta · 26 answerable (A) + 13 adversarial no-answer (B) = 39 items."></p>
+  <table>
+    <thead>
+      <tr>
+        <th></th>
+        <th data-zh="A 组（有答案）" data-en="Group A (has an answer)"></th>
+        <th data-zh="B 组（无答案）" data-en="Group B (no answer)"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td data-zh="答对" data-en="Right"></td>
+        <td class="good" data-zh="正确" data-en="Correct"></td>
+        <td class="note">—</td>
+      </tr>
+      <tr>
+        <td data-zh="答错" data-en="Wrong"></td>
+        <td class="bad" data-zh="事实错误" data-en="Factual error"></td>
+        <td class="bad" data-zh="幻觉" data-en="Hallucination"></td>
+      </tr>
+      <tr>
+        <td data-zh="拒答" data-en="Refuse"></td>
+        <td class="bad" data-zh="错误拒答" data-en="Wrong refusal"></td>
+        <td class="good" data-zh="正确拒答" data-en="Correct refusal"></td>
+      </tr>
+    </tbody>
+  </table>
+  <p data-zh="刻意设计：同句双数字、年份/口径干扰项、语义区分题、B 组难度梯度。B 组逐题核实报告确实没有。一道原拟无解题（Meta 的 WUE 水效）核实时发现报告实有数据（0.18），及时转为 A 组——否则会把正确回答误判为幻觉。"
+     data-en="Designed on purpose: two numbers in one sentence, year/definition distractors, semantic distinctions, a difficulty gradient on B. Every B item was checked as truly absent. A planned no-answer item (Meta WUE) was found in the report (0.18) and moved to A — otherwise a correct answer would have been scored as hallucination."></p>
+  <p class="note"
+     data-zh="判分脚本经 4 轮修正（年份误判、think 污染、词边界、混合回答中幻觉优先于拒答）。修复混合回答判定后，B 组幻觉率从 12% 跳到 46%——判分严格度直接改变核心指标。"
+     data-en="The scorer went through 4 revisions (year misfires, think-block pollution, word boundaries, hallucination-over-refusal in mixed answers). After fixing mixed-answer scoring, B-group hallucination jumped from 12% to 46% — scorer strictness moves the headline metric."></p>
+</section>
+
+<section class="ch" id="c4">
+  <div class="kicker" data-zh="04 发现一" data-en="04 Finding 1"></div>
+  <h2 data-zh="Prompt 改变措辞，不改变大盘" data-en="Prompts change wording, not the ledger"></h2>
+  <p class="lede" data-zh="deepseek-r1:1.5b，temperature=0，固定 seed。38/39 题措辞都变了，幻觉率仍停在 38–46%。" data-en="deepseek-r1:1.5b, temperature=0, fixed seed. Wording changed on 38/39 items; hallucination still sat at 38–46%."></p>
+  <div class="chart-box" id="tradeoff"></div>
+  <p class="note" data-zh="横轴：该拒答时正确拒答；纵轴：该拒答时却编造。四组 prompt 挤在高幻觉区；Agent 在右下角。读 data.js。" data-en="X: correctly refused when it should. Y: fabricated when it should refuse. Four prompts cluster high; the agent sits bottom-right. From data.js."></p>
+  <table>
+    <thead>
+      <tr>
+        <th>prompt</th>
+        <th class="n" data-zh="准确率" data-en="Acc."></th>
+        <th class="n" data-zh="错误拒答" data-en="Wrong ref."></th>
+        <th class="n" data-zh="幻觉率" data-en="Halluc."></th>
+        <th class="n" data-zh="正确拒答" data-en="Corr. ref."></th>
+        <th class="n" data-zh="含糊" data-en="Vague"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>original</td><td class="n">58%</td><td class="n">19%</td><td class="n">46%</td><td class="n">54%</td><td class="n">0%</td></tr>
+      <tr class="base"><td>neutral · baseline</td><td class="n">50%</td><td class="n">23%</td><td class="n">46%</td><td class="n">46%</td><td class="n">8%</td></tr>
+      <tr><td>allow_refusal</td><td class="n">58%</td><td class="n">23%</td><td class="n">46%</td><td class="n">54%</td><td class="n">0%</td></tr>
+      <tr><td>cite_source</td><td class="n">50%</td><td class="n">23%</td><td class="n">38%</td><td class="n">62%</td><td class="n">0%</td></tr>
+    </tbody>
+  </table>
+  <p data-zh="cite_source 唯一明显效果：幻觉 46%→38%，且是两好一坏（修好两道金额类幻觉、弄坏一道）。B 组仅 13 题，个位数翻转对百分比影响大，属方向性观察。"
+     data-en="cite_source’s only clear move: hallucination 46%→38%, and it was two-good-one-bad (fixed two dollar-amount hallucinations, broke one). Group B has only 13 items; single flips swing the percentage — directional, not statistical."></p>
+</section>
+
+<section class="ch" id="c5">
+  <div class="kicker" data-zh="05 发现二" data-en="05 Finding 2"></div>
+  <h2 data-zh="检索命中不决定答对" data-en="A retrieval hit does not decide a correct answer"></h2>
+  <p class="lede" data-zh="1.5B baseline，embedding = nomic 768 维。A 组按标准答案页是否进 top-5 × 是否答对。" data-en="1.5B baseline, nomic embeddings (768-d). Group A: gold page in top-5 × whether the answer was correct."></p>
+  <table>
+    <thead>
+      <tr>
+        <th></th>
+        <th class="n" data-zh="答对" data-en="Correct"></th>
+        <th class="n" data-zh="答错" data-en="Wrong"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td data-zh="检索命中" data-en="Retrieved"></td><td class="n">8</td><td class="n">6</td></tr>
+      <tr><td data-zh="检索未命中" data-en="Missed"></td><td class="n">7</td><td class="n">5</td></tr>
+    </tbody>
+  </table>
+  <div class="band">
+    <div>
+      <div class="lab" data-zh="命中时答对率" data-en="Accuracy when retrieved"></div>
+      <div class="num">57%</div>
+      <div class="sub">8 / 14</div>
+    </div>
+    <div>
+      <div class="lab" data-zh="未命中时答对率" data-en="Accuracy when missed"></div>
+      <div class="num">58%</div>
+      <div class="sub">7 / 12</div>
+    </div>
+  </div>
+  <p data-zh="该组整体检索命中率 54%（标准答案页进 top-5 的比例）。云端 Agent 换用智谱 embedding-3（2048 维），命中率为 38%，两者不可直接比。"
+     data-en="Overall gold-page-in-top-5 rate on this split: 54%. The cloud agent used Zhipu embedding-3 (2048-d) with a 38% hit rate — not comparable."></p>
+</section>
+
+<section class="ch" id="c6">
+  <div class="kicker" data-zh="06 发现三" data-en="06 Finding 3"></div>
+  <h2 data-zh="瓶颈在取数精度" data-en="The bottleneck is extraction precision"></h2>
+  <p class="lede" data-zh="两类失败：答案被淹没（内容在 context 里却说找不到）；相似数字干扰（近义指标语义太接近）。" data-en="Two failure types: the answer drowned in context, and near-synonym numbers that the model cannot tell apart."></p>
+  <div class="rows">
+    <div class="row">
+      <div class="idx">A001</div>
+      <h3 data-zh="Alphabet Scope 1 排放" data-en="Alphabet Scope 1 emissions"></h3>
+      <div class="vals">
+        <span>gold <b class="good">79,400</b></span>
+        <span>baseline <b class="bad">14.3M</b></span>
+        <span class="note" data-zh="把总排放当成 Scope 1" data-en="took Total emissions as Scope 1"></span>
+      </div>
+    </div>
+    <div class="row">
+      <div class="idx">A013</div>
+      <h3 data-zh="Apple 2023 包装塑料占比" data-en="Apple 2023 packaging plastic share"></h3>
+      <div class="vals">
+        <span>gold <b class="good">3%</b></span>
+        <span>baseline <b class="bad">21%</b></span>
+        <span class="note" data-zh="取错年份（2015 基线值）" data-en="wrong year (2015 baseline)"></span>
+      </div>
+    </div>
+    <div class="row">
+      <div class="idx">A011</div>
+      <h3 data-zh="Apple 回收钴占比" data-en="Apple recycled cobalt share"></h3>
+      <div class="vals">
+        <span>gold <b class="good">56%</b></span>
+        <span>baseline <b class="bad">100%</b></span>
+        <span class="note" data-zh="取到同页另一个数" data-en="grabbed a different number on the same page"></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="ch" id="c7">
+  <div class="kicker" data-zh="07 发现四" data-en="07 Finding 4"></div>
+  <h2 data-zh="Agent：定位 + 核对" data-en="Agent: locate + verify"></h2>
+  <p class="lede" data-zh="不做改写 query 重试——检索不是瓶颈。ReAct 循环按相似度逐个片段定位，再核对标签与口径。" data-en="Not rewrite-query-and-retry — retrieval is not the bottleneck. A ReAct loop walks chunks by similarity, then verifies labels and definitions."></p>
+  <div class="band">
+    <div>
+      <div class="idx">LOCATE</div>
+      <h3 data-zh="定位" data-en="Locate"></h3>
+      <p class="note" data-zh="不把 top-5 一次性塞入；按相似度逐个聚焦单个片段，处理答案被淹没。" data-en="Do not dump top-5 at once. Focus one similar chunk at a time so the answer is not drowned."></p>
+    </div>
+    <div>
+      <div class="idx">VERIFY</div>
+      <h3 data-zh="核对" data-en="Verify"></h3>
+      <p class="note" data-zh="取数后核对：这个数字的标签是否正是问题所问，排除相邻年份/口径。" data-en="After extracting a number, check that its label is exactly what was asked — not a neighboring year or definition."></p>
+    </div>
+  </div>
+  <p class="note" data-zh="工程取舍：初版让模型选序号定位，1.5B 指令跟随弱、格式失败导致误拒答；改为确定性遍历 + 模型只做最小 VERIFY 判断。" data-en="Engineering note: v1 asked the model to pick an index; 1.5B instruction-following was weak and format failures became false refusals. Switched to deterministic traversal + a minimal VERIFY judgment."></p>
+  <div class="chart-box" id="bars" style="height:380px"></div>
+  <p class="note" data-zh="baseline = prompt·neutral（1.5B 直接作答）。柱状图读 data.js。" data-en="Baseline = prompt·neutral (1.5B direct). Chart from data.js."></p>
+  <div class="band" style="--cols:4">
+    <div><div class="lab" data-zh="准确率" data-en="Accuracy"></div><div class="num hi">+12</div></div>
+    <div><div class="lab" data-zh="事实错误" data-en="Factual error"></div><div class="num hi">−12</div></div>
+    <div><div class="lab" data-zh="幻觉率" data-en="Hallucination"></div><div class="num hi">−46</div></div>
+    <div><div class="lab" data-zh="正确拒答" data-en="Correct refusal"></div><div class="num hi">+54</div></div>
+  </div>
+  <table>
+    <thead>
+      <tr>
+        <th data-zh="配置" data-en="Setup"></th>
+        <th class="n" data-zh="准确率" data-en="Acc."></th>
+        <th class="n" data-zh="事实错误" data-en="Fact. err."></th>
+        <th class="n" data-zh="幻觉率" data-en="Halluc."></th>
+        <th class="n" data-zh="正确拒答" data-en="Corr. ref."></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="base">
+        <td data-zh="baseline（1.5B 直接作答，=neutral）" data-en="baseline (1.5B direct = neutral)"></td>
+        <td class="n">50%</td><td class="n">27%</td><td class="n">46%</td><td class="n">46%</td>
+      </tr>
+      <tr>
+        <td data-zh="Agent（1.5B，定位+核对）" data-en="Agent (1.5B, locate+verify)"></td>
+        <td class="n" colspan="4" data-zh="更差（把简单题搞砸）" data-en="Worse (broke easy items)"></td>
+      </tr>
+      <tr>
+        <td data-zh="Agent（GLM-4-Flash，定位+核对）" data-en="Agent (GLM-4-Flash, locate+verify)"></td>
+        <td class="n">62%</td><td class="n">15%</td><td class="n">0%</td><td class="n">100%</td>
+      </tr>
+    </tbody>
+  </table>
+  <p data-zh="策略有效，但有能力门槛：1.5B 跨不过，复杂策略反成负担。即使 GLM-4-Flash，仍有相似数字干扰题取错（A011 答 52 vs 56、A023 答 25 vs 18）。Agent 版为不幻觉而偏保守，A 组错误拒答 23%——操作点在宁可拒答不可编造。"
+     data-en="The strategy works past a capability floor: 1.5B cannot clear it. Even GLM-4-Flash still misses near-synonym items (A011: 52 vs 56; A023: 25 vs 18). The agent is conservative to avoid hallucination — Group A wrong refusal 23%, an operate-at-refuse-rather-than-invent point."></p>
+</section>
+
+<section class="ch" id="c8">
+  <div class="kicker" data-zh="08 发现五" data-en="08 Finding 5"></div>
+  <h2 data-zh="8GB 跑不动 7B" data-en="8GB cannot run 7B"></h2>
+  <p class="lede" data-zh="能本地跑的模型（1.5B）撑不住 agentic 任务；能力够的（7B+）本地跑不动。" data-en="The model that fits locally (1.5B) cannot carry an agentic task; the one that can (7B+) will not load."></p>
+  <div class="rows">
+    <div class="row" data-zh="deepseek-r1:7b 本地加载即崩溃，报错 resource limitations。" data-en="deepseek-r1:7b crashes on load: resource limitations."></div>
+    <div class="row" data-zh="mistral-7b 单独可跑，但与向量检索并发时服务频繁 502。" data-en="mistral-7b runs alone; concurrent retrieval produces frequent 502s."></div>
+    <div class="row" data-zh="机器为 8GB 内存 Mac，重启后可用物理内存仅剩约 200MB。" data-en="The machine is an 8GB Mac; after reboot, ~200MB physical RAM remained free."></div>
+  </div>
+  <p data-zh="解法：检索与生成在时间上解耦。Agent 环节接入云端 GLM API（embedding+生成走云，本地零占用），仅对评测涉及的 3 家公司重算 1004 个 chunk 向量（Alphabet 404 + Apple 426 + Meta 174）对齐维度。系统主体仍为本地私有化部署；上云本身印证了私有化部署在 agentic 任务上的资源天花板。"
+     data-en="Fix: decouple retrieval and generation in time. The agent step uses cloud GLM (embedding + generation off-box, zero local RAM), recomputing 1,004 chunk vectors for the three eval firms (Alphabet 404 + Apple 426 + Meta 174) to align dimensions. The system remains locally private; the cloud step is evidence of the resource ceiling on agentic private deploy."></p>
+</section>
+
+<section class="ch" id="c9">
+  <div class="kicker" data-zh="09 逐题" data-en="09 Explorer"></div>
+  <h2 data-zh="逐题对照 baseline 与 Agent" data-en="Item-level baseline vs agent"></h2>
+  <p class="lede" data-zh="点开任意一题：标准答案、baseline（neutral）与 Agent 的回答、判定、检索页码。数据来自 data.js。" data-en="Open any item: gold, baseline (neutral) vs agent, verdict, retrieved pages. From data.js."></p>
+  <div class="filters" id="filters"></div>
+  <div class="qlist" id="qlist"></div>
+  <div class="detail" id="detail"></div>
+</section>
+
+<section class="ch" id="c10">
+  <div class="kicker" data-zh="10 结论" data-en="10 Verdict"></div>
+  <h2 data-zh="五条判断" data-en="Five decisions"></h2>
+  <div class="rows">
+    <article class="row"><div class="idx">01</div><p data-zh="不要指望 prompt 解决可靠性——它调表达，不调大盘。" data-en="Do not expect prompts to fix reliability. They change wording, not the ledger."></p></article>
+    <article class="row"><div class="idx">02</div><p data-zh="不要盲目优化检索召回——召回上去了，取数取错照样白搭；先定位真瓶颈。" data-en="Do not blindly chase retrieval recall. A hit with the wrong number is still a miss. Find the real bottleneck first."></p></article>
+    <article class="row"><div class="idx">03</div><p data-zh="真正的杠杆是取数核对 + 足够的模型能力，且需匹配任务复杂度与模型能力。" data-en="The real lever is extraction verification plus enough model capability, matched to task complexity."></p></article>
+    <article class="row"><div class="idx">04</div><p data-zh="可靠性的操作点是业务决策：金融/医疗设在宁可拒答不可编造，客服/检索可更激进；哪些 case 转人工由曲线上的操作点决定。" data-en="Where you sit on the curve is a business choice: finance/health at refuse-rather-than-invent; support/search can be more aggressive. Human handoff is that operating point."></p></article>
+    <article class="row"><div class="idx">05</div><p data-zh="私有化部署要提前算能力 × 资源账——所需能力可能落在本地硬件之外。" data-en="Private deploy needs a capability × resource budget in advance. The needed capability may sit outside local hardware."></p></article>
+  </div>
+  <h2 style="margin-top:64px" data-zh="局限" data-en="Limits"></h2>
+  <ul class="lim">
+    <li data-zh="评测集 39 题，规模偏小（B 组尤其，13 题），结论为方向性。" data-en="39 items is small (especially B, 13). Findings are directional."></li>
+    <li data-zh="跨 embedding 模型（本地 nomic 768 维 vs 云端 GLM 2048 维），baseline 与云端 Agent 的检索行为不完全可比。" data-en="Embeddings differ (local nomic 768-d vs cloud GLM 2048-d); retrieval of baseline vs cloud agent is not fully comparable."></li>
+    <li data-zh="取数精度未根治，Agent 显著缓解但仍有残留错误。" data-en="Extraction precision is not solved. The agent eases it; errors remain."></li>
+    <li data-zh="未做 deepseek-r1:7b 同源的 Agent 验证（本地跑不动），能力门槛结论基于 GLM-4-Flash 单点。" data-en="No same-family Agent check on deepseek-r1:7b (would not load). The capability-floor claim rests on GLM-4-Flash as a single stronger point."></li>
+  </ul>
+  <footer>
+    <span data-zh="数字以 analysis/DATA_FACTS.md 为准。baseline = prompt·neutral。交互图与逐题来自同目录 data.js。"
+          data-en="Numbers follow analysis/DATA_FACTS.md. Baseline = prompt·neutral. Charts and items from data.js in this folder."></span>
+  </footer>
+</section>
+
+</article>
+
+<script>
+const T = {
+  zh: {
+    acc:"准确率", hal:"幻觉率", ferr:"事实错误",
+    higher:"越高越好", lower:"越低越好",
+    allq:"全部", groupA:"有答案（A）", groupB:"无解题（B）",
+    retrieved:"检索页码", noans:"（此配置无数据）",
+    gold:"标准答案", noGold:"设计为无解题——正确行为是拒答",
+    base:"Baseline · 1.5B 直接作答", agent:"Agent · GLM-4-Flash 定位+核对",
+    xAxis:"正确拒答率（%）→", yAxis:"幻觉率（%）",
+    promptZone:"prompt 能达到的范围",
+    tooltipAcc:"准确率", tooltipFerr:"事实错误", tooltipWref:"错误拒答",
+    tooltipHal:"幻觉", tooltipCref:"正确拒答", tooltipVague:"含糊",
+    variants:{original:"original",neutral:"neutral",allow_refusal:"allow_refusal",
+              cite_source:"cite_source",agent:"ReAct Agent"},
+    verdicts:{correct:"答对",correct_refusal:"正确拒答",hallucination:"幻觉",
+              factual_error:"事实错误",wrong_refusal:"错误拒答",vague_pass:"含糊",error:"错误"}
+  },
+  en: {
+    acc:"Accuracy", hal:"Hallucination", ferr:"Factual error",
+    higher:"higher is better", lower:"lower is better",
+    allq:"All", groupA:"Answerable (A)", groupB:"No-answer (B)",
+    retrieved:"Retrieved pages", noans:"(no data for this config)",
+    gold:"Gold", noGold:"By design has no answer — correct behavior is to refuse",
+    base:"Baseline · 1.5B direct", agent:"Agent · GLM-4-Flash locate+verify",
+    xAxis:"Correctly refused (%) →", yAxis:"Hallucination (%)",
+    promptZone:"what prompt engineering can reach",
+    tooltipAcc:"Accuracy", tooltipFerr:"Factual error", tooltipWref:"Wrong refusal",
+    tooltipHal:"Hallucination", tooltipCref:"Correct refusal", tooltipVague:"Vague",
+    variants:{original:"original",neutral:"neutral",allow_refusal:"allow_refusal",
+              cite_source:"cite_source",agent:"ReAct Agent"},
+    verdicts:{correct:"correct",correct_refusal:"correct refusal",hallucination:"hallucination",
+              factual_error:"factual error",wrong_refusal:"wrong refusal",vague_pass:"vague",error:"error"}
+  }
+};
+const PROMPT_C = { original:"#c05559", neutral:"#9aa3b2", allow_refusal:"#5b8ac9", cite_source:"#3f9b91" };
+const JITTER = { original:[-1.2,1.0], allow_refusal:[2.0,-2.4] };
+const D = window.ESG_DATA || { summary:{}, questions:[], variants:[] };
+let lang = "zh", filter = "all", selectedId = null;
+let tradeoffChart, barChart;
+
+function esc(s){
+  return String(s ?? "").replace(/[&<>"']/g, c =>
+    ({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[c]));
+}
+function signed(n){ return n > 0 ? "+"+n : n < 0 ? "−"+Math.abs(n) : "0"; }
+function applyCopy(){
+  document.querySelectorAll("[data-zh]").forEach(el => {
+    el.textContent = el.getAttribute("data-" + lang);
+  });
+  document.title = lang === "zh"
+    ? "ESG 报告 RAG：从幻觉诊断到 Agent 改造"
+    : "ESG-Report RAG: From Hallucination Diagnosis to an Agentic Fix";
+  document.documentElement.lang = lang;
+}
+function setLang(l){
+  lang = l;
+  document.getElementById("btn-zh").classList.toggle("on", l === "zh");
+  document.getElementById("btn-en").classList.toggle("on", l === "en");
+  applyCopy();
+  renderCharts();
+  renderExplorer();
+  if (selectedId) showDetail(selectedId, false);
+}
+function chartText(){ return { color:"#6b7280", fontSize:12, fontFamily:"Inter, Helvetica Neue, Helvetica, Arial, sans-serif" }; }
+
+function renderTradeoff(){
+  const el = document.getElementById("tradeoff");
+  if (!window.echarts || !D.summary.agent) return;
+  if (!tradeoffChart) tradeoffChart = echarts.init(el);
+  const t = T[lang];
+  const promptNames = ["original","neutral","allow_refusal","cite_source"];
+  const promptData = promptNames.map(name => {
+    const s = D.summary[name]; if (!s) return null;
+    const j = JITTER[name] || [0,0];
+    return {
+      value:[s.correct_refusal + j[0], s.hallucination + j[1]], name, raw:s,
+      itemStyle:{ color: PROMPT_C[name] },
+      label:{ show:true, formatter:t.variants[name],
+        position: name==="allow_refusal" ? "bottom" : "right",
+        color:"#1a1a2e", fontSize:12, fontWeight:500,
+        offset: name==="allow_refusal" ? [8,8] : [8,0] }
+    };
+  }).filter(Boolean);
+  const ag = D.summary.agent;
+  const tip = p => {
+    const s = p.data.raw;
+    return `<b>${t.variants[p.data.name]||p.data.name}</b><br/>
+      ${t.tooltipCref}: ${s.correct_refusal}%<br/>${t.tooltipHal}: ${s.hallucination}%<br/>
+      ${t.tooltipAcc}: ${s.accuracy}%<br/>${t.tooltipFerr}: ${s.factual_error}%<br/>
+      ${t.tooltipWref}: ${s.wrong_refusal}%<br/>${t.tooltipVague}: ${s.vague_pass}%`;
+  };
+  tradeoffChart.setOption({
+    backgroundColor:"transparent", grid:{ left:48, right:16, top:48, bottom:48 },
+    tooltip:{ trigger:"item", backgroundColor:"#fff", borderColor:"#ececec", borderWidth:1,
+      textStyle:{ color:"#1a1a2e", fontSize:12, fontFamily:"Inter, sans-serif" },
+      extraCssText:"border-radius:6px;padding:10px 12px;" },
+    xAxis:{ type:"value", min:40, max:105, name:t.xAxis, nameLocation:"middle", nameGap:32,
+      nameTextStyle:chartText(), splitLine:{ lineStyle:{ color:"#f0f0f0" } },
+      axisLine:{ show:false }, axisTick:{ show:false }, axisLabel:chartText() },
+    yAxis:{ type:"value", min:-4, max:58, name:t.yAxis, nameLocation:"end", nameGap:12,
+      nameTextStyle:chartText(), splitLine:{ lineStyle:{ color:"#f0f0f0" } },
+      axisLine:{ show:false }, axisTick:{ show:false }, axisLabel:chartText() },
+    series:[
+      { type:"scatter", data:promptData, symbolSize:14,
+        itemStyle:{ borderColor:"#fff", borderWidth:2 }, tooltip:{ formatter:tip }, z:3,
+        markPoint:{ silent:true, symbol:"circle", symbolSize:0,
+          label:{ show:true, formatter:t.promptZone, color:"#6b7280", fontSize:12, fontStyle:"italic" },
+          data:[{ coord:[53,53] }] } },
+      { type:"scatter", data:[{ value:[ag.correct_refusal, ag.hallucination], name:"agent", raw:ag,
+          label:{ show:true, formatter:"ReAct Agent\nGLM-4-Flash", position:"left",
+            color:"#e07a3f", fontSize:12, fontWeight:500, lineHeight:18 } }],
+        symbol:"star", symbolSize:22,
+        itemStyle:{ color:"#e07a3f", borderColor:"#fff", borderWidth:2 },
+        tooltip:{ formatter:tip }, z:4 }
+    ]
+  }, true);
+  requestAnimationFrame(() => {
+    const c = tradeoffChart.convertToPixel({xAxisIndex:0,yAxisIndex:0}, [53,43]);
+    const r = tradeoffChart.convertToPixel({xAxisIndex:0,yAxisIndex:0}, [53+11.5, 43-8]);
+    if (!c || !r) return;
+    tradeoffChart.setOption({ graphic:[{ type:"ellipse", silent:true,
+      shape:{ cx:c[0], cy:c[1], rx:Math.abs(r[0]-c[0]), ry:Math.abs(r[1]-c[1]) },
+      style:{ fill:"rgba(247,247,245,.85)", stroke:"#ececec", lineDash:[4,4], lineWidth:1 }, z:0 }] });
+  });
+}
+
+function renderBars(){
+  const el = document.getElementById("bars");
+  if (!window.echarts || !D.summary.agent) return;
+  if (!barChart) barChart = echarts.init(el);
+  const t = T[lang];
+  const base = D.summary.neutral || {};
+  const ag = D.summary.agent || {};
+  const cats = [
+    { name:t.acc, hint:t.higher, b:base.accuracy||0, a:ag.accuracy||0 },
+    { name:t.hal, hint:t.lower,  b:base.hallucination||0, a:ag.hallucination||0 },
+    { name:t.ferr, hint:t.lower, b:base.factual_error||0, a:ag.factual_error||0 }
+  ];
+  barChart.setOption({
+    backgroundColor:"transparent", grid:{ left:36, right:12, top:48, bottom:52 },
+    legend:{ top:8, right:8, itemWidth:10, itemHeight:10, itemGap:16,
+      textStyle:{ color:"#6b7280", fontSize:12, fontFamily:"Inter, sans-serif" }, data:[t.base, t.agent] },
+    tooltip:{ trigger:"axis", axisPointer:{ type:"shadow", shadowStyle:{ color:"rgba(26,26,46,.03)" } },
+      backgroundColor:"#fff", borderColor:"#ececec", borderWidth:1, textStyle:{ color:"#1a1a2e", fontSize:12 },
+      extraCssText:"border-radius:6px;",
+      formatter: params => {
+        const i = params[0].dataIndex;
+        return `<b>${cats[i].name}</b> <span style="color:#6b7280">(${cats[i].hint})</span><br/>` +
+          params.map(p => `${p.marker}${p.seriesName}: <b>${p.value}%</b>`).join("<br/>") +
+          `<br/><span style="color:#e07a3f">${signed(cats[i].a-cats[i].b)} pt</span>`;
+      } },
+    xAxis:{ type:"category", data:cats.map(c=>c.name), axisTick:{ show:false },
+      axisLine:{ lineStyle:{ color:"#ececec" } },
+      axisLabel:{ color:"#1a1a2e", fontSize:12, lineHeight:16, fontFamily:"Inter, sans-serif",
+        formatter:(val,idx)=> val+"\n{hint|"+cats[idx].hint+"}",
+        rich:{ hint:{ color:"#6b7280", fontSize:11, lineHeight:18 } } } },
+    yAxis:{ type:"value", max:80, splitLine:{ lineStyle:{ color:"#f0f0f0" } },
+      axisLine:{ show:false }, axisTick:{ show:false },
+      axisLabel:{ ...chartText(), formatter:"{value}" } },
+    series:[
+      { name:t.base, type:"bar", barWidth:22, barGap:"50%", data:cats.map(c=>c.b),
+        itemStyle:{ color:"#a8b0bd" },
+        label:{ show:true, position:"top", color:"#6b7280", fontSize:11, formatter:"{c}%" } },
+      { name:t.agent, type:"bar", barWidth:22, data:cats.map(c=>c.a),
+        itemStyle:{ color:"#2c6e6a" },
+        label:{ show:true, position:"top", fontSize:11, formatter:"{c}%",
+          color: p => (p.value===0 || p.value===62) ? "#e07a3f" : "#1a1a2e" } }
+    ]
+  }, true);
+}
+
+function renderCharts(){ renderTradeoff(); renderBars(); }
+
+function renderExplorer(){
+  const t = T[lang];
+  document.getElementById("filters").innerHTML =
+    [["all",t.allq],["A",t.groupA],["B",t.groupB]].map(([k,v]) =>
+      `<button type="button" class="chip ${filter===k?"on":""}" data-filter="${k}">${v}</button>`).join("");
+  const qs = (D.questions||[]).filter(q => filter==="all" || q.group===filter);
+  document.getElementById("qlist").innerHTML = qs.map(q => `
+    <div class="qitem ${selectedId===q.id?"sel":""}" data-id="${esc(q.id)}">
+      <span class="qid">${esc(q.id)}</span>
+      <span class="qtext">${esc(q.question)}</span>
+      <span class="qtag">${q.group}</span>
+    </div>`).join("");
+}
+
+function showDetail(id, scroll){
+  const t = T[lang];
+  const q = (D.questions||[]).find(x => x.id === id);
+  if (!q) return;
+  selectedId = id;
+  document.querySelectorAll(".qitem").forEach(el => el.classList.toggle("sel", el.dataset.id === id));
+  const col = (title, a) => {
+    if (!a) return `<div class="col"><h4>${title}</h4><div class="ans" style="color:var(--muted)">${t.noans}</div></div>`;
+    const pages = Array.isArray(a.pages) && a.pages.length
+      ? `<div class="pages">${t.retrieved}: ${a.pages.join(", ")}</div>` : "";
+    return `<div class="col"><h4>${title}</h4><div class="ans">${esc(a.text||"—")}</div>${pages}
+      <span class="vbadge v-${esc(a.verdict)}">${esc(t.verdicts[a.verdict]||a.verdict)}</span></div>`;
+  };
+  const goldLine = q.group==="A"
+    ? `${t.gold}: <b>${esc(q.gold)}</b>${q.gold_page!=null?` (p.${esc(q.gold_page)})`:""}`
+    : t.noGold;
+  const box = document.getElementById("detail");
+  box.innerHTML = `<div class="q">${esc(q.id)} · ${esc(q.company)}</div>
+    <div class="qm">${esc(q.question)}<br>${goldLine}</div>
+    <div class="cmp">${col(t.base, q.answers.neutral)}${col(t.agent, q.answers.agent)}</div>`;
+  box.classList.add("show");
+  if (scroll !== false) box.scrollIntoView({ behavior:"smooth", block:"nearest" });
+}
+
+document.getElementById("btn-zh").addEventListener("click", () => setLang("zh"));
+document.getElementById("btn-en").addEventListener("click", () => setLang("en"));
+document.getElementById("filters").addEventListener("click", e => {
+  const btn = e.target.closest("[data-filter]");
+  if (!btn) return;
+  filter = btn.dataset.filter;
+  renderExplorer();
+});
+document.getElementById("qlist").addEventListener("click", e => {
+  const item = e.target.closest(".qitem");
+  if (item) showDetail(item.dataset.id);
+});
+window.addEventListener("resize", () => {
+  tradeoffChart && tradeoffChart.resize();
+  barChart && barChart.resize();
+  if (tradeoffChart) renderTradeoff();
+});
+
+applyCopy();
+renderCharts();
+renderExplorer();
+</script>
+</body>
+</html>

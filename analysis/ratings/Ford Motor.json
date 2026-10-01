@@ -1,0 +1,79 @@
+{
+  "company": "Ford Motor",
+  "msci_source_file": "ESG Ratings & Climate Search Tool - MSCI.pdf",
+  "sp_source_file": "S&P Global.pdf",
+  "msci_rating": {
+    "value": "BB",
+    "evidence": "19% | BB",
+    "confidence": "found_high"
+  },
+  "msci_implied_temp_rise_c": {
+    "value": "1.9",
+    "evidence": "2°C ALIGNED | – | 1.9°C",
+    "confidence": "found_high"
+  },
+  "msci_target_year": {
+    "value": "2035",
+    "evidence": "YES | YES | 2035 | 58.51% | -1.59% p.a.",
+    "confidence": "found_high"
+  },
+  "msci_target_coverage_pct": {
+    "value": "58.51",
+    "evidence": "YES | YES | 2035 | 58.51% | -1.59% p.a.",
+    "confidence": "found_high"
+  },
+  "msci_annual_reduction_pct": {
+    "value": "-1.59",
+    "evidence": "YES | YES | 2035 | 58.51% | -1.59% p.a.",
+    "confidence": "found_high"
+  },
+  "msci_rating_history": {
+    "value": null,
+    "evidence": "ESG Rating history | MSCI ESG Rating history data over the last five years or since records began. | AAA | AA | A | BBB | BB | B | CCC | BB | BB | BB | B | B | May-20 May-21 | Oct-22 | Oct-23 | Oct-24",
+    "confidence": "found_low"
+  },
+  "sp_overall_score": {
+    "value": "38",
+    "evidence": "38 | Data Availability :",
+    "confidence": "found_high"
+  },
+  "sp_csa_score": {
+    "value": "33",
+    "evidence": "Score Composition | 100 | 50 | 0 | 333333 | 383838 | S&P Global | CSA Score | Score Breakdown | 555 | Modeled | Scores | S&P Global ESG Score | Ford Motor Co. | Industry Max | Industry Mean",
+    "confidence": "found_low"
+  },
+  "sp_modeled_score": {
+    "value": "5",
+    "evidence": "Score Composition | 100 | 50 | 0 | 333333 | 383838 | S&P Global | CSA Score | Score Breakdown | 555 | Modeled | Scores | S&P Global ESG Score | Ford Motor Co. | Industry Max | Industry Mean",
+    "confidence": "found_low"
+  },
+  "sp_dimension_scores": {
+    "value": {
+      "environmental": {
+        "value": "49",
+        "industry_mean": "43",
+        "industry_max": "82",
+        "evidence": "Environmental  Ford Motor Co. 49 Industry Mean 43 Industry Max 82 ",
+        "confidence": "found_high"
+      },
+      "social": {
+        "value": "30",
+        "industry_mean": "43",
+        "industry_max": "85",
+        "evidence": "Social  Ford Motor Co. 30 Industry Mean 43 Industry Max 85 ",
+        "confidence": "found_high"
+      },
+      "governance": {
+        "value": "34",
+        "industry_mean": "42",
+        "industry_max": "79",
+        "evidence": "Governance & Economic  Ford Motor Co. 34 Industry Mean 42 Industry Max 79 ",
+        "confidence": "found_high"
+      }
+    },
+    "evidence": null,
+    "confidence": "found_high"
+  },
+  "needs_manual_review": [],
+  "parsed_at": "2026-09-07T07:30:55.205719+00:00"
+}

@@ -1,0 +1,79 @@
+{
+  "company": "UnitedHealth Group",
+  "msci_source_file": "ESG Ratings & Climate Search Tool - MSCI.pdf",
+  "sp_source_file": "S&P Global.pdf",
+  "msci_rating": {
+    "value": "A",
+    "evidence": "35% | A",
+    "confidence": "found_high"
+  },
+  "msci_implied_temp_rise_c": {
+    "value": "1.6",
+    "evidence": "2°C ALIGNED | – | 1.6°C",
+    "confidence": "found_high"
+  },
+  "msci_target_year": {
+    "value": "2035",
+    "evidence": "YES | YES | 2035 | 1.45% | 0.94% p.a.",
+    "confidence": "found_high"
+  },
+  "msci_target_coverage_pct": {
+    "value": "1.45",
+    "evidence": "YES | YES | 2035 | 1.45% | 0.94% p.a.",
+    "confidence": "found_high"
+  },
+  "msci_annual_reduction_pct": {
+    "value": "0.94",
+    "evidence": "YES | YES | 2035 | 1.45% | 0.94% p.a.",
+    "confidence": "found_high"
+  },
+  "msci_rating_history": {
+    "value": null,
+    "evidence": "ESG Rating history | MSCI ESG Rating history data over the last five years or since records began. | AAA | AA | A | BBB | BB | B | CCC | AA | AA | A | BBB | BB | A ug-21 | M ay-22 | A ug-22 | A ug-23 | Jul-24",
+    "confidence": "found_low"
+  },
+  "sp_overall_score": {
+    "value": "44",
+    "evidence": "44 | Data Availability :",
+    "confidence": "found_high"
+  },
+  "sp_csa_score": {
+    "value": "44",
+    "evidence": "S&P Global CSA Score = 44",
+    "confidence": "found_high"
+  },
+  "sp_modeled_score": {
+    "value": "0",
+    "evidence": "Modeled Scores = 0",
+    "confidence": "found_high"
+  },
+  "sp_dimension_scores": {
+    "value": {
+      "environmental": {
+        "value": "58",
+        "industry_mean": "28",
+        "industry_max": "78",
+        "evidence": "Environmental  UnitedHealth Group Inc. 58 Industry Mean 28 Industry Max 78 ",
+        "confidence": "found_high"
+      },
+      "social": {
+        "value": "54",
+        "industry_mean": "30",
+        "industry_max": "91",
+        "evidence": "Social  UnitedHealth Group Inc. 54 Industry Mean 30 Industry Max 91 ",
+        "confidence": "found_high"
+      },
+      "governance": {
+        "value": "30",
+        "industry_mean": "34",
+        "industry_max": "80",
+        "evidence": "Governance & Economic  UnitedHealth Group Inc. 30 Industry Mean 34 Industry Max 80 ",
+        "confidence": "found_high"
+      }
+    },
+    "evidence": null,
+    "confidence": "found_high"
+  },
+  "needs_manual_review": [],
+  "parsed_at": "2026-09-07T07:30:31.389717+00:00"
+}

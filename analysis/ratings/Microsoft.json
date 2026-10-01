@@ -1,0 +1,100 @@
+{
+  "company": "Microsoft",
+  "msci_source_file": "ESG Ratings & Climate Search Tool - MSCI.pdf",
+  "sp_source_file": "S&P Global.pdf",
+  "msci_rating": {
+    "value": "A",
+    "evidence": "24% | A",
+    "confidence": "found_high"
+  },
+  "msci_implied_temp_rise_c": {
+    "value": "1.4",
+    "evidence": "1.5°C ALIGNED | – | 1.4°C",
+    "confidence": "found_high"
+  },
+  "msci_target_year": {
+    "value": "2045",
+    "evidence": "YES | YES | 2045 | 100.0% | -3.79% p.a.",
+    "confidence": "found_high"
+  },
+  "msci_target_coverage_pct": {
+    "value": "100.0",
+    "evidence": "YES | YES | 2045 | 100.0% | -3.79% p.a.",
+    "confidence": "found_high"
+  },
+  "msci_annual_reduction_pct": {
+    "value": "-3.79",
+    "evidence": "YES | YES | 2045 | 100.0% | -3.79% p.a.",
+    "confidence": "found_high"
+  },
+  "msci_rating_history": {
+    "value": [
+      {
+        "period": "Mar-21",
+        "rating": "AAA"
+      },
+      {
+        "period": "Feb-22",
+        "rating": "AAA"
+      },
+      {
+        "period": "Feb-23",
+        "rating": "AAA"
+      },
+      {
+        "period": "Feb-24",
+        "rating": "AA"
+      },
+      {
+        "period": "Feb-25",
+        "rating": "A"
+      }
+    ],
+    "evidence": "ESG Rating history | MSCI ESG Rating history data over the last five years or since records began. | AAA | AAA | AAA | AA | A | AAA | AA | A | BBB | BB | B | CCC | Mar-21 | Feb-22 | Feb-23 | Feb-24 | Feb-25",
+    "confidence": "found_high"
+  },
+  "sp_overall_score": {
+    "value": "53",
+    "evidence": "53 | Data Availability :",
+    "confidence": "found_high"
+  },
+  "sp_csa_score": {
+    "value": "50",
+    "evidence": "Score Composition | 100 | 50 | 0 | 505050 | 535353 | S&P Global | CSA Score | Score Breakdown | 333 | Modeled | Scores | S&P Global ESG Score | Microsoft Corp. | Industry Max | Industry Mean",
+    "confidence": "found_low"
+  },
+  "sp_modeled_score": {
+    "value": "3",
+    "evidence": "Score Composition | 100 | 50 | 0 | 505050 | 535353 | S&P Global | CSA Score | Score Breakdown | 333 | Modeled | Scores | S&P Global ESG Score | Microsoft Corp. | Industry Max | Industry Mean",
+    "confidence": "found_low"
+  },
+  "sp_dimension_scores": {
+    "value": {
+      "environmental": {
+        "value": "73",
+        "industry_mean": "22",
+        "industry_max": "92",
+        "evidence": "Environmental  Microsoft Corp. 73 Industry Mean 22 Industry Max 92 ",
+        "confidence": "found_high"
+      },
+      "social": {
+        "value": "40",
+        "industry_mean": "25",
+        "industry_max": "84",
+        "evidence": "Social  Microsoft Corp. 40 Industry Mean 25 Industry Max 84 ",
+        "confidence": "found_high"
+      },
+      "governance": {
+        "value": "52",
+        "industry_mean": "36",
+        "industry_max": "77",
+        "evidence": "Governance & Economic  Microsoft Corp. 52 Industry Mean 36 Industry Max 77 ",
+        "confidence": "found_high"
+      }
+    },
+    "evidence": null,
+    "confidence": "found_high"
+  },
+  "needs_manual_review": [],
+  "parsed_at": "2026-09-07T07:32:10.340833+00:00"
+}

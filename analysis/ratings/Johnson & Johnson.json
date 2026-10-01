@@ -1,0 +1,81 @@
+{
+  "company": "Johnson & Johnson",
+  "msci_source_file": "ESG Ratings & Climate Search Tool - MSCI.pdf",
+  "sp_source_file": "S&P Global.pdf",
+  "msci_rating": {
+    "value": "A",
+    "evidence": "37% | A",
+    "confidence": "found_high"
+  },
+  "msci_implied_temp_rise_c": {
+    "value": "1.3",
+    "evidence": "1.5°C ALIGNED | – | 1.3°C",
+    "confidence": "found_high"
+  },
+  "msci_target_year": {
+    "value": "2050",
+    "evidence": "YES | YES | 2050 | 100.0% | -3.14% p.a.",
+    "confidence": "found_high"
+  },
+  "msci_target_coverage_pct": {
+    "value": "100.0",
+    "evidence": "YES | YES | 2050 | 100.0% | -3.14% p.a.",
+    "confidence": "found_high"
+  },
+  "msci_annual_reduction_pct": {
+    "value": "-3.14",
+    "evidence": "YES | YES | 2050 | 100.0% | -3.14% p.a.",
+    "confidence": "found_high"
+  },
+  "msci_rating_history": {
+    "value": null,
+    "evidence": "ESG Rating history | MSCI ESG Rating history data over the last five years or since records began. | AAA | AA | A | BBB | BBB | BBB | BB | B | CCC | A | A | A | Dec-20 | Dec-21 | Aug-22 | Aug-23 | Aug-24",
+    "confidence": "found_low"
+  },
+  "sp_overall_score": {
+    "value": "27",
+    "evidence": "27 | Data Availability :",
+    "confidence": "found_high"
+  },
+  "sp_csa_score": {
+    "value": "0",
+    "evidence": "Score Composition | 100 | 50 | 0 | 272727 | 272727 | S&P Global | CSA Score | Score Breakdown | 000 | Modeled | Scores | S&P Global | ESG Score | Johnson & Johnson | Industry Max | Industry Mean",
+    "confidence": "found_low"
+  },
+  "sp_modeled_score": {
+    "value": null,
+    "evidence": null,
+    "confidence": "not_found"
+  },
+  "sp_dimension_scores": {
+    "value": {
+      "environmental": {
+        "value": "51",
+        "industry_mean": "32",
+        "industry_max": "87",
+        "evidence": "Environmental  Johnson & Johnson 51 Industry Mean 32 Industry Max 87 ",
+        "confidence": "found_high"
+      },
+      "social": {
+        "value": "24",
+        "industry_mean": "35",
+        "industry_max": "90",
+        "evidence": "Social  Johnson & Johnson 24 Industry Mean 35 Industry Max 90 ",
+        "confidence": "found_high"
+      },
+      "governance": {
+        "value": "19",
+        "industry_mean": "39",
+        "industry_max": "81",
+        "evidence": "Governance & Economic  Johnson & Johnson 19 Industry Mean 39 Industry Max 81 ",
+        "confidence": "found_high"
+      }
+    },
+    "evidence": null,
+    "confidence": "found_high"
+  },
+  "needs_manual_review": [
+    "sp_modeled_score: 未抽到，建议对照 PDF 原文人工核对/补充"
+  ],
+  "parsed_at": "2026-09-07T07:30:12.040918+00:00"
+}

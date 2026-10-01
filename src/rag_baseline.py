@@ -1,23 +1,26 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-rag_baseline.py —— RAG 问答链路（重写版 v2）
+rag_baseline.py —— 最基础的RAG问答流程（重写版 v2）
 
-替代原 RAG.ipynb。原实现依赖已丢失的 llm_client 模块，且存在以下问题：
-  - 硬编码绝对路径
-  - temperature=0.5，结果不可复现
-  - 检索结果不记录来源，无法做检索层归因
-  - top-1 chunk 无条件注入 context，不设相关度门槛
+这是用来替代原来那份 RAG.ipynb 的。原来的代码依赖一个叫 llm_client
+的模块，那个模块已经找不到了，而且原来的代码还有这些问题：
+  - 路径写死了，换台电脑就跑不了
+  - temperature设成了0.5，同样的问题每次跑出来的答案都不一样
+  - 检索到的内容没有记录是从哪来的，没法回过头去分析检索准不准
+  - 不管相似度多低，永远把排第一的那个chunk塞给模型，也不设个门槛
 
-本实现的改动：
-  - 路径全部相对化，模型参数集中在 CONFIG
-  - temperature=0 + 固定 seed，保证可复现
-  - 记录每个问题检索到的 chunk 页码与相似度，供 Recall@K 分析
-  - 支持多组 prompt 变体，供 Day 3 对照实验使用
+这版重写做了这些改动：
+  - 路径都改成相对路径，模型相关的参数都集中放在CONFIG这个字典里，方便改
+  - temperature设成0，再固定一个随机种子，这样每次跑结果都一样，方便对比
+  - 把每道题检索到的chunk页码和相似度都记下来，方便以后分析"检索有没有找对页"
+  - 支持好几种不同的prompt写法，方便做对照实验
 
-v2 修订：
-  - think 剥离改为兼容未闭合标签（推理被 num_predict 截断时只有 <think> 开标签）
-  - num_predict 512 -> 1024，给 deepseek-r1 足够空间说完推理并给出答案
+v2版本又改了这两个地方：
+  - 处理模型"思考过程"（think标签）的逻辑改成兼容没闭合的情况
+    （如果推理内容被截断了，可能只有开头的<think>标签，没有结尾）
+  - num_predict这个参数从512调到了1024，给deepseek-r1多留点空间，
+    让它能把推理过程说完再给答案，不然容易被半路截断
 
 用法：
     python src/rag_baseline.py --benchmark eval/benchmark.json
@@ -47,17 +50,17 @@ RESULTS_DIR = ROOT / "analysis" / "runs"
 CONFIG = {
     "gen_model": "deepseek-r1:1.5b",
     "embed_model": "nomic-embed-text",
-    "temperature": 0,          # 固定为 0，保证可复现
+    "temperature": 0,          # 固定成0，这样每次跑结果都一样
     "seed": 42,
     "top_k": 5,
-    "min_similarity": 0.0,     # 0 = 不设门槛，与原实现一致
-    "num_predict": 1024,       # v2：从 512 提高，避免推理未完成即被截断
+    "min_similarity": 0.0,     # 设成0就是不卡门槛，跟原来的实现一样
+    "num_predict": 1024,       # v2：从512调大，避免推理还没说完就被截断了
     "ollama_url": "http://localhost:11434",
 }
 
 
 # ---------------------------------------------------------------------------
-# Prompt 变体
+# 不同的prompt写法，用来做对照实验
 # ---------------------------------------------------------------------------
 PROMPTS = {
     "original": (
@@ -82,7 +85,7 @@ PROMPTS = {
 
 
 # ---------------------------------------------------------------------------
-# 向量检索
+# 向量检索部分
 # ---------------------------------------------------------------------------
 
 def load_corpus(company: str) -> tuple[list[dict], list]:
@@ -126,7 +129,7 @@ def cosine_top_k(query_vec, vectors, k: int):
 
 
 # ---------------------------------------------------------------------------
-# Ollama 调用（直接发 HTTP，不依赖 ollama 库）
+# 调用Ollama（直接发HTTP请求，不用装ollama那个库）
 # ---------------------------------------------------------------------------
 
 def _post(path: str, payload: dict, timeout: int = 300) -> dict:
@@ -147,27 +150,28 @@ def embed(text: str) -> list[float]:
             data = _post("/api/embeddings", {"model": CONFIG["embed_model"], "prompt": text})
             return data["embedding"]
         except Exception:
-            _t.sleep(2 * (attempt + 1))   # 等待大模型加载完成后重试
+            _t.sleep(2 * (attempt + 1))   # 可能是大模型还没加载完，等一下再试
     raise RuntimeError("embedding 多次重试仍失败，可能是本地资源不足以同时运行大模型")
 
 
-# think 剥离：兼容三种情况（完整闭合 / 只有闭合标签 / 只有开标签未闭合）
+# 用来去掉模型"思考过程"（think标签）的正则：要兼容三种情况——
+# 标签完整闭合的、只剩闭合标签的、还有只有开标签没闭合的（被截断了）
 _THINK_BLOCK = re.compile(r"<think>.*?</think>", flags=re.DOTALL | re.IGNORECASE)
 _THINK_CLOSE = re.compile(r"</think>", flags=re.IGNORECASE)
 _THINK_OPEN = re.compile(r"<think>", flags=re.IGNORECASE)
 
 
 def strip_think(text: str) -> str:
-    """剥离推理块，兼容未闭合的情况（推理被 num_predict 截断时只有开标签）。"""
+    """把模型的"思考过程"去掉，就算它被截断只剩个开头标签也能处理。"""
     if _THINK_CLOSE.search(text):
-        text = _THINK_CLOSE.split(text)[-1]      # 取最后一个 </think> 之后
+        text = _THINK_CLOSE.split(text)[-1]      # 只留最后一个 </think> 后面的内容
     text = _THINK_BLOCK.sub("", text)
     text = _THINK_OPEN.sub("", text)
     return text.strip()
 
 
 def generate(system_prompt: str, user_prompt: str) -> tuple[str, dict]:
-    """调用生成模型。返回 (清洗后的回答, 元信息)。"""
+    """调用生成模型，返回处理干净的回答，还有一些顺带记录的信息。"""
     payload = {
         "model": CONFIG["gen_model"],
         "messages": [
@@ -198,7 +202,7 @@ def generate(system_prompt: str, user_prompt: str) -> tuple[str, dict]:
 
 
 # ---------------------------------------------------------------------------
-# 单题问答
+# 回答单独一道题
 # ---------------------------------------------------------------------------
 
 def answer_question(q: dict, corpus_cache: dict, prompt_name: str) -> dict:
@@ -244,7 +248,7 @@ def answer_question(q: dict, corpus_cache: dict, prompt_name: str) -> dict:
 
 
 # ---------------------------------------------------------------------------
-# 主流程
+# 主流程，从这里开始跑
 # ---------------------------------------------------------------------------
 
 def run(benchmark_path: Path, prompt_name: str, limit: int | None) -> Path:

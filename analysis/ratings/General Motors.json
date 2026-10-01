@@ -1,0 +1,68 @@
+{
+  "company": "General Motors",
+  "msci_source_file": "ESG Ratings & Climate Search Tool - MSCI.pdf",
+  "sp_source_file": "S&P Global.pdf",
+  "msci_rating": {
+    "value": null,
+    "evidence": null,
+    "confidence": "not_found"
+  },
+  "msci_implied_temp_rise_c": {
+    "value": null,
+    "evidence": null,
+    "confidence": "not_found"
+  },
+  "msci_target_year": {
+    "value": null,
+    "evidence": null,
+    "confidence": "not_found"
+  },
+  "msci_target_coverage_pct": {
+    "value": null,
+    "evidence": null,
+    "confidence": "not_found"
+  },
+  "msci_annual_reduction_pct": {
+    "value": null,
+    "evidence": null,
+    "confidence": "not_found"
+  },
+  "msci_rating_history": {
+    "value": null,
+    "evidence": null,
+    "confidence": "not_found"
+  },
+  "sp_overall_score": {
+    "value": null,
+    "evidence": null,
+    "confidence": "not_found"
+  },
+  "sp_csa_score": {
+    "value": null,
+    "evidence": null,
+    "confidence": "not_found"
+  },
+  "sp_modeled_score": {
+    "value": null,
+    "evidence": null,
+    "confidence": "not_found"
+  },
+  "sp_dimension_scores": {
+    "value": null,
+    "evidence": null,
+    "confidence": "not_found"
+  },
+  "needs_manual_review": [
+    "msci_rating: 未抽到，建议对照 PDF 原文人工核对/补充",
+    "msci_implied_temp_rise_c: 未抽到，建议对照 PDF 原文人工核对/补充",
+    "msci_target_year: 未抽到，建议对照 PDF 原文人工核对/补充",
+    "msci_target_coverage_pct: 未抽到，建议对照 PDF 原文人工核对/补充",
+    "msci_annual_reduction_pct: 未抽到，建议对照 PDF 原文人工核对/补充",
+    "msci_rating_history: 未抽到，建议对照 PDF 原文人工核对/补充",
+    "sp_overall_score: 未抽到，建议对照 PDF 原文人工核对/补充",
+    "sp_csa_score: 未抽到，建议对照 PDF 原文人工核对/补充",
+    "sp_modeled_score: 未抽到，建议对照 PDF 原文人工核对/补充",
+    "sp_dimension_scores: 未抽到，建议对照 PDF 原文人工核对/补充"
+  ],
+  "parsed_at": "2026-09-07T07:30:56.173428+00:00"
+}

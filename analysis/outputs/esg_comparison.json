@@ -1,0 +1,2431 @@
+[
+  {
+    "company": "Alphabet",
+    "indicators": [
+      {
+        "company": "Alphabet",
+        "indicator_id": "scope1_emissions",
+        "label_cn": "Scope 1 排放（直接排放）",
+        "category": "emissions",
+        "disclosed": true,
+        "value": "79,400",
+        "numeric_value": 79400.0,
+        "unit": "tCOe",
+        "year": "2023",
+        "page": 76,
+        "chunk_id": "76__geometry_reconstructed__Scope_1_tCOe__2023",
+        "quote": "Scope 1 tCOe in 2023: 79,400 (tCOe) (reconstructed directly from the original PDF's page layout coordinates on page 76; this value was matched to year 2023 by its exact column position on the page, not guessed from flattened text).",
+        "similarity": 1.0,
+        "steps_tried": 8,
+        "note": "",
+        "attempts": [
+          {
+            "step": 1,
+            "page": 76,
+            "chunk_id": "76__geometry_reconstructed__Total_emissions_Scope_1_2_mark__2023",
+            "similarity": 1.0,
+            "content_preview": "Total emissions: Scope 1, 2 (market-based), and 3 (total)15 tCOe in 2023: 14,314,800 (tCOe) (reconstructed directly from the original PDF's page layout coordinates on page 76; this value was matched t",
+            "raw_response": "NOT_IN_PASSAGE"
+          },
+          {
+            "step": 2,
+            "page": 76,
+            "chunk_id": "76__geometry_reconstructed__Total_emissions_Scope_1_2_mark__2022",
+            "similarity": 1.0,
+            "content_preview": "Total emissions: Scope 1, 2 (market-based), and 3 (total)15 tCOe in 2022: 12,617,400 (tCOe) (reconstructed directly from the original PDF's page layout coordinates on page 76; this value was matched t",
+            "raw_response": "NOT_IN_PASSAGE"
+          },
+          {
+            "step": 3,
+            "page": 76,
+            "chunk_id": "76__geometry_reconstructed__Total_emissions_Scope_1_2_mark__2021",
+            "similarity": 1.0,
+            "content_preview": "Total emissions: Scope 1, 2 (market-based), and 3 (total)15 tCOe in 2021: 10,775,200 (tCOe) (reconstructed directly from the original PDF's page layout coordinates on page 76; this value was matched t",
+            "raw_response": "NOT_IN_PASSAGE"
+          },
+          {
+            "step": 4,
+            "page": 76,
+            "chunk_id": "76__geometry_reconstructed__Total_emissions_Scope_1_2_mark__2020",
+            "similarity": 1.0,
+            "content_preview": "Total emissions: Scope 1, 2 (market-based), and 3 (total)15 tCOe in 2020: 8,567,200 (tCOe) (reconstructed directly from the original PDF's page layout coordinates on page 76; this value was matched to",
+            "raw_response": "NOT_IN_PASSAGE"
+          },
+          {
+            "step": 5,
+            "page": 76,
+            "chunk_id": "76__geometry_reconstructed__Total_emissions_Scope_1_2_mark__2019",
+            "similarity": 1.0,
+            "content_preview": "Total emissions: Scope 1, 2 (market-based), and 3 (total)15 tCOe in 2019: 9,671,400 (tCOe) (reconstructed directly from the original PDF's page layout coordinates on page 76; this value was matched to",
+            "raw_response": "NOT_IN_PASSAGE"
+          },
+          {
+            "step": 6,
+            "page": 75,
+            "chunk_id": "75__geometry_reconstructed__Reduce_50_of_our_combined_Scop__2023",
+            "similarity": 1.0,
+            "content_preview": "Reduce 50% of our combined Scope 1, 2 (market-based), and 3 absolute in 2023: 48% (reconstructed directly from the original PDF's page layout coordinates on page 75; this value was matched to year 202",
+            "raw_response": "NOT_IN_PASSAGE"
+          },
+          {
+            "step": 7,
+            "page": 75,
+            "chunk_id": "75__geometry_reconstructed__Reduce_50_of_our_combined_Scop__2022",
+            "similarity": 1.0,
+            "content_preview": "Reduce 50% of our combined Scope 1, 2 (market-based), and 3 absolute in 2022: 30% (reconstructed directly from the original PDF's page layout coordinates on page 75; this value was matched to year 202",
+            "raw_response": "NOT_IN_PASSAGE"
+          },
+          {
+            "step": 8,
+            "page": 76,
+            "chunk_id": "76__geometry_reconstructed__Scope_1_tCOe__2023",
+            "similarity": 1.0,
+            "content_preview": "Scope 1 tCOe in 2023: 79,400 (tCOe) (reconstructed directly from the original PDF's page layout coordinates on page 76; this value was matched to year 2023 by its exact column position on the page, no",
+            "raw_response": "```json\n{\"value\": \"79,400\", \"unit\": \"tCOe\", \"year\": \"2023\", \"quote\": \"Scope 1 tCOe in 2023: 79,400 (tCOe) (reconstructed directly from the original PDF's page layout coordinates on page 76; this value was matched to year 2023 by its exact column position on the page, not guessed from flattened text)"
+          }
+        ],
+        "partial_table_rows": []
+      },
+      {
+        "company": "Alphabet",
+        "indicator_id": "scope2_emissions",
+        "label_cn": "Scope 2 排放（间接-能源）",
+        "category": "emissions",
+        "disclosed": true,
+        "value": "3,423,400",
+        "numeric_value": 3423400.0,
+        "unit": "tCOe",
+        "year": "2023",
+        "page": 76,
+        "chunk_id": "76__geometry_reconstructed__Scope_2_market_based_4_tCOe__2023",
+        "quote": "Scope 2 (market-based)4 tCOe in 2023: 3,423,400 (tCOe) (reconstructed directly from the original PDF's page layout coordinates on page 76; this value was matched to year 2023 by its exact column position on the page, not guessed from flattened text).",
+        "similarity": 1.0,
+        "steps_tried": 6,
+        "note": "",
+        "attempts": [
+          {
+            "step": 1,
+            "page": 76,
+            "chunk_id": "76__geometry_reconstructed__Scope_2_location_based_tCOe__2023",
+            "similarity": 1.0,
+            "content_preview": "Scope 2 (location-based) tCOe in 2023: 9,252,900 (tCOe) (reconstructed directly from the original PDF's page layout coordinates on page 76; this value was matched to year 2023 by its exact column posi",
+            "raw_response": "NOT_IN_PASSAGE"
+          },
+          {
+            "step": 2,
+            "page": 76,
+            "chunk_id": "76__geometry_reconstructed__Scope_2_location_based_tCOe__2022",
+            "similarity": 1.0,
+            "content_preview": "Scope 2 (location-based) tCOe in 2022: 8,045,400 (tCOe) (reconstructed directly from the original PDF's page layout coordinates on page 76; this value was matched to year 2022 by its exact column posi",
+            "raw_response": "NOT_IN_PASSAGE"
+          },
+          {
+            "step": 3,
+            "page": 76,
+            "chunk_id": "76__geometry_reconstructed__Scope_2_location_based_tCOe__2021",
+            "similarity": 1.0,
+            "content_preview": "Scope 2 (location-based) tCOe in 2021: 6,576,200 (tCOe) (reconstructed directly from the original PDF's page layout coordinates on page 76; this value was matched to year 2021 by its exact column posi",
+            "raw_response": "NOT_IN_PASSAGE"
+          },
+          {
+            "step": 4,
+            "page": 76,
+            "chunk_id": "76__geometry_reconstructed__Scope_2_location_based_tCOe__2020",
+            "similarity": 1.0,
+            "content_preview": "Scope 2 (location-based) tCOe in 2020: 5,865,100 (tCOe) (reconstructed directly from the original PDF's page layout coordinates on page 76; this value was matched to year 2020 by its exact column posi",
+            "raw_response": "NOT_IN_PASSAGE"
+          },
+          {
+            "step": 5,
+            "page": 76,
+            "chunk_id": "76__geometry_reconstructed__Scope_2_location_based_tCOe__2019",
+            "similarity": 1.0,
+            "content_preview": "Scope 2 (location-based) tCOe in 2019: 5,116,900 (tCOe) (reconstructed directly from the original PDF's page layout coordinates on page 76; this value was matched to year 2019 by its exact column posi",
+            "raw_response": "NOT_IN_PASSAGE"
+          },
+          {
+            "step": 6,
+            "page": 76,
+            "chunk_id": "76__geometry_reconstructed__Scope_2_market_based_4_tCOe__2023",
+            "similarity": 1.0,
+            "content_preview": "Scope 2 (market-based)4 tCOe in 2023: 3,423,400 (tCOe) (reconstructed directly from the original PDF's page layout coordinates on page 76; this value was matched to year 2023 by its exact column posit",
+            "raw_response": "```json\n{\"value\": \"3,423,400\", \"unit\": \"tCOe\", \"year\": \"2023\", \"quote\": \"Scope 2 (market-based)4 tCOe in 2023: 3,423,400 (tCOe) (reconstructed directly from the original PDF's page layout coordinates on page 76; this value was matched to year 2023 by its exact column position on the page, not guesse"
+          }
+        ],
+        "partial_table_rows": []
+      },
+      {
+        "company": "Alphabet",
+        "indicator_id": "scope3_emissions",
+        "label_cn": "Scope 3 排放（价值链）",
+        "category": "emissions",
+        "disclosed": true,
+        "value": "10,812,000",
+        "numeric_value": 10812000.0,
+        "unit": "tCOe",
+        "year": "2023",
+        "page": 76,
+        "chunk_id": "76__geometry_reconstructed__Scope_3_total_14_tCOe__2023",
+        "quote": "Scope 3 (total)14 tCOe in 2023: 10,812,000 (tCOe) (reconstructed directly from the original PDF's page layout coordinates on page 76; this value was matched to year 2023 by its exact column position on the page, not guessed from flattened text).",
+        "similarity": 1.0,
+        "steps_tried": 1,
+        "note": "",
+        "attempts": [
+          {
+            "step": 1,
+            "page": 76,
+            "chunk_id": "76__geometry_reconstructed__Scope_3_total_14_tCOe__2023",
+            "similarity": 1.0,
+            "content_preview": "Scope 3 (total)14 tCOe in 2023: 10,812,000 (tCOe) (reconstructed directly from the original PDF's page layout coordinates on page 76; this value was matched to year 2023 by its exact column position o",
+            "raw_response": "```json\n{\"value\": \"10,812,000\", \"unit\": \"tCOe\", \"year\": \"2023\", \"quote\": \"Scope 3 (total)14 tCOe in 2023: 10,812,000 (tCOe) (reconstructed directly from the original PDF's page layout coordinates on page 76; this value was matched to year 2023 by its exact column position on the page, not guessed fr"
+          }
+        ],
+        "partial_table_rows": []
+      },
+      {
+        "company": "Alphabet",
+        "indicator_id": "renewable_energy_pct",
+        "label_cn": "可再生能源占比",
+        "category": "energy",
+        "disclosed": false,
+        "value": null,
+        "numeric_value": null,
+        "unit": null,
+        "year": null,
+        "page": null,
+        "chunk_id": null,
+        "quote": null,
+        "similarity": null,
+        "steps_tried": 20,
+        "note": "报告中未定位到明确匹配该指标口径的数字，标记为未披露（而非强行取一个相近的数字）。 补充：表格重建定位到 4 条疑似匹配的表格行，但原文缺少年份表头，无法确认具体对应哪一年，因此未采信为「已核实」——跨期数值详见 partial_table_rows，供人工核查。",
+        "attempts": [
+          {
+            "step": 1,
+            "page": 77,
+            "chunk_id": "77__geometry_reconstructed__GHG_emissions_by_region_Unit_S__2023",
+            "similarity": 1.0,
+            "content_preview": "GHG emissions by region Unit Scope 1 On-site renewable electricity MWh in 2023: 10,700 (reconstructed directly from the original PDF's page layout coordinates on page 77; this value was matched to yea",
+            "raw_response": "NOT_IN_PASSAGE"
+          },
+          {
+            "step": 2,
+            "page": 77,
+            "chunk_id": "77__geometry_reconstructed__GHG_emissions_by_region_Unit_S__2021",
+            "similarity": 1.0,
+            "content_preview": "GHG emissions by region Unit Scope 1 On-site renewable electricity MWh in 2021: 0 (reconstructed directly from the original PDF's page layout coordinates on page 77; this value was matched to year 202",
+            "raw_response": "NOT_IN_PASSAGE"
+          },
+          {
+            "step": 3,
+            "page": 77,
+            "chunk_id": "77__geometry_reconstructed__GHG_emissions_by_region_Unit_S__2019",
+            "similarity": 1.0,
+            "content_preview": "GHG emissions by region Unit Scope 1 On-site renewable electricity MWh in 2019: 10,700 (reconstructed directly from the original PDF's page layout coordinates on page 77; this value was matched to yea",
+            "raw_response": "NOT_IN_PASSAGE"
+          },
+          {
+            "step": 4,
+            "page": 77,
+            "chunk_id": "77__geometry_reconstructed__Renewable_electricity_PPAs_MWh__2023",
+            "similarity": 1.0,
+            "content_preview": "Renewable electricity (PPAs) MWh in 2023: 19,089,200 (reconstructed directly from the original PDF's page layout coordinates on page 77; this value was matched to year 2023 by its exact column positio",
+            "raw_response": "NOT_IN_PASSAGE"
+          },
+          {
+            "step": 5,
+            "page": 77,
+            "chunk_id": "77__geometry_reconstructed__Renewable_electricity_PPAs_MWh__2022",
+            "similarity": 1.0,
+            "content_preview": "Renewable electricity (PPAs) MWh in 2022: 16,693,600 (reconstructed directly from the original PDF's page layout coordinates on page 77; this value was matched to year 2022 by its exact column positio",
+            "raw_response": "NOT_IN_PASSAGE"
+          },
+          {
+            "step": 6,
+            "page": 77,
+            "chunk_id": "77__geometry_reconstructed__Renewable_electricity_PPAs_MWh__2021",
+            "similarity": 1.0,
+            "content_preview": "Renewable electricity (PPAs) MWh in 2021: 14,109,400 (reconstructed directly from the original PDF's page layout coordinates on page 77; this value was matched to year 2021 by its exact column positio",
+            "raw_response": "NOT_IN_PASSAGE"
+          },
+          {
+            "step": 7,
+            "page": 77,
+            "chunk_id": "77__geometry_reconstructed__Renewable_electricity_PPAs_MWh__2020",
+            "similarity": 1.0,
+            "content_preview": "Renewable electricity (PPAs) MWh in 2020: 12,069,200 (reconstructed directly from the original PDF's page layout coordinates on page 77; this value was matched to year 2020 by its exact column positio",
+            "raw_response": "NOT_IN_PASSAGE"
+          },
+          {
+            "step": 8,
+            "page": 77,
+            "chunk_id": "77__geometry_reconstructed__Renewable_electricity_PPAs_MWh__2019",
+            "similarity": 1.0,
+            "content_preview": "Renewable electricity (PPAs) MWh in 2019: 9,715,000 (reconstructed directly from the original PDF's page layout coordinates on page 77; this value was matched to year 2019 by its exact column position",
+            "raw_response": "NOT_IN_PASSAGE"
+          },
+          {
+            "step": 9,
+            "page": 77,
+            "chunk_id": "77__geometry_reconstructed__Europe_Middle_East_Africa_MWh___2023",
+            "similarity": 1.0,
+            "content_preview": "Europe, Middle East, & Africa MWh 3,547,200 3,456,200 Renewable electricity (grid) MWh in 2023: 6,207,100 (reconstructed directly from the original PDF's page layout coordinates on page 77; this value",
+            "raw_response": "NOT_IN_PASSAGE"
+          },
+          {
+            "step": 10,
+            "page": 77,
+            "chunk_id": "77__geometry_reconstructed__Europe_Middle_East_Africa_MWh___2022",
+            "similarity": 1.0,
+            "content_preview": "Europe, Middle East, & Africa MWh 3,547,200 3,456,200 Renewable electricity (grid) MWh in 2022: 5,073,000 (reconstructed directly from the original PDF's page layout coordinates on page 77; this value",
+            "raw_response": "NOT_IN_PASSAGE"
+          },
+          {
+            "step": 11,
+            "page": 77,
+            "chunk_id": "77__geometry_reconstructed__Europe_Middle_East_Africa_MWh___2021",
+            "similarity": 1.0,
+            "content_preview": "Europe, Middle East, & Africa MWh 3,547,200 3,456,200 Renewable electricity (grid) MWh in 2021: 4,168,900 (reconstructed directly from the original PDF's page layout coordinates on page 77; this value",
+            "raw_response": "NOT_IN_PASSAGE"
+          },
+          {
+            "step": 12,
+            "page": 77,
+            "chunk_id": "77__geometry_reconstructed__Europe_Middle_East_Africa_MWh___2020",
+            "similarity": 1.0,
+            "content_preview": "Europe, Middle East, & Africa MWh 3,547,200 3,456,200 Renewable electricity (grid) MWh in 2020: 3,062,100 (reconstructed directly from the original PDF's page layout coordinates on page 77; this value",
+            "raw_response": "NOT_IN_PASSAGE"
+          },
+          {
+            "step": 13,
+            "page": 77,
+            "chunk_id": "77__geometry_reconstructed__Europe_Middle_East_Africa_MWh___2019",
+            "similarity": 1.0,
+            "content_preview": "Europe, Middle East, & Africa MWh 3,547,200 3,456,200 Renewable electricity (grid) MWh in 2019: 2,515,900 (reconstructed directly from the original PDF's page layout coordinates on page 77; this value",
+            "raw_response": "NOT_IN_PASSAGE"
+          },
+          {
+            "step": 14,
+            "page": 76,
+            "chunk_id": "76__two_column_reordered",
+            "similarity": 0.99,
+            "content_preview": "Environmental data tables ⏎ GHG EMISSIONS ⏎ Emissions inventory Unit 20191 2020 2021 ⏎ Scope 12 tCOe 81,900 55,800 64,100 ⏎ 2 ⏎ Scope 2 (location-based) tCOe 5,116,900 5,865,100 6,576,200 ⏎ 2 ⏎ Impact of PPAs and m",
+            "raw_response": "NOT_IN_PASSAGE"
+          },
+          {
+            "step": 15,
+            "page": 34,
+            "chunk_id": "34__two_column_reordered",
+            "similarity": 0.99,
+            "content_preview": "Scope 2 emissions agreements (PPAs), we achieved a 63% ⏎ reduction in the emissions from our electricity ⏎ In 2023, our Scope 2 (market-based) emissions use in 2023 (see Figure 18). And from 2011 to ⏎ were ",
+            "raw_response": "NOT_IN_PASSAGE"
+          },
+          {
+            "step": 16,
+            "page": 76,
+            "chunk_id": "Alphabet-p076-c04",
+            "similarity": 0.6382,
+            "content_preview": "10,700 ⏎  ⏎ Europe, Middle East, & Africa ⏎  ⏎ MWh ⏎  ⏎ 3,547,200 ⏎  ⏎ 3,456,200 ⏎  ⏎ Renewable electricity (grid) MWh ⏎  ⏎ 2,515,900 ⏎  ⏎ 3,062,100 ⏎  ⏎ 4,168,900 ⏎  ⏎ 5,073,000 ⏎  ⏎ 6,207,100 ⏎  ⏎ Latin America ⏎  ⏎ Asia Pacific ⏎  ⏎ Global total ⏎  ⏎ MW",
+            "raw_response": "NOT_IN_PASSAGE"
+          },
+          {
+            "step": 17,
+            "page": 83,
+            "chunk_id": "Alphabet-p083-c09",
+            "similarity": 0.6325,
+            "content_preview": "proportion of renewable energy contracted to other parties that ⏎  ⏎ 139   We define freshwater as naturally occurring water from surface or ⏎  ⏎ sustainability standards for mobile phones and for computers ⏎  ⏎ ",
+            "raw_response": "NOT_IN_PASSAGE"
+          },
+          {
+            "step": 18,
+            "page": 34,
+            "chunk_id": "Alphabet-p034-c04",
+            "similarity": 0.6308,
+            "content_preview": "Renewable energy purchasing compared with total electricity ⏎  ⏎ FIGURE 18 ⏎  ⏎ Annual impact of CFE purchases on Scope 2 emissions ⏎  ⏎ Legend ⏎  ⏎ Total electricity consumption ⏎  ⏎ Renewable energy purchases ⏎  ⏎ 25.3 ⏎  ⏎ 10",
+            "raw_response": "NOT_IN_PASSAGE"
+          },
+          {
+            "step": 19,
+            "page": 81,
+            "chunk_id": "Alphabet-p081-c03",
+            "similarity": 0.6283,
+            "content_preview": "global approach. Percentage of renewable energy is calculated on a ⏎  ⏎ make a more sustainable choice by at least one sustainable product ⏎  ⏎ on Google Search in the United States over the course of a year ⏎ ",
+            "raw_response": "NOT_IN_PASSAGE"
+          },
+          {
+            "step": 20,
+            "page": 76,
+            "chunk_id": "Alphabet-p076-c03",
+            "similarity": 0.615,
+            "content_preview": "generation capacity from targeted renewable energy ⏎  ⏎ investments where we also receive EACs. ⏎  ⏎ GHG emissions by region ⏎  ⏎ Unit ⏎  ⏎ Scope 1 ⏎  ⏎ Scope 2 ⏎ (market-based) ⏎  ⏎ Scope 2 ⏎ (location-based) ⏎  ⏎ On-site renewable",
+            "raw_response": "NOT_IN_PASSAGE"
+          },
+          {
+            "step": 21,
+            "page": 83,
+            "chunk_id": "Alphabet-p083-c05",
+            "similarity": 0.6053,
+            "content_preview": "percentage of carbon-free energy sources consumed by Google’s ⏎  ⏎ Environmental Protection Agency, March 2024, accessed May 2024. ⏎  ⏎ unique building badge swipes, against a 2019 base year. ⏎  ⏎ data centers wi",
+            "raw_response": "NOT_IN_PASSAGE"
+          },
+          {
+            "step": 22,
+            "page": 82,
+            "chunk_id": "Alphabet-p082-c08",
+            "similarity": 0.6007,
+            "content_preview": "renewable energy investments. Actual amounts funded and ⏎  ⏎  “TPU v4: An Optically Reconfigurable Supercomputer for Machine ⏎  ⏎ HRES by 15.1% with a 96-hour lead time, and by 18.4% with a ⏎  ⏎ 98  “Climate Chan",
+            "raw_response": "NOT_IN_PASSAGE"
+          },
+          {
+            "step": 23,
+            "page": 37,
+            "chunk_id": "Alphabet-p037-c01",
+            "similarity": 0.599,
+            "content_preview": "Indonesia ⏎  ⏎ 90% ⏎  ⏎ Brazil ⏎  ⏎ 91% ⏎  ⏎ Chile ⏎  ⏎ 16% ⏎  ⏎ South Africa ⏎  ⏎ Australia ⏎ (Victoria) ⏎  ⏎ 40% ⏎  ⏎ 33% ⏎  ⏎ Australia ⏎ (NSW) ⏎  ⏎ % hourly match with ⏎ carbon-free energy ⏎  ⏎ 90%-100% ⏎  ⏎ 80%-89% ⏎  ⏎ 70%-79% ⏎  ⏎ 60%-69% ⏎  ⏎ 50%-59% ⏎  ⏎ 40%-49% ⏎  ⏎ 3",
+            "raw_response": "NOT_IN_PASSAGE"
+          },
+          {
+            "step": 24,
+            "page": 73,
+            "chunk_id": "Alphabet-p073-c00",
+            "similarity": 0.5969,
+            "content_preview": "renewable energy generation, and renewable ⏎  ⏎ exceeds our load in a given hour and region, ⏎  ⏎ energy in the electric grids where our facilities ⏎  ⏎ the contracted CFE consumed by Google ⏎  ⏎ Water withdrawal is ",
+            "raw_response": "NOT_IN_PASSAGE"
+          },
+          {
+            "step": 25,
+            "page": 36,
+            "chunk_id": "Alphabet-p036-c05",
+            "similarity": 0.5966,
+            "content_preview": "energy purchased to meet our electricity ⏎  ⏎ 64% CFE ⏎  ⏎ 64% CFE ⏎  ⏎ s ⏎ r ⏎ u ⏎ o ⏎ h ⏎ - ⏎ tt ⏎ a ⏎ w ⏎ a ⏎ r ⏎ e ⏎ T ⏎  ⏎ Legend ⏎  ⏎ Total electricity consumption across ⏎ our data centers and offices ⏎  ⏎ needs, every hour of every day, withi",
+            "raw_response": "NOT_IN_PASSAGE"
+          },
+          {
+            "step": 26,
+            "page": 72,
+            "chunk_id": "Alphabet-p072-c09",
+            "similarity": 0.5878,
+            "content_preview": "In accordance with the Greenhouse Gas ⏎  ⏎ Protocol, we report biogenic emissions ⏎  ⏎ We calculate electricity purchased from ⏎ renewable sources (%) on a calendar-year ⏎ basis for our global operations by divid",
+            "raw_response": "NOT_IN_PASSAGE"
+          },
+          {
+            "step": 27,
+            "page": 73,
+            "chunk_id": "Alphabet-p073-c04",
+            "similarity": 0.5785,
+            "content_preview": "dividing that product by the total load in that ⏎  ⏎ hour. ⏎  ⏎ For more details on how we calculate ⏎ carbon-free energy percentages, please see ⏎ 24/7 Carbon-Free Energy: Methodologies ⏎  ⏎ contract by Google (Cont",
+            "raw_response": "NOT_IN_PASSAGE"
+          },
+          {
+            "step": 28,
+            "page": 76,
+            "chunk_id": "Alphabet-p076-c02",
+            "similarity": 0.5683,
+            "content_preview": "electricity generation from contractual instruments (i.e., ⏎  ⏎ EACs), which have been used in the calculation of Scope ⏎  ⏎ 2 market-based emissions per the Greenhouse Gas ⏎  ⏎ Protocol Scope 2 Quality Criteria.",
+            "raw_response": "NOT_IN_PASSAGE"
+          },
+          {
+            "step": 29,
+            "page": 73,
+            "chunk_id": "Alphabet-p073-c01",
+            "similarity": 0.5638,
+            "content_preview": "developed water withdrawal intensity factors ⏎  ⏎ is maintained and continues to function as ⏎  ⏎ renewable energy. To achieve our 100% ⏎  ⏎ projects under contract that generate MWhs ⏎  ⏎ by office type based on dat",
+            "raw_response": "NOT_IN_PASSAGE"
+          },
+          {
+            "step": 30,
+            "page": 76,
+            "chunk_id": "Alphabet-p076-c00",
+            "similarity": 0.5568,
+            "content_preview": "GHG EMISSIONS ⏎  ⏎ ENERGY ⏎  ⏎ Carbon intensity1 ⏎  ⏎ Unit ⏎  ⏎ Energy consumption3 ⏎  ⏎ Unit ⏎  ⏎ Carbon intensity per unit of ⏎ revenue ⏎  ⏎ tCO2e/million ⏎ USD ($) ⏎  ⏎ 5.67 ⏎  ⏎ 5.30 ⏎  ⏎ 7.33 ⏎  ⏎ 9.13 ⏎  ⏎ 11.40 ⏎  ⏎ Fuel ⏎  ⏎ MWh ⏎  ⏎ 366,400 ⏎  ⏎ 181,800 ⏎  ⏎ 205,",
+            "raw_response": "NOT_IN_PASSAGE"
+          },
+          {
+            "step": 31,
+            "page": 82,
+            "chunk_id": "Alphabet-p082-c06",
+            "similarity": 0.5541,
+            "content_preview": "1880,” NASA, August 2023. ⏎  ⏎ renewable energy matching. ⏎  ⏎ closer to 1.0 means nearly all the energy is used for computing. ⏎  ⏎ energy savings, applying standard emission factors for fossil ⏎  ⏎ 91  See endnote ",
+            "raw_response": "NOT_IN_PASSAGE"
+          },
+          {
+            "step": 32,
+            "page": 55,
+            "chunk_id": "Alphabet-p055-c03",
+            "similarity": 0.5537,
+            "content_preview": "renewable plastic content calculated as a percentage ⏎  ⏎ types use less plastic than ⏎  ⏎ of total plastic (by weight) in Google’s consumer ⏎  ⏎ others, which can reduce ⏎  ⏎ hardware portfolio for products manufact",
+            "raw_response": "NOT_IN_PASSAGE"
+          },
+          {
+            "step": 33,
+            "page": 20,
+            "chunk_id": "Alphabet-p020-c02",
+            "similarity": 0.5506,
+            "content_preview": "provide data on solar potential, high resolution ⏎  ⏎ rooftop imagery, and financial insights to our ⏎  ⏎ customers and partners—making obtaining ⏎  ⏎ solar energy more efficient, transparent, ⏎  ⏎ and effective. ⏎  ⏎ We",
+            "raw_response": "NOT_IN_PASSAGE"
+          },
+          {
+            "step": 34,
+            "page": 83,
+            "chunk_id": "Alphabet-p083-c00",
+            "similarity": 0.549,
+            "content_preview": "118  See endnote 11 above. ⏎  ⏎ the reduction percentage from the base year, the total base year ⏎  ⏎ local context. ⏎  ⏎ 119  Contracted CFE (%) represents the percentage of our load that’s ⏎  ⏎ emissions, the targe",
+            "raw_response": "NOT_IN_PASSAGE"
+          },
+          {
+            "step": 35,
+            "page": 77,
+            "chunk_id": "Alphabet-p077-c02",
+            "similarity": 0.548,
+            "content_preview": "Réseau de Transport d’Électricité (RTE) % ⏎  ⏎ Germany ⏎  ⏎ Germany ⏎  ⏎ Great Britain National Grid ESO ⏎  ⏎ Hong Kong ⏎  ⏎ CLP Power Hong Kong Limited ⏎ (CLP Power) ⏎  ⏎ India ⏎  ⏎ India ⏎  ⏎ Northern India Regional Grid ⏎  ⏎ Western In",
+            "raw_response": "NOT_IN_PASSAGE"
+          }
+        ],
+        "partial_table_rows": [
+          {
+            "label": "Renewable electricity (grid) MWh",
+            "values": [
+              "2,515,900",
+              "3,062,100",
+              "4,168,900",
+              "5,073,000",
+              "6,207,100"
+            ],
+            "page": 76,
+            "source_chunk_id": "Alphabet-p076-c04"
+          },
+          {
+            "label": "Renewable energy purchases",
+            "values": [
+              "25.3",
+              "100%",
+              "100%",
+              "100%",
+              "100%"
+            ],
+            "page": 34,
+            "source_chunk_id": "Alphabet-p034-c04"
+          },
+          {
+            "label": "Renewable electricity (PPAs) MWh",
+            "values": [
+              "9,715,000",
+              "12,069,200",
+              "14,109,400",
+              "16,693,600",
+              "19,089,200"
+            ],
+            "page": 76,
+            "source_chunk_id": "Alphabet-p076-c03"
+          },
+          {
+            "label": "On-site renewable electricity MWh",
+            "values": [
+              "6,300",
+              "7,200",
+              "8,800",
+              "9,600",
+              "10,700"
+            ],
+            "page": 76,
+            "source_chunk_id": "Alphabet-p076-c00"
+          }
+        ]
+      },
+      {
+        "company": "Alphabet",
+        "indicator_id": "water_withdrawal",
+        "label_cn": "总取水量",
+        "category": "water",
+        "disclosed": true,
+        "value": "8,653.3",
+        "numeric_value": 8653.3,
+        "unit": "Million gallons",
+        "year": "2023",
+        "page": 79,
+        "chunk_id": "79__geometry_reconstructed__Water_withdrawal_Million_gallo__2023",
+        "quote": "Water withdrawal Million gallons in 2023: 8,653.3",
+        "similarity": 1.0,
+        "steps_tried": 1,
+        "note": "",
+        "attempts": [
+          {
+            "step": 1,
+            "page": 79,
+            "chunk_id": "79__geometry_reconstructed__Water_withdrawal_Million_gallo__2023",
+            "similarity": 1.0,
+            "content_preview": "Water withdrawal Million gallons in 2023: 8,653.3 (reconstructed directly from the original PDF's page layout coordinates on page 79; this value was matched to year 2023 by its exact column position o",
+            "raw_response": "```json\n{\"value\": \"8,653.3\", \"unit\": \"Million gallons\", \"year\": \"2023\", \"quote\": \"Water withdrawal Million gallons in 2023: 8,653.3\"}\n```"
+          }
+        ],
+        "partial_table_rows": []
+      },
+      {
+        "company": "Alphabet",
+        "indicator_id": "waste_diversion_pct",
+        "label_cn": "废弃物转移率（不进填埋场）",
+        "category": "waste",
+        "disclosed": true,
+        "value": "82%",
+        "numeric_value": 82.0,
+        "unit": "",
+        "year": "2023",
+        "page": 53,
+        "chunk_id": "Alphabet-p053-c01",
+        "quote": "2023 PROGRESS\n82% of food waste\ndiverted from landfill",
+        "similarity": 0.6338,
+        "steps_tried": 5,
+        "note": "",
+        "attempts": [
+          {
+            "step": 1,
+            "page": 52,
+            "chunk_id": "52__two_column_reordered",
+            "similarity": 0.99,
+            "content_preview": "Building circular workplaces ⏎ When we design, build, and operate We use the Rheaply platform, which helps of our waste recovery efforts. We assess ⏎ locate and reuse office furniture and other the contam",
+            "raw_response": "```json\n{\"value\": \"77%\", \"unit\": \"\", \"year\": \"2023\", \"quote\": \"In 2023, the global waste diversion rate for our offices was 77%.\"}\n```",
+            "rejected_reason": "quote_not_genuine: quote='In 2023, the global waste diversion rate for our offices was 77%.' 在原文 chunk 里找不到"
+          },
+          {
+            "step": 2,
+            "page": 53,
+            "chunk_id": "53__two_column_reordered",
+            "similarity": 0.99,
+            "content_preview": "Food waste base year. We’re seeing measurable progress To further reduce food ⏎ toward this goal by using different intervention strengthening our efforts ⏎ We’re taking a holistic approach to address lev",
+            "raw_response": "```json\n{\"value\": \"82%\", \"unit\": \"\", \"year\": \"2023\", \"quote\": \"82% of food waste diverted from landfill\"}\n```",
+            "rejected_reason": "quote_not_genuine: quote='82% of food waste diverted from landfill' 在原文 chunk 里找不到"
+          },
+          {
+            "step": 3,
+            "page": 54,
+            "chunk_id": "54__two_column_reordered",
+            "similarity": 0.99,
+            "content_preview": "Reducing data center waste ⏎ We design, build, and operate our to Landfill. We integrated new data sources ⏎ data centers to maximize efficient and assumptions to account for parts and ⏎ materials that ente",
+            "raw_response": "```json\n{\"value\": \"78%\", \"unit\": \"\", \"year\": \"2023\", \"quote\": \"we diverted 78% of operational waste from disposal across our global fleet of Google-owned and -operated data centers, and 29% (8 out of 28) of our Google-owned and -operated data center campuses met our Zero Waste to Landfill goal.\"}\n``",
+            "rejected_reason": "quote_not_genuine: quote='we diverted 78% of operational waste from disposal across our global fleet of Go' 在原文 chunk 里找不到"
+          },
+          {
+            "step": 4,
+            "page": 52,
+            "chunk_id": "Alphabet-p052-c02",
+            "similarity": 0.6921,
+            "content_preview": "317,000 kilograms (700,000 pounds) of waste ⏎  ⏎ assumption that anything placed in recycling ⏎  ⏎ diverted from disposal, including landfill and ⏎  ⏎ or compost bins has zero contamination. ⏎  ⏎ incineration. We als",
+            "raw_response": "NOT_IN_PASSAGE"
+          },
+          {
+            "step": 5,
+            "page": 53,
+            "chunk_id": "Alphabet-p053-c01",
+            "similarity": 0.6338,
+            "content_preview": "by approximately 38% compared to 2019, 155 ⏎ building on an 18% reduction in 2022. We also ⏎  ⏎ have an ambitious goal to send zero food ⏎  ⏎ waste to the landfill by 2025. In 2023, we ⏎  ⏎ diverted 82% of food was",
+            "raw_response": "```json\n{\"value\": \"82%\", \"unit\": \"\", \"year\": \"2023\", \"quote\": \"2023 PROGRESS\\n82% of food waste\\ndiverted from landfill\"}\n```"
+          }
+        ],
+        "partial_table_rows": []
+      },
+      {
+        "company": "Alphabet",
+        "indicator_id": "supply_chain_emissions",
+        "label_cn": "供应链排放/供应商审计",
+        "category": "supply_chain",
+        "disclosed": false,
+        "value": null,
+        "numeric_value": null,
+        "unit": null,
+        "year": null,
+        "page": null,
+        "chunk_id": null,
+        "quote": null,
+        "similarity": null,
+        "steps_tried": 20,
+        "note": "报告中未定位到明确匹配该指标口径的数字，标记为未披露（而非强行取一个相近的数字）。",
+        "attempts": [
+          {
+            "step": 1,
+            "page": 70,
+            "chunk_id": "70__two_column_reordered",
+            "similarity": 0.99,
+            "content_preview": "Google.org grantees ideas submitted. Climate adaptation was the • As part of the Google.org ⏎ most represented submission topic, matching on Climate Innovation, ⏎ an urgency to support those most affected",
+            "raw_response": "NOT_IN_PASSAGE"
+          },
+          {
+            "step": 2,
+            "page": 39,
+            "chunk_id": "39__two_column_reordered",
+            "similarity": 0.99,
+            "content_preview": "Scope 3 emissions are purchased and not ⏎ assets, as is the case for ⏎ In 2023, our total Scope 3 emissions were ⏎ Addressing our Scope ⏎ approximately 10.8 million tCOe, representing ⏎ 2 ⏎ emissions is particula",
+            "raw_response": "NOT_IN_PASSAGE"
+          },
+          {
+            "step": 3,
+            "page": 62,
+            "chunk_id": "62__two_column_reordered",
+            "similarity": 0.99,
+            "content_preview": "About ⏎ Google ⏎ As our founders explained in their ⏎ first letter to shareholders, Google’s ⏎ goal is to “develop services that ⏎ significantly improve the lives of as ⏎ many people as possible.” ⏎ We believe in t",
+            "raw_response": "NOT_IN_PASSAGE"
+          },
+          {
+            "step": 4,
+            "page": 71,
+            "chunk_id": "71__two_column_reordered",
+            "similarity": 0.99,
+            "content_preview": "Environmental ⏎ • We recalculated Scope ⏎ Report scope Recalculation of ⏎ (market-based) emissions ⏎ previous environmental ⏎ The reporting period for our environmental emissions from refrigerant ⏎ data covers ou",
+            "raw_response": "NOT_IN_PASSAGE"
+          },
+          {
+            "step": 5,
+            "page": 31,
+            "chunk_id": "31__two_column_reordered",
+            "similarity": 0.99,
+            "content_preview": "Our approach to net-zero carbon ⏎ We’re working to accelerate the help accelerate global decarbonization. To ⏎ ensure our efforts maximize impact, we’ll ⏎ transition to a net-zero future, and ⏎ continue evalu",
+            "raw_response": "NOT_IN_PASSAGE"
+          },
+          {
+            "step": 6,
+            "page": 70,
+            "chunk_id": "Alphabet-p070-c02",
+            "similarity": 0.6532,
+            "content_preview": "•  Scope 3 emissions: ⏎  ⏎  Ǣ   We revised our methodology to calculate ⏎ emissions related to our consumer devices ⏎  ⏎ manufacturing, as we migrated from a ⏎  ⏎ spend-based methodology to a Life Cycle ⏎  ⏎ Assessment",
+            "raw_response": "NOT_IN_PASSAGE"
+          },
+          {
+            "step": 7,
+            "page": 39,
+            "chunk_id": "Alphabet-p039-c03",
+            "similarity": 0.6457,
+            "content_preview": "sustainability program. ⏎  ⏎ we discussed Google’s net-zero ambitions, ⏎  ⏎ or nonexistent credible clean energy ⏎  ⏎ procurement mechanisms. In particular, ⏎  ⏎ We engage some of our suppliers to directly ⏎  ⏎ the Asia-",
+            "raw_response": "NOT_IN_PASSAGE"
+          },
+          {
+            "step": 8,
+            "page": 39,
+            "chunk_id": "Alphabet-p039-c02",
+            "similarity": 0.6436,
+            "content_preview": "and accounting, including for their Scope 1, ⏎  ⏎ accurately calculating our supply chain ⏎  ⏎ 2, and 3 emissions. For example, we provide ⏎  ⏎ carbon footprint and developing life cycle ⏎  ⏎ training on reporting to",
+            "raw_response": "NOT_IN_PASSAGE"
+          },
+          {
+            "step": 9,
+            "page": 62,
+            "chunk_id": "Alphabet-p062-c02",
+            "similarity": 0.6373,
+            "content_preview": "on the areas where we can make an ⏎  ⏎ We investigate any issues identified during ⏎  ⏎ our Chief Compliance Officer and leaders ⏎  ⏎ Responsibility Steering Team, which comprises ⏎  ⏎ For example, employees can join",
+            "raw_response": "NOT_IN_PASSAGE"
+          },
+          {
+            "step": 10,
+            "page": 71,
+            "chunk_id": "Alphabet-p071-c08",
+            "similarity": 0.6238,
+            "content_preview": "supplier GHG data. We calculate data center ⏎  ⏎ construction emissions by using an LCA ⏎  ⏎ analysis to derive construction emissions data ⏎  ⏎ and then applying this to our construction ⏎ activity. In our Environ",
+            "raw_response": "NOT_IN_PASSAGE"
+          },
+          {
+            "step": 11,
+            "page": 39,
+            "chunk_id": "Alphabet-p039-c05",
+            "similarity": 0.6205,
+            "content_preview": "more accurately model our carbon footprint ⏎  ⏎ down our supply chain). ⏎  ⏎ Supplier engagement ⏎  ⏎ We partner with many suppliers—from ⏎  ⏎ manufacturing to indirect services suppliers. ⏎  ⏎ All suppliers are required",
+            "raw_response": "NOT_IN_PASSAGE"
+          },
+          {
+            "step": 12,
+            "page": 62,
+            "chunk_id": "Alphabet-p062-c01",
+            "similarity": 0.6203,
+            "content_preview": "•  Driving systemic change: These ⏎  ⏎ partnerships are crucial for advancing ⏎  ⏎ carbon-free energy technology investment, ⏎  ⏎ shaping effective policies, and scaling up ⏎  ⏎ climate solutions around the world. ⏎  ⏎ S",
+            "raw_response": "NOT_IN_PASSAGE"
+          },
+          {
+            "step": 13,
+            "page": 71,
+            "chunk_id": "Alphabet-p071-c03",
+            "similarity": 0.6138,
+            "content_preview": "as our suppliers, the use of our consumer ⏎  ⏎ devices, and business travel. In 2023, we ⏎  ⏎ included two additional Scope 3 categories ⏎  ⏎ to our GHG emissions inventory—Category 3 ⏎  ⏎ and Category 5—and added th",
+            "raw_response": "NOT_IN_PASSAGE"
+          },
+          {
+            "step": 14,
+            "page": 39,
+            "chunk_id": "Alphabet-p039-c04",
+            "similarity": 0.6102,
+            "content_preview": "drive systemic change and support scalable ⏎  ⏎ The effectiveness of our supplier engagement ⏎  ⏎ spend, provided data. Of the suppliers that ⏎  ⏎ to obtain decarbonization roadmaps, some ⏎  ⏎ research and developmen",
+            "raw_response": "NOT_IN_PASSAGE"
+          },
+          {
+            "step": 15,
+            "page": 39,
+            "chunk_id": "Alphabet-p039-c01",
+            "similarity": 0.6062,
+            "content_preview": "We expect our Scope 3 emissions will ⏎ continue to rise in the near term, in part due to ⏎  ⏎ increased capital expenditures and expected ⏎  ⏎ increases in our technical infrastructure ⏎  ⏎ investment to support lo",
+            "raw_response": "NOT_IN_PASSAGE"
+          },
+          {
+            "step": 16,
+            "page": 31,
+            "chunk_id": "Alphabet-p031-c03",
+            "similarity": 0.6053,
+            "content_preview": "changes to the broader systems that support our operations and value chain, ⏎ such as electricity grids and hardware supply chains. Reform is needed across ⏎ clean energy transmission, interconnection, an",
+            "raw_response": "NOT_IN_PASSAGE"
+          },
+          {
+            "step": 17,
+            "page": 72,
+            "chunk_id": "Alphabet-p072-c00",
+            "similarity": 0.6023,
+            "content_preview": "defined by the Greenhouse Gas Protocol. ⏎  ⏎ data from other transportation providers ⏎  ⏎ We calculate upstream emissions from ⏎  ⏎ and the weight shipped. For warehousing ⏎  ⏎ “Category 6: Business travel” includes",
+            "raw_response": "NOT_IN_PASSAGE"
+          },
+          {
+            "step": 18,
+            "page": 71,
+            "chunk_id": "Alphabet-p071-c04",
+            "similarity": 0.6016,
+            "content_preview": "•  Category 11: Use of sold products ⏎  ⏎ •  Category 12: End-of-life treatment of ⏎  ⏎ sold products ⏎  ⏎ None of the Scope 3 categories have ⏎ associated biogenic CO2 emissions. For all ⏎ reported Scope 3 categorie",
+            "raw_response": "NOT_IN_PASSAGE"
+          },
+          {
+            "step": 19,
+            "page": 71,
+            "chunk_id": "Alphabet-p071-c05",
+            "similarity": 0.6002,
+            "content_preview": "devices, we perform third-party-verified Life ⏎  ⏎ Cycle Assessments (LCAs) in accordance ⏎  ⏎ with ISO 14040 and ISO 14044. To calculate ⏎  ⏎ emissions generated from our food program, ⏎  ⏎ we use LCA emission facto",
+            "raw_response": "NOT_IN_PASSAGE"
+          },
+          {
+            "step": 20,
+            "page": 72,
+            "chunk_id": "Alphabet-p072-c02",
+            "similarity": 0.5988,
+            "content_preview": "another product. For example, this generally ⏎  ⏎ emissions using emission factors from the ⏎  ⏎ 2023 EPA Center for Corporate Climate ⏎  ⏎ Leadership GHG Emission Factors Hub. ⏎  ⏎ Other carbon and energy metrics ⏎  ⏎ W",
+            "raw_response": "NOT_IN_PASSAGE"
+          },
+          {
+            "step": 21,
+            "page": 72,
+            "chunk_id": "Alphabet-p072-c06",
+            "similarity": 0.5953,
+            "content_preview": "the Greenhouse Gas Protocol. We survey our ⏎  ⏎ as defined by the Greenhouse Gas Protocol. ⏎ For transportation emissions, we collect data ⏎  ⏎ defined by the Greenhouse Gas Protocol. ⏎ The waste generation data ",
+            "raw_response": "NOT_IN_PASSAGE"
+          },
+          {
+            "step": 22,
+            "page": 71,
+            "chunk_id": "Alphabet-p071-c02",
+            "similarity": 0.5943,
+            "content_preview": "We source the global warming potentials ⏎  ⏎ (GWP) for each GHG from the IPCC Fourth ⏎  ⏎ Assessment Report, Appendix A: Global ⏎  ⏎ Warming Potentials (AR4), and IPCC Fifth ⏎  ⏎ Assessment Report (AR5) in select ins",
+            "raw_response": "NOT_IN_PASSAGE"
+          },
+          {
+            "step": 23,
+            "page": 71,
+            "chunk_id": "Alphabet-p071-c07",
+            "similarity": 0.5936,
+            "content_preview": "technical infrastructure, as well as emissions ⏎  ⏎ from materials used in the construction of ⏎  ⏎ data centers and offices. We use the hybrid ⏎  ⏎ method, as defined by the Greenhouse Gas ⏎  ⏎ Protocol. For manufac",
+            "raw_response": "NOT_IN_PASSAGE"
+          },
+          {
+            "step": 24,
+            "page": 72,
+            "chunk_id": "Alphabet-p072-c08",
+            "similarity": 0.5866,
+            "content_preview": "distance data by shipment collected from ⏎  ⏎ the same facility. We use waste type- and ⏎  ⏎ calculate employee commuting emissions ⏎  ⏎ emissions from end-of-life treatment of sold ⏎  ⏎ reporting period. ⏎  ⏎ our provid",
+            "raw_response": "NOT_IN_PASSAGE"
+          },
+          {
+            "step": 25,
+            "page": 61,
+            "chunk_id": "Alphabet-p061-c06",
+            "similarity": 0.5804,
+            "content_preview": "quantitative risk assessments to identify ⏎  ⏎ potential water-related risks that may present ⏎  ⏎ centers and further stipulate that suppliers ⏎  ⏎ climate-related risks and opportunities and ⏎  ⏎ opportunities for ",
+            "raw_response": "NOT_IN_PASSAGE"
+          }
+        ],
+        "partial_table_rows": []
+      }
+    ],
+    "trust_panel": {
+      "total_indicators": 7,
+      "verified_count": 5,
+      "verified_pct": 71.4,
+      "undisclosed_count": 2,
+      "undisclosed_indicators": [
+        "可再生能源占比",
+        "供应链排放/供应商审计"
+      ],
+      "verified_indicators": [
+        {
+          "label": "Scope 1 排放（直接排放）",
+          "value": "79,400",
+          "unit": "tCOe",
+          "page": 76
+        },
+        {
+          "label": "Scope 2 排放（间接-能源）",
+          "value": "3,423,400",
+          "unit": "tCOe",
+          "page": 76
+        },
+        {
+          "label": "Scope 3 排放（价值链）",
+          "value": "10,812,000",
+          "unit": "tCOe",
+          "page": 76
+        },
+        {
+          "label": "总取水量",
+          "value": "8,653.3",
+          "unit": "Million gallons",
+          "page": 79
+        },
+        {
+          "label": "废弃物转移率（不进填埋场）",
+          "value": "82%",
+          "unit": "",
+          "page": 53
+        }
+      ]
+    },
+    "commitments": [
+      {
+        "page": 32,
+        "quote": "reach net-zero emissions across all of our operations and value chain by 2030",
+        "target_year": "2030",
+        "similarity": 0.7246
+      },
+      {
+        "page": 30,
+        "quote": "Net-zero carbon",
+        "target_year": null,
+        "similarity": 0.7175
+      },
+      {
+        "page": 8,
+        "quote": "We aim to achieve net-zero emissions across all of our operations and value chain by 2030",
+        "target_year": "2030",
+        "similarity": 0.7034
+      }
+    ],
+    "ratings": {
+      "company": "Alphabet",
+      "msci_source_file": "ESG Ratings & Climate Search Tool - MSCI.pdf",
+      "sp_source_file": "S&P Global.pdf",
+      "msci_rating": {
+        "value": "BBB",
+        "evidence": "9% | BBB",
+        "confidence": "found_high"
+      },
+      "msci_implied_temp_rise_c": {
+        "value": "1.4",
+        "evidence": "1.5°C ALIGNED | – | 1.4°C",
+        "confidence": "found_high"
+      },
+      "msci_target_year": {
+        "value": "2030",
+        "evidence": "YES | YES | 2030 | 100.0% | -12.5% p.a.",
+        "confidence": "found_high"
+      },
+      "msci_target_coverage_pct": {
+        "value": "100.0",
+        "evidence": "YES | YES | 2030 | 100.0% | -12.5% p.a.",
+        "confidence": "found_high"
+      },
+      "msci_annual_reduction_pct": {
+        "value": "-12.5",
+        "evidence": "YES | YES | 2030 | 100.0% | -12.5% p.a.",
+        "confidence": "found_high"
+      },
+      "msci_rating_history": {
+        "value": null,
+        "evidence": "ESG Rating history | MSCI ESG Rating history data over the last five years or since records began. | AAA | AA | A | BBB | BB | B | CCC | BBB | BBB | BBB | BBB | BBB | N ov-20 | Jun-21 | Jul-22 | Jul-23 | Jul-24",
+        "confidence": "found_low"
+      },
+      "sp_overall_score": {
+        "value": "47",
+        "evidence": "47 | Data Availability :",
+        "confidence": "found_high"
+      },
+      "sp_csa_score": {
+        "value": "45",
+        "evidence": "S&P Global CSA Score = 45",
+        "confidence": "found_high"
+      },
+      "sp_modeled_score": {
+        "value": "2",
+        "evidence": "Modeled Scores = 2",
+        "confidence": "found_high"
+      },
+      "sp_dimension_scores": {
+        "value": {
+          "environmental": {
+            "value": "66",
+            "industry_mean": "22",
+            "industry_max": "79",
+            "evidence": "Environmental  Alphabet Inc. 66 Industry Mean 22 Industry Max 79 ",
+            "confidence": "found_high"
+          },
+          "social": {
+            "value": "51",
+            "industry_mean": "25",
+            "industry_max": "79",
+            "evidence": "Social  Alphabet Inc. 51 Industry Mean 25 Industry Max 79 ",
+            "confidence": "found_high"
+          },
+          "governance": {
+            "value": "31",
+            "industry_mean": "34",
+            "industry_max": "69",
+            "evidence": "Governance & Economic  Alphabet Inc. 31 Industry Mean 34 Industry Max 69 ",
+            "confidence": "found_high"
+          }
+        },
+        "evidence": null,
+        "confidence": "found_high"
+      },
+      "needs_manual_review": [],
+      "parsed_at": "2026-09-07T07:31:34.898260+00:00"
+    },
+    "risks": [
+      {
+        "rule_id": "supply_chain_gap",
+        "severity": "medium",
+        "message": "报告中未找到供应链相关排放数据或供应商审计披露——这是尽调阶段应重点向公司索取的信息缺口，而非本系统的检索失败（已对该指标做过多候选片段核对）。"
+      }
+    ]
+  },
+  {
+    "company": "Apple",
+    "indicators": [
+      {
+        "company": "Apple",
+        "indicator_id": "scope1_emissions",
+        "label_cn": "Scope 1 排放（直接排放）",
+        "category": "emissions",
+        "disclosed": true,
+        "value": "55,200",
+        "numeric_value": 55200.0,
+        "unit": "metric tons CO2e",
+        "year": "2023",
+        "page": 77,
+        "chunk_id": "77__geometry_reconstructed__Institute_WRI_Greenhouse_Gas_G__2023",
+        "quote": "Institute (WRI) Greenhouse Gas (GHG) Scope 1 in 2023: 55,200 (metric tons CO2e) (reconstructed directly from the original PDF's page layout coordinates on page 77; this value was matched to year 2023 by its exact column position on the page, not guessed from flattened text).",
+        "similarity": 1.0,
+        "steps_tried": 1,
+        "note": "",
+        "attempts": [
+          {
+            "step": 1,
+            "page": 77,
+            "chunk_id": "77__geometry_reconstructed__Institute_WRI_Greenhouse_Gas_G__2023",
+            "similarity": 1.0,
+            "content_preview": "Institute (WRI) Greenhouse Gas (GHG) Scope 1 in 2023: 55,200 (metric tons CO2e) (reconstructed directly from the original PDF's page layout coordinates on page 77; this value was matched to year 2023 ",
+            "raw_response": "```json\n{\"value\": \"55,200\", \"unit\": \"metric tons CO2e\", \"year\": \"2023\", \"quote\": \"Institute (WRI) Greenhouse Gas (GHG) Scope 1 in 2023: 55,200 (metric tons CO2e) (reconstructed directly from the original PDF's page layout coordinates on page 77; this value was matched to year 2023 by its exact colum"
+          }
+        ],
+        "partial_table_rows": []
+      },
+      {
+        "company": "Apple",
+        "indicator_id": "scope2_emissions",
+        "label_cn": "Scope 2 排放（间接-能源）",
+        "category": "emissions",
+        "disclosed": true,
+        "value": "3,400",
+        "numeric_value": 3400.0,
+        "unit": "metric tons CO2e",
+        "year": "2023",
+        "page": 77,
+        "chunk_id": "77__geometry_reconstructed__Scope_2_market_based_4__2023",
+        "quote": "Scope 2 (market-based)4 in 2023: 3,400 (metric tons CO2e) (reconstructed directly from the original PDF's page layout coordinates on page 77; this value was matched to year 2023 by its exact column position on the page, not guessed from flattened text).",
+        "similarity": 1.0,
+        "steps_tried": 1,
+        "note": "",
+        "attempts": [
+          {
+            "step": 1,
+            "page": 77,
+            "chunk_id": "77__geometry_reconstructed__Scope_2_market_based_4__2023",
+            "similarity": 1.0,
+            "content_preview": "Scope 2 (market-based)4 in 2023: 3,400 (metric tons CO2e) (reconstructed directly from the original PDF's page layout coordinates on page 77; this value was matched to year 2023 by its exact column po",
+            "raw_response": "```json\n{\"value\": \"3,400\", \"unit\": \"metric tons CO2e\", \"year\": \"2023\", \"quote\": \"Scope 2 (market-based)4 in 2023: 3,400 (metric tons CO2e) (reconstructed directly from the original PDF's page layout coordinates on page 77; this value was matched to year 2023 by its exact column position on the page,"
+          }
+        ],
+        "partial_table_rows": []
+      },
+      {
+        "company": "Apple",
+        "indicator_id": "scope3_emissions",
+        "label_cn": "Scope 3 排放（价值链）",
+        "category": "emissions",
+        "disclosed": true,
+        "value": "15,980,000",
+        "numeric_value": 15980000.0,
+        "unit": "metric tons CO2e",
+        "year": "2023",
+        "page": 77,
+        "chunk_id": "77__geometry_reconstructed__Total_gross_scope_3_emissions___2023",
+        "quote": "Total gross scope 3 emissions (corporate and product) (metric tons CO2e) in 2023: 15,980,000 (metric tons CO2e) (reconstructed directly from the original PDF's page layout coordinates on page 77; this value was matched to year 2023 by its exact column position on the page, not guessed from flattened text).",
+        "similarity": 1.0,
+        "steps_tried": 1,
+        "note": "",
+        "attempts": [
+          {
+            "step": 1,
+            "page": 77,
+            "chunk_id": "77__geometry_reconstructed__Total_gross_scope_3_emissions___2023",
+            "similarity": 1.0,
+            "content_preview": "Total gross scope 3 emissions (corporate and product) (metric tons CO2e) in 2023: 15,980,000 (metric tons CO2e) (reconstructed directly from the original PDF's page layout coordinates on page 77; this",
+            "raw_response": "```json\n{\"value\": \"15,980,000\", \"unit\": \"metric tons CO2e\", \"year\": \"2023\", \"quote\": \"Total gross scope 3 emissions (corporate and product) (metric tons CO2e) in 2023: 15,980,000 (metric tons CO2e) (reconstructed directly from the original PDF's page layout coordinates on page 77; this value was mat"
+          }
+        ],
+        "partial_table_rows": []
+      },
+      {
+        "company": "Apple",
+        "indicator_id": "renewable_energy_pct",
+        "label_cn": "可再生能源占比",
+        "category": "energy",
+        "disclosed": true,
+        "value": "100",
+        "numeric_value": 100.0,
+        "unit": "%",
+        "year": "2023",
+        "page": 81,
+        "chunk_id": "81__geometry_reconstructed__Renewable_electricity_percenta__2023",
+        "quote": "Renewable electricity percentage4 % of total energy in 2023: 100",
+        "similarity": 1.0,
+        "steps_tried": 1,
+        "note": "",
+        "attempts": [
+          {
+            "step": 1,
+            "page": 81,
+            "chunk_id": "81__geometry_reconstructed__Renewable_electricity_percenta__2023",
+            "similarity": 1.0,
+            "content_preview": "Renewable electricity percentage4 % of total energy in 2023: 100 (reconstructed directly from the original PDF's page layout coordinates on page 81; this value was matched to year 2023 by its exact co",
+            "raw_response": "```json\n{\"value\": \"100\", \"unit\": \"%\", \"year\": \"2023\", \"quote\": \"Renewable electricity percentage4 % of total energy in 2023: 100\"}\n```"
+          }
+        ],
+        "partial_table_rows": []
+      },
+      {
+        "company": "Apple",
+        "indicator_id": "water_withdrawal",
+        "label_cn": "总取水量",
+        "category": "water",
+        "disclosed": false,
+        "value": null,
+        "numeric_value": null,
+        "unit": null,
+        "year": null,
+        "page": null,
+        "chunk_id": null,
+        "quote": null,
+        "similarity": null,
+        "steps_tried": 20,
+        "note": "报告中未定位到明确匹配该指标口径的数字，标记为未披露（而非强行取一个相近的数字）。",
+        "attempts": [
+          {
+            "step": 1,
+            "page": 49,
+            "chunk_id": "49__two_column_reordered",
+            "similarity": 0.99,
+            "content_preview": "Contents Introduction Environmental Initiatives Engagement and Advocacy Data Appendix ⏎ Apple 2030 ⏎ Resources ⏎ Smarter Chemistry ⏎ Low-water design Site efficiency ⏎ will save up to 60 million gallons of fres",
+            "raw_response": "NOT_IN_PASSAGE"
+          },
+          {
+            "step": 2,
+            "page": 113,
+            "chunk_id": "113__two_column_reordered",
+            "similarity": 0.99,
+            "content_preview": "Contents Introduction Environmental Initiatives Engagement and Advocacy Data Appendix ⏎ Environmental Initiatives continued ⏎ 48 Energy consumption and energy efficiency values are based on the 58 Our use",
+            "raw_response": "NOT_IN_PASSAGE"
+          },
+          {
+            "step": 3,
+            "page": 51,
+            "chunk_id": "51__two_column_reordered",
+            "similarity": 0.99,
+            "content_preview": "Contents Introduction Environmental Initiatives Engagement and Advocacy Data Appendix ⏎ Apple 2030 ⏎ Resources ⏎ Smarter Chemistry ⏎ Replenishment and ⏎ Drinking Water Supply in India: Provided drinking Floodpl",
+            "raw_response": "NOT_IN_PASSAGE"
+          },
+          {
+            "step": 4,
+            "page": 48,
+            "chunk_id": "48__two_column_reordered",
+            "similarity": 0.99,
+            "content_preview": "Contents Introduction Environmental Initiatives Engagement and Advocacy Data Appendix ⏎ Apple 2030 ⏎ Resources ⏎ Smarter Chemistry ⏎ Water ⏎ We aim to advance water security Strategy ⏎ and protect communities in ",
+            "raw_response": "NOT_IN_PASSAGE"
+          },
+          {
+            "step": 5,
+            "page": 82,
+            "chunk_id": "Apple-p082-c01",
+            "similarity": 0.5767,
+            "content_preview": "Waste diverted from landfill ⏎  ⏎ metric tons ⏎  ⏎ 497,000 ⏎  ⏎ 523,000 ⏎  ⏎ 419,000 ⏎  ⏎ 400,000 ⏎  ⏎ 322,000 ⏎  ⏎ Product packaging ⏎ footprint ⏎  ⏎ Packaging ⏎  ⏎ Total packaging4 ⏎  ⏎ Recycled fiber ⏎  ⏎ Responsibly sourced virgin fiber5 ⏎  ⏎ Pla",
+            "raw_response": "NOT_IN_PASSAGE"
+          },
+          {
+            "step": 6,
+            "page": 49,
+            "chunk_id": "Apple-p049-c03",
+            "similarity": 0.529,
+            "content_preview": "about 10 percent of our total corporate water ⏎  ⏎ usage — primarily from municipal recycled water ⏎  ⏎ sources. Additional efficiency and conservation ⏎  ⏎ accomplishments include:  ⏎  ⏎ • We used rainwater capture ",
+            "raw_response": "NOT_IN_PASSAGE"
+          },
+          {
+            "step": 7,
+            "page": 113,
+            "chunk_id": "Apple-p113-c06",
+            "similarity": 0.5228,
+            "content_preview": "Atlas V4.0 tool, and as refined by additional local knowledge and ⏎ third-party research. ⏎  ⏎ 71  We calculate water discharge based on known evaporation ⏎  ⏎ from activities like cooling and irrigation. For s",
+            "raw_response": "NOT_IN_PASSAGE"
+          },
+          {
+            "step": 8,
+            "page": 49,
+            "chunk_id": "Apple-p049-c01",
+            "similarity": 0.4961,
+            "content_preview": "At our Capstone campus in Austin, Texas, we aim to ⏎  ⏎ achieve net-zero water use by relying on an onsite ⏎  ⏎ wastewater reuse system, as well as condensate ⏎  ⏎ recovery and stormwater capture, limiting potabl",
+            "raw_response": "NOT_IN_PASSAGE"
+          },
+          {
+            "step": 9,
+            "page": 51,
+            "chunk_id": "Apple-p051-c04",
+            "similarity": 0.4934,
+            "content_preview": "source watershed for the Phoenix metro area, which ⏎  ⏎ Our support is expected to result in nearly 5 billion ⏎  ⏎ • Ceres Global annual conference: Addressed ⏎  ⏎ sanitation, and hygiene. In 2023, the grant ⏎  ⏎ inc",
+            "raw_response": "NOT_IN_PASSAGE"
+          },
+          {
+            "step": 10,
+            "page": 48,
+            "chunk_id": "Apple-p048-c02",
+            "similarity": 0.4891,
+            "content_preview": "Low-water design ⏎ Minimizing water impacts in the design ⏎  ⏎ of products, services, and sites ⏎  ⏎ Site efficiency and conservation ⏎ Improving the performance of existing ⏎  ⏎ sites and processes ⏎  ⏎ Site water stewa",
+            "raw_response": "NOT_IN_PASSAGE"
+          },
+          {
+            "step": 11,
+            "page": 88,
+            "chunk_id": "Apple-p088-c01",
+            "similarity": 0.4885,
+            "content_preview": "Total ⏎  ⏎ Scope 1 ⏎  ⏎ Total gas ⏎ (MMBtu) ⏎  ⏎ 1,007,071 ⏎  ⏎ 805,271 ⏎  ⏎ 10,175 ⏎  ⏎ 24,826 ⏎  ⏎ 104,718 ⏎  ⏎ 24,219 ⏎  ⏎ 36,384 ⏎  ⏎ – ⏎  ⏎ – ⏎  ⏎ – ⏎  ⏎ – ⏎  ⏎ 58,446 ⏎  ⏎ 34,449 ⏎  ⏎ 23,997 ⏎  ⏎ Renewable ⏎ biogas (MMBtu) ⏎  ⏎ Scope 1 emissions (metric ⏎ tons CO2e) ⏎  ⏎ Elec",
+            "raw_response": "NOT_IN_PASSAGE"
+          },
+          {
+            "step": 12,
+            "page": 49,
+            "chunk_id": "Apple-p049-c04",
+            "similarity": 0.4846,
+            "content_preview": "primarily for irrigation, cooling systems, ⏎  ⏎ and toilet flushing. Our recycled water ⏎  ⏎ comes mostly from municipal treatment ⏎  ⏎ plants, with less than 5 percent coming ⏎  ⏎ from onsite treatment. ⏎  ⏎ 88% ⏎ Freshwa",
+            "raw_response": "NOT_IN_PASSAGE"
+          },
+          {
+            "step": 13,
+            "page": 97,
+            "chunk_id": "Apple-p097-c05",
+            "similarity": 0.4838,
+            "content_preview": "Quantity ⏎  ⏎ Units ⏎  ⏎ Boundary / Protocol ⏎  ⏎ Natural Gas Consumption ⏎  ⏎ 1,066,300 ⏎  ⏎ Electricity Consumption ⏎  ⏎ 3,500 ⏎  ⏎ Metric million British ⏎ thermal unit ⏎  ⏎ Worldwide occupied ⏎ properties / Apple Internal ⏎ Protocol ⏎  ⏎ ",
+            "raw_response": "NOT_IN_PASSAGE"
+          },
+          {
+            "step": 14,
+            "page": 49,
+            "chunk_id": "Apple-p049-c02",
+            "similarity": 0.4828,
+            "content_preview": "management, modular filtration and recovery units, ⏎  ⏎ acid recovery systems, and evaporators. Pilot lines ⏎  ⏎ have demonstrated success during the enclosures ⏎  ⏎ anodizing process with recovery and reuse rate",
+            "raw_response": "NOT_IN_PASSAGE"
+          },
+          {
+            "step": 15,
+            "page": 113,
+            "chunk_id": "Apple-p113-c07",
+            "similarity": 0.4761,
+            "content_preview": "fiscal year 2021. ⏎  ⏎ 77  Refer to footnote 15. ⏎  ⏎ 78  By the end of fiscal year 2030, we plan to replenish 100 percent of ⏎ our corporate freshwater withdrawals in high-stress locations, as ⏎ determined by a ",
+            "raw_response": "NOT_IN_PASSAGE"
+          },
+          {
+            "step": 16,
+            "page": 48,
+            "chunk_id": "Apple-p048-c01",
+            "similarity": 0.4737,
+            "content_preview": "(WRI) Aqueduct Water Risk Atlas to gain insights ⏎  ⏎ We partner with over 240 supplier facilities ⏎  ⏎ on local watershed health, such as baseline ⏎  ⏎ to guide them toward world-class water ⏎  ⏎ water stress. ⏎  ⏎ cons",
+            "raw_response": "NOT_IN_PASSAGE"
+          },
+          {
+            "step": 17,
+            "page": 51,
+            "chunk_id": "Apple-p051-c02",
+            "similarity": 0.4723,
+            "content_preview": "methodology: Engaged in the development ⏎ of the next phase of this methodology with the ⏎  ⏎ withdrawal basins in which we operate. This ⏎  ⏎ organization oversees water management in the ⏎  ⏎ Safe Water Network a",
+            "raw_response": "NOT_IN_PASSAGE"
+          },
+          {
+            "step": 18,
+            "page": 112,
+            "chunk_id": "Apple-p112-c06",
+            "similarity": 0.4712,
+            "content_preview": "packaging mass, relative to fiscal year 2021. We include retail bags, ⏎ all finished goods boxes (including plastic content in labels and ⏎ in-box documentation), packaging sent to our customers as part o",
+            "raw_response": "NOT_IN_PASSAGE"
+          },
+          {
+            "step": 19,
+            "page": 51,
+            "chunk_id": "Apple-p051-c01",
+            "similarity": 0.4681,
+            "content_preview": "stressing local watersheds. This removal effort by ⏎  ⏎ the Council for Watershed Health (CWH) addresses ⏎  ⏎ water availability in the watershed, which feeds the ⏎  ⏎ greater Los Angeles area. ⏎  ⏎ This project will",
+            "raw_response": "NOT_IN_PASSAGE"
+          },
+          {
+            "step": 20,
+            "page": 97,
+            "chunk_id": "Apple-p097-c04",
+            "similarity": 0.4602,
+            "content_preview": "•  Energy: Direct (Million Therms) and Indirect (Million kilowatt hours (mkWh)) ⏎ •  Renewable Energy (mkWh) ⏎ •  Water Withdrawal (Million Gallons) ⏎ •  Greenhouse  Gas  (GHG)  Emissions:  Direct  Scope  1",
+            "raw_response": "NOT_IN_PASSAGE"
+          },
+          {
+            "step": 21,
+            "page": 39,
+            "chunk_id": "Apple-p039-c02",
+            "similarity": 0.4572,
+            "content_preview": "and managing our discharge responsibly. We also ⏎  ⏎ look beyond our facilities to the water basins where ⏎  ⏎ we operate. We’re working to improve the quality ⏎  ⏎ of the water that our communities rely on throu",
+            "raw_response": "NOT_IN_PASSAGE"
+          },
+          {
+            "step": 22,
+            "page": 7,
+            "chunk_id": "Apple-p007-c01",
+            "similarity": 0.4537,
+            "content_preview": "Zero waste ⏎  ⏎ Mapping ⏎  ⏎ Assessment ⏎  ⏎ Innovation",
+            "raw_response": "NOT_IN_PASSAGE"
+          },
+          {
+            "step": 23,
+            "page": 39,
+            "chunk_id": "Apple-p039-c03",
+            "similarity": 0.4523,
+            "content_preview": "operations. At the same time transitioning to alternative ⏎  ⏎ solutions, improving the quality of water that we ⏎  ⏎ discharge, and protecting shared water resources. ⏎  ⏎ Zero waste ⏎ Minimizing overall waste gen",
+            "raw_response": "NOT_IN_PASSAGE"
+          },
+          {
+            "step": 24,
+            "page": 50,
+            "chunk_id": "Apple-p050-c01",
+            "similarity": 0.446,
+            "content_preview": "Mesa, Arizona; and Viborg, Denmark. We’re on track ⏎  ⏎ to certify the remaining two Apple-owned-and- ⏎ operated data centers by 2025.77 ⏎  ⏎ in Prineville, Oregon, and Mesa, Arizona. ⏎  ⏎ reuse of reclaimed water,",
+            "raw_response": "NOT_IN_PASSAGE"
+          }
+        ],
+        "partial_table_rows": []
+      },
+      {
+        "company": "Apple",
+        "indicator_id": "waste_diversion_pct",
+        "label_cn": "废弃物转移率（不进填埋场）",
+        "category": "waste",
+        "disclosed": true,
+        "value": "74%",
+        "numeric_value": 74.0,
+        "unit": "",
+        "year": "2023",
+        "page": 52,
+        "chunk_id": "52__two_column_reordered",
+        "quote": "2023 progress\n74% diversion rate",
+        "similarity": 0.99,
+        "steps_tried": 3,
+        "note": "",
+        "attempts": [
+          {
+            "step": 1,
+            "page": 113,
+            "chunk_id": "113__two_column_reordered",
+            "similarity": 0.99,
+            "content_preview": "Contents Introduction Environmental Initiatives Engagement and Advocacy Data Appendix ⏎ Environmental Initiatives continued ⏎ 48 Energy consumption and energy efficiency values are based on the 58 Our use",
+            "raw_response": "NOT_IN_PASSAGE"
+          },
+          {
+            "step": 2,
+            "page": 54,
+            "chunk_id": "54__two_column_reordered",
+            "similarity": 0.99,
+            "content_preview": "Contents Introduction Environmental Initiatives Engagement and Advocacy Data Appendix ⏎ Apple 2030 ⏎ Resources ⏎ Smarter Chemistry ⏎ Taking a zero-waste ⏎ As part of the Supplier Code of Conduct requirement, ⏎ ap",
+            "raw_response": "NOT_IN_PASSAGE"
+          },
+          {
+            "step": 3,
+            "page": 52,
+            "chunk_id": "52__two_column_reordered",
+            "similarity": 0.99,
+            "content_preview": "Contents Introduction Environmental Initiatives Engagement and Advocacy Data Appendix ⏎ Apple 2030 ⏎ Resources ⏎ Smarter Chemistry ⏎ Zero waste ⏎ We’re committed to eliminating Approach ⏎ waste sent to landfill —",
+            "raw_response": "```json\n{\"value\": \"74%\", \"unit\": \"\", \"year\": \"2023\", \"quote\": \"2023 progress\\n74% diversion rate\"}\n```"
+          }
+        ],
+        "partial_table_rows": []
+      },
+      {
+        "company": "Apple",
+        "indicator_id": "supply_chain_emissions",
+        "label_cn": "供应链排放/供应商审计",
+        "category": "supply_chain",
+        "disclosed": false,
+        "value": null,
+        "numeric_value": null,
+        "unit": null,
+        "year": null,
+        "page": null,
+        "chunk_id": null,
+        "quote": null,
+        "similarity": null,
+        "steps_tried": 20,
+        "note": "报告中未定位到明确匹配该指标口径的数字，标记为未披露（而非强行取一个相近的数字）。",
+        "attempts": [
+          {
+            "step": 1,
+            "page": 24,
+            "chunk_id": "24__two_column_reordered",
+            "similarity": 0.99,
+            "content_preview": "Contents Introduction Environmental Initiatives Engagement and Advocacy Data Appendix ⏎ Apple 2030 ⏎ Resources ⏎ Smarter Chemistry ⏎ Electricity ⏎ Our energy efficiency efforts Approach ⏎ extend across our work, ",
+            "raw_response": "NOT_IN_PASSAGE"
+          },
+          {
+            "step": 2,
+            "page": 10,
+            "chunk_id": "10__two_column_reordered",
+            "similarity": 0.99,
+            "content_preview": "Contents Introduction Environmental Initiatives Engagement and Advocacy Data Appendix ⏎ Apple 2030 ⏎ Resources ⏎ Smarter Chemistry ⏎ Decarbonizing our value chain ⏎ We’re also working to address emissions from ⏎ ",
+            "raw_response": "NOT_IN_PASSAGE"
+          },
+          {
+            "step": 3,
+            "page": 13,
+            "chunk_id": "13__two_column_reordered",
+            "similarity": 0.99,
+            "content_preview": "Contents Introduction Environmental Initiatives ⏎ Apple 2030 ⏎ Resources ⏎ Smarter Chemistry ⏎ Environmental progress can and should be good ⏎ for business. We underpin our climate strategy with ⏎ strong business",
+            "raw_response": "NOT_IN_PASSAGE"
+          },
+          {
+            "step": 4,
+            "page": 69,
+            "chunk_id": "69__two_column_reordered",
+            "similarity": 0.99,
+            "content_preview": "Contents Introduction Environmental Initiatives Engagement and Advocacy Data Appendix ⏎ Achieving change together ⏎ As industry leaders, we have Supply chain ⏎ a responsibility to influence ⏎ Engaging with ou",
+            "raw_response": "NOT_IN_PASSAGE"
+          },
+          {
+            "step": 5,
+            "page": 24,
+            "chunk_id": "Apple-p024-c01",
+            "similarity": 0.6401,
+            "content_preview": "entire manufacturing supply chain, as well ⏎  ⏎ provide more cost-effective energy. ⏎  ⏎ as supporting suppliers in adopting renewable ⏎  ⏎ energy technologies and helping drive ⏎  ⏎ Energy efficiency and ⏎ renewable e",
+            "raw_response": "NOT_IN_PASSAGE"
+          },
+          {
+            "step": 6,
+            "page": 10,
+            "chunk_id": "Apple-p010-c01",
+            "similarity": 0.6249,
+            "content_preview": "of our efforts toward achieving a carbon neutral ⏎  ⏎ supply chain by 2030. ⏎  ⏎ To rapidly scale and accelerate the progress ⏎  ⏎ of the Supplier Clean Energy Program, Apple ⏎  ⏎ updated the Supplier Code of Conduct",
+            "raw_response": "NOT_IN_PASSAGE"
+          },
+          {
+            "step": 7,
+            "page": 13,
+            "chunk_id": "Apple-p013-c01",
+            "similarity": 0.6181,
+            "content_preview": "related emissions — from sourcing materials through ⏎  ⏎ also working to accelerate the global transition ⏎  ⏎ end of life. We use the results of our detailed carbon ⏎  ⏎ toward decarbonization while exploring th",
+            "raw_response": "NOT_IN_PASSAGE"
+          },
+          {
+            "step": 8,
+            "page": 69,
+            "chunk_id": "Apple-p069-c01",
+            "similarity": 0.6174,
+            "content_preview": "those programs, we build the networks and systems ⏎  ⏎ required to maintain a continued engagement ⏎  ⏎ process with our suppliers. ⏎  ⏎ Some of our programs — such as the Supplier ⏎ Code of Conduct, the Supplier C",
+            "raw_response": "NOT_IN_PASSAGE"
+          },
+          {
+            "step": 9,
+            "page": 15,
+            "chunk_id": "Apple-p015-c01",
+            "similarity": 0.6151,
+            "content_preview": "the materials and components that account ⏎  ⏎ to follow suit — these are the opportunities that ⏎  ⏎ for significant portions of our greenhouse gas ⏎  ⏎ drive us through the challenging work of creating ⏎  ⏎ emissio",
+            "raw_response": "NOT_IN_PASSAGE"
+          },
+          {
+            "step": 10,
+            "page": 28,
+            "chunk_id": "Apple-p028-c01",
+            "similarity": 0.6053,
+            "content_preview": "suppliers. By connecting our suppliers with resources ⏎  ⏎ and providing transparency on supplier progress, ⏎  ⏎ our teams are scaling impact across our supply chain. ⏎  ⏎ As of March 2024, more than 320 supplier",
+            "raw_response": "NOT_IN_PASSAGE"
+          },
+          {
+            "step": 11,
+            "page": 112,
+            "chunk_id": "Apple-p112-c04",
+            "similarity": 0.603,
+            "content_preview": "Supplier Code of Conduct, scaling the program to our entire direct ⏎ manufacturing supply chain. ⏎  ⏎ 9   Refer to footnote 4. ⏎  ⏎ 10  By 2025, we plan to use 100 percent recycled cobalt in all Apple- ⏎ designed",
+            "raw_response": "NOT_IN_PASSAGE"
+          },
+          {
+            "step": 12,
+            "page": 97,
+            "chunk_id": "Apple-p097-c02",
+            "similarity": 0.601,
+            "content_preview": "Services, Fuel and Energy Related Activities,  Employee Commute and Business Travel) ⏎ (Metric Tonnes of Carbon Dioxide equivalent) ⏎  ⏎ o  Apple Comprehensive Carbon Footprint ⏎ o  Waste Quantities and Dispo",
+            "raw_response": "NOT_IN_PASSAGE"
+          },
+          {
+            "step": 13,
+            "page": 77,
+            "chunk_id": "Apple-p077-c03",
+            "similarity": 0.5994,
+            "content_preview": "emissions from purchased goods and services, ⏎ transportation and distribution, business travel, ⏎ employee commute, product use, and end of life. ⏎  ⏎ 2  Apple is carbon neutral for corporate emissions ⏎ as of",
+            "raw_response": "NOT_IN_PASSAGE"
+          },
+          {
+            "step": 14,
+            "page": 103,
+            "chunk_id": "Apple-p103-c04",
+            "similarity": 0.598,
+            "content_preview": "Clean Energy Use ⏎  ⏎ 25.54 ⏎  ⏎ Avoided GHG Emissions ⏎  ⏎ 18.51 ⏎  ⏎ Million megawatt ⏎ hours (mMWh) ⏎  ⏎ Apple suppliers / Apple ⏎ Internal Protocol ⏎  ⏎ Million metric tons ⏎ of carbon dioxide ⏎ equivalent ⏎ (mMtCO2e) ⏎  ⏎ Apple suppl",
+            "raw_response": "NOT_IN_PASSAGE"
+          },
+          {
+            "step": 15,
+            "page": 77,
+            "chunk_id": "Apple-p077-c05",
+            "similarity": 0.5944,
+            "content_preview": "transparency, we regularly refine our product ⏎ life cycle assessment model and sources of ⏎ data. For example, last year we obtained more ⏎ granular data summarizing in which countries ⏎ our products are sol",
+            "raw_response": "NOT_IN_PASSAGE"
+          },
+          {
+            "step": 16,
+            "page": 50,
+            "chunk_id": "Apple-p050-c02",
+            "similarity": 0.5931,
+            "content_preview": "Apple Supplier Code of Conduct. Through our Clean ⏎  ⏎ Water Program, we help suppliers minimize process ⏎  ⏎ water impacts and adopt best practices in water ⏎ management and wastewater treatment. ⏎  ⏎ Site level w",
+            "raw_response": "NOT_IN_PASSAGE"
+          },
+          {
+            "step": 17,
+            "page": 54,
+            "chunk_id": "Apple-p054-c01",
+            "similarity": 0.5858,
+            "content_preview": "waste minimization goals, and maintaining progress ⏎  ⏎ toward achieving zero waste to landfill. Our Zero ⏎  ⏎ Waste Program provides training and tools to help ⏎  ⏎ suppliers track their waste, set waste minimiz",
+            "raw_response": "NOT_IN_PASSAGE"
+          },
+          {
+            "step": 18,
+            "page": 32,
+            "chunk_id": "Apple-p032-c01",
+            "similarity": 0.5857,
+            "content_preview": "Addressing fluorinated greenhouse ⏎ gas emissions ⏎ Partnering closely with key manufacturers ⏎  ⏎ as they work to prevent these gases from ⏎  ⏎ being released into the atmosphere  ⏎  ⏎ Shifting transport modes ⏎  ⏎ for ",
+            "raw_response": "NOT_IN_PASSAGE"
+          },
+          {
+            "step": 19,
+            "page": 97,
+            "chunk_id": "Apple-p097-c03",
+            "similarity": 0.5837,
+            "content_preview": "by the International Auditing and Assurance Standards Board and ISO 14064-3: Greenhouse gases -- ⏎ Part 3: Specification with guidance for the validation and verification of greenhouse gas statements. ⏎  ⏎ ",
+            "raw_response": "NOT_IN_PASSAGE"
+          },
+          {
+            "step": 20,
+            "page": 103,
+            "chunk_id": "Apple-p103-c03",
+            "similarity": 0.5821,
+            "content_preview": "by the International Auditing and Assurance Standards Board and ISO 14064-3: Greenhouse gases -- ⏎ Part 3: Specification with guidance for the validation and verification of greenhouse gas statements. ⏎  ⏎ ",
+            "raw_response": "NOT_IN_PASSAGE"
+          },
+          {
+            "step": 21,
+            "page": 10,
+            "chunk_id": "Apple-p010-c04",
+            "similarity": 0.5798,
+            "content_preview": "We’re also addressing transportation-related ⏎  ⏎ times and optimizes for when the grid is using ⏎  ⏎ includes emissions from fuel combustion; heating, ⏎  ⏎ emissions through product and packaging design ⏎  ⏎ cleaner",
+            "raw_response": "NOT_IN_PASSAGE"
+          },
+          {
+            "step": 22,
+            "page": 69,
+            "chunk_id": "Apple-p069-c00",
+            "similarity": 0.5765,
+            "content_preview": "Contents ⏎  ⏎ Introduction ⏎  ⏎ Environmental Initiatives ⏎  ⏎ Engagement and Advocacy ⏎  ⏎ Data ⏎  ⏎ Appendix ⏎  ⏎ 2024  Environmental Progress Report  69 ⏎  ⏎ Achieving change together ⏎  ⏎ As industry leaders, we have ⏎ a responsib",
+            "raw_response": "NOT_IN_PASSAGE"
+          },
+          {
+            "step": 23,
+            "page": 27,
+            "chunk_id": "Apple-p027-c01",
+            "similarity": 0.5765,
+            "content_preview": "across their corporate operations, including those ⏎  ⏎ associated with Apple production. The program also ⏎  ⏎ equips them to share lessons learned with other ⏎  ⏎ partners throughout their value chains, extendi",
+            "raw_response": "NOT_IN_PASSAGE"
+          },
+          {
+            "step": 24,
+            "page": 104,
+            "chunk_id": "Apple-p104-c03",
+            "similarity": 0.5751,
+            "content_preview": "14064-3:  Greenhouse  gases  --  Part  3:  Specification  with  guidance  for  the  validation  and ⏎ verification of greenhouse gas statements. ⏎  ⏎ The  work  was  planned and  carried  out  to  provide  ",
+            "raw_response": "NOT_IN_PASSAGE"
+          }
+        ],
+        "partial_table_rows": []
+      }
+    ],
+    "trust_panel": {
+      "total_indicators": 7,
+      "verified_count": 5,
+      "verified_pct": 71.4,
+      "undisclosed_count": 2,
+      "undisclosed_indicators": [
+        "总取水量",
+        "供应链排放/供应商审计"
+      ],
+      "verified_indicators": [
+        {
+          "label": "Scope 1 排放（直接排放）",
+          "value": "55,200",
+          "unit": "metric tons CO2e",
+          "page": 77
+        },
+        {
+          "label": "Scope 2 排放（间接-能源）",
+          "value": "3,400",
+          "unit": "metric tons CO2e",
+          "page": 77
+        },
+        {
+          "label": "Scope 3 排放（价值链）",
+          "value": "15,980,000",
+          "unit": "metric tons CO2e",
+          "page": 77
+        },
+        {
+          "label": "可再生能源占比",
+          "value": "100",
+          "unit": "%",
+          "page": 81
+        },
+        {
+          "label": "废弃物转移率（不进填埋场）",
+          "value": "74%",
+          "unit": "",
+          "page": 52
+        }
+      ]
+    },
+    "commitments": [
+      {
+        "page": 13,
+        "quote": "75% reduction in gross emissions from 2015",
+        "target_year": "2015",
+        "similarity": 0.6781
+      },
+      {
+        "page": 35,
+        "quote": "We aim to reduce emissions by 75 percent compared with our 2015 footprint by 2030.",
+        "target_year": "2030",
+        "similarity": 0.6602
+      },
+      {
+        "page": 13,
+        "quote": "plan to become carbon neutral",
+        "target_year": "2030",
+        "similarity": 0.6589
+      }
+    ],
+    "ratings": {
+      "company": "Apple",
+      "msci_source_file": "ESG Ratings & Climate Search Tool - MSCI.pdf",
+      "sp_source_file": "S&P Global.pdf",
+      "msci_rating": {
+        "value": "BBB",
+        "evidence": "17% | BBB",
+        "confidence": "found_high"
+      },
+      "msci_implied_temp_rise_c": {
+        "value": "1.7",
+        "evidence": "2°C ALIGNED | – | 1.7°C",
+        "confidence": "found_high"
+      },
+      "msci_target_year": {
+        "value": "2030",
+        "evidence": "YES | YES | 2030 | 100.0% | -11.41% p.a.",
+        "confidence": "found_high"
+      },
+      "msci_target_coverage_pct": {
+        "value": "100.0",
+        "evidence": "YES | YES | 2030 | 100.0% | -11.41% p.a.",
+        "confidence": "found_high"
+      },
+      "msci_annual_reduction_pct": {
+        "value": "-11.41",
+        "evidence": "YES | YES | 2030 | 100.0% | -11.41% p.a.",
+        "confidence": "found_high"
+      },
+      "msci_rating_history": {
+        "value": null,
+        "evidence": "ESG Rating history | MSCI ESG Rating history data over the last five years or since records began. | AAA | AA | A | BBB | BB | B | CCC | A | BBB | BBB | BBB | BBB | D ec-20 | D ec-21 | N ov-22 | D ec-23 | D ec-24",
+        "confidence": "found_low"
+      },
+      "sp_overall_score": {
+        "value": "44",
+        "evidence": "44 | Data Availability :",
+        "confidence": "found_high"
+      },
+      "sp_csa_score": {
+        "value": "37",
+        "evidence": "S&P Global CSA Score = 37",
+        "confidence": "found_high"
+      },
+      "sp_modeled_score": {
+        "value": "7",
+        "evidence": "Modeled Scores = 7",
+        "confidence": "found_high"
+      },
+      "sp_dimension_scores": {
+        "value": {
+          "environmental": {
+            "value": "54",
+            "industry_mean": "44",
+            "industry_max": "96",
+            "evidence": "Environmental  Apple Inc. 54 Industry Mean 44 Industry Max 96 ",
+            "confidence": "found_high"
+          },
+          "social": {
+            "value": "41",
+            "industry_mean": "44",
+            "industry_max": "91",
+            "evidence": "Social  Apple Inc. 41 Industry Mean 44 Industry Max 91 ",
+            "confidence": "found_high"
+          },
+          "governance": {
+            "value": "36",
+            "industry_mean": "44",
+            "industry_max": "88",
+            "evidence": "Governance & Economic  Apple Inc. 36 Industry Mean 44 Industry Max 88 ",
+            "confidence": "found_high"
+          }
+        },
+        "evidence": null,
+        "confidence": "found_high"
+      },
+      "needs_manual_review": [],
+      "parsed_at": "2026-09-07T07:31:35.820257+00:00"
+    },
+    "risks": [
+      {
+        "rule_id": "supply_chain_gap",
+        "severity": "medium",
+        "message": "报告中未找到供应链相关排放数据或供应商审计披露——这是尽调阶段应重点向公司索取的信息缺口，而非本系统的检索失败（已对该指标做过多候选片段核对）。"
+      }
+    ]
+  },
+  {
+    "company": "Meta Platforms",
+    "indicators": [
+      {
+        "company": "Meta Platforms",
+        "indicator_id": "scope1_emissions",
+        "label_cn": "Scope 1 排放（直接排放）",
+        "category": "emissions",
+        "disclosed": true,
+        "value": "48,952",
+        "numeric_value": 48952.0,
+        "unit": "metric tons CO2e",
+        "year": "2023",
+        "page": 78,
+        "chunk_id": "78__geometry_reconstructed__Scope_1__2023",
+        "quote": "Scope 1 in 2023: 48,952 (in metric tons CO2e) (reconstructed directly from the original PDF's page layout coordinates on page 78; this value was matched to year 2023 by its exact column position on the page, not guessed from flattened text).",
+        "similarity": 1.0,
+        "steps_tried": 1,
+        "note": "",
+        "attempts": [
+          {
+            "step": 1,
+            "page": 78,
+            "chunk_id": "78__geometry_reconstructed__Scope_1__2023",
+            "similarity": 1.0,
+            "content_preview": "Scope 1 in 2023: 48,952 (in metric tons CO2e) (reconstructed directly from the original PDF's page layout coordinates on page 78; this value was matched to year 2023 by its exact column position on th",
+            "raw_response": "```json\n{\"value\": \"48,952\", \"unit\": \"metric tons CO2e\", \"year\": \"2023\", \"quote\": \"Scope 1 in 2023: 48,952 (in metric tons CO2e) (reconstructed directly from the original PDF's page layout coordinates on page 78; this value was matched to year 2023 by its exact column position on the page, not guesse"
+          }
+        ],
+        "partial_table_rows": []
+      },
+      {
+        "company": "Meta Platforms",
+        "indicator_id": "scope2_emissions",
+        "label_cn": "Scope 2 排放（间接-能源）",
+        "category": "emissions",
+        "disclosed": true,
+        "value": "1,658",
+        "numeric_value": 1658.0,
+        "unit": "metric tons CO2e",
+        "year": "2023",
+        "page": 78,
+        "chunk_id": "78__geometry_reconstructed__Scope_2__2023",
+        "quote": "Scope 2 in 2023: 1,658 (in metric tons CO2e) (reconstructed directly from the original PDF's page layout coordinates on page 78; this value was matched to year 2023 by its exact column position on the page, not guessed from flattened text).",
+        "similarity": 1.0,
+        "steps_tried": 1,
+        "note": "",
+        "attempts": [
+          {
+            "step": 1,
+            "page": 78,
+            "chunk_id": "78__geometry_reconstructed__Scope_2__2023",
+            "similarity": 1.0,
+            "content_preview": "Scope 2 in 2023: 1,658 (in metric tons CO2e) (reconstructed directly from the original PDF's page layout coordinates on page 78; this value was matched to year 2023 by its exact column position on the",
+            "raw_response": "```json\n{\"value\": \"1,658\", \"unit\": \"metric tons CO2e\", \"year\": \"2023\", \"quote\": \"Scope 2 in 2023: 1,658 (in metric tons CO2e) (reconstructed directly from the original PDF's page layout coordinates on page 78; this value was matched to year 2023 by its exact column position on the page, not guessed "
+          }
+        ],
+        "partial_table_rows": []
+      },
+      {
+        "company": "Meta Platforms",
+        "indicator_id": "scope3_emissions",
+        "label_cn": "Scope 3 排放（价值链）",
+        "category": "emissions",
+        "disclosed": true,
+        "value": "7,445,621",
+        "numeric_value": 7445621.0,
+        "unit": "metric tons CO2e",
+        "year": "2023",
+        "page": 78,
+        "chunk_id": "78__geometry_reconstructed__Scope_3__2023",
+        "quote": "Scope 3 in 2023: 7,445,621 (in metric tons CO2e) (reconstructed directly from the original PDF's page layout coordinates on page 78; this value was matched to year 2023 by its exact column position on the page, not guessed from flattened text).",
+        "similarity": 1.0,
+        "steps_tried": 1,
+        "note": "",
+        "attempts": [
+          {
+            "step": 1,
+            "page": 78,
+            "chunk_id": "78__geometry_reconstructed__Scope_3__2023",
+            "similarity": 1.0,
+            "content_preview": "Scope 3 in 2023: 7,445,621 (in metric tons CO2e) (reconstructed directly from the original PDF's page layout coordinates on page 78; this value was matched to year 2023 by its exact column position on",
+            "raw_response": "```json\n{\"value\": \"7,445,621\", \"unit\": \"metric tons CO2e\", \"year\": \"2023\", \"quote\": \"Scope 3 in 2023: 7,445,621 (in metric tons CO2e) (reconstructed directly from the original PDF's page layout coordinates on page 78; this value was matched to year 2023 by its exact column position on the page, not "
+          }
+        ],
+        "partial_table_rows": []
+      },
+      {
+        "company": "Meta Platforms",
+        "indicator_id": "renewable_energy_pct",
+        "label_cn": "可再生能源占比",
+        "category": "energy",
+        "disclosed": true,
+        "value": "100%",
+        "numeric_value": 100.0,
+        "unit": "",
+        "year": "2023",
+        "page": 83,
+        "chunk_id": "83__geometry_reconstructed__Renewable__2023",
+        "quote": "Renewable in 2023: 100% (in MWh/unit of key performance indicators) (reconstructed directly from the original PDF's page layout coordinates on page 83; this value was matched to year 2023 by its exact column position on the page, not guessed from flattened text).",
+        "similarity": 1.0,
+        "steps_tried": 1,
+        "note": "",
+        "attempts": [
+          {
+            "step": 1,
+            "page": 83,
+            "chunk_id": "83__geometry_reconstructed__Renewable__2023",
+            "similarity": 1.0,
+            "content_preview": "Renewable in 2023: 100% (in MWh/unit of key performance indicators) (reconstructed directly from the original PDF's page layout coordinates on page 83; this value was matched to year 2023 by its exact",
+            "raw_response": "```json\n{\"value\": \"100%\", \"unit\": \"\", \"year\": \"2023\", \"quote\": \"Renewable in 2023: 100% (in MWh/unit of key performance indicators) (reconstructed directly from the original PDF's page layout coordinates on page 83; this value was matched to year 2023 by its exact column position on the page, not gu"
+          }
+        ],
+        "partial_table_rows": []
+      },
+      {
+        "company": "Meta Platforms",
+        "indicator_id": "water_withdrawal",
+        "label_cn": "总取水量",
+        "category": "water",
+        "disclosed": true,
+        "value": "5,274",
+        "numeric_value": 5274.0,
+        "unit": "megaliters",
+        "year": "2023",
+        "page": 85,
+        "chunk_id": "85__geometry_reconstructed__Total_water_withdrawal__2023",
+        "quote": "Total water withdrawal in 2023: 5,274 (in megaliters) (reconstructed directly from the original PDF's page layout coordinates on page 85; this value was matched to year 2023 by its exact column position on the page, not guessed from flattened text).",
+        "similarity": 1.0,
+        "steps_tried": 1,
+        "note": "",
+        "attempts": [
+          {
+            "step": 1,
+            "page": 85,
+            "chunk_id": "85__geometry_reconstructed__Total_water_withdrawal__2023",
+            "similarity": 1.0,
+            "content_preview": "Total water withdrawal in 2023: 5,274 (in megaliters) (reconstructed directly from the original PDF's page layout coordinates on page 85; this value was matched to year 2023 by its exact column positi",
+            "raw_response": "```json\n{\"value\": \"5,274\", \"unit\": \"megaliters\", \"year\": \"2023\", \"quote\": \"Total water withdrawal in 2023: 5,274 (in megaliters) (reconstructed directly from the original PDF's page layout coordinates on page 85; this value was matched to year 2023 by its exact column position on the page, not guess"
+          }
+        ],
+        "partial_table_rows": []
+      },
+      {
+        "company": "Meta Platforms",
+        "indicator_id": "waste_diversion_pct",
+        "label_cn": "废弃物转移率（不进填埋场）",
+        "category": "waste",
+        "disclosed": false,
+        "value": null,
+        "numeric_value": null,
+        "unit": null,
+        "year": null,
+        "page": null,
+        "chunk_id": null,
+        "quote": null,
+        "similarity": null,
+        "steps_tried": 20,
+        "note": "报告中未定位到明确匹配该指标口径的数字，标记为未披露（而非强行取一个相近的数字）。",
+        "attempts": [
+          {
+            "step": 1,
+            "page": 78,
+            "chunk_id": "Meta Platforms-p078-c00",
+            "similarity": 0.5345,
+            "content_preview": "Environmental footprint1,2,3,4,5,6 ⏎  ⏎ 1.1 GHG emissions ⏎  ⏎ Total GHG emissions ⏎  ⏎ Market-based (in metric tons CO2e) ⏎  ⏎ Net total ⏎  ⏎ 4,330,000 ⏎  ⏎ 4,984,000 ⏎  ⏎ 5,740,244 ⏎  ⏎ 8,453,471 ⏎  ⏎ 7,443,182 ⏎  ⏎ Carbon removal (carbon",
+            "raw_response": "NOT_IN_PASSAGE"
+          },
+          {
+            "step": 2,
+            "page": 86,
+            "chunk_id": "Meta Platforms-p086-c00",
+            "similarity": 0.5296,
+            "content_preview": "3.1 Water withdrawal ⏎  ⏎ Water withdrawal by source ⏎  ⏎ Water withdrawal by source (in megaliters) ⏎  ⏎ From groundwater ⏎  ⏎ From third-party water (e.g., municipal ⏎ water supply) ⏎  ⏎ Water usage effectiveness (WUE) ⏎  ⏎ ",
+            "raw_response": "NOT_IN_PASSAGE"
+          },
+          {
+            "step": 3,
+            "page": 93,
+            "chunk_id": "Meta Platforms-p093-c01",
+            "similarity": 0.5237,
+            "content_preview": "for more emissions categories as methods to do so become available. We will continue reporting and updating our emissions boundaries as ⏎  ⏎ our business grows on our path to net zero emissions. ⏎  ⏎ PUE/WUE ⏎ ",
+            "raw_response": "NOT_IN_PASSAGE"
+          },
+          {
+            "step": 4,
+            "page": 21,
+            "chunk_id": "Meta Platforms-p021-c01",
+            "similarity": 0.5195,
+            "content_preview": "<1% ⏎  ⏎ <1% ⏎  ⏎ <1% ⏎  ⏎ <1% ⏎  ⏎ We removed 53,050 tons of CO2 ⏎  ⏎ through carbon removal projects to ⏎  ⏎ cover our Scope 1 and 2 emissions. ⏎  ⏎ Leadership messages ⏎  ⏎ Executive summary ⏎  ⏎ How we operate ⏎  ⏎ What we create ⏎  ⏎ Data ",
+            "raw_response": "NOT_IN_PASSAGE"
+          },
+          {
+            "step": 5,
+            "page": 81,
+            "chunk_id": "Meta Platforms-p081-c00",
+            "similarity": 0.517,
+            "content_preview": "1.1 GHG emissions ⏎  ⏎ Market-based vs. location-based ⏎  ⏎ Scope 3 emissions (in metric tons CO2e) ⏎  ⏎ Total ⏎  ⏎ 4,078,000 ⏎  ⏎ 5,091,000 ⏎  ⏎ 5,772,583 ⏎  ⏎ 8,466,264 ⏎  ⏎ 7,445,621 ⏎  ⏎ Category 1: Purchased goods and ⏎ services ⏎  ⏎ 1,4",
+            "raw_response": "NOT_IN_PASSAGE"
+          },
+          {
+            "step": 6,
+            "page": 84,
+            "chunk_id": "Meta Platforms-p084-c00",
+            "similarity": 0.517,
+            "content_preview": "2.4 Data center operations and design ⏎  ⏎ Power usage effectiveness (PUE) ⏎  ⏎ PUE (data center energy efficiency) ⏎  ⏎ 1.11 ⏎  ⏎ Sustainable design ⏎  ⏎ 1.10 ⏎  ⏎ 1.09 ⏎  ⏎ 1.08 ⏎  ⏎ Green building standards for data centers and o",
+            "raw_response": "NOT_IN_PASSAGE"
+          },
+          {
+            "step": 7,
+            "page": 78,
+            "chunk_id": "Meta Platforms-p078-c01",
+            "similarity": 0.5094,
+            "content_preview": "2024 Sustainability ReportData index",
+            "raw_response": "NOT_IN_PASSAGE"
+          },
+          {
+            "step": 8,
+            "page": 86,
+            "chunk_id": "Meta Platforms-p086-c01",
+            "similarity": 0.5094,
+            "content_preview": "2024 Sustainability ReportData index",
+            "raw_response": "NOT_IN_PASSAGE"
+          },
+          {
+            "step": 9,
+            "page": 93,
+            "chunk_id": "Meta Platforms-p093-c02",
+            "similarity": 0.5077,
+            "content_preview": "Water withdrawal ⏎  ⏎ The water that we use in our offices and at our data centers are withdrawn from our local water utilities or local aquifers. We report our ⏎  ⏎ water withdrawals based on data from our l",
+            "raw_response": "NOT_IN_PASSAGE"
+          },
+          {
+            "step": 10,
+            "page": 21,
+            "chunk_id": "Meta Platforms-p021-c00",
+            "similarity": 0.4995,
+            "content_preview": "Our net zero program focuses on three pillars: ⏎  ⏎ 2024 Sustainability Report ⏎  ⏎ Understanding ⏎  ⏎ our emissions ⏎  ⏎ Reducing our ⏎  ⏎ emissions ⏎  ⏎ Removing any ⏎  ⏎ remaining emissions ⏎  ⏎ In 2023, our net emissions equaled",
+            "raw_response": "NOT_IN_PASSAGE"
+          },
+          {
+            "step": 11,
+            "page": 87,
+            "chunk_id": "Meta Platforms-p087-c00",
+            "similarity": 0.4985,
+            "content_preview": "3.2 Water consumption ⏎  ⏎ Water consumption (in megaliters) ⏎  ⏎ Total water consumption ⏎  ⏎ Data centers total ⏎  ⏎ Offices total ⏎  ⏎ 1,971 ⏎  ⏎ - ⏎  ⏎ - ⏎  ⏎ 2,202 ⏎  ⏎ 2,197 ⏎  ⏎ Water consumption from areas with water stress (in mega",
+            "raw_response": "NOT_IN_PASSAGE"
+          },
+          {
+            "step": 12,
+            "page": 25,
+            "chunk_id": "Meta Platforms-p025-c01",
+            "similarity": 0.494,
+            "content_preview": "organizations to operate more sustainably are identified and implemented. ⏎  ⏎ Leadership messages ⏎  ⏎ Executive summary ⏎  ⏎ How we operate ⏎  ⏎ What we create ⏎  ⏎ Data index",
+            "raw_response": "NOT_IN_PASSAGE"
+          },
+          {
+            "step": 13,
+            "page": 91,
+            "chunk_id": "Meta Platforms-p091-c02",
+            "similarity": 0.4899,
+            "content_preview": "greenhouse gases based on their global warming potentials. ⏎  ⏎ Activity data ⏎  ⏎ For activity data, we take the quantity of a specific measured activity and multiply it by an associated emissions factor to ",
+            "raw_response": "NOT_IN_PASSAGE"
+          },
+          {
+            "step": 14,
+            "page": 68,
+            "chunk_id": "Meta Platforms-p068-c02",
+            "similarity": 0.4896,
+            "content_preview": "concrete by over 20% Environ. Res. Lett. 2016;11:074029. doi: 10.1088/1748-9326/11/7/074029. ⏎  ⏎ Leadership messages ⏎  ⏎ Executive summary ⏎  ⏎ How we operate ⏎  ⏎ What we create ⏎  ⏎ Data index",
+            "raw_response": "NOT_IN_PASSAGE"
+          },
+          {
+            "step": 15,
+            "page": 81,
+            "chunk_id": "Meta Platforms-p081-c01",
+            "similarity": 0.4879,
+            "content_preview": "Category 12: End-of-life treatment of ⏎ sold products ⏎  ⏎ <500 ⏎  ⏎ <500 ⏎  ⏎ 1,267 ⏎  ⏎ 3,775 ⏎  ⏎ 2,765 ⏎  ⏎ Leadership messages ⏎  ⏎ Executive summary ⏎  ⏎ How we operate ⏎  ⏎ What we create ⏎  ⏎ F ⏎  ⏎ 2024 Sustainability ReportData index",
+            "raw_response": "NOT_IN_PASSAGE"
+          },
+          {
+            "step": 16,
+            "page": 79,
+            "chunk_id": "Meta Platforms-p079-c00",
+            "similarity": 0.4875,
+            "content_preview": "1.1 GHG emissions ⏎  ⏎ Operational GHG emissions ⏎  ⏎ Market-based Scope 1 and 2 emissions (in metric tons CO2e) ⏎  ⏎ Total operational GHG emissions ⏎  ⏎ 252,000 ⏎  ⏎ 38,000 ⏎  ⏎ 57,661 ⏎  ⏎ Data centers total ⏎  ⏎ 207,000 ⏎  ⏎ 14,000 ⏎ ",
+            "raw_response": "NOT_IN_PASSAGE"
+          },
+          {
+            "step": 17,
+            "page": 16,
+            "chunk_id": "Meta Platforms-p016-c01",
+            "similarity": 0.4874,
+            "content_preview": "How we operate ⏎  ⏎ What we create ⏎  ⏎ Data index",
+            "raw_response": "NOT_IN_PASSAGE"
+          },
+          {
+            "step": 18,
+            "page": 83,
+            "chunk_id": "Meta Platforms-p083-c01",
+            "similarity": 0.4867,
+            "content_preview": "6,153,856 ⏎  ⏎ 7,539,592 ⏎  ⏎ 4,818,116 ⏎  ⏎ 363,082 ⏎  ⏎ 1,376,871 ⏎  ⏎ 1,025,707 ⏎  ⏎ 842,460 ⏎  ⏎ 724,151 ⏎  ⏎ 699,427 ⏎  ⏎ 52,375 ⏎  ⏎ 119,955 ⏎  ⏎ 22,309 ⏎  ⏎ 1,144 ⏎  ⏎ Leadership messages ⏎  ⏎ Executive summary ⏎  ⏎ How we operate ⏎  ⏎ What we create ⏎  ⏎ H ⏎  ⏎ 20",
+            "raw_response": "NOT_IN_PASSAGE"
+          },
+          {
+            "step": 19,
+            "page": 88,
+            "chunk_id": "Meta Platforms-p088-c00",
+            "similarity": 0.4859,
+            "content_preview": "3.4 Water stewardship ⏎  ⏎ Water restoration (in megaliters) ⏎  ⏎ Volumetric water restoration benefits ⏎  ⏎ 2,250 ⏎  ⏎ 2,336 ⏎  ⏎ 2,352 ⏎  ⏎ 5,889 ⏎  ⏎ Water use embedded in purchased electricity (in megaliters) ⏎  ⏎ Total embedded",
+            "raw_response": "NOT_IN_PASSAGE"
+          },
+          {
+            "step": 20,
+            "page": 85,
+            "chunk_id": "Meta Platforms-p085-c00",
+            "similarity": 0.4858,
+            "content_preview": "3.1 Water withdrawal ⏎  ⏎ Water withdrawal ⏎  ⏎ Water withdrawal by facility (in megaliters) ⏎  ⏎ Total water withdrawal ⏎  ⏎ Data centers total ⏎  ⏎ Altoona (IA) ⏎  ⏎ Clonee (Ireland) ⏎  ⏎ DeKalb (IL) ⏎  ⏎ Eagle Mountain (UT) ⏎  ⏎ Fore",
+            "raw_response": "NOT_IN_PASSAGE"
+          }
+        ],
+        "partial_table_rows": []
+      },
+      {
+        "company": "Meta Platforms",
+        "indicator_id": "supply_chain_emissions",
+        "label_cn": "供应链排放/供应商审计",
+        "category": "supply_chain",
+        "disclosed": false,
+        "value": null,
+        "numeric_value": null,
+        "unit": null,
+        "year": null,
+        "page": null,
+        "chunk_id": null,
+        "quote": null,
+        "similarity": null,
+        "steps_tried": 20,
+        "note": "报告中未定位到明确匹配该指标口径的数字，标记为未披露（而非强行取一个相近的数字）。",
+        "attempts": [
+          {
+            "step": 1,
+            "page": 31,
+            "chunk_id": "31__two_column_reordered",
+            "similarity": 0.99,
+            "content_preview": "We take supplier-provided data ⏎ and information gathered through ⏎ detailed conversations, and work ⏎ with suppliers to focus emissions ⏎ reductions in five main areas: ⏎ 1. Energy efficiency ⏎ 2. Renewable ener",
+            "raw_response": "NOT_IN_PASSAGE"
+          },
+          {
+            "step": 2,
+            "page": 56,
+            "chunk_id": "56__two_column_reordered",
+            "similarity": 0.99,
+            "content_preview": "RBA Code of Conduct ⏎ We are committed to improving the working conditions and sustained ⏎ chain. We use a risk-based methodology to regularly assess suppliers’ ⏎ engage with them to build their capabilitie",
+            "raw_response": "NOT_IN_PASSAGE"
+          },
+          {
+            "step": 3,
+            "page": 59,
+            "chunk_id": "59__two_column_reordered",
+            "similarity": 0.99,
+            "content_preview": "Protecting workers in the manufacturing ⏎ Protecting workers from environmental, health and ⏎ safety risks is a key part of our RSC mission and the ⏎ RBA Code of Conduct. Our Materials of Concern ⏎ Standard a",
+            "raw_response": "NOT_IN_PASSAGE"
+          },
+          {
+            "step": 4,
+            "page": 31,
+            "chunk_id": "Meta Platforms-p031-c00",
+            "similarity": 0.643,
+            "content_preview": "2024 Sustainability Report ⏎  ⏎ We take supplier-provided data ⏎  ⏎ controls for chilled water pumps ⏎  ⏎ and information gathered through ⏎  ⏎ and air handling units. ⏎  ⏎ detailed conversations, and work ⏎  ⏎ with supplier",
+            "raw_response": "NOT_IN_PASSAGE"
+          },
+          {
+            "step": 5,
+            "page": 55,
+            "chunk_id": "Meta Platforms-p055-c00",
+            "similarity": 0.6314,
+            "content_preview": "2024 Sustainability Report ⏎  ⏎ Established policies ⏎  ⏎ Our approach begins with establishing clear expectations with our manufacturing suppliers through our standards ⏎  ⏎ and policies. The Responsible Busines",
+            "raw_response": "NOT_IN_PASSAGE"
+          },
+          {
+            "step": 6,
+            "page": 57,
+            "chunk_id": "Meta Platforms-p057-c00",
+            "similarity": 0.6229,
+            "content_preview": "2024 Sustainability Report ⏎  ⏎ Throughout this process, ongoing supplier dialogue and engagement are key. We engage with suppliers in ⏎  ⏎ an array of programs that aim to improve working conditions, support",
+            "raw_response": "NOT_IN_PASSAGE"
+          },
+          {
+            "step": 7,
+            "page": 56,
+            "chunk_id": "Meta Platforms-p056-c00",
+            "similarity": 0.6149,
+            "content_preview": "2024 Sustainability Report ⏎  ⏎ RBA Code of Conduct ⏎  ⏎ We are committed to improving the working conditions and sustained performance of our hardware supply ⏎  ⏎ chain. We use a risk-based methodology to regula",
+            "raw_response": "NOT_IN_PASSAGE"
+          },
+          {
+            "step": 8,
+            "page": 59,
+            "chunk_id": "Meta Platforms-p059-c00",
+            "similarity": 0.6101,
+            "content_preview": "2024 Sustainability Report ⏎  ⏎ Protecting workers in the manufacturing process ⏎  ⏎ Protecting workers from environmental, health and ⏎  ⏎ evaluate the use of process chemicals by key supplier ⏎  ⏎ safety risks is a",
+            "raw_response": "NOT_IN_PASSAGE"
+          },
+          {
+            "step": 9,
+            "page": 92,
+            "chunk_id": "Meta Platforms-p092-c00",
+            "similarity": 0.5899,
+            "content_preview": "Where activity data is incomplete or unavailable for an operation that results in GHG emissions, existing activity data is used as a proxy to ⏎  ⏎ estimate these emissions. This ensures we are reporting a",
+            "raw_response": "NOT_IN_PASSAGE"
+          },
+          {
+            "step": 10,
+            "page": 30,
+            "chunk_id": "Meta Platforms-p030-c00",
+            "similarity": 0.5893,
+            "content_preview": "2024 Sustainability Report ⏎  ⏎ Net zero supplier ⏎ engagement program ⏎  ⏎ The majority of our carbon footprint ⏎  ⏎ is Scope 3 emissions. For these ⏎  ⏎ emissions outside of our operational ⏎  ⏎ control, we have develope",
+            "raw_response": "NOT_IN_PASSAGE"
+          },
+          {
+            "step": 11,
+            "page": 56,
+            "chunk_id": "Meta Platforms-p056-c01",
+            "similarity": 0.5891,
+            "content_preview": "wages and benefits. ⏎  ⏎ The chart below shows the distribution of audit findings across the RBA Code of Conduct sections. ⏎  ⏎ 2023 supplier audit findings by RBA Code of Conduct sections ⏎  ⏎ Labor ⏎  ⏎ Health and ",
+            "raw_response": "NOT_IN_PASSAGE"
+          },
+          {
+            "step": 12,
+            "page": 91,
+            "chunk_id": "Meta Platforms-p091-c02",
+            "similarity": 0.586,
+            "content_preview": "greenhouse gases based on their global warming potentials. ⏎  ⏎ Activity data ⏎  ⏎ For activity data, we take the quantity of a specific measured activity and multiply it by an associated emissions factor to ",
+            "raw_response": "NOT_IN_PASSAGE"
+          },
+          {
+            "step": 13,
+            "page": 35,
+            "chunk_id": "Meta Platforms-p035-c01",
+            "similarity": 0.5843,
+            "content_preview": "have the potential to spur the development of early- ⏎  ⏎ stage decarbonization technologies, build markets and ⏎  ⏎ transform the sectors in which we and our value chain ⏎  ⏎ •  Aviation shipping ⏎  ⏎ • ⏎  ⏎ Increasing ",
+            "raw_response": "NOT_IN_PASSAGE"
+          },
+          {
+            "step": 14,
+            "page": 90,
+            "chunk_id": "Meta Platforms-p090-c01",
+            "similarity": 0.5749,
+            "content_preview": "Our GHG footprint includes the emissions associated with running our business and data centers, as well as the indirect emissions upstream ⏎  ⏎ and downstream of our global operations. These emissions cor",
+            "raw_response": "NOT_IN_PASSAGE"
+          },
+          {
+            "step": 15,
+            "page": 91,
+            "chunk_id": "Meta Platforms-p091-c01",
+            "similarity": 0.5709,
+            "content_preview": "Meta is aligning our emissions reduction targets with the Science Based Targets initiative↗ and takes a scientific, standardized approach to ⏎ calculating its GHG emissions in accordance with the GHG Pr",
+            "raw_response": "NOT_IN_PASSAGE"
+          },
+          {
+            "step": 16,
+            "page": 93,
+            "chunk_id": "Meta Platforms-p093-c01",
+            "similarity": 0.5655,
+            "content_preview": "for more emissions categories as methods to do so become available. We will continue reporting and updating our emissions boundaries as ⏎  ⏎ our business grows on our path to net zero emissions. ⏎  ⏎ PUE/WUE ⏎ ",
+            "raw_response": "NOT_IN_PASSAGE"
+          },
+          {
+            "step": 17,
+            "page": 91,
+            "chunk_id": "Meta Platforms-p091-c00",
+            "similarity": 0.5606,
+            "content_preview": "Upstream: ⏎  ⏎ •  Purchased goods and services (e.g., upstream emissions from purchased ⏎  ⏎ office supplies) ⏎  ⏎ •  Capital goods (e.g., server hardware) ⏎  ⏎ •  Fuel and energy-related activities ⏎  ⏎ •  Upstream tran",
+            "raw_response": "NOT_IN_PASSAGE"
+          },
+          {
+            "step": 18,
+            "page": 25,
+            "chunk_id": "Meta Platforms-p025-c01",
+            "similarity": 0.5597,
+            "content_preview": "organizations to operate more sustainably are identified and implemented. ⏎  ⏎ Leadership messages ⏎  ⏎ Executive summary ⏎  ⏎ How we operate ⏎  ⏎ What we create ⏎  ⏎ Data index",
+            "raw_response": "NOT_IN_PASSAGE"
+          },
+          {
+            "step": 19,
+            "page": 19,
+            "chunk_id": "Meta Platforms-p019-c00",
+            "similarity": 0.5589,
+            "content_preview": "2024 Sustainability Report ⏎  ⏎ How we operate ⏎  ⏎ We work to be good stewards of our planet and uphold ⏎  ⏎ the human rights, safety and well-being of our employees, ⏎  ⏎ suppliers, customers and partners. To do so",
+            "raw_response": "NOT_IN_PASSAGE"
+          },
+          {
+            "step": 20,
+            "page": 5,
+            "chunk_id": "Meta Platforms-p005-c01",
+            "similarity": 0.5589,
+            "content_preview": "commitments as well as to support company ⏎  ⏎ emissions across our value chain, restored ⏎  ⏎ policy, legal and reputational objectives. (CONT.) ⏎  ⏎ more water than our operations consume and ⏎  ⏎ consistently uphe",
+            "raw_response": "NOT_IN_PASSAGE"
+          },
+          {
+            "step": 21,
+            "page": 78,
+            "chunk_id": "Meta Platforms-p078-c00",
+            "similarity": 0.5575,
+            "content_preview": "Environmental footprint1,2,3,4,5,6 ⏎  ⏎ 1.1 GHG emissions ⏎  ⏎ Total GHG emissions ⏎  ⏎ Market-based (in metric tons CO2e) ⏎  ⏎ Net total ⏎  ⏎ 4,330,000 ⏎  ⏎ 4,984,000 ⏎  ⏎ 5,740,244 ⏎  ⏎ 8,453,471 ⏎  ⏎ 7,443,182 ⏎  ⏎ Carbon removal (carbon",
+            "raw_response": "NOT_IN_PASSAGE"
+          },
+          {
+            "step": 22,
+            "page": 90,
+            "chunk_id": "Meta Platforms-p090-c00",
+            "similarity": 0.5574,
+            "content_preview": "2023 environmental metrics methodology ⏎  ⏎ At Meta, our sustainability work helps us to operate efficiently and responsibly in our mission to build community and bring the world closer ⏎  ⏎ together. As a gl",
+            "raw_response": "NOT_IN_PASSAGE"
+          },
+          {
+            "step": 23,
+            "page": 35,
+            "chunk_id": "Meta Platforms-p035-c02",
+            "similarity": 0.5562,
+            "content_preview": "tiers upstream in our supply chain and often from ⏎  ⏎ •  Heating and cooling of commercial and ⏎  ⏎ industrial facilities ⏎  ⏎ • ⏎  ⏎ Increasing production and offtake of ⏎ green hydrogen ⏎  ⏎ commodities where there is c",
+            "raw_response": "NOT_IN_PASSAGE"
+          }
+        ],
+        "partial_table_rows": []
+      }
+    ],
+    "trust_panel": {
+      "total_indicators": 7,
+      "verified_count": 5,
+      "verified_pct": 71.4,
+      "undisclosed_count": 2,
+      "undisclosed_indicators": [
+        "废弃物转移率（不进填埋场）",
+        "供应链排放/供应商审计"
+      ],
+      "verified_indicators": [
+        {
+          "label": "Scope 1 排放（直接排放）",
+          "value": "48,952",
+          "unit": "metric tons CO2e",
+          "page": 78
+        },
+        {
+          "label": "Scope 2 排放（间接-能源）",
+          "value": "1,658",
+          "unit": "metric tons CO2e",
+          "page": 78
+        },
+        {
+          "label": "Scope 3 排放（价值链）",
+          "value": "7,445,621",
+          "unit": "metric tons CO2e",
+          "page": 78
+        },
+        {
+          "label": "可再生能源占比",
+          "value": "100%",
+          "unit": "",
+          "page": 83
+        },
+        {
+          "label": "总取水量",
+          "value": "5,274",
+          "unit": "megaliters",
+          "page": 85
+        }
+      ]
+    },
+    "commitments": [
+      {
+        "page": 17,
+        "quote": "achieving net zero emissions across our value chain and becoming water positive in 2030",
+        "target_year": "2030",
+        "similarity": 0.7083
+      },
+      {
+        "page": 91,
+        "quote": "Meta is aligning our emissions reduction targets with the Science Based Targets initiative",
+        "target_year": null,
+        "similarity": 0.6678
+      },
+      {
+        "page": 37,
+        "quote": "Nature-based carbon removal via forests or soils is deployable now and can offer solutions to both mitigate climate change and address the biodiversity crisis.",
+        "target_year": "2027-2035",
+        "similarity": 0.6632
+      }
+    ],
+    "ratings": {
+      "company": "Meta Platforms",
+      "msci_source_file": "ESG Ratings & Climate Search Tool - MSCI.pdf",
+      "sp_source_file": "S&P Global.pdf",
+      "msci_rating": {
+        "value": "B",
+        "evidence": "5% | B",
+        "confidence": "found_high"
+      },
+      "msci_implied_temp_rise_c": {
+        "value": "1.3",
+        "evidence": "1.5°C ALIGNED | – | 1.3°C",
+        "confidence": "found_high"
+      },
+      "msci_target_year": {
+        "value": "2031",
+        "evidence": "YES | YES | 2031 | 100.0% | -11.11% p.a.",
+        "confidence": "found_high"
+      },
+      "msci_target_coverage_pct": {
+        "value": "100.0",
+        "evidence": "YES | YES | 2031 | 100.0% | -11.11% p.a.",
+        "confidence": "found_high"
+      },
+      "msci_annual_reduction_pct": {
+        "value": "-11.11",
+        "evidence": "YES | YES | 2031 | 100.0% | -11.11% p.a.",
+        "confidence": "found_high"
+      },
+      "msci_rating_history": {
+        "value": [
+          {
+            "period": "Nov-20",
+            "rating": "B"
+          },
+          {
+            "period": "Nov-21",
+            "rating": "B"
+          },
+          {
+            "period": "Dec-22",
+            "rating": "B"
+          },
+          {
+            "period": "Dec-23",
+            "rating": "B"
+          },
+          {
+            "period": "Dec-24",
+            "rating": "CCC"
+          }
+        ],
+        "evidence": "ESG Rating history | MSCI ESG Rating history data over the last ﬁve years or since records began. | AAA | AA | A | BBB | BB | B | CCC | B | B | B | B | CCC | Nov-20 | Nov-21 | Dec-22 | Dec-23 | Dec-24",
+        "confidence": "found_high"
+      },
+      "sp_overall_score": {
+        "value": "32",
+        "evidence": "32 | Data Availability :",
+        "confidence": "found_high"
+      },
+      "sp_csa_score": {
+        "value": "28",
+        "evidence": "Score Composition | https://www.spglobal.com/esg/scores/results?cid=4144156 | 1/9 | ___ | 2025/3/24 14:24 | S&P Global | 100 | 75 | 50 | 25 | 0 | 282828 | S&P Global | CSA Score | 323232 | 444 | Modeled | Scores | S&P Global ESG Score | Score Breakdown | Meta Platforms Inc. | Industry Max | Industry",
+        "confidence": "found_low"
+      },
+      "sp_modeled_score": {
+        "value": "4",
+        "evidence": "Score Composition | https://www.spglobal.com/esg/scores/results?cid=4144156 | 1/9 | ___ | 2025/3/24 14:24 | S&P Global | 100 | 75 | 50 | 25 | 0 | 282828 | S&P Global | CSA Score | 323232 | 444 | Modeled | Scores | S&P Global ESG Score | Score Breakdown | Meta Platforms Inc. | Industry Max | Industry",
+        "confidence": "found_low"
+      },
+      "sp_dimension_scores": {
+        "value": {
+          "environmental": {
+            "value": "52",
+            "industry_mean": "22",
+            "industry_max": "79",
+            "evidence": "Environmental  Meta Platforms Inc. 52 Industry Mean 22 Industry Max 79 ",
+            "confidence": "found_high"
+          },
+          "social": {
+            "value": "20",
+            "industry_mean": "25",
+            "industry_max": "79",
+            "evidence": "Social  Meta Platforms Inc. 20 Industry Mean 25 Industry Max 79 ",
+            "confidence": "found_high"
+          },
+          "governance": {
+            "value": "32",
+            "industry_mean": "34",
+            "industry_max": "69",
+            "evidence": "Governance & Economic  Meta Platforms Inc. 32 Industry Mean 34 Industry Max 69 ",
+            "confidence": "found_high"
+          }
+        },
+        "evidence": null,
+        "confidence": "found_high"
+      },
+      "needs_manual_review": [],
+      "parsed_at": "2026-09-07T07:32:09.136203+00:00"
+    },
+    "risks": [
+      {
+        "rule_id": "supply_chain_gap",
+        "severity": "medium",
+        "message": "报告中未找到供应链相关排放数据或供应商审计披露——这是尽调阶段应重点向公司索取的信息缺口，而非本系统的检索失败（已对该指标做过多候选片段核对）。"
+      },
+      {
+        "rule_id": "rating_downgrade",
+        "severity": "medium",
+        "message": "MSCI 评级从 B（Dec-23）下调至 CCC（Dec-24），评级趋势值得关注。"
+      }
+    ]
+  }
+]

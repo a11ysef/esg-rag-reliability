@@ -1,0 +1,79 @@
+{
+  "company": "Valero Energy",
+  "msci_source_file": "ESG Ratings & Climate Search Tool - MSCI.pdf",
+  "sp_source_file": "S&P Global.pdf",
+  "msci_rating": {
+    "value": "AA",
+    "evidence": "35% | AA",
+    "confidence": "found_high"
+  },
+  "msci_implied_temp_rise_c": {
+    "value": "3.2",
+    "evidence": "Climate Target and Commitments → MSCI ONE → Would the company's emissions goals be enough to help keep global warming to 1.5°C? – MSCI IMPLIED TEMPERATURE RISE STRONGLY MISALIGNED over 3.2°C An Implied Temperature Rise of above 3.2°C indicates that VALERO ENERGY CORPORATION is strongly misaligned wi",
+    "confidence": "found_low"
+  },
+  "msci_target_year": {
+    "value": "2035",
+    "evidence": "YES | YES | 2035 | 7.16% | 0.44% p.a.",
+    "confidence": "found_high"
+  },
+  "msci_target_coverage_pct": {
+    "value": "7.16",
+    "evidence": "YES | YES | 2035 | 7.16% | 0.44% p.a.",
+    "confidence": "found_high"
+  },
+  "msci_annual_reduction_pct": {
+    "value": "0.44",
+    "evidence": "YES | YES | 2035 | 7.16% | 0.44% p.a.",
+    "confidence": "found_high"
+  },
+  "msci_rating_history": {
+    "value": null,
+    "evidence": "ESG Rating history | MSCI ESG Rating history data over the last five years or since records began. | AAA | AA | A | BBB | BB | B | CCC | A | A | A | BBB | AA | Jun-20 | Oct-21 | May-22 May-23 May-24",
+    "confidence": "found_low"
+  },
+  "sp_overall_score": {
+    "value": "46",
+    "evidence": "46 | Data Availability :",
+    "confidence": "found_high"
+  },
+  "sp_csa_score": {
+    "value": "42",
+    "evidence": "Score Composition | 100 | 50 | 424242 | 464646 | 0 | S&P Global | CSA Score | Score Breakdown | 444 | Modeled | Scores | S&P Global ESG Score | Valero Energy Corp. | Industry Max | Industry Mean",
+    "confidence": "found_low"
+  },
+  "sp_modeled_score": {
+    "value": "4",
+    "evidence": "Score Composition | 100 | 50 | 424242 | 464646 | 0 | S&P Global | CSA Score | Score Breakdown | 444 | Modeled | Scores | S&P Global ESG Score | Valero Energy Corp. | Industry Max | Industry Mean",
+    "confidence": "found_low"
+  },
+  "sp_dimension_scores": {
+    "value": {
+      "environmental": {
+        "value": "51",
+        "industry_mean": "39",
+        "industry_max": "89",
+        "evidence": "Environmental  Valero Energy Corp. 51 Industry Mean 39 Industry Max 89 ",
+        "confidence": "found_high"
+      },
+      "social": {
+        "value": "40",
+        "industry_mean": "43",
+        "industry_max": "89",
+        "evidence": "Social  Valero Energy Corp. 40 Industry Mean 43 Industry Max 89 ",
+        "confidence": "found_high"
+      },
+      "governance": {
+        "value": "45",
+        "industry_mean": "43",
+        "industry_max": "80",
+        "evidence": "Governance & Economic  Valero Energy Corp. 45 Industry Mean 43 Industry Max 80 ",
+        "confidence": "found_high"
+      }
+    },
+    "evidence": null,
+    "confidence": "found_high"
+  },
+  "needs_manual_review": [],
+  "parsed_at": "2026-09-07T07:27:16.761850+00:00"
+}

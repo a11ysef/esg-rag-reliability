@@ -1,0 +1,83 @@
+{
+  "company": "Costco Wholesale",
+  "msci_source_file": "ESG Ratings & Climate Search Tool - MSCI.pdf",
+  "sp_source_file": "S&P Global.pdf",
+  "msci_rating": {
+    "value": "A",
+    "evidence": "38% | A",
+    "confidence": "found_high"
+  },
+  "msci_implied_temp_rise_c": {
+    "value": "3.7",
+    "evidence": "STRONGLY MISALIGNED | – | 3.7°C",
+    "confidence": "found_high"
+  },
+  "msci_target_year": {
+    "value": null,
+    "evidence": null,
+    "confidence": "not_found"
+  },
+  "msci_target_coverage_pct": {
+    "value": null,
+    "evidence": null,
+    "confidence": "not_found"
+  },
+  "msci_annual_reduction_pct": {
+    "value": null,
+    "evidence": null,
+    "confidence": "not_found"
+  },
+  "msci_rating_history": {
+    "value": null,
+    "evidence": "ESG Rating history | 0%8%5%10%31%8%CCCBBBBBBAAAAALAGGARDLEADER | MSCI ESG Rating history data over the last five years or since records began. | AAA | AA | A | BBB | BB | B | CCC | A | A | A | BBB | BB | Feb-20 | M ar-21 | Jun-22 | A pr-23 | A pr-24",
+    "confidence": "found_low"
+  },
+  "sp_overall_score": {
+    "value": "41",
+    "evidence": "41 | Data Availability :",
+    "confidence": "found_high"
+  },
+  "sp_csa_score": {
+    "value": "33",
+    "evidence": "S&P Global CSA Score = 33",
+    "confidence": "found_high"
+  },
+  "sp_modeled_score": {
+    "value": "8",
+    "evidence": "Modeled Scores = 8",
+    "confidence": "found_high"
+  },
+  "sp_dimension_scores": {
+    "value": {
+      "environmental": {
+        "value": "54",
+        "industry_mean": "33",
+        "industry_max": "89",
+        "evidence": "Environmental  Costco Wholesale Corp. 54 Industry Mean 33 Industry Max 89 ",
+        "confidence": "found_high"
+      },
+      "social": {
+        "value": "34",
+        "industry_mean": "33",
+        "industry_max": "98",
+        "evidence": "Social  Costco Wholesale Corp. 34 Industry Mean 33 Industry Max 98 ",
+        "confidence": "found_high"
+      },
+      "governance": {
+        "value": "35",
+        "industry_mean": "34",
+        "industry_max": "91",
+        "evidence": "Governance & Economic  Costco Wholesale Corp. 35 Industry Mean 34 Industry Max 91 ",
+        "confidence": "found_high"
+      }
+    },
+    "evidence": null,
+    "confidence": "found_high"
+  },
+  "needs_manual_review": [
+    "msci_target_year: 未抽到，建议对照 PDF 原文人工核对/补充",
+    "msci_target_coverage_pct: 未抽到，建议对照 PDF 原文人工核对/补充",
+    "msci_annual_reduction_pct: 未抽到，建议对照 PDF 原文人工核对/补充"
+  ],
+  "parsed_at": "2026-09-07T07:31:15.890671+00:00"
+}

@@ -1,0 +1,79 @@
+{
+  "company": "Exxon Mobil",
+  "msci_source_file": "ESG Ratings & Climate Search Tool - MSCI.pdf",
+  "sp_source_file": "S&P Global.pdf",
+  "msci_rating": {
+    "value": "BBB",
+    "evidence": "9% | BBB",
+    "confidence": "found_high"
+  },
+  "msci_implied_temp_rise_c": {
+    "value": "3.2",
+    "evidence": "Climate Target and Commitments → MSCI ONE → Would the company's emissions goals be enough to help keep global warming to 1.5°C? – MSCI IMPLIED TEMPERATURE RISE STRONGLY MISALIGNED over 3.2°C An Implied Temperature Rise of above 3.2°C indicates that EXXON MOBIL CORPORATION is strongly misaligned with",
+    "confidence": "found_low"
+  },
+  "msci_target_year": {
+    "value": "2050",
+    "evidence": "YES | YES | 2050 | 9.79% | 0.69% p.a.",
+    "confidence": "found_high"
+  },
+  "msci_target_coverage_pct": {
+    "value": "9.79",
+    "evidence": "YES | YES | 2050 | 9.79% | 0.69% p.a.",
+    "confidence": "found_high"
+  },
+  "msci_annual_reduction_pct": {
+    "value": "0.69",
+    "evidence": "YES | YES | 2050 | 9.79% | 0.69% p.a.",
+    "confidence": "found_high"
+  },
+  "msci_rating_history": {
+    "value": null,
+    "evidence": "ESG Rating history | MSCI ESG Rating history data over the last five years or since records began. | AAA | AA | A | BBB | BB | B | CCC | BBB | BBB | BBB | BBB | BBB | Jul-20 | Jun-21 | M ay-22 | M ay-23 | M ay-24",
+    "confidence": "found_low"
+  },
+  "sp_overall_score": {
+    "value": "38",
+    "evidence": "38 | Data Availability :",
+    "confidence": "found_high"
+  },
+  "sp_csa_score": {
+    "value": "33",
+    "evidence": "S&P Global CSA Score = 33",
+    "confidence": "found_high"
+  },
+  "sp_modeled_score": {
+    "value": "5",
+    "evidence": "Modeled Scores = 5",
+    "confidence": "found_high"
+  },
+  "sp_dimension_scores": {
+    "value": {
+      "environmental": {
+        "value": "34",
+        "industry_mean": "36",
+        "industry_max": "86",
+        "evidence": "Environmental  Exxon Mobil Corp. 34 Industry Mean 36 Industry Max 86 ",
+        "confidence": "found_high"
+      },
+      "social": {
+        "value": "34",
+        "industry_mean": "38",
+        "industry_max": "94",
+        "evidence": "Social  Exxon Mobil Corp. 34 Industry Mean 38 Industry Max 94 ",
+        "confidence": "found_high"
+      },
+      "governance": {
+        "value": "47",
+        "industry_mean": "43",
+        "industry_max": "78",
+        "evidence": "Governance & Economic  Exxon Mobil Corp. 47 Industry Mean 43 Industry Max 78 ",
+        "confidence": "found_high"
+      }
+    },
+    "evidence": null,
+    "confidence": "found_high"
+  },
+  "needs_manual_review": [],
+  "parsed_at": "2026-09-07T07:27:13.980044+00:00"
+}

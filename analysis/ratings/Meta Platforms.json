@@ -1,0 +1,100 @@
+{
+  "company": "Meta Platforms",
+  "msci_source_file": "ESG Ratings & Climate Search Tool - MSCI.pdf",
+  "sp_source_file": "S&P Global.pdf",
+  "msci_rating": {
+    "value": "B",
+    "evidence": "5% | B",
+    "confidence": "found_high"
+  },
+  "msci_implied_temp_rise_c": {
+    "value": "1.3",
+    "evidence": "1.5°C ALIGNED | – | 1.3°C",
+    "confidence": "found_high"
+  },
+  "msci_target_year": {
+    "value": "2031",
+    "evidence": "YES | YES | 2031 | 100.0% | -11.11% p.a.",
+    "confidence": "found_high"
+  },
+  "msci_target_coverage_pct": {
+    "value": "100.0",
+    "evidence": "YES | YES | 2031 | 100.0% | -11.11% p.a.",
+    "confidence": "found_high"
+  },
+  "msci_annual_reduction_pct": {
+    "value": "-11.11",
+    "evidence": "YES | YES | 2031 | 100.0% | -11.11% p.a.",
+    "confidence": "found_high"
+  },
+  "msci_rating_history": {
+    "value": [
+      {
+        "period": "Nov-20",
+        "rating": "B"
+      },
+      {
+        "period": "Nov-21",
+        "rating": "B"
+      },
+      {
+        "period": "Dec-22",
+        "rating": "B"
+      },
+      {
+        "period": "Dec-23",
+        "rating": "B"
+      },
+      {
+        "period": "Dec-24",
+        "rating": "CCC"
+      }
+    ],
+    "evidence": "ESG Rating history | MSCI ESG Rating history data over the last ﬁve years or since records began. | AAA | AA | A | BBB | BB | B | CCC | B | B | B | B | CCC | Nov-20 | Nov-21 | Dec-22 | Dec-23 | Dec-24",
+    "confidence": "found_high"
+  },
+  "sp_overall_score": {
+    "value": "32",
+    "evidence": "32 | Data Availability :",
+    "confidence": "found_high"
+  },
+  "sp_csa_score": {
+    "value": "28",
+    "evidence": "Score Composition | https://www.spglobal.com/esg/scores/results?cid=4144156 | 1/9 | ___ | 2025/3/24 14:24 | S&P Global | 100 | 75 | 50 | 25 | 0 | 282828 | S&P Global | CSA Score | 323232 | 444 | Modeled | Scores | S&P Global ESG Score | Score Breakdown | Meta Platforms Inc. | Industry Max | Industry",
+    "confidence": "found_low"
+  },
+  "sp_modeled_score": {
+    "value": "4",
+    "evidence": "Score Composition | https://www.spglobal.com/esg/scores/results?cid=4144156 | 1/9 | ___ | 2025/3/24 14:24 | S&P Global | 100 | 75 | 50 | 25 | 0 | 282828 | S&P Global | CSA Score | 323232 | 444 | Modeled | Scores | S&P Global ESG Score | Score Breakdown | Meta Platforms Inc. | Industry Max | Industry",
+    "confidence": "found_low"
+  },
+  "sp_dimension_scores": {
+    "value": {
+      "environmental": {
+        "value": "52",
+        "industry_mean": "22",
+        "industry_max": "79",
+        "evidence": "Environmental  Meta Platforms Inc. 52 Industry Mean 22 Industry Max 79 ",
+        "confidence": "found_high"
+      },
+      "social": {
+        "value": "20",
+        "industry_mean": "25",
+        "industry_max": "79",
+        "evidence": "Social  Meta Platforms Inc. 20 Industry Mean 25 Industry Max 79 ",
+        "confidence": "found_high"
+      },
+      "governance": {
+        "value": "32",
+        "industry_mean": "34",
+        "industry_max": "69",
+        "evidence": "Governance & Economic  Meta Platforms Inc. 32 Industry Mean 34 Industry Max 69 ",
+        "confidence": "found_high"
+      }
+    },
+    "evidence": null,
+    "confidence": "found_high"
+  },
+  "needs_manual_review": [],
+  "parsed_at": "2026-09-07T07:32:09.136203+00:00"
+}

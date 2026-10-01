@@ -1,0 +1,100 @@
+{
+  "company": "Allstate",
+  "msci_source_file": "ESG Ratings & Climate Search Tool - MSCI.pdf",
+  "sp_source_file": "S&P Global.pdf",
+  "msci_rating": {
+    "value": "A",
+    "evidence": "18% | A",
+    "confidence": "found_high"
+  },
+  "msci_implied_temp_rise_c": {
+    "value": "1.3",
+    "evidence": "1.5°C ALIGNED | – | 1.3°C",
+    "confidence": "found_high"
+  },
+  "msci_target_year": {
+    "value": "2030",
+    "evidence": "YES | YES | 2030 | 100.0% | -12.5% p.a.",
+    "confidence": "found_high"
+  },
+  "msci_target_coverage_pct": {
+    "value": "100.0",
+    "evidence": "YES | YES | 2030 | 100.0% | -12.5% p.a.",
+    "confidence": "found_high"
+  },
+  "msci_annual_reduction_pct": {
+    "value": "-12.5",
+    "evidence": "YES | YES | 2030 | 100.0% | -12.5% p.a.",
+    "confidence": "found_high"
+  },
+  "msci_rating_history": {
+    "value": [
+      {
+        "period": "May-20",
+        "rating": "BBB"
+      },
+      {
+        "period": "Nov-21",
+        "rating": "BBB"
+      },
+      {
+        "period": "Nov-22",
+        "rating": "BBB"
+      },
+      {
+        "period": "Nov-23",
+        "rating": "BBB"
+      },
+      {
+        "period": "Nov-24",
+        "rating": "A"
+      }
+    ],
+    "evidence": "ESG Rating history | MSCI ESG Rating history data over the last five years or since records began. | AAA | AA | A | BBB | BB | B | CCC | BBB | BBB | BBB | BBB | A | May-20 | Nov-21 | Nov-22 | Nov-23 | Nov-24",
+    "confidence": "found_high"
+  },
+  "sp_overall_score": {
+    "value": "54",
+    "evidence": "54 | Data Availability :",
+    "confidence": "found_high"
+  },
+  "sp_csa_score": {
+    "value": "53",
+    "evidence": "S&P Global CSA Score = 53",
+    "confidence": "found_high"
+  },
+  "sp_modeled_score": {
+    "value": "1",
+    "evidence": "Modeled Scores = 1",
+    "confidence": "found_high"
+  },
+  "sp_dimension_scores": {
+    "value": {
+      "environmental": {
+        "value": "65",
+        "industry_mean": "34",
+        "industry_max": "93",
+        "evidence": "Environmental  The Allstate Corp. 65 Industry Mean 34 Industry Max 93 ",
+        "confidence": "found_high"
+      },
+      "social": {
+        "value": "55",
+        "industry_mean": "37",
+        "industry_max": "98",
+        "evidence": "Social  The Allstate Corp. 55 Industry Mean 37 Industry Max 98 ",
+        "confidence": "found_high"
+      },
+      "governance": {
+        "value": "48",
+        "industry_mean": "44",
+        "industry_max": "93",
+        "evidence": "Governance & Economic  The Allstate Corp. 48 Industry Mean 44 Industry Max 93 ",
+        "confidence": "found_high"
+      }
+    },
+    "evidence": null,
+    "confidence": "found_high"
+  },
+  "needs_manual_review": [],
+  "parsed_at": "2026-09-07T07:27:17.692430+00:00"
+}

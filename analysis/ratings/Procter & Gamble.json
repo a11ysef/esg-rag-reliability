@@ -1,0 +1,100 @@
+{
+  "company": "Procter & Gamble",
+  "msci_source_file": "ESG Ratings & Climate Search Tool - MSCI.pdf",
+  "sp_source_file": "S&P Global.pdf",
+  "msci_rating": {
+    "value": "AA",
+    "evidence": "48% | AA",
+    "confidence": "found_high"
+  },
+  "msci_implied_temp_rise_c": {
+    "value": "1.5",
+    "evidence": "for Issuers to learn more about how to get started. Learn more Climate Target and Commitments → MSCI ONE → Would the company's emissions goals be enough to help keep global warming to 1.5°C? MSCI IMPLIED TEMPERATURE RISE 1.5°C ALIGNED An Implied Temperature Rise of below 1.5°C indicates that THE PRO",
+    "confidence": "found_low"
+  },
+  "msci_target_year": {
+    "value": "2040",
+    "evidence": "YES | YES | 2040 | 100.0% | -5.56% p.a.",
+    "confidence": "found_high"
+  },
+  "msci_target_coverage_pct": {
+    "value": "100.0",
+    "evidence": "YES | YES | 2040 | 100.0% | -5.56% p.a.",
+    "confidence": "found_high"
+  },
+  "msci_annual_reduction_pct": {
+    "value": "-5.56",
+    "evidence": "YES | YES | 2040 | 100.0% | -5.56% p.a.",
+    "confidence": "found_high"
+  },
+  "msci_rating_history": {
+    "value": [
+      {
+        "period": "Nov-20",
+        "rating": "A"
+      },
+      {
+        "period": "Dec-21",
+        "rating": "A"
+      },
+      {
+        "period": "Dec-22",
+        "rating": "A"
+      },
+      {
+        "period": "Dec-23",
+        "rating": "A"
+      },
+      {
+        "period": "Dec-24",
+        "rating": "AA"
+      }
+    ],
+    "evidence": "ESG Rating history | MSCI ESG Rating history data over the last five years or since records began. | AAA | AA | A | BBB | BB | B | CCC | A | A | A | A | AA | Nov-20 | Dec-21 | Dec-22 | Dec-23 | Dec-24",
+    "confidence": "found_high"
+  },
+  "sp_overall_score": {
+    "value": "37",
+    "evidence": "37 | Data Availability :",
+    "confidence": "found_high"
+  },
+  "sp_csa_score": {
+    "value": "32",
+    "evidence": "S&P Global CSA Score = 32",
+    "confidence": "found_high"
+  },
+  "sp_modeled_score": {
+    "value": "5",
+    "evidence": "Modeled Scores = 5",
+    "confidence": "found_high"
+  },
+  "sp_dimension_scores": {
+    "value": {
+      "environmental": {
+        "value": "51",
+        "industry_mean": "46",
+        "industry_max": "79",
+        "evidence": "Environmental  The Procter & Gamble Co. 51 Industry Mean 46 Industry Max 79 ",
+        "confidence": "found_high"
+      },
+      "social": {
+        "value": "26",
+        "industry_mean": "38",
+        "industry_max": "61",
+        "evidence": "Social  The Procter & Gamble Co. 26 Industry Mean 38 Industry Max 61 ",
+        "confidence": "found_high"
+      },
+      "governance": {
+        "value": "37",
+        "industry_mean": "38",
+        "industry_max": "69",
+        "evidence": "Governance & Economic  The Procter & Gamble Co. 37 Industry Mean 38 Industry Max 69 ",
+        "confidence": "found_high"
+      }
+    },
+    "evidence": null,
+    "confidence": "found_high"
+  },
+  "needs_manual_review": [],
+  "parsed_at": "2026-09-07T07:30:32.481519+00:00"
+}

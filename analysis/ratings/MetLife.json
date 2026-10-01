@@ -1,0 +1,100 @@
+{
+  "company": "MetLife",
+  "msci_source_file": "ESG Ratings & Climate Search Tool - MSCI.pdf",
+  "sp_source_file": "S&P Global.pdf",
+  "msci_rating": {
+    "value": "AA",
+    "evidence": "41% | AA",
+    "confidence": "found_high"
+  },
+  "msci_implied_temp_rise_c": {
+    "value": "1.5",
+    "evidence": "1.5°C ALIGNED | – | 1.5°C",
+    "confidence": "found_high"
+  },
+  "msci_target_year": {
+    "value": "2030",
+    "evidence": "YES | YES | 2030 | 100.0% | -11.09% p.a.",
+    "confidence": "found_high"
+  },
+  "msci_target_coverage_pct": {
+    "value": "100.0",
+    "evidence": "YES | YES | 2030 | 100.0% | -11.09% p.a.",
+    "confidence": "found_high"
+  },
+  "msci_annual_reduction_pct": {
+    "value": "-11.09",
+    "evidence": "YES | YES | 2030 | 100.0% | -11.09% p.a.",
+    "confidence": "found_high"
+  },
+  "msci_rating_history": {
+    "value": [
+      {
+        "period": "Nov-19",
+        "rating": "BB"
+      },
+      {
+        "period": "Dec-20",
+        "rating": "A"
+      },
+      {
+        "period": "Apr-22",
+        "rating": "A"
+      },
+      {
+        "period": "Jul-23",
+        "rating": "BBB"
+      },
+      {
+        "period": "Jul-24",
+        "rating": "AA"
+      }
+    ],
+    "evidence": "ESG Rating history | MSCI ESG Rating history data over the last five years or since records began. | AAA | AA | A | BBB | BB | B | CCC | BB | A | A | BBB | AA | Nov-19 | Dec-20 | Apr-22 | Jul-23 | Jul-24",
+    "confidence": "found_high"
+  },
+  "sp_overall_score": {
+    "value": "52",
+    "evidence": "52 | Data Availability :",
+    "confidence": "found_high"
+  },
+  "sp_csa_score": {
+    "value": "51",
+    "evidence": "S&P Global CSA Score = 51",
+    "confidence": "found_high"
+  },
+  "sp_modeled_score": {
+    "value": "1",
+    "evidence": "Modeled Scores = 1",
+    "confidence": "found_high"
+  },
+  "sp_dimension_scores": {
+    "value": {
+      "environmental": {
+        "value": "68",
+        "industry_mean": "34",
+        "industry_max": "93",
+        "evidence": "Environmental  MetLife Inc. 68 Industry Mean 34 Industry Max 93 ",
+        "confidence": "found_high"
+      },
+      "social": {
+        "value": "43",
+        "industry_mean": "37",
+        "industry_max": "98",
+        "evidence": "Social  MetLife Inc. 43 Industry Mean 37 Industry Max 98 ",
+        "confidence": "found_high"
+      },
+      "governance": {
+        "value": "52",
+        "industry_mean": "44",
+        "industry_max": "93",
+        "evidence": "Governance & Economic  MetLife Inc. 52 Industry Mean 44 Industry Max 93 ",
+        "confidence": "found_high"
+      }
+    },
+    "evidence": null,
+    "confidence": "found_high"
+  },
+  "needs_manual_review": [],
+  "parsed_at": "2026-09-07T07:28:22.914062+00:00"
+}

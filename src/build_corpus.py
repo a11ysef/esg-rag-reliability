@@ -1,28 +1,32 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-build_corpus.py —— 重建 ESG 报告语料库
+build_corpus.py —— 重新把ESG报告处理成语料库
 
-解决原 Data.ipynb 的两个关键缺陷：
+这个脚本主要是修原来那份 Data.ipynb 里的两个大坑：
 
-1. 【数字被清洗破坏】原代码 re.sub(r"(?<=\n)\d{1,2}", "", text) 本意是删页码，
-   但 ESG 数据表在 pdfminer 解析后每个数字独占一行，导致所有数字的前 1-2 位被删除。
-   例：3,423,400 -> ,423,400 。全语料约 1546 处数字受损。
-   本脚本改为只删除「独占一行的纯数字」，数据表中的数值不受影响。
+1. 【数字被误删】原来的代码用 re.sub(r"(?<=\n)\d{1,2}", "", text) 想删掉页码，
+   但ESG报告里的数据表经pdfminer解析后，每个数字会单独占一行，
+   结果这行代码把所有数字开头的1-2位数都删掉了。
+   比如 3,423,400 会变成 ,423,400，整个语料库大概有1546处数字被这样搞坏了。
+   这个脚本改成只删"整行就是一个数字"的那种（这才是真正的页码），
+   数据表里的正常数值不会被误伤。
 
-2. 【chunk 无法回溯页码】原输出只有 content / embeddings 两列，
-   无法判断检索命中的 chunk 来自 PDF 第几页，导致检索层归因（Recall@K）做不了。
-   本脚本为每个 chunk 保留 company / page / chunk_id 等元数据。
+2. 【chunk找不到出处】原来的输出只有内容和embedding两列，
+   没法知道检索到的这段内容到底是PDF第几页的，也就没法去分析
+   "检索到底有没有找对页"。这个脚本给每个chunk都留了公司名、页码、
+   编号这些信息，方便以后回查。
 
-附带功能：
-- 自动检测 PDF 解析质量，标记疑似图片型 PDF（如 Tesla）或内容过少的报告（如 UPS）
-- 断点续跑：已完成的公司会被跳过，中断后重跑不必从头开始
+顺带还做了两件事：
+- 自动检查PDF解析得好不好，把疑似扫描图片型的PDF（比如Tesla那份）
+  或者内容太少的报告（比如UPS那份）标出来
+- 支持中断了接着跑：已经处理完的公司会自动跳过，不用每次都从头来
 
 用法：
     python src/build_corpus.py                    # 处理全部公司
-    python src/build_corpus.py --company Alphabet # 只处理指定公司
-    python src/build_corpus.py --dry-run          # 只解析和体检，不调用 embedding
-    python src/build_corpus.py --force            # 忽略已有结果，强制重跑
+    python src/build_corpus.py --company Alphabet # 只处理这一家公司
+    python src/build_corpus.py --dry-run          # 只解析和体检，不调用embedding（省时间）
+    python src/build_corpus.py --force            # 不管之前跑没跑过，强制重新跑一遍
 """
 
 from __future__ import annotations
@@ -38,35 +42,35 @@ from dataclasses import dataclass, asdict
 from pathlib import Path
 
 # ---------------------------------------------------------------------------
-# 配置
+# 基本设置
 # ---------------------------------------------------------------------------
 
-# 项目根目录（本文件位于 <root>/src/build_corpus.py）
+# 项目的根目录（这个文件的位置是 <root>/src/build_corpus.py）
 ROOT = Path(__file__).resolve().parent.parent
 
-DATA_DIR = ROOT / "esg_data"          # 原始 PDF 所在目录（行业/公司/*.pdf）
-OUTPUT_DIRNAME = "corpus"             # 每家公司的输出子目录名
+DATA_DIR = ROOT / "esg_data"          # 原始PDF放哪儿（按 行业/公司/*.pdf 这样分文件夹）
+OUTPUT_DIRNAME = "corpus"             # 每家公司处理完的结果存到这个子文件夹里
 QUALITY_REPORT = ROOT / "analysis" / "corpus_quality.md"
 
 EMBED_MODEL = "nomic-embed-text"
-CHUNK_SIZE = 1000                     # 与原实现保持一致，便于对比基线
-CHUNK_OVERLAP = 0                     # 原实现无 overlap；如需实验可调整
+CHUNK_SIZE = 1000                     # 跟原来的实现保持一致，方便对比效果
+CHUNK_OVERLAP = 0                     # 原来的实现没有重叠切法，想试试可以调这个
 
-# 判定解析质量的阈值
-MIN_CHARS_PER_PAGE = 500              # 每页平均字符数低于此值 -> 疑似图片型 PDF
-MIN_TOTAL_CHARS = 50_000              # 全文字符数低于此值 -> 内容过少，不适合做评测集
+# 用来判断PDF解析得好不好的几个门槛
+MIN_CHARS_PER_PAGE = 500              # 平均每页字数低于这个数，可能是扫描图片型PDF(提不出文字)
+MIN_TOTAL_CHARS = 50_000              # 全篇字数低于这个数，说明内容太单薄，不适合拿来出题
 
-# 评级报告文件名的特征（这些不是公司主报告，不参与语料构建）
+# 这些关键词出现在文件名里，说明是评级机构写的报告，不是公司自己的，要排除掉
 RATING_FILE_MARKERS = ("msci", "s&p", "sp global", "spglobal")
 
 
 # ---------------------------------------------------------------------------
-# 数据结构
+# 存体检结果用的数据结构
 # ---------------------------------------------------------------------------
 
 @dataclass
 class CompanyQuality:
-    """单家公司的语料质量体检结果"""
+    """一家公司的语料"体检报告"长啥样"""
     sector: str
     company: str
     report_file: str
@@ -75,9 +79,9 @@ class CompanyQuality:
     total_chars: int
     chars_per_page: float
     chunks: int
-    broken_numbers: int      # 形如 ",423,400" 的残缺数字个数（应为 0）
-    intact_numbers: int      # 形如 "3,423,400" 的完好数字个数
-    flags: list[str]         # 质量告警
+    broken_numbers: int      # 像 ",423,400" 这种缺了开头数字的坏数字，有几个（正常应该是0）
+    intact_numbers: int      # 像 "3,423,400" 这种完好数字，有几个
+    flags: list[str]         # 有什么问题要提醒一下的标签
 
     @property
     def usable(self) -> bool:
@@ -85,37 +89,38 @@ class CompanyQuality:
 
 
 # ---------------------------------------------------------------------------
-# 文本清洗
+# 清洗文字用的工具
 # ---------------------------------------------------------------------------
 
-# 匹配「独占一行的纯数字」：整行只有数字（允许前后空白），长度 1-4 位
-# 这类几乎必然是页码；数据表里的数值总是伴随单位、逗号分隔或其他文字，不会被误伤
+# 匹配"整行就是一个数字"的情况：这一行除了数字（前后可以有空格）啥也没有，1-4位数
+# 这种基本上肯定是页码；数据表里的正常数值前后总会跟着单位、逗号或者别的文字，不会被误伤
 _STANDALONE_PAGENUM = re.compile(r"^[ \t]*\d{1,4}[ \t]*$", flags=re.MULTILINE)
 
-# 幻灯片残留措辞（沿用原实现）
+# 一些PPT里常见的措辞残留（这条是照搬原来的写法）
 _SLIDE_PHRASE = re.compile(r"\b(?:the|this)\s*slide\s*\w+\b", flags=re.IGNORECASE)
 
-# 用于体检：以逗号开头的数字 = 前导位被切掉的残缺数字
+# 体检用的：数字前面要是有个逗号打头，说明开头的数字被切掉了，是个坏数字
 _BROKEN_NUM = re.compile(r"(?<![\d.])[,]\d{3}(?:,\d{3})*")
-# 完好的千分位数字
+# 正常没被破坏的千分位数字
 _INTACT_NUM = re.compile(r"(?<![,\d])\d{1,3}(?:,\d{3})+")
 
 
 def clean_page_text(text: str) -> str:
     """
-    清洗单页文本。
+    清洗一页的文字。
 
-    与原实现的关键差异：不再使用 re.sub(r"(?<=\n)\d{1,2}", "", text)。
-    那个正则会删除任何换行后的 1-2 位数字，而 ESG 数据表中数字独占一行，
-    导致 "3,423,400" 的前导 "3" 被删除，变成 ",423,400"。
+    跟原来实现最大的不同：不再用 re.sub(r"(?<=\n)\d{1,2}", "", text) 这行代码。
+    那行代码会把换行后紧跟着的1-2位数字全删掉，但ESG的数据表里数字是单独占一行的，
+    结果就是 "3,423,400" 开头的 "3" 被删了，变成了 ",423,400"。
 
-    这里改为只删除整行都是数字的行（页码），保留所有出现在正文语境中的数字。
+    现在改成只删"整行都是数字"的那种行（也就是页码），
+    正文里出现的数字都会原样保留。
     """
-    # 删除独占一行的页码
+    # 把单独占一行的页码删掉
     text = _STANDALONE_PAGENUM.sub("", text)
-    # 删除幻灯片残留措辞
+    # 把PPT残留措辞删掉
     text = _SLIDE_PHRASE.sub("", text)
-    # 规整空白：合并多余空行，去掉行尾空格
+    # 顺手整理一下空白：多余的空行合并，行尾空格去掉
     text = re.sub(r"[ \t]+\n", "\n", text)
     text = re.sub(r"\n{3,}", "\n\n", text)
     return text.strip()
@@ -123,10 +128,10 @@ def clean_page_text(text: str) -> str:
 
 def chunk_page(text: str, size: int = CHUNK_SIZE, overlap: int = CHUNK_OVERLAP) -> list[str]:
     """
-    将单页文本切成若干 chunk。
+    把一页的文字切成一小块一小块的（chunk）。
 
-    原实现用 textwrap.wrap(text, 1000)，会丢失换行结构。
-    这里保留换行（数据表的行结构对语义有意义），并支持 overlap。
+    原来的实现用 textwrap.wrap(text, 1000)，这样会把换行结构弄丢。
+    这里改成保留换行（数据表里一行一行的结构其实是有意义的），并且支持重叠切法。
     """
     if not text:
         return []
@@ -139,10 +144,10 @@ def chunk_page(text: str, size: int = CHUNK_SIZE, overlap: int = CHUNK_OVERLAP) 
     while start < len(text):
         end = start + size
         piece = text[start:end]
-        # 尽量在换行处断开，避免把一行数据切成两半
+        # 尽量在换行的地方切，别把数据表里的一行硬生生切成两半
         if end < len(text):
             cut = piece.rfind("\n")
-            if cut > size * 0.6:          # 只在靠后的位置断开，避免 chunk 过短
+            if cut > size * 0.6:          # 只有切点靠后的时候才这么干，不然chunk会太短
                 piece = piece[:cut]
                 end = start + cut
         piece = piece.strip()
@@ -155,13 +160,13 @@ def chunk_page(text: str, size: int = CHUNK_SIZE, overlap: int = CHUNK_OVERLAP) 
 
 
 # ---------------------------------------------------------------------------
-# PDF 解析
+# 解析PDF
 # ---------------------------------------------------------------------------
 
 def find_report_pdf(company_dir: Path) -> Path | None:
     """
-    在公司目录中定位主报告 PDF。
-    排除 MSCI / S&P Global 这类评级机构文件——它们是评分数据，不是企业报告。
+    在公司文件夹里找出主报告的那个PDF。
+    像MSCI、S&P Global这种评级机构的文件要排除掉——那是打分数据，不是公司自己的报告。
     """
     candidates = []
     for pdf in company_dir.glob("*.pdf"):
@@ -171,38 +176,39 @@ def find_report_pdf(company_dir: Path) -> Path | None:
         candidates.append(pdf)
     if not candidates:
         return None
-    # 若有多个，取体积最大的（主报告通常最大）
+    # 如果找到好几个，就挑体积最大的那个（主报告一般文件最大）
     return max(candidates, key=lambda p: p.stat().st_size)
 
 
 def extract_pages(pdf_path: Path) -> list[str]:
     """
-    解析 PDF，返回按页分隔的文本列表。
+    解析PDF，按页把文字拆出来，一页一个字符串。
 
-    与原实现的差异：原代码 split('\f')[1:] 丢弃首页，导致页码整体偏移 1。
-    这里保留首页，page 编号从 1 开始，与 PDF 阅读器显示的页码一致。
+    跟原来实现不一样的地方：原代码用 split('\f')[1:] 把第一页直接丢了，
+    导致后面所有页码都错位了1页。这里把第一页保留下来，页码从1开始数，
+    跟平时用PDF阅读器看到的页码是一致的。
     """
     from pdfminer.high_level import extract_text
 
     raw = extract_text(str(pdf_path))
     pages = raw.split("\f")
-    # pdfminer 常在末尾产生一个空页，去掉
+    # pdfminer经常会在末尾多出一个空页，把它去掉
     if pages and not pages[-1].strip():
         pages = pages[:-1]
     return pages
 
 
 # ---------------------------------------------------------------------------
-# Embedding
+# 算embedding
 # ---------------------------------------------------------------------------
 
 def get_embedding(text: str, model: str = EMBED_MODEL, retries: int = 3):
     """
-    调用本地 Ollama 生成 embedding，失败自动重试。
+    调用本地Ollama来算embedding，失败了会自动重试几次。
 
-    使用标准库 urllib 直接发 HTTP 请求，不依赖 ollama 第三方库。
-    原因：本机存在多个 Python 环境，ollama 库的安装位置与运行环境不一致，
-    会导致 502。直接发请求可以绕开这个问题，且无需任何额外依赖。
+    这里直接用标准库urllib发HTTP请求，没有用ollama那个第三方库。
+    原因是：这台机器上装了好几个Python环境，ollama库装的位置跟实际运行的
+    环境对不上，会导致502报错。直接发请求就能绕开这个坑，而且也不用额外装东西。
     """
     import json as _json
     import urllib.request
@@ -233,7 +239,7 @@ def get_embedding(text: str, model: str = EMBED_MODEL, retries: int = 3):
 
 
 # ---------------------------------------------------------------------------
-# 主流程
+# 处理每家公司的主流程
 # ---------------------------------------------------------------------------
 
 def process_company(
@@ -242,13 +248,13 @@ def process_company(
     dry_run: bool = False,
     force: bool = False,
 ) -> CompanyQuality | None:
-    """处理单家公司：解析 -> 清洗 -> 切分 -> embedding -> 落盘"""
+    """处理一家公司：解析PDF -> 清洗文字 -> 切成chunk -> 算embedding -> 存文件"""
     company = company_dir.name
     out_dir = company_dir / OUTPUT_DIRNAME
     out_csv = out_dir / "chunks.csv"
     out_meta = out_dir / "meta.json"
 
-    # 断点续跑
+    # 如果之前已经跑过了，就直接跳过（除非传了 --force）
     if out_csv.exists() and not force and not dry_run:
         print(f"  [跳过] {company}：已存在 {out_csv.relative_to(ROOT)}（--force 可强制重跑）")
         try:
@@ -269,7 +275,7 @@ def process_company(
     print(f"  解析 {company} <- {pdf_path.name}")
     pages = extract_pages(pdf_path)
 
-    # 逐页清洗与切分，保留页码
+    # 一页一页地清洗、切分，页码要记下来
     records: list[dict] = []
     total_chars = 0
     for page_no, page_text in enumerate(pages, start=1):
@@ -284,7 +290,7 @@ def process_company(
                 "content": piece,
             })
 
-    # 质量体检
+    # 给这家公司的语料做个体检
     all_text = "\n".join(r["content"] for r in records)
     broken = len(_BROKEN_NUM.findall(all_text))
     intact = len(_INTACT_NUM.findall(all_text))
@@ -321,7 +327,7 @@ def process_company(
     if dry_run:
         return quality
 
-    # 生成 embedding
+    # 开始算embedding
     out_dir.mkdir(parents=True, exist_ok=True)
     print(f"    生成 embedding（{len(records)} 条）...", end="", flush=True)
     t0 = time.time()
@@ -331,7 +337,7 @@ def process_company(
             print(".", end="", flush=True)
     print(f" 完成，用时 {time.time() - t0:.0f}s")
 
-    # 落盘：CSV 保留元数据列
+    # 存成CSV文件，各种信息都留着
     with out_csv.open("w", newline="", encoding="utf-8") as f:
         writer = csv.DictWriter(
             f, fieldnames=["company", "sector", "page", "chunk_id", "content", "embeddings"]
@@ -347,7 +353,7 @@ def process_company(
 
 
 def write_quality_report(results: list[CompanyQuality]) -> None:
-    """输出语料质量体检报告"""
+    """把体检结果整理成一份Markdown报告"""
     QUALITY_REPORT.parent.mkdir(parents=True, exist_ok=True)
 
     usable = [r for r in results if r.usable]
@@ -410,6 +416,10 @@ def write_quality_report(results: list[CompanyQuality]) -> None:
     print(f"\n质量报告已写入：{QUALITY_REPORT.relative_to(ROOT)}")
 
 
+# ---------------------------------------------------------------------------
+# 命令行入口，从这里开始跑
+# ---------------------------------------------------------------------------
+
 def main() -> int:
     parser = argparse.ArgumentParser(description="重建 ESG 语料库（修复数字破坏 + 保留页码）")
     parser.add_argument("--company", help="只处理指定公司（目录名）")
@@ -421,7 +431,7 @@ def main() -> int:
         print(f"错误：找不到数据目录 {DATA_DIR}", file=sys.stderr)
         return 1
 
-    # 遍历 行业/公司 两级目录
+    # 把 行业/公司 两层文件夹都翻一遍
     targets: list[tuple[str, Path]] = []
     for sector_dir in sorted(DATA_DIR.iterdir()):
         if not sector_dir.is_dir() or sector_dir.name.startswith("."):

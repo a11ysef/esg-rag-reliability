@@ -1,30 +1,35 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-agent_cloud.py —— 全云端 ReAct Agent（智谱 GLM）
+agent_cloud.py —— 完全用云端API跑的问答Agent（用智谱GLM）
 
-背景（一个真实的部署取舍）：
-  本地 8GB Mac 无法稳定同时运行生成模型与向量检索（反复 502、7B 直接崩溃）。
-  这印证了私有化部署在 agentic 任务上的硬件约束。为验证 Agent 策略本身是否有效，
-  Agent 环节接入云端 GLM API：embedding 与生成均走云，本地零内存占用。
+背景（一次真实碰到的问题）：
+  本地这台8GB的Mac，同时跑生成模型和向量检索会不稳定
+  （老是报502错误，7B的模型直接就崩了）。
+  这也说明了在自己电脑上部署,面对这种需要模型自己一步步操作的任务时，
+  硬件是真的会成为瓶颈的。为了验证"边看边核对"这个思路本身到底管不管用，
+  这一版干脆把embedding和生成全都挪到云端的GLM API上跑，本地基本不占内存。
 
-设计（数据驱动，同 agent.py）：
-  baseline 分析显示检索命中不决定准确率（57%≈58%），真瓶颈是"取数精度"
-  （相似数字干扰）。故逐个片段做 VERIFY 核对标签/口径，而非一次性塞入 top-5。
+设计思路（跟agent.py一样，也是根据数据来的）：
+  之前跑baseline分析发现，检索有没有命中根本不影响最后答得准不准
+  （命中57% vs 没命中58%，几乎一样）。真正的问题是"抄数字抄错了"
+  （被旁边长得像的数字带偏了）。所以还是一个片段一个片段核对标签和口径对不对，
+  而不是像baseline那样一次性把top-5全塞给模型。
 
-维度对齐：
-  本地 chunk 向量是 nomic(768维)，与智谱 embedding-3(2048维) 不兼容。
-  故只对评测涉及的 3 家公司(约1000 chunk)用智谱重算为 2048 维，问题也用智谱，
-  维度统一。评测集只用这三家，不影响任何结论。
+关于向量维度对不上的问题：
+  本地算的chunk向量用的是nomic模型，是768维的，跟智谱embedding-3的
+  2048维对不上，没法直接比。所以这里只挑了评测集用到的3家公司
+  （大概1000个chunk），用智谱重新算一遍变成2048维，问题的向量也用智谱来算，
+  这样维度就统一了。评测集本来就只用这三家公司，不影响任何结论。
 
-两阶段（均带断点续跑，中断重跑不必从头）：
-  阶段一：智谱 embedding 重算 3 家 chunk → analysis/cloud_chunks/<company>.json
-  阶段二：智谱 embedding 算问题向量 + GLM-4-Flash 跑 ReAct Agent
+分两步跑（都支持中断了接着跑，不用从头再来）：
+  第一步：用智谱重新算这3家公司的chunk向量 → 存到 analysis/cloud_chunks/<company>.json
+  第二步：用智谱算问题的向量 + 用GLM-4-Flash跑边看边核对的主循环
 
 用法：
     export ZHIPU_API_KEY="你的key"
-    python src/agent_cloud.py               # 全量
-    python src/agent_cloud.py --limit 6     # 只跑前 6 题
+    python src/agent_cloud.py               # 跑全部题目
+    python src/agent_cloud.py --limit 6     # 只跑前6题，先试试看
 """
 
 from __future__ import annotations
@@ -59,7 +64,7 @@ KEY = os.environ.get("ZHIPU_API_KEY")
 
 
 # ---------------------------------------------------------------------------
-# 云端调用（带重试）
+# 调用云端 API 的小工具（失败了自动重试几次）
 # ---------------------------------------------------------------------------
 
 def _post(path, payload, timeout=60):
@@ -104,7 +109,7 @@ def cloud_gen(system, user):
 
 
 # ---------------------------------------------------------------------------
-# 阶段一：重算 3 家 chunk 向量（断点续跑）
+# 第一步：把这3家公司的chunk向量用智谱重新算一遍（中断了可以接着跑，不用从头来）
 # ---------------------------------------------------------------------------
 
 def rebuild_company_vectors(company):
@@ -118,7 +123,7 @@ def rebuild_company_vectors(company):
     rows = []
     with open(src, encoding="utf-8") as f:
         for r in csv.DictReader(f):
-            r.pop("embeddings", None)          # 丢掉旧的 768 维
+            r.pop("embeddings", None)          # 把本地算的旧向量丢掉，维度对不上了，没用
             r["page"] = int(r["page"])
             rows.append(r)
 
@@ -130,7 +135,7 @@ def rebuild_company_vectors(company):
                      "content": r["content"], "vec": vec})
         if i % 50 == 0:
             print(f"    {i}/{len(rows)}", flush=True)
-            # 中途也存盘，防止前功尽弃
+            # 每算完50个就先存一次盘，免得半路断了前面全白算
             CLOUD_CHUNK_DIR.mkdir(parents=True, exist_ok=True)
             out.write_text(json.dumps(data), encoding="utf-8")
     CLOUD_CHUNK_DIR.mkdir(parents=True, exist_ok=True)
@@ -140,7 +145,7 @@ def rebuild_company_vectors(company):
 
 
 # ---------------------------------------------------------------------------
-# 检索 + ReAct
+# 找最相似的片段，然后一个个核对
 # ---------------------------------------------------------------------------
 
 def cosine_top_k(qv, chunks, k):
@@ -199,7 +204,7 @@ def agent_answer(q, company_chunks, qvec):
 
 
 # ---------------------------------------------------------------------------
-# 主流程
+# 主程序，从这里开始跑
 # ---------------------------------------------------------------------------
 
 def main():
@@ -219,19 +224,19 @@ def main():
 
     companies = sorted({q["company"] for q in questions})
 
-    # 阶段一：重算 chunk 向量
+    # 第一步：重新算 chunk 向量
     print("=== 阶段一：智谱重算 chunk 向量 ===")
     company_chunks = {}
     for co in companies:
         company_chunks[co] = rebuild_company_vectors(co)
     print()
 
-    # 问题向量缓存
+    # 把问题的向量缓存起来，免得重复算
     qcache = {}
     if QEMB_CACHE.exists():
         qcache = json.loads(QEMB_CACHE.read_text(encoding="utf-8"))
 
-    # 阶段二：Agent
+    # 第二步：跑 Agent 主循环
     print("=== 阶段二：GLM-4-Flash 跑 ReAct Agent ===\n")
     results = []
     for i, q in enumerate(questions, 1):

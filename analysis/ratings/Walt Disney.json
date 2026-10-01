@@ -1,0 +1,100 @@
+{
+  "company": "Walt Disney",
+  "msci_source_file": "ESG Ratings & Climate Search Tool - MSCI.pdf",
+  "sp_source_file": "S&P Global.pdf",
+  "msci_rating": {
+    "value": "BBB",
+    "evidence": "28% | BBB",
+    "confidence": "found_high"
+  },
+  "msci_implied_temp_rise_c": {
+    "value": "1.9",
+    "evidence": "2°C ALIGNED | – | 1.9°C",
+    "confidence": "found_high"
+  },
+  "msci_target_year": {
+    "value": "2030",
+    "evidence": "YES | YES | 2030 | 42.25% | -5.25% p.a.",
+    "confidence": "found_high"
+  },
+  "msci_target_coverage_pct": {
+    "value": "42.25",
+    "evidence": "YES | YES | 2030 | 42.25% | -5.25% p.a.",
+    "confidence": "found_high"
+  },
+  "msci_annual_reduction_pct": {
+    "value": "-5.25",
+    "evidence": "YES | YES | 2030 | 42.25% | -5.25% p.a.",
+    "confidence": "found_high"
+  },
+  "msci_rating_history": {
+    "value": [
+      {
+        "period": "Mar-21",
+        "rating": "A"
+      },
+      {
+        "period": "Feb-22",
+        "rating": "A"
+      },
+      {
+        "period": "Jan-23",
+        "rating": "A"
+      },
+      {
+        "period": "Jan-24",
+        "rating": "A"
+      },
+      {
+        "period": "Jan-25",
+        "rating": "BBB"
+      }
+    ],
+    "evidence": "ESG Rating history | MSCI ESG Rating history data over the last five years or since records began. | AAA | AA | A | BBB | BB | B | CCC | A | A | A | A | BBB | Mar-21 | Feb-22 | Jan-23 | Jan-24 | Jan-25",
+    "confidence": "found_high"
+  },
+  "sp_overall_score": {
+    "value": "43",
+    "evidence": "43 | Data Availability :",
+    "confidence": "found_high"
+  },
+  "sp_csa_score": {
+    "value": "39",
+    "evidence": "S&P Global CSA Score = 39",
+    "confidence": "found_high"
+  },
+  "sp_modeled_score": {
+    "value": "4",
+    "evidence": "Modeled Scores = 4",
+    "confidence": "found_high"
+  },
+  "sp_dimension_scores": {
+    "value": {
+      "environmental": {
+        "value": "51",
+        "industry_mean": "20",
+        "industry_max": "76",
+        "evidence": "Environmental  The Walt Disney Co. 51 Industry Mean 20 Industry Max 76 ",
+        "confidence": "found_high"
+      },
+      "social": {
+        "value": "36",
+        "industry_mean": "22",
+        "industry_max": "92",
+        "evidence": "Social  The Walt Disney Co. 36 Industry Mean 22 Industry Max 92 ",
+        "confidence": "found_high"
+      },
+      "governance": {
+        "value": "48",
+        "industry_mean": "30",
+        "industry_max": "78",
+        "evidence": "Governance & Economic  The Walt Disney Co. 48 Industry Mean 30 Industry Max 78 ",
+        "confidence": "found_high"
+      }
+    },
+    "evidence": null,
+    "confidence": "found_high"
+  },
+  "needs_manual_review": [],
+  "parsed_at": "2026-09-07T07:30:53.108631+00:00"
+}
