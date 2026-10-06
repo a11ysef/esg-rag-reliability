@@ -47,3 +47,10 @@
 - `src/agent.py` / `src/agent_cloud.py` —— 定位+核对的 ReAct Agent
 - `eval/benchmark.json` / `eval/scorer.py` —— 自建评测集与判分
 - `analysis/DATA_FACTS.md` —— 全部数据的溯源与结论
+
+
+## esg_analysis_raw_outputs/ 是什么
+
+这里是「改造前」那版 pipeline 在更多公司（7家）上跑出的原始输出：`esg_answers.json` 是原始问答链路的回答，`esg_critiques.json`、`esg_divergence.json` 是原始评价链路对 MSCI/S&P 评级做对比的输出，后者就是上面问题6（`numeric_rater` 参数被硬编码成 `'Add your answer here'`）产出的那批方法论上不成立的分数。
+
+保留在这里是为了证明「改造前确实有问题」这件事有据可查。项目最终验证用的是 `analysis/ground_truth.json` 里人工核对过的 3 家公司（Alphabet / Apple / Meta Platforms），跟这里的 7 家不是一回事，别弄混了。
