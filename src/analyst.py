@@ -1112,10 +1112,17 @@ def analyze_company(company: str, chunks: list[dict], cache: dict, ratings_dir: 
 # ---------------------------------------------------------------------------
 
 def _fmt_value_unit(value: str, unit: str | None) -> str:
-    """'35' + '%' -> '35%'；'79,400' + 'metric tons CO2e' -> '79,400 metric tons CO2e'。"""
+    """'35' + '%' -> '35%'；'79,400' + 'metric tons CO2e' -> '79,400 metric tons CO2e'。
+    真实见过的坑：Pfizer这条候选的value字段AI自己就填了'100%'（带着%号，JSON字符串
+    字段这么写完全合理），unit字段又单独是'%'，两个没做去重直接拼在一起，显示成了
+    '100%%'。这里改成拼之前先看看value是不是已经自带了跟unit一样的符号，带了就不再
+    重复拼一遍。"""
     if not unit:
         return value
-    return f"{value}{unit}" if unit.strip().startswith("%") else f"{value} {unit}"
+    unit = unit.strip()
+    if value.rstrip().endswith(unit):
+        return value   # value自己已经带了这个单位（比如'100%'+unit='%'），不重复拼
+    return f"{value}{unit}" if unit.startswith("%") else f"{value} {unit}"
 
 
 def _rating_trend_str(history) -> str:
@@ -1845,7 +1852,7 @@ def run_selftest() -> int:
     self_mod.cloud_gen = fake_gen_geometry
     geom_result = extract_indicator("TestCo4", INDICATOR_BY_ID["scope1_emissions"], [geom_chunk], cache)
     self_mod.cloud_gen = fake_gen        # 恢复
-    self_mod.resolve_pdf_path = resolve_pdf_path   # 恢复
+    self_mod.resolve_pdf_path = pdf_geometry_reconstruct.resolve_pdf_path   # 恢复
     assert geom_result.disclosed is True, \
         f"坐标重建出来的候选应该能走完整链路被采信，实际: disclosed={geom_result.disclosed}, " \
         f"attempts={geom_result.attempts}"
@@ -1942,7 +1949,7 @@ def run_selftest() -> int:
     confirmed, _unconfirmed = _reconstruct_candidates(
         "AppleTest", INDICATOR_BY_ID["scope3_emissions"], [(apple_hit_chunk, 0.9)], [apple_hit_chunk],
     )
-    self_mod.resolve_pdf_path = resolve_pdf_path   # 恢复
+    self_mod.resolve_pdf_path = pdf_geometry_reconstruct.resolve_pdf_path   # 恢复
     pdf_geometry_reconstruct.extract_page_words = lambda pdf_path, page_no: geom_words   # 恢复成 10.1 的数据
     assert confirmed, "应该至少重建出候选，实际一个都没有"
     assert "Total gross scope 3 emissions" in confirmed[0]["content"], (
@@ -2045,7 +2052,7 @@ def run_selftest() -> int:
         "AlphabetTest", INDICATOR_BY_ID["scope1_emissions"], [alphabet_hit_chunk], cache,
     )
     self_mod.cloud_gen = fake_gen        # 恢复
-    self_mod.resolve_pdf_path = resolve_pdf_path   # 恢复
+    self_mod.resolve_pdf_path = pdf_geometry_reconstruct.resolve_pdf_path   # 恢复
     pdf_geometry_reconstruct.extract_page_words = lambda pdf_path, page_no: geom_words   # 恢复
     assert alphabet_result.disclosed is True, (
         f"标签洗干净之后，应该能正常走完整链路被采信，实际: disclosed={alphabet_result.disclosed}, "
@@ -2139,7 +2146,7 @@ def run_selftest() -> int:
         "TwoColTest", INDICATOR_BY_ID["supply_chain_emissions"], [naive_chunk], cache,
     )
     self_mod.cloud_gen = fake_gen        # 恢复
-    self_mod.resolve_pdf_path = resolve_pdf_path   # 恢复
+    self_mod.resolve_pdf_path = pdf_geometry_reconstruct.resolve_pdf_path   # 恢复
     pdf_geometry_reconstruct.extract_page_words = lambda pdf_path, page_no: geom_words   # 恢复
     assert twocol_result.disclosed is True, (
         f"原始检索到的候选单独喂给模型必然找不到连贯证据（上面已经验证过），但额外加入的"
@@ -2194,7 +2201,7 @@ def run_selftest() -> int:
         "YearOrderTest", INDICATOR_BY_ID["scope1_emissions"], [year_hit_chunk], cache,
     )
     self_mod.cloud_gen = fake_gen        # 恢复
-    self_mod.resolve_pdf_path = resolve_pdf_path   # 恢复
+    self_mod.resolve_pdf_path = pdf_geometry_reconstruct.resolve_pdf_path   # 恢复
     assert year_result.disclosed is True, (
         f"5年数据模型来者不拒，应该能顺利采信，实际: disclosed={year_result.disclosed}"
     )
@@ -2303,8 +2310,8 @@ def run_selftest() -> int:
         "StrictYearTest", INDICATOR_BY_ID["scope1_emissions"], [strict_hit_chunk], cache,
     )
     self_mod.cloud_gen = fake_gen                              # 恢复
-    self_mod.resolve_pdf_path = resolve_pdf_path                # 恢复
-    self_mod.reconstruct_table_by_geometry = reconstruct_table_by_geometry   # 恢复
+    self_mod.resolve_pdf_path = pdf_geometry_reconstruct.resolve_pdf_path                # 恢复
+    self_mod.reconstruct_table_by_geometry = pdf_geometry_reconstruct.reconstruct_table_by_geometry   # 恢复
     assert strict_result.disclosed is True, (
         f"候选年份已确认时 Question 应该带上年份，模型（哪怕对没点名年份的候选很保守）"
         f"也应该痛快接受，实际: disclosed={strict_result.disclosed}, "
@@ -2372,6 +2379,63 @@ def run_selftest() -> int:
           f"真实标签孤零零一个'Renewable'现在都能进入候选池——之前这两种真实见过的写法"
           f"一个都匹配不上预设的四个关键词，候选在生成阶段就被拦住，模型根本没有机会看到"
           f"这两家公司的这一行数据。")
+
+    print("=== [自检 22] 目标/承诺年份不能冒充当前披露值的回归测试（真实数据跑出来的坑："
+          "Pfizer可再生能源占比被坐标重建报成了100%，但那是2030年目标，不是2023年实际值）===")
+    # 真实事故复现：Pfizer报告第45页"Renewable electricity (%)"这一行，表头是
+    # "2019(baseline) 2021 2022 2023 2030 Goal"，最后一列数值是100%，但那一列的
+    # 表头写的是"2030 Goal"——一个尚未发生的目标，不是已经披露的事实（2023年实际
+    # 披露值其实是10%）。旧代码只看"2030"这个词本身符不符合四位年份的格式，根本
+    # 不知道它后面紧跟着"Goal"，于是把它当成一个正常年份收进表头；排序时2030比
+    # 2023更大，被当成"最新一年"排到候选最前面，LOCATE+VERIFY"试中就停"，于是
+    # 把目标值100%当成了当前实际披露值报了出来——数字、quote都是真的，四层机械
+    # 校验一道都挑不出毛病，因为这不是编造数据，是拿目标值冒充了既成事实，比
+    # "编造"更隐蔽。这里验证修好之后：2030这一列仍然被正常收进表头、对齐出真实
+    # 数值（不影响其他年份的对齐），但会被标记成目标年份，生成候选时被排除掉，
+    # 2023年的真实值10%才是实际会被拿去验证的候选。
+    goal_header_row = [
+        gw("2019", 300.0, 100.0), gw("(baseline)", 345.0, 100.0),
+        gw("2021", 430.0, 100.0), gw("2022", 480.0, 100.0), gw("2023", 530.0, 100.0),
+        gw("2030", 580.0, 100.0), gw("Goal", 615.0, 100.0),
+    ]
+    goal_data_row = [
+        gw("Renewable", 50.0, 130.0), gw("electricity", 110.0, 130.0), gw("(%)", 180.0, 130.0),
+        gw("10%", 300.0, 130.0), gw("7%", 430.0, 130.0), gw("7%", 480.0, 130.0),
+        gw("10%", 530.0, 130.0), gw("100%", 580.0, 130.0),
+    ]
+    pdf_geometry_reconstruct.extract_page_words = (
+        lambda pdf_path, page_no: goal_header_row + goal_data_row
+    )
+    goal_rows = reconstruct_table_by_geometry("fake.pdf", 45, ("renewable electricity",))
+    assert goal_rows, "即使最后一列是目标年份，这一行也应该正常被识别出来"
+    goal_row = goal_rows[0]
+    # 注：2019那一列因为表头紧跟着"(baseline)"这个非年份词，按既有的"取最长连续
+    # 年份串"规则（_is_year_header_row，专门用来扛住Apple那种双栏脚注混进表头的
+    # 场景）会被排在表头识别之外，这不是这次要修的bug，是既有规则本来就如此、
+    # 项目里其他自检也是这样验证的——这里只关心2021/2022/2023/2030这四列。
+    assert goal_row.year_values == {
+        2021: "7%", 2022: "7%", 2023: "10%", 2030: "100%",
+    }, (
+        f"2030这一列的数值仍然应该被正确对齐出来（不该因为是目标年份就连对齐都不做），"
+        f"实际: {goal_row.year_values}"
+    )
+    assert goal_row.goal_years == frozenset({2030}), (
+        f"2030应该被正确标记成目标年份（表头上'2030'后面紧跟着'Goal'），"
+        f"实际: {goal_row.goal_years}"
+    )
+    goal_synths = rows_to_synthetic_chunk_geometry(goal_row)
+    goal_candidate_years = [c["year"] for c in goal_synths]
+    assert 2030 not in goal_candidate_years, (
+        f"2030年的目标值100%不该出现在候选列表里，不能让它有机会冒充当前实际披露值，"
+        f"实际候选年份: {goal_candidate_years}"
+    )
+    assert goal_candidate_years[0] == 2023, (
+        f"排除掉目标年份之后，2023年（真实最新的实际披露值10%）应该排在候选第一位，"
+        f"实际: {goal_candidate_years}"
+    )
+    print(f"  通过：表头里'2030 Goal'这种目标年份列，数值依然被正确对齐（不影响其他真实"
+          f"年份），但被单独标记并排除在候选之外——2023年的真实披露值10%才会被拿去验证，"
+          f"不会再让2030年的目标值100%冒充成当前实际披露值。")
 
     print("\n全部自检通过 ✅ —— 逻辑正确性已验证，可以放心接真实 API key 和真实数据跑。")
     return 0

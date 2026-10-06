@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""
+r"""
 build_corpus.py —— 重新把ESG报告处理成语料库
 
 这个脚本主要是修原来那份 Data.ipynb 里的两个大坑：
@@ -106,7 +106,7 @@ _INTACT_NUM = re.compile(r"(?<![,\d])\d{1,3}(?:,\d{3})+")
 
 
 def clean_page_text(text: str) -> str:
-    """
+    r"""
     清洗一页的文字。
 
     跟原来实现最大的不同：不再用 re.sub(r"(?<=\n)\d{1,2}", "", text) 这行代码。

@@ -53,6 +53,21 @@ _YEAR_WITH_FOOTNOTE_RE = re.compile(r"^((?:19|20)\d{2})\d{1,2}$")
 # 81,900"，年份表头就只剩4列了）。所以这里只在"4位年份后面紧跟着1到2位数字"
 # 这个具体情况下才这样处理（脚注编号一般就是一两位数），不动纯4位年份本身的判断
 # 方式，免得把明显不是"年份+脚注"的号码也误判成年份。
+# 新踩的坑（Pfizer真实数据跑出来的）：有些表格的表头不是清一色的实际年份，最后一列
+# 写的是"2030 Goal"（2030年的目标值，不是已经发生的事实）——"2030"这个词本身完全
+# 符合"四位年份"的格式，旧代码没有区分"这是不是一个承诺/目标列"，就会把它当成一个
+# 正常年份收进表头，而且因为它数值上比2023更大，会被_后面排序成"最新一年"优先去
+# 验证——于是Pfizer可再生能源占比被报成了"100%（2030年目标）"，而不是真实的2023年
+# 披露值"10%"。数字是真的、quote也是真的，四层机械校验一道都挑不出毛病，因为这压根
+# 不是"编造数据"，是"拿目标值冒充了既成事实"，更隐蔽。修法：表头里如果年份后面紧跟着
+# Goal/Target/目标这类词，这一列仍然正常收进年份对齐（不然这一行其他真实年份的数据会
+# 因为对不齐整行被放弃），但会单独标记成"目标年份"，下游生成候选时把它排除掉，
+# 不让它有机会冒充"当前实际披露值"去参加验证。
+_GOAL_KEYWORDS = {
+    "goal", "goals", "target", "targets", "aspiration", "aspirations",
+    "ambition", "ambitions", "目标", "承诺",
+}
+
 _NUMERIC_WORD_RE = re.compile(r"^[-+]?[\d,]+(\.\d+)?%?$")
 _DASH_ONLY_RE = re.compile(r"^[-–—]+$")   # 表格里常见的"没数据"占位符（比如"-"），既不是数值也不是标签
 
@@ -124,6 +139,11 @@ class GeometricRow:
                                   # 漏掉了，是原文里这一年本来就没有数）
     page: int
     source_chunk_id: str = ""    # 留着方便跟已有的partial_table_rows这些信息对照
+    goal_years: frozenset = field(default_factory=frozenset)
+    # 表头里被识别成"目标/承诺"列（比如"2030 Goal"）的那些年份——不是没对齐、
+    # 不是没数据，是数据本身就不该被当成"当前实际披露值"。仍然留在year_values里
+    # （万一以后要用到），只是rows_to_synthetic_chunk_geometry生成候选时会把这些
+    # 年份排除掉。
 
 
 # ---------------------------------------------------------------------------
@@ -284,10 +304,14 @@ def _is_year_header_row(row: list) -> list | None:
     """
     best_run: list = []
     current_run: list = []
-    for w in row:   # row 已经按 x0 从小到大排好序
+    for i, w in enumerate(row):   # row 已经按 x0 从小到大排好序
         year = _parse_header_year(w["text"])
         if year is not None:
-            current_run.append((year, w["x0"]))
+            is_goal = False
+            if i + 1 < len(row):
+                next_word = re.sub(r"[^a-zA-Z\u4e00-\u9fff]", "", row[i + 1]["text"]).lower()
+                is_goal = next_word in _GOAL_KEYWORDS
+            current_run.append((year, w["x0"], is_goal))
         else:
             if len(current_run) > len(best_run):
                 best_run = current_run
@@ -341,7 +365,7 @@ def reconstruct_table_by_geometry(pdf_path, page_no: int, keywords) -> list:
         if not current_header:
             continue
 
-        label_boundary = min(x0 for _, x0 in current_header) - X_TOL
+        label_boundary = min(x0 for _, x0, _ in current_header) - X_TOL
         label_words = [w for w in row if w["x0"] < label_boundary]
         data_words = [w for w in row if w["x0"] >= label_boundary]
 
@@ -349,24 +373,27 @@ def reconstruct_table_by_geometry(pdf_path, page_no: int, keywords) -> list:
             continue   # 标签没跟数字同框（比如标签换行分开了），不去猜，直接放弃这一行
 
         year_values = {}
+        goal_years = set()
         used_x_positions = []
         aligned_ok = True
         for w in data_words:
             if not _looks_numeric(w["text"]):
                 continue   # 数据区里长得不像数字的词（脚注标记、N/A这些）直接跳过，不算数也不算错
             match = None
-            for year, x0 in current_header:
+            for year, x0, is_goal in current_header:
                 if abs(w["x0"] - x0) <= X_TOL:
-                    match = (year, x0)
+                    match = (year, x0, is_goal)
                     break
             if match is None:
                 aligned_ok = False   # 有个数字怎么都对不上任何表头列——这一行结构可疑，放弃
                 break
-            year, x0 = match
+            year, x0, is_goal = match
             if year in year_values or x0 in used_x_positions:
                 aligned_ok = False   # 同一年或者同一列被占用了两次——有歧义，放弃
                 break
             year_values[year] = w["text"]
+            if is_goal:
+                goal_years.add(year)
             used_x_positions.append(x0)
 
         if not aligned_ok or not year_values:
@@ -381,7 +408,7 @@ def reconstruct_table_by_geometry(pdf_path, page_no: int, keywords) -> list:
 
         results.append(GeometricRow(
             label=label, year_values=year_values, page=page_no,
-            source_chunk_id=f"{page_no}",
+            source_chunk_id=f"{page_no}", goal_years=frozenset(goal_years),
         ))
 
     return results
@@ -529,7 +556,12 @@ def rows_to_synthetic_chunk_geometry(row: GeometricRow, unit_context: str | None
     if not unit_context:
         unit_context = _label_unit_fallback(row.label)
     unit_suffix = f" {unit_context}" if unit_context else ""
-    years_sorted_desc = sorted(row.year_values.items(), key=lambda item: -item[0])
+    # 目标/承诺年份（比如"2030 Goal"）不参与候选生成——数字是真的，但代表的是
+    # 尚未发生的目标，不是当前实际披露值，不能让它冒充"最新一年"排到候选最前面。
+    years_sorted_desc = sorted(
+        (item for item in row.year_values.items() if item[0] not in row.goal_years),
+        key=lambda item: -item[0],
+    )
     results = []
     for year, value in years_sorted_desc:
         content = (
