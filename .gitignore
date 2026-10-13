@@ -18,3 +18,6 @@ config.local.yaml
 # 实验中间产物（大文件）
 *.csv
 !eval/**/*.csv
+
+# 语料向量（体积大，不进版本控制）
+analysis/cloud_chunks/

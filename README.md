@@ -2,7 +2,7 @@
 
 从企业可持续发展报告（PDF，常见100多页）里自动挖ESG指标、做成对比表的工具。原则很简单：挖到数字就附原文和页码，挖不到就老实说"未披露"，不让模型瞎编。
 
-拿人工核对过原始PDF的ground truth做比对，不是模型自己打分，实测精确率93.3%，召回率73.7%，幻觉率0%。
+精确率和召回率拿人工核对过原始PDF的ground truth做比对（不是模型自己打分），在Alphabet、Apple、Meta三家的21个指标点上测得：精确率93.3%，召回率73.7%。幻觉率0%来自另一套39题自建基准，是换用云端模型并采用定位+核对策略之后的结果，与ground truth无关。
 
 ## 背景
 
@@ -18,13 +18,27 @@ ESG研究员、合规团队做尽调要核实第三方公司披露的数字，�
 
 最重要的一个判断是：候选怎么生成、怎么排序、怎么对齐，这些结构性决定全部写死在代码里，只有"这段原文是不是真的在回答这个问题"这种真正需要语义理解的判断，才交给模型。尽调这个场景容错率低，模型要是在结构性问题上判断错了（比如把合计数当成子项），没法事后修正。
 
-`agent_cloud.py`和`agent.py`里有这组对照：本地小模型（1.5B）直接自由作答，幻觉率38%、准确率50%；把同样的定位+核对策略套在这个小模型上，结果反而更差，小模型跟不上多步推理和严格的格式要求；换成云端GLM-4-Flash跑同样的定位+核对策略，幻觉率降到0%，准确率提到62%。这组结果说明窄范围agent这个思路本身是对的，但对模型能力有门槛，不是换个架构就一定变好，模型能力不够时复杂策略反而是负担。调研了6个真实商用的ESG AI产品，没一家把"模型自主性"当卖点，都是"证据链路+人工保留判断权"这个方向，跟这里的架构选择一致。
+`agent_cloud.py`和`agent.py`里有这组对照：本地小模型（1.5B）直接自由作答，幻觉率38%、准确率50%；把同样的定位+核对策略套在这个小模型上，结果反而更差，小模型跟不上多步推理和严格的格式要求；换成云端GLM-4-Flash并跑同样的定位+核对策略，幻觉率降到0%，准确率提到62%。模型和策略同时变了，这组对比只能说明两者组合有效，不能单独归功于策略。这组结果说明窄范围agent这个思路本身是对的，但对模型能力有门槛，不是换个架构就一定变好，模型能力不够时复杂策略反而是负担。调研了6个真实商用的ESG AI产品，没一家把"模型自主性"当卖点，都是"证据链路+人工保留判断权"这个方向，跟这里的架构选择一致。
 
 ## 结果和限制
 
-ground truth（`analysis/ground_truth.json`）是人工打开原始PDF逐行核对出来的21个"公司×指标"数据点，跟pipeline完全独立生成。`eval_ground_truth.py`拿它和pipeline的真实结果比对，算出精确率93.3%、召回率73.7%、F1 0.824。21个自检测试（`analyst.py --selftest`）里17个是跑真实数据才发现的坑，每个都写明了是哪条数据触发的。
+ground truth（`analysis/ground_truth.json`）是人工打开原始PDF逐行核对出来的21个"公司×指标"数据点，跟pipeline完全独立生成。`eval_ground_truth.py`拿它和pipeline的真实结果比对，算出精确率93.3%、召回率73.7%、F1 0.824。自检脚本（`analyst.py --selftest`）共23段，大部分是跑真实数据时踩到的坑，被补成了回归测试。
 
 剩下5个假阴性、1个假阳性，大概分四类：供应链指标常写在叙事段落而不是表格里，检索排名没把它排进候选池前面；Apple总取水量那条，行标签只写"Total"，真正说明"这是取水量"的字样在上一级小节标题里，现在看不到跨层级的上下文；Alphabet废弃物转移率抓错了，是因为正确数据那一页根本没进检索候选范围；Alphabet可再生能源占比，关键词圈出了相关行，但那页版面复杂，没有候选精确对上目标年份。前两个本质是一类问题：披露形式越自由，现在这套表格行标签匹配的思路就越吃力。
+
+## 展示用的十家公司
+
+`analysis/run_batch50.py`把`esg_data/`里的49家公司全部跑一遍抽取，`analysis/score_companies.py`再按抽取结果经得起检查的程度排名：每条数字要有年份、单位与指标对得上、百分比不超过100%、不是强度值、不是局部范围、原文确实在讲这个指标、原文里的大数字不超过2个。排序先看通过校验的指标数，再看通过率。展示页面的十家公司就是排名前十的公司，不是随机抽取。
+
+这个排序衡量的是抽取结果经得起检查的程度，不等于准确率。准确率只能靠人工对照原文核对，目前只覆盖了其中的Alphabet、Apple、Meta三家。
+
+复现（会调用智谱接口，有费用，中途断了可以直接重跑）：
+
+```bash
+export ZHIPU_API_KEY="你的key"
+python3 analysis/run_batch50.py
+python3 analysis/score_companies.py analysis/outputs/batch50/esg_comparison.json
+```
 
 ## 往下想扩展
 
@@ -43,4 +57,4 @@ python3 src/eval_ground_truth.py       # 跑精确率/召回率/F1，纯本地�
 
 ## 文件在哪
 
-`src/analyst.py`是主流程。`table_reconstruct.py`和`pdf_geometry_reconstruct.py`是两条独立的表格重建路径。`eval_ground_truth.py`是评估脚本。`agent_cloud.py`/`agent.py`是早期对照实验。`eval/benchmark.json`和`eval/scorer.py`是自建的39题评测集和判分脚本，专门测幻觉率和拒答率，是对照实验里38%/0%、50%/62%这组数字的来源，跟下面说的ground truth是两套独立的评估。`analysis/ground_truth.json`是人工核对的数据，用来测精确率/召回率这组数字，跟pipeline完全独立构建。`analysis/ratings/`是第三方评级数据，`analysis/outputs/`是生成的报告，`analysis/findings.md`是完整的实验过程和诚实的局限记录。`legacy/`是项目早期的原始notebook，以及改造前那版pipeline在7家公司上跑出的原始输出（证明改造前问题确实存在）。
+`src/analyst.py`是主流程。`table_reconstruct.py`和`pdf_geometry_reconstruct.py`是两条独立的表格重建路径。`eval_ground_truth.py`是评估脚本。`agent_cloud.py`/`agent.py`是早期对照实验。`eval/benchmark.json`和`eval/scorer.py`是自建的39题评测集和判分脚本，专门测幻觉率和拒答率，是对照实验里38%/50%（本地1.5B自由作答）和0%/62%（云端模型+定位核对策略）这组数字的来源，跟下面说的ground truth是两套独立的评估。`analysis/ground_truth.json`是人工核对的数据，用来测精确率/召回率这组数字，跟pipeline完全独立构建。`analysis/ratings/`是第三方评级数据，`analysis/outputs/batch50/`是当前展示用的49家批量结果，`analysis/findings.md`是完整的实验过程和诚实的局限记录。早期6家公司的旧报告已移入`legacy/`。`legacy/`是项目早期的原始notebook，以及改造前那版pipeline在7家公司上跑出的原始输出（证明改造前问题确实存在）。
