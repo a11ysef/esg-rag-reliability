@@ -1,0 +1,753 @@
+<meta charset="UTF-8">
+<title>ESG 核验</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* 设计规则
+   清冷、界限分明：纯白与冷灰打底，钴蓝只用一大块（首屏）和少量操作元素。
+   绿黄红只出现在“数据状态”上，不做装饰。
+   一套字体：Inter（数字与英文）+ 思源黑体（中文）；靠字号和字重拉开层级，不用衬线和等宽。 */
+:root{
+  --paper:#FFFFFF; --mist:#F4F6F9; --mist-2:#ECEEF4; --rule:#E3E6EE;
+  --ink:#13233A; --slate:#545C72; --fog:#6B7288;
+  --ok:#14805F; --ok-soft:#E3F5EE; --ok-bar:#34B48A;
+  --rv:#A3600A; --rv-soft:#FFF2DC; --rv-bar:#F2B451;
+  --fx:#C9443A; --fx-soft:#FFE9E6; --fx-bar:#F2766B;
+  --none:#D9DDE6;
+  --sans:'Inter','Noto Sans SC','PingFang SC','Microsoft YaHei',system-ui,sans-serif;
+  /* 主色：雾蓝（冷灰底 + 沉稳中蓝） */
+  --hero:#EDF2F7; --on-hero:#13233A; --on-hero-2:#4F5E73; --hero-line:rgba(19,35,58,.1);
+  --hero-btn-bg:#1D5FA8; --hero-btn-fg:#FFFFFF; --hero-btn-hover:#174E8C;
+  --accent:#1D5FA8; --accent-deep:#174E8C; --on-accent:#FFFFFF;
+  --badge-bg:#E6EEF8; --badge-fg:#1D5FA8;
+  color-scheme:light;
+}
+.proof{box-shadow:0 0 0 1px rgba(27,30,70,.07);}
+:root{ --accent-soft:color-mix(in srgb, var(--accent) 9%, var(--paper)); }
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#10131D; --mist:#161A27; --mist-2:#1D2232; --rule:#272D40;
+    --ink:#EEF0F7; --slate:#AEB4C6; --fog:#878EA3;
+    --ok:#6FD8B2; --ok-soft:#10302A; --ok-bar:#34B48A;
+    --rv:#F5C46F; --rv-soft:#33270F; --rv-bar:#E0A848;
+    --fx:#FF9A90; --fx-soft:#3A1A18; --fx-bar:#E66A5F;
+    --none:#2C3346;
+    --hero:#14202F; --on-hero:#EEF3FA; --on-hero-2:#A3B2C6; --hero-line:rgba(255,255,255,.12);
+    --accent:#6FA6E6; --accent-deep:#5A94D9; --hero-btn-bg:#6FA6E6; --hero-btn-hover:#86B5EC; --on-accent:#10131D; --hero-btn-fg:#10131D;
+    color-scheme:dark;
+  }
+}
+*{box-sizing:border-box;}
+[hidden]{display:none !important;}
+body{margin:0; background:var(--paper); color:var(--ink); font-family:var(--sans); font-size:15px; line-height:1.65; -webkit-font-smoothing:antialiased; font-feature-settings:"tnum" 1, "cv11" 1;}
+h1,h2,h3,h4,p,ul{margin:0;}
+ul{padding:0; list-style:none;}
+button,input{font-family:inherit; color:inherit;}
+button{cursor:pointer;}
+:focus-visible{outline:2px solid var(--accent); outline-offset:2px;}
+.wrap{max-width:1200px; margin:0 auto; padding:0 24px;}
+
+/* ───── 首屏：整块钴蓝 ───── */
+.hero{background:var(--hero); color:var(--on-hero);}
+.nav{display:flex; justify-content:space-between; align-items:center; height:64px; border-bottom:1px solid var(--hero-line);}
+.logo{display:flex; align-items:center; gap:10px; font-weight:700; font-size:16px; letter-spacing:-.01em;}
+.logo i{width:22px; height:22px; border-radius:6px; background:var(--hero-btn-bg); position:relative;}
+.logo i::after{content:""; position:absolute; left:6px; top:5px; width:8px; height:5px; border-left:2.5px solid var(--hero-btn-fg); border-bottom:2.5px solid var(--hero-btn-fg); transform:rotate(-45deg);}
+.nav .meta{font-size:13px; color:var(--on-hero-2);}
+.nav-r{display:flex; align-items:center; gap:16px;}
+.hero-in{display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1.02fr); gap:56px; align-items:center; padding:56px 0 64px;}
+.hero h1{font-size:clamp(38px,5.2vw,64px); line-height:1.08; font-weight:700; letter-spacing:-.03em;}
+.hero .lede{margin-top:22px; font-size:17px; line-height:1.75; color:var(--on-hero-2); max-width:28em;}
+.hero-cta{margin-top:32px; display:flex; gap:12px; flex-wrap:wrap;}
+.btn-w{background:var(--hero-btn-bg); color:var(--hero-btn-fg); border:none; border-radius:10px; font-size:15px; font-weight:600; padding:13px 22px;}
+.btn-w:hover{background:var(--hero-btn-hover);}
+.btn-o{background:transparent; color:var(--on-hero); border:1.5px solid color-mix(in srgb, var(--on-hero) 40%, transparent); border-radius:10px; font-size:15px; font-weight:600; padding:12px 20px;}
+.btn-o:hover{border-color:var(--on-hero);}
+.hero :focus-visible{outline-color:var(--on-hero);}
+
+.plain{margin-top:20px; font-size:15.5px; font-weight:600; line-height:1.7; color:var(--on-hero);}
+.steps{list-style:none; padding:0; margin:28px 0 0; display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:14px;}
+.steps li{font-size:13.5px; line-height:1.6; color:var(--on-hero-2); border-top:1px solid var(--hero-line); padding-top:12px;}
+.steps b{display:block; font-size:12px; letter-spacing:.08em; color:var(--on-hero); margin-bottom:4px;}
+/* 证据卡（白） */
+.proof{background:#FFFFFF; color:#0E1A33; border-radius:18px; padding:28px; }
+.proof .q{display:flex; gap:12px; align-items:flex-start;}
+.proof .q b{flex:none; width:28px; height:28px; border-radius:50%; background:var(--badge-bg); color:var(--badge-fg); display:grid; place-items:center; font-size:13px; font-weight:700;}
+.proof .q p{font-size:16px; font-weight:600; line-height:1.5; padding-top:2px;}
+.src{margin-top:20px; border:1px solid #DCE2EB; border-radius:12px; overflow:hidden;}
+.src-h{display:flex; justify-content:space-between; padding:9px 14px; background:#F3F5F9; font-size:12px; color:#4E5A72;}
+.src-row{display:grid; grid-template-columns:1.3fr repeat(3,minmax(0,1fr)); font-size:13px;}
+.src-row > div{padding:10px 8px; text-align:center; border-top:1px solid #E9EDF3;}
+.src-row > div:first-child{text-align:left; padding-left:14px; color:#4E5A72;}
+.src-row.head > div{color:#7A8499; font-size:12px;}
+.src-row .val{font-weight:600; font-size:15px;}
+.src-row .hit{background:#E3F5EE; color:#14805F;}
+.src-row .goal{background:#FFE9E6; color:#C9443A;}
+.src-row .goal s{text-decoration-thickness:2px;}
+.notes{display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:12px; font-size:12.5px; line-height:1.5;}
+.notes div{display:flex; gap:8px; align-items:flex-start; color:#4E5A72;}
+.notes i{flex:none; width:10px; height:10px; border-radius:3px; margin-top:4px;}
+.answer-big{margin-top:22px; padding-top:20px; border-top:1px solid #E9EDF3; display:flex; align-items:center; gap:20px;}
+.answer-big .n{white-space:nowrap; flex:none; font-size:64px; font-weight:700; letter-spacing:-.04em; line-height:1; color:#0E1A33;}
+.answer-big .n small{font-size:18px; font-weight:600; letter-spacing:0; margin-left:8px; color:#4E5A72;}
+.answer-big .t b{display:inline-block; font-size:13px; font-weight:600; color:#14805F; background:#E3F5EE; border-radius:6px; padding:3px 9px;}
+.answer-big .t p{margin-top:6px; font-size:13.5px; color:#4E5A72; line-height:1.55;}
+
+/* ───── 总览：一条 70 格的分布条 ───── */
+.overview{padding:64px 0 8px;}
+.ov-head{display:flex; justify-content:space-between; align-items:flex-end; gap:24px; flex-wrap:wrap;}
+.ov-head h2{font-size:28px; font-weight:700; letter-spacing:-.02em;}
+.ov-head p{font-size:14px; color:var(--slate); max-width:34em;}
+.cells{margin-top:28px; display:grid; grid-template-columns:repeat(70,minmax(0,1fr)); gap:3px;}
+.cells i{height:26px; border-radius:4px; background:var(--none);}
+.cells i.ok{background:var(--ok-bar);} .cells i.review{background:var(--rv-bar);} .cells i.fix{background:var(--fx-bar);}
+.kpis{margin-top:28px; display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:16px;}
+.kpi{padding:18px 20px; border-radius:14px; background:var(--mist);}
+.kpi .h{display:flex; align-items:center; gap:8px; font-size:14px; font-weight:600;}
+.kpi .h i{width:10px; height:10px; border-radius:3px;}
+.kpi .n{margin-top:10px; font-size:40px; font-weight:700; letter-spacing:-.03em; line-height:1;}
+.kpi .n small{font-size:15px; font-weight:500; color:var(--fog); margin-left:4px; letter-spacing:0;}
+.kpi p{margin-top:10px; font-size:13px; line-height:1.6; color:var(--slate);}
+.kpi.ok .n{color:var(--ok);} .kpi.rv .n{color:var(--rv);} .kpi.fx .n{color:var(--fx);} .kpi.un .n{color:var(--fog);}
+.how{margin-top:20px; font-size:13.5px; color:var(--slate);}
+.how summary{cursor:pointer; color:var(--accent); font-weight:600; list-style:none;}
+.how summary::-webkit-details-marker{display:none;}
+.how p{margin-top:8px; max-width:48em; line-height:1.75;}
+
+/* ───── 工作台 ───── */
+.sec-h{display:flex; justify-content:space-between; align-items:flex-end; gap:16px; flex-wrap:wrap; margin:80px 0 20px;}
+.sec-h h2{font-size:28px; font-weight:700; letter-spacing:-.02em;}
+.sec-h p{font-size:14px; color:var(--slate);}
+.bench{display:grid; grid-template-columns:288px minmax(0,1fr); gap:20px; align-items:start;}
+.list{background:var(--mist); border-radius:16px; padding:8px; position:sticky; top:16px;}
+.co{all:unset; box-sizing:border-box; width:100%; display:grid; grid-template-columns:1fr auto; gap:0 8px; align-items:center; padding:12px 14px; border-radius:10px; cursor:pointer;}
+.co + .co{margin-top:2px;}
+.co:hover{background:var(--mist-2);}
+.co[aria-pressed="true"]{background:var(--paper); box-shadow:0 0 0 1.5px var(--accent);}
+.co:focus-visible{outline:2px solid var(--accent); outline-offset:1px;}
+.co .nm{font-size:15px; font-weight:600;}
+.co .nm small{font-size:12.5px; font-weight:400; color:var(--fog); margin-left:6px;}
+.co .sc{font-size:14px; font-weight:600;}
+.co .sc small{font-size:12px; color:var(--fog); font-weight:400;}
+.dots{grid-column:1 / -1; display:grid; grid-template-columns:repeat(7,1fr); gap:3px; margin-top:8px;}
+.dots i{height:5px; border-radius:2px; background:var(--none);}
+.dots i.ok{background:var(--ok-bar);} .dots i.review{background:var(--rv-bar);} .dots i.fix{background:var(--fx-bar);}
+.upload{margin:8px 6px 6px; padding-top:10px; border-top:1px solid var(--rule);}
+.filebtn{display:flex; justify-content:center; font-size:14px; font-weight:600; color:var(--accent); border:1.5px dashed var(--accent); border-radius:10px; padding:10px; cursor:pointer; position:relative;}
+.filebtn:hover{background:var(--accent-soft);}
+.filebtn:focus-within{outline:2px solid var(--accent); outline-offset:2px;}
+.filebtn input{position:absolute; inset:0; opacity:0; cursor:pointer;}
+.upload p{margin-top:8px; font-size:12px; color:var(--fog); text-align:center;}
+.upl{margin-top:6px; font-size:12.5px; line-height:1.6; text-align:center;}
+.upl .no{color:var(--fx);} .upl .yes{color:var(--ok);}
+
+.pane{border:1px solid var(--rule); border-radius:16px; padding:28px 32px 32px; min-width:0;}
+.p-head{display:flex; justify-content:space-between; align-items:flex-start; gap:20px; flex-wrap:wrap;}
+.p-head h3{font-size:40px; font-weight:700; letter-spacing:-.03em; line-height:1.05;}
+.tags{display:flex; gap:6px; flex-wrap:wrap; margin-top:10px;}
+.tag{font-size:12.5px; font-weight:500; color:var(--slate); background:var(--mist); border-radius:6px; padding:3px 9px;}
+.tag.blue{background:var(--accent-soft); color:var(--accent);}
+.score{text-align:right;}
+.score .n{font-size:40px; font-weight:700; letter-spacing:-.03em; line-height:1; color:var(--ok);}
+.score .n small{font-size:18px; color:var(--fog); font-weight:500;}
+.score p{font-size:13px; color:var(--slate); margin-top:4px;}
+.headline{margin-top:18px; font-size:16px; line-height:1.75; color:var(--slate); max-width:46em;}
+.bar{display:flex; gap:3px; height:8px; margin-top:20px;}
+.bar span{border-radius:3px;}
+.bar .ok{background:var(--ok-bar);} .bar .review{background:var(--rv-bar);} .bar .fix{background:var(--fx-bar);} .bar .u{background:var(--none);}
+
+.ask{margin-top:24px; display:flex; gap:8px; background:var(--mist); border-radius:12px; padding:6px 6px 6px 16px; border:1.5px solid transparent;}
+.ask:focus-within{border-color:var(--accent); background:var(--paper);}
+.ask input{flex:1; min-width:0; border:none; background:transparent; outline:none; font-size:15px; padding:9px 0;}
+.ask input::placeholder{color:var(--fog);}
+.ask button{border:none; border-radius:9px; background:var(--accent); color:var(--on-accent); font-size:14px; font-weight:600; padding:9px 18px;}
+.ask button:hover{background:var(--accent-deep);}
+.quick{display:flex; flex-wrap:wrap; gap:8px; margin-top:10px;}
+.quick button{font-size:13px; color:var(--slate); background:var(--paper); border:1px solid var(--rule); border-radius:999px; padding:4px 12px;}
+.quick button:hover{border-color:var(--accent); color:var(--accent);}
+.answer{margin-top:14px; border-radius:12px; padding:18px 20px; display:grid; grid-template-columns:auto minmax(0,1fr); gap:4px 20px; align-items:center; background:var(--accent-soft);}
+.answer .big{font-size:36px; font-weight:700; letter-spacing:-.03em; line-height:1.1;}
+.answer .big.t{font-size:17px; padding:4px 10px; border-radius:8px;}
+.answer .big.review{color:var(--rv); background:var(--rv-soft);} .answer .big.fix{color:var(--fx); background:var(--fx-soft);} .answer .big.u{color:var(--slate); background:var(--mist-2);}
+.answer h4{font-size:14px; font-weight:600;}
+.answer p{font-size:13.5px; color:var(--slate); line-height:1.65;}
+
+.tabs{display:flex; gap:6px; margin-top:28px; flex-wrap:wrap;}
+.tab{border:1px solid var(--rule); background:var(--paper); border-radius:999px; padding:6px 14px; font-size:13.5px; color:var(--slate);}
+.tab b{margin-left:6px; font-weight:600; color:var(--ink);}
+.tab[aria-pressed="true"]{background:var(--ink); border-color:var(--ink); color:var(--paper);}
+.tab[aria-pressed="true"] b{color:var(--paper);}
+
+.rows{margin-top:14px; border-top:1px solid var(--rule);}
+.rows li{display:grid; grid-template-columns:4px minmax(0,1fr) auto; gap:0 18px; padding:18px 0; border-bottom:1px solid var(--rule);}
+.rows .rail{border-radius:2px; background:var(--none); grid-row:span 2;}
+.rows li.ok .rail{background:var(--ok-bar);} .rows li.review .rail{background:var(--rv-bar);} .rows li.fix .rail{background:var(--fx-bar);}
+.rows .nm{font-size:16px; font-weight:600; display:flex; align-items:center; gap:10px; flex-wrap:wrap;}
+.st{font-size:12px; font-weight:600; border-radius:6px; padding:2px 8px;}
+.st.ok{color:var(--ok); background:var(--ok-soft);} .st.review{color:var(--rv); background:var(--rv-soft);} .st.fix{color:var(--fx); background:var(--fx-soft);} .st.u{color:var(--slate); background:var(--mist);}
+.rows .sub{font-size:13px; color:var(--fog); margin-top:2px;}
+.rows .val{grid-row:span 2; text-align:right; align-self:center;}
+.rows .val b{display:block; font-size:22px; font-weight:700; letter-spacing:-.02em; white-space:nowrap;}
+.rows .val b.dim{color:var(--none);}
+.rows .val small{font-size:12.5px; color:var(--fog);}
+.rows .why{grid-column:2; margin-top:8px; font-size:14px; line-height:1.65; color:var(--slate);}
+.rows .empty{padding:20px 0; font-size:14px; color:var(--fog);}
+.risks{margin-top:14px; font-size:13px; color:var(--slate);}
+.risks span{margin-left:8px; font-weight:600; color:var(--rv);}
+
+.two{display:grid; grid-template-columns:minmax(0,1.2fr) minmax(0,1fr); gap:20px; margin-top:32px;}
+.box{border-radius:14px; padding:20px 22px;}
+.box.q{background:var(--accent-soft);}
+.box.m{background:var(--mist);}
+.box h4{display:flex; justify-content:space-between; align-items:baseline; font-size:16px; font-weight:700;}
+.box h4 span{font-size:13px; font-weight:500; color:var(--slate);}
+.box .note{margin-top:4px; font-size:13px; color:var(--slate);}
+.qs li{display:grid; grid-template-columns:minmax(0,1fr) auto; gap:4px 12px; padding:14px 0; border-top:1px solid color-mix(in srgb, var(--accent) 18%, transparent);}
+.qs li:first-child{margin-top:12px;}
+.qs p{font-size:14.5px; line-height:1.6; font-weight:500;}
+.qs .why{grid-column:1 / -1; font-size:12.5px; color:var(--slate); line-height:1.6;}
+.copy{font-size:13px; font-weight:600; color:var(--accent); background:var(--paper); border:none; border-radius:8px; padding:5px 12px; white-space:nowrap;}
+.copy.done{color:var(--ok);}
+.memo li{padding:12px 0; border-top:1px solid var(--rule);}
+.memo li:first-child{margin-top:12px;}
+.memo b{display:block; font-size:14px;}
+.memo span{display:block; font-size:13px; line-height:1.65; color:var(--slate); margin-top:2px;}
+.none{margin-top:12px; font-size:13.5px; color:var(--slate);}
+
+/* ───── 矩阵 ───── */
+.mx{border-top:1px solid var(--ink); border-bottom:1px solid var(--rule); overflow-x:auto;}
+table{border-collapse:collapse; width:100%; min-width:860px;}
+th{font-size:13px; font-weight:600; color:var(--slate); text-align:left; padding:14px 6px; background:var(--mist); white-space:nowrap;}
+th:first-child{padding-left:20px;}
+th:last-child{text-align:right; padding-right:20px;}
+td{padding:6px 4px; border-top:1px solid var(--rule);}
+td.c{padding:12px 12px 12px 20px; white-space:nowrap; position:sticky; left:0; background:var(--paper); z-index:1;}
+td.c b{font-size:15px;} td.c small{display:block; font-size:12px; color:var(--fog);}
+td.y{font-size:13.5px; color:var(--slate); padding:0 10px;}
+td.y.old{color:var(--rv); font-weight:600;}
+td.s{text-align:right; padding-right:20px; font-size:15px; font-weight:700;}
+td.s small{font-size:12px; color:var(--fog); font-weight:400;}
+.cell{height:40px; display:flex; align-items:center; padding:0 0 0 12px; font-size:13px; font-weight:600; min-width:92px; white-space:nowrap; border-left:3px solid transparent;}
+.cell.ok{color:var(--ok); border-left-color:var(--ok-bar);}
+.cell.review{color:var(--rv); border-left-color:var(--rv-bar);}
+.cell.fix{color:var(--fx); border-left-color:var(--fx-bar);}
+.cell.u{color:var(--none); font-weight:400;}
+tbody tr{cursor:pointer;}
+tbody tr:hover td{background:var(--mist);}
+tbody tr.on td{background:var(--accent-soft);}
+tbody tr:focus-visible{outline:2px solid var(--accent); outline-offset:-2px;}
+.mx-note{margin-top:12px; font-size:13px; color:var(--fog);}
+
+/* ───── 先看这三点：图例即导览，点击高亮下方方块 ───── */
+.rd{padding:64px 0 0;}
+.rd-head{display:flex; justify-content:space-between; align-items:flex-end; gap:16px; flex-wrap:wrap;}
+.rd-head h2{font-size:28px; font-weight:700; letter-spacing:-.02em;}
+.rd-head p{font-size:14px; color:var(--slate);}
+.rd-grid{display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:14px; margin-top:24px;}
+.rd-card{position:relative; text-align:left; font:inherit; color:inherit; cursor:pointer; background:var(--mist); border:none; border-radius:14px; padding:22px 22px 22px 26px; display:flex; flex-direction:column; gap:8px; transition:background .2s, box-shadow .2s;}
+.rd-card::before{content:""; position:absolute; left:0; top:20px; bottom:20px; width:3px; border-radius:2px; background:var(--none);}
+.rd-card[data-s="ok"]::before{background:var(--ok-bar);}
+.rd-card[data-s="review"]::before{background:var(--rv-bar);}
+.rd-card[data-s="off"]::before{background:var(--fx-bar);}
+.rd-card:hover{background:var(--mist-2);}
+.rd-card[aria-pressed="true"]{background:var(--paper); box-shadow:0 0 0 1.5px var(--accent);}
+.rd-card:focus-visible{outline:2px solid var(--accent); outline-offset:2px;}
+.rd-card b{font-size:16px; font-weight:700;}
+.rd-card span{font-size:13.5px; line-height:1.7; color:var(--slate);}
+.rd-note{margin-top:16px; font-size:13px; line-height:1.7; color:var(--fog); max-width:52em;}
+.rd + .overview{padding-top:56px;}
+.cells{transition:none;}
+.cells i{transition:opacity .25s;}
+.cells[data-hl="ok"] i:not(.ok),
+.cells[data-hl="review"] i:not(.review),
+.cells[data-hl="off"] i:not(.fix):not(.u){opacity:.14;}
+
+footer{margin-top:96px; background:var(--mist); padding:28px 0 40px; font-size:13px; color:var(--slate); line-height:1.75;}
+footer p{max-width:56em;}
+
+@media (prefers-reduced-motion: reduce){ *{transition:none !important;} }
+@media (max-width:980px){
+  .hero-in{grid-template-columns:minmax(0,1fr); gap:40px; padding:48px 0 56px;}
+  .kpis{grid-template-columns:repeat(2,minmax(0,1fr));}
+  .bench{grid-template-columns:minmax(0,1fr);}
+  .list{position:static; display:flex; overflow-x:auto; gap:6px;}
+  .co{min-width:190px;}
+  .co + .co{margin-top:0;}
+  .upload{min-width:200px; margin:0; padding:6px; border-top:none;}
+  .two{grid-template-columns:minmax(0,1fr);}
+  .rd-grid{grid-template-columns:minmax(0,1fr);}
+  .cells{grid-template-columns:repeat(35,minmax(0,1fr)); gap:4px;}
+}
+@media (max-width:560px){
+  .wrap{padding:0 16px;}
+  .nav .meta{display:none;}
+  .proof{padding:20px;}
+  .src-row{grid-template-columns:1fr repeat(3,minmax(0,1fr)); font-size:12px;}
+  .src-row .val{font-size:13px;}
+  .src-row > div{padding:8px 3px;}
+  .src-row > div:first-child{padding-left:8px;}
+  .notes{grid-template-columns:1fr;}
+  .answer-big .n{font-size:48px;}
+  .kpi .n{font-size:32px;}
+  .pane{padding:20px 18px;}
+  .p-head h3{font-size:30px;}
+  .rows li{grid-template-columns:4px minmax(0,1fr);}
+  .rows .val{grid-row:auto; grid-column:2; text-align:left; margin-top:6px;}
+  .rows .rail{grid-row:span 3;}
+  .answer{grid-template-columns:minmax(0,1fr);}
+  .steps{grid-template-columns:1fr; gap:10px;}
+}
+</style>
+
+<header class="hero">
+  <div class="wrap">
+    <nav class="nav">
+      <div class="logo"><i aria-hidden="true"></i>ESG 核验</div>
+      <div class="nav-r"><span class="meta">面向金融与 ESG 分析的 RAG 智能文档分析系统 · 演示版</span></div>
+    </nav>
+    <div class="hero-in">
+      <div>
+        <h1>ESG 报告关键数据的核验</h1>
+        <p class="plain">可以把它理解为一位会翻原文的助理：从 ESG 报告里找出关键数字，标明在第几页，并告诉你哪些还需要向企业确认。</p>
+        <p class="lede">从数百页的 ESG 报告中逐项抽取排放、用水、废弃物等关键指标。每个数值均标注年份与出处；未通过校验的数值会说明原因，并附上可直接发送给企业的追问。</p>
+        <div class="hero-cta">
+          <button class="btn-w" type="button" id="go-bench">查看一家公司的核验结果</button>
+          <button class="btn-o" type="button" id="example-btn">查看苹果的核验结果</button>
+        </div>
+        <ol class="steps">
+          <li><b>01</b>选一家公司</li>
+          <li><b>02</b>看每项指标的结论</li>
+          <li><b>03</b>复制追问，发给企业</li>
+        </ol>
+      </div>
+      <div class="proof" aria-label="核验示例">
+        <div class="q"><b>问</b><p>苹果 2023 年的温室气体排放分别是多少？</p></div>
+        <div class="src">
+          <div class="src-h"><span>苹果 2023 年报告</span><span>人工逐项对照原文</span></div>
+          <div class="src-row head"><div>指标</div><div>Scope 1</div><div>Scope 2</div><div>Scope 3</div></div>
+          <div class="src-row"><div>排放量（tCO₂e）</div><div class="val hit">55,200</div><div class="val hit">3,400</div><div class="val hit">15,980,000</div></div>
+        </div>
+        <div class="notes">
+          <div><i style="background:#34B48A"></i>三项均为 2023 年实际值</div>
+          <div><i style="background:#34B48A"></i>数值与单位与原文一致</div>
+        </div>
+        <div class="answer-big">
+          <div class="n">5<small>/ 7 项</small></div>
+          <div class="t"><b>可直接引用</b><p>排放、可再生能源与废弃物数据均已核实。用水量与供应链未检出，已列入回溯清单。</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+  <section class="rd" aria-labelledby="rd-h">
+    <div class="rd-head">
+      <h2 id="rd-h">先看这三点</h2>
+      <p>这是一份样本演示，只收录十家公司的报告。</p>
+    </div>
+    <div class="rd-grid">
+      <button class="rd-card" type="button" data-s="ok" aria-pressed="false">
+        <b>可直接引用</b>
+        <span>已对照原文，年份、单位、口径都一致，可以写进底稿。</span>
+      </button>
+      <button class="rd-card" type="button" data-s="review" aria-pressed="false">
+        <b>待追问</b>
+        <span>数值已取到，但年份或口径存疑。复制追问清单，发给企业确认。</span>
+      </button>
+      <button class="rd-card" type="button" data-s="off" aria-pressed="false">
+        <b>已排除 · 未检出</b>
+        <span>未通过校验的不进底稿。未检出只表示没有取到可确认的数值，不等于报告未披露。</span>
+      </button>
+    </div>
+    <p class="rd-note">苹果、Meta、谷歌三家经人工对照原文核对；其余七家以系统结果为主，使用前请回溯原文确认。点击任一卡片，可在下方方块图中高亮对应指标。</p>
+  </section>
+  <section class="overview">
+    <div class="ov-head">
+      <h2>10 家公司，70 项指标，统一规则核验</h2>
+      <p>每个小方块是一项指标的核验结果，共 70 项。只有通过全部校验的数值标为可直接引用；其余的都说明原因。</p>
+    </div>
+    <div class="cells" id="cells" aria-hidden="true"></div>
+    <div class="kpis">
+      <div class="kpi ok"><div class="h"><i style="background:var(--ok-bar)"></i>可直接引用</div><div class="n" id="k-ok">25<small>项</small></div><p>年份、单位、口径都与原文一致，附页码可核对。</p></div>
+      <div class="kpi rv"><div class="h"><i style="background:var(--rv-bar)"></i>待追问</div><div class="n" id="k-rv">4<small>项</small></div><p>数值已取到，但年份、口径或覆盖范围存疑，需企业确认。</p></div>
+      <div class="kpi fx"><div class="h"><i style="background:var(--fx-bar)"></i>已排除</div><div class="n" id="k-fx">3<small>项</small></div><p>取到的是强度指标，或口径不一致的数值，未通过校验，不进底稿。</p></div>
+      <div class="kpi un"><div class="h"><i style="background:var(--none)"></i>未检出</div><div class="n" id="k-un">38<small>项</small></div><p>可能是抽取遗漏，不等于未披露。先回溯原文，再决定是否追问。</p></div>
+    </div>
+    <details class="how">
+      <summary>它是怎么核验的</summary>
+      <p>本工具采用 RAG（检索增强生成）：先在报告中定位与问题相关的段落，再依据这些原文作答。每个候选数值都要通过年份、单位、口径关键词、是否为强度指标等规则的检查；未通过的不计入可引用数据，并说明原因。找不到可确认的数值时，系统会直接说明未检出，而不是用相近数据替代。Apple、Meta、Alphabet 三家经过人工逐项对照原文，其余七家以系统结果为主，建议在使用前回溯原文确认。</p>
+    </details>
+  </section>
+
+  <div class="sec-h" id="bench-h">
+    <h2>尽调工作台</h2>
+    <p>选一家公司，查看每项指标的结论、原文出处和待追问事项</p>
+  </div>
+  <section class="bench">
+    <aside class="list" id="list-wrap">
+      <div id="list" role="group" aria-label="样本公司" style="display:contents"></div>
+      <div class="upload">
+        <label class="filebtn">按文件名切换样本<input type="file" id="file" accept=".pdf" multiple></label>
+        <p>演示版仅识别以上十家样本，不解析新文件</p>
+        <div class="upl" id="upl" hidden></div>
+      </div>
+    </aside>
+    <div class="pane" id="pane"></div>
+  </section>
+
+  <div class="sec-h">
+    <h2>横向对比</h2>
+    <p>点击任一行，在工作台中打开该公司</p>
+  </div>
+  <div class="mx">
+    <table aria-label="十家样本指标对比">
+      <thead><tr id="mx-head"></tr></thead>
+      <tbody id="mx-body"></tbody>
+    </table>
+  </div>
+  <p class="mx-note">报告年份不同的公司不宜直接比较，较旧的年份以橙色标出。十家样本均未检出供应链审计数据，本表不展示该列，工作台和提问中仍可查询。</p>
+</main>
+
+<footer>
+  <div class="wrap"><p>结果仅基于样本报告的抽取与校验，不引用外部数据。排序反映证据完备程度，不代表数据准确率。追问清单可直接复制使用；分析师备忘仅供内部核验，请勿直接写入底稿或对外发送。</p></div>
+</footer>
+
+<script>
+(function(){
+  'use strict';
+
+  var IND = [
+    { k:'s1', short:'Scope 1', full:'直接排放', desc:'企业自身燃烧、工艺产生的温室气体', kw:['scope 1','scope1','范围一','范围1','直接排放'] },
+    { k:'s2', short:'Scope 2', full:'外购能源排放', desc:'外购电力、热力产生的排放', kw:['scope 2','scope2','范围二','范围2','外购能源','间接排放'] },
+    { k:'s3', short:'Scope 3', full:'价值链排放', desc:'供应链与产品使用等间接排放', kw:['scope 3','scope3','范围三','范围3','价值链'] },
+    { k:'re', short:'可再生能源', full:'可再生能源用电占比', desc:'', kw:['可再生','renewable'] },
+    { k:'wa', short:'取水量', full:'总取水量', desc:'', kw:['取水','用水','water'] },
+    { k:'wd', short:'废弃物', full:'废弃物转移率', desc:'循环利用、不填埋的比例', kw:['废弃物','转移率','填埋','waste','diversion','landfill'] },
+    { k:'sc', short:'供应链', full:'供应链审计', desc:'供应商的环境核查', kw:['供应链','供应商','supplier','supply'] }
+  ];
+
+  // 数据来自批量抽取与规则校验；human:true 的三家做过人工逐项对照原文；
+  // confirmed:true 表示人工对照原文确认报告中确无此项披露。
+  var CO = [
+    { id:'apple', name:'Apple', zh:'苹果', year:'2023', human:true,
+      headline:'排放与可再生能源、废弃物数据经人工复核与原文一致，可直接引用。用水量系统未检出，需回溯原文确认后再补录。',
+      risks:[],
+      cells:{
+        s1:{ st:'ok', val:'55,200', unit:'tCO₂e', year:'2023', why:'人工复核与原文逐项一致。' },
+        s2:{ st:'ok', val:'3,400', unit:'tCO₂e', year:'2023', why:'人工复核与原文逐项一致。' },
+        s3:{ st:'ok', val:'15,980,000', unit:'tCO₂e', year:'2023', why:'人工复核与原文逐项一致。' },
+        re:{ st:'ok', val:'100', unit:'%', year:'2023', why:'人工复核与原文逐项一致。' },
+        wd:{ st:'ok', val:'74', unit:'%', year:'2023', why:'人工复核与原文逐项一致。' },
+        wa:{ st:'u' }, sc:{ st:'u' }
+      },
+      extraQ:[],
+      internal:[
+        ['用水量', '系统未取到。人工核对确认原文有该项披露（2023 年，约 1,610 百万加仑，第 82 页），需补录进底稿。'],
+        ['供应链', '原文有相关披露，但口径较灵活，系统未抽取。需回溯原文确认后再决定是否追问。']
+      ] },
+    { id:'meta', name:'Meta', zh:'Meta', year:'2023', human:true,
+      headline:'排放、可再生能源与用水数据经人工复核与原文一致，可直接引用。供应链披露未被抽取，需回溯原文补录。',
+      risks:[],
+      cells:{
+        s1:{ st:'ok', val:'48,952', unit:'tCO₂e', year:'2023', why:'人工复核与原文逐项一致。' },
+        s2:{ st:'ok', val:'1,658', unit:'tCO₂e', year:'2023', why:'人工复核与原文逐项一致。' },
+        s3:{ st:'ok', val:'7,445,621', unit:'tCO₂e', year:'2023', why:'人工复核与原文逐项一致。' },
+        re:{ st:'ok', val:'100', unit:'%', year:'2023', why:'人工复核与原文逐项一致。' },
+        wa:{ st:'ok', val:'5,274', unit:'百万升', year:'2023', why:'人工复核与原文逐项一致。' },
+        wd:{ st:'u', confirmed:true, why:'人工对照原文确认：报告中确无此项披露。' },
+        sc:{ st:'u' }
+      },
+      extraQ:[],
+      internal:[['供应链', '原文有相关披露，但口径较灵活，系统未抽取。需回溯原文确认后补录。']] },
+    { id:'alphabet', name:'Alphabet', zh:'谷歌', year:'2023', human:true,
+      headline:'排放与用水数据可直接引用。可再生电力 100% 的披露经人工复核确认存在但系统未检出，需补录。废弃物转移率曾被抽取为 82%，但该值仅覆盖食品废弃物，全公司口径为 78%，故已排除。',
+      risks:[],
+      cells:{
+        s1:{ st:'ok', val:'79,400', unit:'tCO₂e', year:'2023', why:'人工复核与原文逐项一致。' },
+        s2:{ st:'ok', val:'3,423,400', unit:'tCO₂e', year:'2023', why:'人工复核与原文逐项一致。' },
+        s3:{ st:'ok', val:'10,812,000', unit:'tCO₂e', year:'2023', why:'人工复核与原文逐项一致。' },
+        wa:{ st:'ok', val:'8,653.3', unit:'百万加仑', year:'2023', why:'人工复核与原文逐项一致。' },
+        wd:{ st:'fix', val:null, year:'2023', why:'系统抽取为 82%，但该值仅针对食品废弃物。全公司口径为 78%，口径不一致，故已排除。' },
+        re:{ st:'u' }, sc:{ st:'u' }
+      },
+      extraQ:[],
+      internal:[
+        ['可再生能源', '人工复核确认原文有 2023 年可再生电力 100% 的披露，但系统未检出。需将该值补录进底稿，并核对其是否为全公司口径。'],
+        ['供应链', '原文有相关披露，但口径较灵活，系统未抽取。需回溯原文确认后再决定是否追问。']
+      ] },
+    { id:'pfizer', name:'Pfizer', zh:'辉瑞', year:'2023',
+      headline:'可再生能源占比 10% 与用水量 31.9 百万 m³ 均为 2023 年实际值，已通过校验。同页列出的 2030 年 100% 为目标值，不作为现状引用。',
+      risks:[],
+      cells:{
+        re:{ st:'ok', val:'10', unit:'%', year:'2023', page:'45', why:'原文可核对，取自 2023 年实际值，未混入 2030 年目标。' },
+        wa:{ st:'ok', val:'31.9', unit:'百万 m³', year:'2023', page:'46', why:'原文可核对，年份与单位一致。' },
+        s1:{ st:'u' }, s2:{ st:'u' }, s3:{ st:'u' }, wd:{ st:'u' }, sc:{ st:'u' }
+      },
+      extraQ:[['请在报告中将 2030 年的目标与 2023 年的实际值分列披露，并注明基准年。', '两者同列呈现，容易被误读为现状。']],
+      internal:[] },
+    { id:'phillips', name:'Phillips 66', zh:'菲利普斯 66', year:'2022',
+      headline:'范围一排放 24.8 百万吨、废弃物转移率 23% 可直接引用。范围二数值的年份与口径存疑，待追问；范围三抽取值为单位产品排放强度，非总量，已排除。',
+      risks:[],
+      cells:{
+        s1:{ st:'ok', val:'24.8', unit:'百万吨 CO₂e', year:'2022', page:'79', why:'原文可核对，年份与单位一致。' },
+        s2:{ st:'review', val:null, page:'79', why:'表中有 5.4、5.0、0.4 等数值，但缺少年份表头，无法判断哪一个是总量，也无法确定对应年份。', q:'请提供范围二总排放量（百万吨 CO₂e）及基准年，并说明表中各数值对应的统计口径。' },
+        s3:{ st:'fix', val:null, page:'79', why:'表中对应的是范围三产品相关排放强度（单位产品），不是排放总量，故不采信。' },
+        wd:{ st:'ok', val:'23', unit:'%', year:'2022', page:'47', why:'原文可核对。' },
+        re:{ st:'u' }, wa:{ st:'u' }, sc:{ st:'u' }
+      },
+      extraQ:[], internal:[] },
+    { id:'abbvie', name:'AbbVie', zh:'艾伯维', year:'2023',
+      headline:'范围一排放 367,954 吨、用水量 28.979 百万 m³ 可直接引用。范围二抽取到的是 2021 年的数值，同一行还列有其他年份，待追问最新一年的数据。',
+      risks:[],
+      cells:{
+        s1:{ st:'ok', val:'367,954', unit:'tCO₂e', year:'2023', page:'20', why:'原文可核对，年份与单位一致。' },
+        s2:{ st:'review', val:'131,232', unit:'tCO₂e', year:'2021', page:'20', why:'同一行列有三个年份的数值（256,708、184,549、131,232），这里抽到的是最旧的 2021 年数值，不作为现状采信。', q:'请提供范围二（市场法）2023 年的排放量，并确认表格中各列对应的年份。' },
+        re:{ st:'review', val:null, page:'22', why:'表中有可再生电力用电量（MWh），但缺少年份表头，无法确认对应哪一年，也未给出占比。', q:'请提供可再生电力占总用电量的比例，并说明计算口径。' },
+        wa:{ st:'ok', val:'28.979', unit:'百万 m³', year:'2023', page:'23', why:'原文可核对，年份与单位一致。' },
+        s3:{ st:'u' }, wd:{ st:'u' }, sc:{ st:'u' }
+      },
+      extraQ:[], internal:[] },
+    { id:'kroger', name:'Kroger', zh:'克罗格', year:'2022',
+      headline:'范围一排放 2,335,900 吨、废弃物转移率 82% 可直接引用。范围二抽取值为单位面积强度，已排除；范围三只找到一行部分口径的数值，待追问。',
+      risks:[],
+      cells:{
+        s1:{ st:'ok', val:'2,335,900', unit:'tCO₂e', year:'2022', page:'43', why:'原文可核对，年份与单位一致。' },
+        s2:{ st:'fix', val:null, page:'71', why:'抽取值为每 1,000 平方英尺 21.84 tCO₂e，属强度指标而非总量，且未注明年份，已排除。' },
+        s3:{ st:'review', val:null, page:'71', why:'表中只有一行标注为“部分”口径的价值链排放数值，且缺少年份表头，无法确认年份与覆盖范围，未采信。', q:'请提供完整的范围三（价值链）排放总量，并说明覆盖的业务范围与基准年。' },
+        wd:{ st:'ok', val:'82', unit:'%', year:'2022', page:'45', why:'原文明确为全公司口径。' },
+        re:{ st:'u' }, wa:{ st:'u' }, sc:{ st:'u' }
+      },
+      extraQ:[], internal:[] },
+    { id:'boeing', name:'Boeing', zh:'波音', year:'2023',
+      headline:'可再生电力占比 39% 为唯一可直接引用的指标；排放、用水与废弃物指标均未检出。',
+      risks:[],
+      cells:{
+        re:{ st:'ok', val:'39', unit:'%', year:'2023', page:'53', why:'原文可核对。' },
+        s1:{ st:'u' }, s2:{ st:'u' }, s3:{ st:'u' }, wa:{ st:'u' }, wd:{ st:'u' }, sc:{ st:'u' }
+      },
+      extraQ:[],
+      internal:[['可再生能源', '39% 同时包含直接采购与可再生能源证书（REC）。需确认它是否等同于实际用电中的可再生比例。']] },
+    { id:'ford', name:'Ford Motor', zh:'福特', year:'2023',
+      headline:'可再生电力占比 50.8% 可直接引用。其余六项指标未检出，需回溯原文复核。',
+      risks:[],
+      cells:{
+        re:{ st:'ok', val:'50.8', unit:'%', year:'2023', page:'142', why:'原文可核对。' },
+        s1:{ st:'u' }, s2:{ st:'u' }, s3:{ st:'u' }, wa:{ st:'u' }, wd:{ st:'u' }, sc:{ st:'u' }
+      },
+      extraQ:[], internal:[] },
+    { id:'gm', name:'General Motors', zh:'通用汽车', year:'2023',
+      headline:'废弃物转移率 94.6% 可直接引用，但报告采用“Zero Waste”口径，需确认是否覆盖全部运营范围。其余六项未检出。',
+      risks:[],
+      cells:{
+        wd:{ st:'ok', val:'94.6', unit:'%', year:'2023', page:'27', why:'原文可核对。' },
+        s1:{ st:'u' }, s2:{ st:'u' }, s3:{ st:'u' }, re:{ st:'u' }, wa:{ st:'u' }, sc:{ st:'u' }
+      },
+      extraQ:[],
+      internal:[['废弃物转移率', '报告采用“Zero Waste”口径，需确认 94.6% 是否覆盖全部运营范围。']] }
+  ];
+
+  var LATEST = CO.reduce(function(m, c){ return c.year > m ? c.year : m; }, '0');
+  var LABEL = { ok:'可直接引用', review:'待追问', fix:'已排除', u:'未检出' };
+  var ORDER = ['ok','review','fix','u'];
+  var STATE = { co:'apple', filter:'all' };
+  var $ = function(id){ return document.getElementById(id); };
+
+  function getCo(id){ return CO.filter(function(c){ return c.id === id; })[0]; }
+  function cell(co, k){ return co.cells[k] || { st:'u' }; }
+  function fmt(c){
+    if(c.val === null || c.val === undefined) return '—';
+    return c.unit === '%' ? c.val + '%' : c.val + (c.unit ? ' ' + c.unit : '');
+  }
+  function src(co, c){ return c.page ? '第 ' + c.page + ' 页' : (co.human ? '人工复核' : ''); }
+  function counts(co){
+    var n = { ok:0, review:0, fix:0, u:0 };
+    IND.forEach(function(i){ n[cell(co, i.k).st]++; });
+    return n;
+  }
+  function questions(co){
+    var qs = [];
+    IND.forEach(function(i){ var c = cell(co, i.k); if(c.st === 'review' && c.q) qs.push({ t:c.q, why:c.why }); });
+    co.extraQ.forEach(function(x){ qs.push({ t:x[0], why:x[1] }); });
+    return qs;
+  }
+
+  function renderOverview(){
+    var all = [], tot = { ok:0, review:0, fix:0, u:0 };
+    CO.forEach(function(co){ IND.forEach(function(i){ var s = cell(co, i.k).st; all.push(s); tot[s]++; }); });
+    all.sort(function(a, b){ return ORDER.indexOf(a) - ORDER.indexOf(b); });
+    $('cells').innerHTML = all.map(function(s){ return '<i class="' + s + '"></i>'; }).join('');
+    $('k-ok').firstChild.nodeValue = tot.ok; $('k-rv').firstChild.nodeValue = tot.review;
+    $('k-fx').firstChild.nodeValue = tot.fix; $('k-un').firstChild.nodeValue = tot.u;
+  }
+
+  function renderList(){
+    $('list').innerHTML = CO.map(function(c){
+      var dots = IND.map(function(i){ var s = cell(c, i.k).st; return '<i class="' + s + '" title="' + i.short + '：' + LABEL[s] + '"></i>'; }).join('');
+      return '<button class="co" type="button" data-id="' + c.id + '" aria-pressed="' + (c.id === STATE.co) + '">' +
+        '<span class="nm">' + c.name + '<small>' + c.zh + '</small></span>' +
+        '<span class="sc">' + counts(c).ok + '<small> / 7</small></span>' +
+        '<span class="dots">' + dots + '</span></button>';
+    }).join('');
+    $('list').querySelectorAll('.co').forEach(function(b){
+      b.addEventListener('click', function(){ select(b.getAttribute('data-id')); });
+    });
+  }
+
+  function renderRows(co){
+    var items = IND.filter(function(i){ return STATE.filter === 'all' || cell(co, i.k).st === STATE.filter; });
+    if(!items.length) return '<li class="empty">这家公司没有处于这个状态的指标。</li>';
+    items.sort(function(a, b){ return ORDER.indexOf(cell(co, a.k).st) - ORDER.indexOf(cell(co, b.k).st); });
+    return items.map(function(i){
+      var c = cell(co, i.k);
+      var why = c.why || '报告中未检出可确认的数值，也没有用相近数据替代。请先回溯原文检索。';
+      var meta = [c.year ? c.year + ' 年' : '', src(co, c)].filter(Boolean).join('，');
+      var val = c.st === 'u' || c.val === null || c.val === undefined
+        ? '<div class="val"><b class="dim">—</b>' + (c.st !== 'u' && meta ? '<small>' + meta + '</small>' : '') + '</div>'
+        : '<div class="val"><b>' + fmt(c) + '</b><small>' + meta + '</small></div>';
+      return '<li class="' + c.st + '"><span class="rail"></span>' +
+        '<div><div class="nm">' + i.short + (i.short !== i.full ? '<span style="font-weight:500;color:var(--slate)">' + i.full + '</span>' : '') + '<span class="st ' + c.st + '">' + LABEL[c.st] + '</span></div>' +
+        (i.desc ? '<div class="sub">' + i.desc + '</div>' : '') + '</div>' +
+        val + '<p class="why">' + why + '</p></li>';
+    }).join('');
+  }
+
+  function renderPane(){
+    var co = getCo(STATE.co);
+    var n = counts(co);
+    var bar = ORDER.map(function(k){ return n[k] ? '<span class="' + k + '" style="flex:' + n[k] + '"></span>' : ''; }).join('');
+    var tabs = '<button class="tab" type="button" data-f="all" aria-pressed="' + (STATE.filter === 'all') + '">全部<b>7</b></button>' +
+      ORDER.map(function(k){ return '<button class="tab" type="button" data-f="' + k + '" aria-pressed="' + (STATE.filter === k) + '">' + LABEL[k] + '<b>' + n[k] + '</b></button>'; }).join('');
+
+    var qs = questions(co);
+    var qHtml = qs.length
+      ? '<ul class="qs">' + qs.map(function(q, i){
+          return '<li><p>' + q.t + '</p><button class="copy" type="button" data-i="' + i + '">复制</button><span class="why">依据：' + q.why + '</span></li>';
+        }).join('') + '</ul>'
+      : '<p class="none">这家公司目前没有需要企业澄清的事项。</p>';
+
+    var rem = [];
+    var check = IND.filter(function(i){ var c = cell(co, i.k); return c.st === 'u' && !c.confirmed; });
+    if(check.length) rem.push(['优先回溯原文', '未检出：' + check.map(function(i){ return i.short; }).join('、') + '。确认报告确无披露后，再决定是否追问。']);
+    co.internal.forEach(function(x){ rem.push(x); });
+    var rHtml = rem.length
+      ? '<ul class="memo">' + rem.map(function(x){ return '<li><b>' + x[0] + '</b><span>' + x[1] + '</span></li>'; }).join('') + '</ul>'
+      : '<p class="none">暂无需回溯原文确认的事项。</p>';
+
+    $('pane').innerHTML =
+      '<div class="p-head"><div><h3>' + co.name + '</h3><div class="tags"><span class="tag">' + co.zh + '</span><span class="tag">' + co.year + ' 年报告</span>' + (co.human ? '<span class="tag blue">人工复核</span>' : '') + '</div></div>' +
+        '<div class="score"><div class="n">' + n.ok + '<small> / 7</small></div><p>项可直接引用</p></div></div>' +
+      '<p class="headline">' + co.headline + '</p>' +
+      '<div class="bar" aria-hidden="true">' + bar + '</div>' +
+      '<form class="ask" id="ask-form"><input id="q" aria-label="向 ' + co.name + ' 的报告提问" placeholder="向 ' + co.name + ' 的报告提问，例如 Scope 1 排放总量是多少" autocomplete="off"><button type="submit">提问</button></form>' +
+      '<div class="quick">' + ['Scope 1 排放','可再生能源占比','总取水量','废弃物转移率'].map(function(t){ return '<button type="button" data-q="' + t + '是多少？">' + t + '</button>'; }).join('') + '</div>' +
+      '<div id="answer-slot"></div>' +
+      '<div class="tabs" role="group" aria-label="按结论筛选">' + tabs + '</div>' +
+      '<ul class="rows">' + renderRows(co) + '</ul>' +
+      (co.risks.length ? '<p class="risks">风险提示' + co.risks.map(function(r){ return '<span>' + r + '</span>'; }).join('') + '</p>' : '') +
+      '<div class="two">' +
+        '<div class="box q"><h4>待追问清单<span>' + qs.length + ' 条，可直接发给企业</span></h4><p class="note">只列口径、年份或覆盖范围存疑、需要企业书面澄清的事项。</p>' + qHtml + '</div>' +
+        '<div class="box m"><h4>分析师备忘<span>需要你判断的事项</span></h4><p class="note">这些是系统无法替你定论的地方，建议先核实原文，确认后再决定是否写入底稿。</p>' + rHtml + '</div>' +
+      '</div>';
+
+    $('pane').querySelectorAll('.tab').forEach(function(t){
+      t.addEventListener('click', function(){ STATE.filter = t.getAttribute('data-f'); renderPane(); });
+    });
+    $('pane').querySelectorAll('.quick button').forEach(function(b){
+      b.addEventListener('click', function(){ $('q').value = b.getAttribute('data-q'); ask(); });
+    });
+    $('ask-form').addEventListener('submit', function(e){ e.preventDefault(); ask(); });
+    $('pane').querySelectorAll('button.copy').forEach(function(b){
+      b.addEventListener('click', function(){
+        var text = qs[parseInt(b.getAttribute('data-i'), 10)].t;
+        if(!(navigator.clipboard && navigator.clipboard.writeText)){ b.textContent = '请手动复制'; return; }
+        navigator.clipboard.writeText(text)
+          .then(function(){ b.textContent = '已复制'; b.classList.add('done'); })
+          .catch(function(){ b.textContent = '复制失败'; });
+      });
+    });
+  }
+
+  function renderMatrix(){
+    var COLS = IND.filter(function(i){ return CO.some(function(co){ return cell(co, i.k).st !== 'u'; }); });
+    $('mx-head').innerHTML = '<th>公司</th><th>年份</th>' + COLS.map(function(i){ return '<th>' + i.short + '</th>'; }).join('') + '<th>可引用</th>';
+    $('mx-body').innerHTML = CO.map(function(co){
+      var tds = COLS.map(function(i){
+        var c = cell(co, i.k);
+        var title = co.name + '，' + i.short + '：' + LABEL[c.st];
+        if(c.st === 'u') return '<td><div class="cell u" title="' + title + '">—</div></td>';
+        return '<td><div class="cell ' + c.st + '" title="' + title + '">' + (c.val ? fmt(c) : LABEL[c.st]) + '</div></td>';
+      }).join('');
+      var old = co.year < LATEST;
+      return '<tr data-id="' + co.id + '" tabindex="0" class="' + (co.id === STATE.co ? 'on' : '') + '">' +
+        '<td class="c"><b>' + co.name + '</b><small>' + co.zh + '</small></td>' +
+        '<td class="y' + (old ? ' old' : '') + '">' + co.year + '</td>' + tds +
+        '<td class="s">' + counts(co).ok + '<small> / 7</small></td></tr>';
+    }).join('');
+    $('mx-body').querySelectorAll('tr').forEach(function(tr){
+      var go = function(){ select(tr.getAttribute('data-id'), true); };
+      tr.addEventListener('click', go);
+      tr.addEventListener('keydown', function(e){ if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); go(); } });
+    });
+  }
+
+  function select(id, scroll){
+    STATE.co = id; STATE.filter = 'all';
+    renderList(); renderPane(); renderMatrix();
+    if(scroll) $('bench-h').scrollIntoView({ behavior:'smooth', block:'start' });
+  }
+
+  function parseInd(text){
+    var t = text.toLowerCase(), best = null, idx = 1e9;
+    IND.forEach(function(i){ i.kw.forEach(function(w){ var p = t.indexOf(w); if(p >= 0 && p < idx){ idx = p; best = i.k; } }); });
+    return best;
+  }
+
+  function ask(){
+    var text = $('q').value.trim();
+    var co = getCo(STATE.co), slot = $('answer-slot');
+    if(!text){ slot.innerHTML = ''; return; }
+    var k = parseInd(text);
+    if(!k){
+      slot.innerHTML = '<div class="answer"><div class="big t u">没有识别出指标</div><p>可以问：Scope 1–3 温室气体排放、可再生能源占比、总取水量、废弃物转移率、供应链审计。</p></div>';
+      return;
+    }
+    var c = cell(co, k), i = IND.filter(function(x){ return x.k === k; })[0], s = src(co, c);
+    var head = '<h4>' + co.name + '，' + i.short + (i.short !== i.full ? '（' + i.full + '）' : '') + (c.year ? '，' + c.year + ' 年' : '') + (s ? '，' + s : '') + '</h4>';
+    var big, body;
+    if(c.st === 'ok'){ big = '<div class="big">' + fmt(c) + '</div>'; body = c.why; }
+    else if(c.st === 'u'){ big = '<div class="big t u">未检出</div>'; body = c.why || '报告中未检出可确认的数值，也没有用相近数据替代。这不等于报告未披露，建议先回溯原文检索。'; }
+    else { big = '<div class="big t ' + c.st + '">' + LABEL[c.st] + '</div>'; body = c.why; }
+    slot.innerHTML = '<div class="answer">' + big + '<div>' + head + '<p>' + body + '</p></div></div>';
+  }
+
+  function handleFiles(files){
+    var msgs = [], first = null;
+    Array.prototype.forEach.call(files, function(f){
+      var name = f.name.toLowerCase();
+      var hit = CO.filter(function(c){ return name.indexOf(c.name.toLowerCase()) >= 0 || name.indexOf(c.zh.toLowerCase()) >= 0; })[0];
+      if(hit){ msgs.push('<span class="yes">已切换到：' + hit.name + '</span>'); if(!first) first = hit; }
+      else { msgs.push('<span class="no">未识别：' + f.name + '（演示版仅含十家样本）</span>'); }
+    });
+    $('upl').hidden = false; $('upl').innerHTML = msgs.join('<br>');
+    if(first) select(first.id);
+  }
+
+  $('file').addEventListener('change', function(e){ handleFiles(e.target.files); });
+  $('example-btn').addEventListener('click', function(){ select('apple', true); });
+  $('go-bench').addEventListener('click', function(){ $('bench-h').scrollIntoView({ behavior:'smooth', block:'start' }); });
+
+  document.querySelectorAll('.rd-card').forEach(function(b){
+    b.addEventListener('click', function(){
+      var on = b.getAttribute('aria-pressed') === 'true';
+      document.querySelectorAll('.rd-card').forEach(function(x){ x.setAttribute('aria-pressed', 'false'); });
+      if(on){ $('cells').removeAttribute('data-hl'); }
+      else { b.setAttribute('aria-pressed', 'true'); $('cells').setAttribute('data-hl', b.getAttribute('data-s')); }
+    });
+  });
+
+  renderOverview(); renderList(); renderPane(); renderMatrix();
+})();
+</script>
